@@ -1,4 +1,29 @@
-﻿using System;
+﻿/* ----------------------------------------------------------------------------------
+ * Project : LamaMania
+ * Launch Authenticate Manage & Access ManiaPlanet Servers
+ * Inspired by ServerMania by Cyrlaur
+ * 
+ * ----------------------------------------------------------------------------------
+ * Author:	    Breton Kilian
+ * Copyright:	April 2019 by Breton Kilian
+ * ----------------------------------------------------------------------------------
+ *
+ * LICENSE: This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.If not, see<http://www.gnu.org/licenses/>.
+ *
+ * ----------------------------------------------------------------------------------*/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -77,7 +102,7 @@ namespace LAMAMAnia
         private void flatButton1_Click(object sender, EventArgs e)
         {
             string path = @"Servers\" + flatComboBox1.SelectedIndex + @"\ManiaPlanetServer.exe";
-            string cmd = "/Title=TMStadium /dedicated_cfg=dedicated_cfg.txt /game_settings=MatchSettings/Temp.txt";
+            string cmd = "/Title=TMStadium /dedicated_cfg=dedicated_cfg.txt /game_settings=MatchSettings/MatchSetting_kamphare_2019_04_01_15_44.txt";
             if (Config.invisibleServer)
             {
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
@@ -90,13 +115,20 @@ namespace LAMAMAnia
             }
             else
             {
-               // System.Diagnostics.Process.Start(path, cmd);
+             //   System.Diagnostics.Process.Start(path, cmd);
             }
             
             Config.launched = true;
             var config = new XmlDocument(@"Servers\" + flatComboBox1.SelectedIndex + @"\UserData\Config\dedicated_cfg.txt");
-            var mainForm = new Main(config);
-            mainForm.Show();
+            try
+            {
+                var mainForm = new Main(config);
+                mainForm.Show();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         void loadLang()

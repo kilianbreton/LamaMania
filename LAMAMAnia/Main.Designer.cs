@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.formSkin1 = new FlatUITheme.FormSkin();
             this.flatTabControl1 = new FlatUITheme.FlatTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -60,9 +60,9 @@
             this.l_server = new FlatUITheme.FlatLabel();
             this.l_xmlrpc = new FlatUITheme.FlatLabel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.flatTextBox2 = new FlatUITheme.FlatTextBox();
-            this.flatButton13 = new FlatUITheme.FlatButton();
-            this.flatTextBox1 = new FlatUITheme.FlatTextBox();
+            this.tb_chat = new FlatUITheme.FlatTextBox();
+            this.b_send = new FlatUITheme.FlatButton();
+            this.tb_chatLogin = new FlatUITheme.FlatTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dg_users = new System.Windows.Forms.DataGridView();
@@ -555,9 +555,9 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.tabPage2.Controls.Add(this.flatTextBox2);
-            this.tabPage2.Controls.Add(this.flatButton13);
-            this.tabPage2.Controls.Add(this.flatTextBox1);
+            this.tabPage2.Controls.Add(this.tb_chat);
+            this.tabPage2.Controls.Add(this.b_send);
+            this.tabPage2.Controls.Add(this.tb_chatLogin);
             this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 44);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -567,51 +567,52 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Chat";
             // 
-            // flatTextBox2
+            // tb_chat
             // 
-            this.flatTextBox2.BackColor = System.Drawing.Color.Transparent;
-            this.flatTextBox2.Location = new System.Drawing.Point(189, 459);
-            this.flatTextBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flatTextBox2.MaxLength = 32767;
-            this.flatTextBox2.Multiline = false;
-            this.flatTextBox2.Name = "flatTextBox2";
-            this.flatTextBox2.ReadOnly = false;
-            this.flatTextBox2.Size = new System.Drawing.Size(1003, 34);
-            this.flatTextBox2.TabIndex = 4;
-            this.flatTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.flatTextBox2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.flatTextBox2.UseSystemPasswordChar = false;
+            this.tb_chat.BackColor = System.Drawing.Color.Transparent;
+            this.tb_chat.Location = new System.Drawing.Point(189, 459);
+            this.tb_chat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_chat.MaxLength = 32767;
+            this.tb_chat.Multiline = false;
+            this.tb_chat.Name = "tb_chat";
+            this.tb_chat.ReadOnly = false;
+            this.tb_chat.Size = new System.Drawing.Size(1003, 34);
+            this.tb_chat.TabIndex = 4;
+            this.tb_chat.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.tb_chat.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tb_chat.UseSystemPasswordChar = false;
             // 
-            // flatButton13
+            // b_send
             // 
-            this.flatButton13.BackColor = System.Drawing.Color.Transparent;
-            this.flatButton13.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.flatButton13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flatButton13.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.flatButton13.Location = new System.Drawing.Point(1197, 459);
-            this.flatButton13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flatButton13.Name = "flatButton13";
-            this.flatButton13.Rounded = false;
-            this.flatButton13.Size = new System.Drawing.Size(107, 34);
-            this.flatButton13.TabIndex = 3;
-            this.flatButton13.Text = "Send";
-            this.flatButton13.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_send.BackColor = System.Drawing.Color.Transparent;
+            this.b_send.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.b_send.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b_send.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.b_send.Location = new System.Drawing.Point(1197, 459);
+            this.b_send.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_send.Name = "b_send";
+            this.b_send.Rounded = false;
+            this.b_send.Size = new System.Drawing.Size(107, 34);
+            this.b_send.TabIndex = 3;
+            this.b_send.Text = "Send";
+            this.b_send.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_send.Click += new System.EventHandler(this.b_send_Click);
             // 
-            // flatTextBox1
+            // tb_chatLogin
             // 
-            this.flatTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.flatTextBox1.Location = new System.Drawing.Point(8, 459);
-            this.flatTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flatTextBox1.MaxLength = 32767;
-            this.flatTextBox1.Multiline = false;
-            this.flatTextBox1.Name = "flatTextBox1";
-            this.flatTextBox1.ReadOnly = false;
-            this.flatTextBox1.Size = new System.Drawing.Size(175, 34);
-            this.flatTextBox1.TabIndex = 2;
-            this.flatTextBox1.Text = "Admin";
-            this.flatTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.flatTextBox1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.flatTextBox1.UseSystemPasswordChar = false;
+            this.tb_chatLogin.BackColor = System.Drawing.Color.Transparent;
+            this.tb_chatLogin.Location = new System.Drawing.Point(8, 459);
+            this.tb_chatLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_chatLogin.MaxLength = 32767;
+            this.tb_chatLogin.Multiline = false;
+            this.tb_chatLogin.Name = "tb_chatLogin";
+            this.tb_chatLogin.ReadOnly = false;
+            this.tb_chatLogin.Size = new System.Drawing.Size(175, 34);
+            this.tb_chatLogin.TabIndex = 2;
+            this.tb_chatLogin.Text = "Admin";
+            this.tb_chatLogin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.tb_chatLogin.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tb_chatLogin.UseSystemPasswordChar = false;
             // 
             // richTextBox1
             // 
@@ -650,8 +651,8 @@
             this.dg_users.Location = new System.Drawing.Point(3, 2);
             this.dg_users.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dg_users.Name = "dg_users";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dg_users.RowTemplate.Height = 24;
             this.dg_users.Size = new System.Drawing.Size(1300, 447);
             this.dg_users.TabIndex = 0;
@@ -709,8 +710,8 @@
             this.dg_map.Location = new System.Drawing.Point(5, 5);
             this.dg_map.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dg_map.Name = "dg_map";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dg_map.RowTemplate.Height = 24;
             this.dg_map.Size = new System.Drawing.Size(1300, 447);
             this.dg_map.TabIndex = 1;
@@ -914,9 +915,9 @@
         private FlatUITheme.FlatButton b_nextMap;
         private FlatUITheme.FlatLabel l_map;
         private FlatUITheme.FlatLabel l_gameMode;
-        private FlatUITheme.FlatTextBox flatTextBox2;
-        private FlatUITheme.FlatButton flatButton13;
-        private FlatUITheme.FlatTextBox flatTextBox1;
+        private FlatUITheme.FlatTextBox tb_chat;
+        private FlatUITheme.FlatButton b_send;
+        private FlatUITheme.FlatTextBox tb_chatLogin;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.DataGridView dg_users;
         private FlatUITheme.FlatGroupBox gb_players;

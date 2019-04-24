@@ -1,4 +1,28 @@
-﻿using System;
+﻿/* ----------------------------------------------------------------------------------
+ * Project : LamaMania
+ * Launch Authenticate Manage & Access ManiaPlanet Servers
+ * Inspired by ServerMania by Cyrlaur
+ * 
+ * ----------------------------------------------------------------------------------
+ * Author:	    Breton Kilian
+ * Copyright:	April 2019 by Breton Kilian
+ * ----------------------------------------------------------------------------------
+ *
+ * LICENSE: This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.If not, see<http://www.gnu.org/licenses/>.
+ *
+ * ----------------------------------------------------------------------------------*/
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -14,12 +38,13 @@ namespace LAMAMAnia
     /// </summary>
     public class ManiaColors
     {
-        private String text;
         private RichTextBox tb;
         private Label label;
-        private bool unColorMode = false; //Ignore les codes couleurs
 
-
+        /// <summary>
+        /// Instanciation de la classe
+        /// </summary>
+        /// <param name="tb">RichtextBox du chat</param>
         public ManiaColors(RichTextBox tb)
         {
             this.tb = tb;
@@ -92,7 +117,11 @@ namespace LAMAMAnia
             }
         }
 
-
+        /// <summary>
+        /// Obtient le texte sans les codes couleur
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public string getText(string text)
         {
             String tmp = "";
@@ -150,7 +179,11 @@ namespace LAMAMAnia
             return tmp;
         }
 
-
+        /// <summary>
+        /// Retourne un objet Color depuis un code couleur maniaplanet
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         private Color parseColorCode(string code)
         {
             Color ret;
@@ -167,6 +200,11 @@ namespace LAMAMAnia
             return ret;
         }
 
+        /// <summary>
+        /// Valeur hexadécimale vers entier (result x 17)
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
         int hexaToInt(Char hex)
         {
             int ret = 0;
@@ -225,15 +263,29 @@ namespace LAMAMAnia
             return (ret)*17;
         }
       
+        /// <summary>
+        /// Ecrit dans la console de chat
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="color"></param>
+        /// <param name="fs"></param>
         private void writeRich(String text, Color color, List<FontStyle> fs)
         {
-            if (fs.Count > 0)
-                this.tb.SelectionFont = new Font(this.tb.Font,fs[0]);
+            if (tb.InvokeRequired)
+            {
+                tb.Invoke(new Action<String, Color, List<FontStyle>>(writeRich), text, color, fs);
+            }
+            else
+            {
+                if (fs.Count > 0)
+                    this.tb.SelectionFont = new Font(this.tb.Font, fs[0]);
 
-            //this.tb.Font = new Font(FontFamily.GenericSansSerif,10,fs[0]);
-            this.tb.SelectionColor = color;
-            this.tb.AppendText(text);
-            this.tb.ScrollToCaret();
+                //this.tb.Font = new Font(FontFamily.GenericSansSerif,10,fs[0]);
+                this.tb.SelectionColor = color;
+                this.tb.AppendText(text);
+                this.tb.ScrollToCaret();
+            }
+           
         }
 
 
