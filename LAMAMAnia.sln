@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaMania", "LAMAMAnia\Lama
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaLang", "LamaLang\LamaLang.csproj", "{186ECF1D-2BED-41E1-AD22-4532C349C0E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaPlugin.cs", "LamaPlugin.cs\LamaPlugin.cs.csproj", "{6D5F0F62-232C-4611-9B40-C29E30492B70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaPlugin", "LamaPlugin.cs\LamaPlugin.csproj", "{6D5F0F62-232C-4611-9B40-C29E30492B70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

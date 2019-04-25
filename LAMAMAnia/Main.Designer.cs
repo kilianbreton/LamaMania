@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.formSkin1 = new FlatUITheme.FormSkin();
             this.flatTabControl1 = new FlatUITheme.FlatTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -66,17 +66,8 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dg_users = new System.Windows.Forms.DataGridView();
-            this.c_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c_Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c_Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c_UpTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c_Lvl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dg_map = new System.Windows.Forms.DataGridView();
-            this.c_m_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c_m_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c_m_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -90,6 +81,13 @@
             this.utilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.c_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c_Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c_ladder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c_m_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c_m_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c_environnement = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -644,48 +642,16 @@
             this.c_Id,
             this.c_Name,
             this.c_Login,
-            this.c_Time,
-            this.c_UpTime,
-            this.c_Lvl});
+            this.c_ladder});
             this.dg_users.GridColor = System.Drawing.Color.White;
             this.dg_users.Location = new System.Drawing.Point(3, 2);
             this.dg_users.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dg_users.Name = "dg_users";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dg_users.RowTemplate.Height = 24;
             this.dg_users.Size = new System.Drawing.Size(1300, 447);
             this.dg_users.TabIndex = 0;
-            // 
-            // c_Id
-            // 
-            this.c_Id.HeaderText = "Id";
-            this.c_Id.Name = "c_Id";
-            // 
-            // c_Name
-            // 
-            this.c_Name.HeaderText = "Name";
-            this.c_Name.Name = "c_Name";
-            // 
-            // c_Login
-            // 
-            this.c_Login.HeaderText = "Login";
-            this.c_Login.Name = "c_Login";
-            // 
-            // c_Time
-            // 
-            this.c_Time.HeaderText = "Time";
-            this.c_Time.Name = "c_Time";
-            // 
-            // c_UpTime
-            // 
-            this.c_UpTime.HeaderText = "UpTime";
-            this.c_UpTime.Name = "c_UpTime";
-            // 
-            // c_Lvl
-            // 
-            this.c_Lvl.HeaderText = "Lvl";
-            this.c_Lvl.Name = "c_Lvl";
             // 
             // tabPage4
             // 
@@ -703,33 +669,18 @@
             this.dg_map.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dg_map.ColumnHeadersHeight = 30;
             this.dg_map.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.c_m_id,
             this.c_m_name,
-            this.c_m_author});
+            this.c_m_author,
+            this.c_environnement});
             this.dg_map.GridColor = System.Drawing.Color.White;
             this.dg_map.Location = new System.Drawing.Point(5, 5);
             this.dg_map.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dg_map.Name = "dg_map";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dg_map.RowTemplate.Height = 24;
             this.dg_map.Size = new System.Drawing.Size(1300, 447);
             this.dg_map.TabIndex = 1;
-            // 
-            // c_m_id
-            // 
-            this.c_m_id.HeaderText = "Id";
-            this.c_m_id.Name = "c_m_id";
-            // 
-            // c_m_name
-            // 
-            this.c_m_name.HeaderText = "Name";
-            this.c_m_name.Name = "c_m_name";
-            // 
-            // c_m_author
-            // 
-            this.c_m_author.HeaderText = "Author";
-            this.c_m_author.Name = "c_m_author";
             // 
             // tabPage5
             // 
@@ -840,6 +791,41 @@
             this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
             this.pluginsToolStripMenuItem.Text = "Plugins";
             // 
+            // c_Id
+            // 
+            this.c_Id.HeaderText = "Id";
+            this.c_Id.Name = "c_Id";
+            // 
+            // c_Name
+            // 
+            this.c_Name.HeaderText = "Name";
+            this.c_Name.Name = "c_Name";
+            // 
+            // c_Login
+            // 
+            this.c_Login.HeaderText = "Login";
+            this.c_Login.Name = "c_Login";
+            // 
+            // c_ladder
+            // 
+            this.c_ladder.HeaderText = "Ladder";
+            this.c_ladder.Name = "c_ladder";
+            // 
+            // c_m_name
+            // 
+            this.c_m_name.HeaderText = "Name";
+            this.c_m_name.Name = "c_m_name";
+            // 
+            // c_m_author
+            // 
+            this.c_m_author.HeaderText = "Author";
+            this.c_m_author.Name = "c_m_author";
+            // 
+            // c_environnement
+            // 
+            this.c_environnement.HeaderText = "Environnement";
+            this.c_environnement.Name = "c_environnement";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -923,18 +909,16 @@
         private FlatUITheme.FlatGroupBox gb_players;
         private FlatUITheme.FlatListBox list_players;
         private System.Windows.Forms.DataGridView dg_map;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_Login;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_Time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_UpTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_Lvl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_author;
         private System.Windows.Forms.TabPage tabPage7;
         private FlatUITheme.FlatGroupBox gb_serverInfos;
         private FlatUITheme.FlatLabel l_serverDescritpion;
         private FlatUITheme.FlatLabel l_serverName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_Login;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_ladder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_author;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_environnement;
     }
 }

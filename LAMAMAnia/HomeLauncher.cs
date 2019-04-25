@@ -33,7 +33,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NTK.IO.Xml;
+using NTK.IO;
 using LamaLang;
+using LamaPlugin;
 
 namespace LAMAMAnia
 {
@@ -43,6 +45,9 @@ namespace LAMAMAnia
         public HomeLauncher()
         {
             InitializeComponent();
+
+            loadPlugins();
+
             Config.mainConfig = new XmlDocument(@"Config\Main.xml");
             var root = Config.mainConfig.getNode(0);
             while (root.read())
@@ -139,5 +144,19 @@ namespace LAMAMAnia
             this.flatButton3.Text = Config.lang.getHLRemove();
 
         }
+
+        void loadPlugins()
+        {
+            try
+            {
+                DllLoader loader = new DllLoader(@"Plugins\");
+                Config.plugins = loader.getAllInstances<BasePlugin>();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
     }
 }

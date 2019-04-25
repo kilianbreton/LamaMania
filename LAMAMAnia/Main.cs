@@ -59,6 +59,11 @@ namespace LAMAMAnia
         public Main(XmlDocument config)
         {
             InitializeComponent();
+            //Init logs
+            this.logger = new LogXMLRPC(@"Logs\XmlRpc.log");
+            log("NOTICE", "Init");
+
+
             if (Config.lang != null)
                 loadLang();
 
@@ -92,34 +97,8 @@ namespace LAMAMAnia
                 }
 
                 //Launch XmlRpcClient---------------------------------------------------------------------------------
-                int cpt = 0;
+                connectXmlRpc();
 
-                while (cpt < 5 && !Config.connected)
-                {
-                    cpt++;
-                    try
-                    {
-                        this.client = new XmlRpcClient(this.adrs, this.port);
-                        var authAnsw = this.client.Request("Authenticate", new object[]
-                        {
-                            (object) this.login,
-                            (object) this.passwd
-                        });
-                        if (authAnsw.Params[0].Equals((object)true)) //Auth success---------------------------------
-                        {
-                            this.client.EnableCallbacks(true);
-                            this.client.EventGbxCallback += new GbxCallbackHandler(gbxCallBack);
-                            this.client.EventOnDisconnectCallback += new OnDisconnectHandler(gbxDisconnect);
-
-                            Config.connected = true; //exit loop
-                        }
-
-                    }
-                    catch (Exception e)
-                    {
-                        System.Threading.Thread.Sleep(1500);
-                    }
-                }
                 if (Config.connected)
                 {
                     //Affichage
@@ -147,6 +126,9 @@ namespace LAMAMAnia
 
                     asyncRequest("GetMapsDirectory");
                     asyncRequest("GetServerOptions");
+                    asyncRequest("SendHideManialinkPage");
+                    asyncRequest("GetPlayerList", new object[] { 30, 1 });
+                    asyncRequest("GetMapList", new object[] { 100, 1 });
                 }
                 else
                 {
@@ -156,15 +138,6 @@ namespace LAMAMAnia
 
             }//if
 
-
-        }
-
-        //Constructeur pour les test /!\ NE PAS UTILISER EN PRODUCTION /!\
-        public Main()
-        {
-            InitializeComponent();
-            var testColors = new ManiaColors(richTextBox1);
-            testColors.write("$i$06f$oLAN $fffBTS $f03SIO");
 
         }
 
@@ -317,9 +290,52 @@ namespace LAMAMAnia
 
         }
 
+        void addDgRow(DataGridView dg, params object[] pars)
+        {
+            if (dg.InvokeRequired)
+            {
+                dg.Invoke(new Action<DataGridView, object[]>(addDgRow), dg, pars);
+            }
+            else
+            {
+                dg.Rows.Add(pars);
+            }
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methodes GBX ////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        void connectXmlRpc()
+        {
+            int cpt = 0;
+            while (cpt < 5 && !Config.connected)
+            {
+                cpt++;
+                try
+                {
+                    this.client = new XmlRpcClient(this.adrs, this.port);
+                    var authAnsw = this.client.Request("Authenticate", new object[]
+                    {
+                            (object) this.login,
+                            (object) this.passwd
+                    });
+                    if (authAnsw.Params[0].Equals((object)true)) //Auth success---------------------------------
+                    {
+                        this.client.EnableCallbacks(true);
+                        this.client.EventGbxCallback += new GbxCallbackHandler(gbxCallBack);
+                        this.client.EventOnDisconnectCallback += new OnDisconnectHandler(gbxDisconnect);
+
+                        Config.connected = true; //exit loop
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    System.Threading.Thread.Sleep(1500);
+                }
+            }
+        }
 
         void asyncRequest(String methodeName, object[] param = null)
         {
@@ -429,6 +445,17 @@ namespace LAMAMAnia
                     case "GetMaxSpectators":
 
                         break;
+                    case "GetMapList":
+                        ArrayList maps = (ArrayList)res.Params[0];
+                        foreach (Hashtable map in maps)
+                        {
+                            addDgRow(dg_map, chatColors.getText((string)map["Name"]), map["Author"], map["Environnement"], map["LadderRanking"]);
+                        }
+                        break;
+
+
+
+
                     #endregion
 
                     #region "Chat"
@@ -468,6 +495,24 @@ namespace LAMAMAnia
                     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
                     case "GetPlayerList":
+                        ArrayList userList = (ArrayList)res.Params[0];
+                        foreach (Hashtable user in userList)
+                        {
+                            string xml = "<manialink version='3'>\n"
+                                +"< frame pos = '10 10'  index = '0' >\n"
+   
+                                +" < quad size = '10 10' bgcolor = 'F00A' />\n"
+      
+                                +"< quad pos = '-10 0'  index = '0' size = '10 10' bgcolor = '00FA' />\n"
+                                +" </frame>"
+                                +"</manialink>";
+                                          
+                            addDgRow(dg_users, user["PlayerId"], chatColors.getText((string)user["NickName"]), user["Login"], user["LadderRanking"]);
+                           // asyncRequest("SendDisplayManialinkPageToId", new object[] { user["PlayerId"], xml,0,false });
+                        }
+                        break;
+                    case "SendDisplayManialinkPageToId":
+                        var r = res;
                         break;
                     case "GetGuestList":
                         break;
@@ -505,7 +550,12 @@ namespace LAMAMAnia
             }
         }
 
-
+        void log(string type, string msg)
+        {
+            this.logger.add(new LogLineXMLRPC(type, msg, DateTime.Now));
+            this.logger.flush();
+        }
+     
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methodes Event UI ///////////////////////////////////////////////////////////////////////////////////////////

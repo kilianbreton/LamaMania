@@ -32,6 +32,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NTK.IO.Xml;
+using LamaLang;
+using LamaPlugin;
 
 namespace LAMAMAnia
 {
@@ -51,6 +53,15 @@ namespace LAMAMAnia
             InitializeComponent();
             if (Config.lang != null)
                 loadLang();
+            
+            //Load Plugins List
+            foreach(BasePlugin plugin in Config.plugins)
+            {
+                checkedListBox1.Items.Clear();
+                checkedListBox1.Items.Add(plugin.getPlugin);
+            }
+
+
 
             this.config = new XmlDocument(@"Servers\" + index + @"\UserData\Config\dedicated_cfg.txt");
             var root = this.config.getNode(0);  //dedicated

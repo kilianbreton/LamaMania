@@ -95,10 +95,13 @@
             this.tb_p2pPort = new FlatUITheme.FlatTextBox();
             this.tb_ServerPort = new FlatUITheme.FlatTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPlugins = new System.Windows.Forms.TabPage();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPlugins.SuspendLayout();
             this.SuspendLayout();
             // 
             // formSkin1
@@ -156,6 +159,7 @@
             this.flatTabControl1.Controls.Add(this.tabPage1);
             this.flatTabControl1.Controls.Add(this.tabPage2);
             this.flatTabControl1.Controls.Add(this.tabPage3);
+            this.flatTabControl1.Controls.Add(this.tabPlugins);
             this.flatTabControl1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.flatTabControl1.ItemSize = new System.Drawing.Size(120, 40);
             this.flatTabControl1.Location = new System.Drawing.Point(3, 46);
@@ -1071,6 +1075,25 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "MatchSettings";
             // 
+            // tabPlugins
+            // 
+            this.tabPlugins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.tabPlugins.Controls.Add(this.checkedListBox1);
+            this.tabPlugins.Location = new System.Drawing.Point(4, 44);
+            this.tabPlugins.Name = "tabPlugins";
+            this.tabPlugins.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPlugins.Size = new System.Drawing.Size(1059, 397);
+            this.tabPlugins.TabIndex = 3;
+            this.tabPlugins.Text = "Plugins";
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(6, 6);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(1042, 379);
+            this.checkedListBox1.TabIndex = 0;
+            // 
             // ConfigServ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1088,6 +1111,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPlugins.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1161,5 +1185,7 @@
         private FlatUITheme.FlatNumeric n_voteTimeout;
         private System.Windows.Forms.TabPage tabPage3;
         private FlatUITheme.FlatTextBox tb_title;
+        private System.Windows.Forms.TabPage tabPlugins;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
