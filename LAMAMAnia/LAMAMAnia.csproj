@@ -24,6 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\LAMAMAnia.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -121,6 +123,10 @@
     <ProjectReference Include="..\LamaLang\LamaLang.csproj">
       <Project>{186ecf1d-2bed-41e1-ad22-4532c349c0e5}</Project>
       <Name>LamaLang</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LamaPlugin.cs\LamaPlugin.csproj">
+      <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
+      <Name>LamaPlugin</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

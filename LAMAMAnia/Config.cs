@@ -34,18 +34,54 @@ using LamaPlugin;
 
 namespace LAMAMAnia
 {
+    /// <summary>
+    /// Lama Configuration
+    /// </summary>
     public class Config
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static Dictionary<String, String> servers = new Dictionary<string, string>();
+        /// <summary>
+        ///
+        /// </summary>
         public static List<BasePlugin> plugins;
+        /// <summary>
+        /// 
+        /// </summary>
         public static XmlDocument mainConfig;
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool invisibleServer = false;
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool launched = false;
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool remote = false;
+        /// <summary>
+        /// 
+        /// </summary>
         public static string remoteAdrs;
+        /// <summary>
+        /// 
+        /// </summary>
         public static int remotePort;
+        /// <summary>
+        /// 
+        /// </summary>
         public static BaseLang lang;
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool connected = false;
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool useLogs = true;
     }
 }

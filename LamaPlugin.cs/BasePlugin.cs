@@ -29,6 +29,9 @@ using TMXmlRpcLib;
 
 namespace LamaPlugin
 {
+    /// <summary>
+    /// Abstract class for plugins
+    /// </summary>
     public abstract class BasePlugin
     {
         private XmlRpcClient client;
@@ -38,38 +41,42 @@ namespace LamaPlugin
         private string plugin = "";
         private float version = 0.1F;
 
-        protected string Author { get => author; set => author = value; }
-        protected string Plugin { get => plugin; set => plugin = value; }
-        protected float Version { get => version; set => version = value; }
-
-        public string getAuthor { get => author; }
-        public string getPlugin { get => plugin; }
-        public float getVersion { get => version; }
+       
 
 
-        //Constructeurs
-
+        /// <summary>
+        /// Init
+        /// </summary>
         public BasePlugin() { }
+        
 
-        public BasePlugin(XmlRpcClient client)
-        {
-            this.client = client;
-        }
-
+        /// <summary>
+        /// Method for plugin manager
+        /// </summary>
+        /// <param name="client"></param>
         public void setClient(XmlRpcClient client)
         {
             this.client = client;
         }
 
-        //Protected
 
+        /// <summary>
+        /// Send async request
+        /// </summary>
+        /// <param name="methodeName"></param>
+        /// <param name="param"></param>
         protected void asyncRequest(String methodeName, object[] param = null)
         {
             if (param == null)
                 param = new object[] { };
-            this.handles.Add(this.client.AsyncRequest(methodeName, param, basicResult), methodeName);
+            this.handles.Add(this.client.AsyncRequest(methodeName, param, onGbxAsyncResult), methodeName);
         }
-
+        /// <summary>
+        /// Send async request
+        /// </summary>
+        /// <param name="methodeName"></param>
+        /// <param name="param"></param>
+        /// <param name="handler"></param>
         protected void asyncRequest(String methodeName, object[] param, GbxCallCallbackHandler handler)
         {
             if (param == null)
@@ -77,13 +84,26 @@ namespace LamaPlugin
             this.client.AsyncRequest(methodeName, param, handler);
         }
 
-        //Abstract
-
+   
+        /// <summary>
+        /// Actions on load
+        /// </summary>
+        /// <param name="lamaConfig"></param>
         public abstract void onLoad(List<Dictionary<string, string>> lamaConfig);
 
         public abstract void onGbxCallBack(object sender, GbxCallbackEventArgs args);
 
         public abstract void onGbxAsyncResult(GbxCall res);
+
+
+
+        protected string Author { get => author; set => author = value; }
+        protected string Plugin { get => plugin; set => plugin = value; }
+        protected float Version { get => version; set => version = value; }
+
+        public string getAuthor { get => author; }
+        public string getPlugin { get => plugin; }
+        public float getVersion { get => version; }
 
     }
 }

@@ -39,7 +39,6 @@ namespace LAMAMAnia
     public class ManiaColors
     {
         private RichTextBox tb;
-        private Label label;
 
         /// <summary>
         /// Instanciation de la classe
@@ -184,7 +183,7 @@ namespace LAMAMAnia
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        private Color parseColorCode(string code)
+        Color parseColorCode(string code)
         {
             Color ret;
             if (code.Length == 3)
@@ -269,7 +268,7 @@ namespace LAMAMAnia
         /// <param name="text"></param>
         /// <param name="color"></param>
         /// <param name="fs"></param>
-        private void writeRich(String text, Color color, List<FontStyle> fs)
+        void writeRich(String text, Color color, List<FontStyle> fs)
         {
             if (tb.InvokeRequired)
             {

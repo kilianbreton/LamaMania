@@ -41,6 +41,9 @@ using static NTK.Other.NTKF;
 
 namespace LAMAMAnia
 {
+    /// <summary>
+    /// Main form controller
+    /// </summary>
     public partial class Main : Form
     {
         private XmlRpcClient client;
@@ -56,6 +59,10 @@ namespace LAMAMAnia
         // Constructeurs ///////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// Start main with dedicated_cfg
+        /// </summary>
+        /// <param name="config"></param>
         public Main(XmlDocument config)
         {
             InitializeComponent();
@@ -184,6 +191,18 @@ namespace LAMAMAnia
 
         }
 
+        void addDgRow(DataGridView dg, params object[] pars)
+        {
+            if (dg.InvokeRequired)
+            {
+                dg.Invoke(new Action<DataGridView, object[]>(addDgRow), dg, pars);
+            }
+            else
+            {
+                dg.Rows.Add(pars);
+            }
+        }
+
         void appendList(ListBox list, String value)
         {
             if (list.InvokeRequired)
@@ -194,6 +213,19 @@ namespace LAMAMAnia
             {
                 list.Items.Add(value);
             }
+        }
+
+        void clearConsole(int a = 0)
+        {
+            if (richTextBox1.InvokeRequired) //Permet de revenir au Thread de gestion des composants UI
+            {
+                richTextBox1.Invoke(new Action<int>(clearConsole), 0);
+            }
+            else
+            {
+                richTextBox1.Clear();
+            }
+
         }
 
         void clearList(ListBox list)
@@ -277,30 +309,6 @@ namespace LAMAMAnia
             }
         }
 
-        void clearConsole(int a)
-        {
-            if (richTextBox1.InvokeRequired) //Permet de revenir au Thread de gestion des composants UI
-            {
-                richTextBox1.Invoke(new Action<int>(clearConsole), 0);
-            }
-            else
-            {
-                richTextBox1.Clear();
-            }
-
-        }
-
-        void addDgRow(DataGridView dg, params object[] pars)
-        {
-            if (dg.InvokeRequired)
-            {
-                dg.Invoke(new Action<DataGridView, object[]>(addDgRow), dg, pars);
-            }
-            else
-            {
-                dg.Rows.Add(pars);
-            }
-        }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methodes GBX ////////////////////////////////////////////////////////////////////////////////////////////////

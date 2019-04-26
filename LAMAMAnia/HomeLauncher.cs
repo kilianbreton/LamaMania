@@ -46,7 +46,7 @@ namespace LAMAMAnia
         {
             InitializeComponent();
 
-            loadPlugins();
+         //   loadPlugins();
 
             Config.mainConfig = new XmlDocument(@"Config\Main.xml");
             var root = Config.mainConfig.getNode(0);
