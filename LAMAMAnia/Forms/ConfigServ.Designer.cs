@@ -55,7 +55,7 @@
             this.flatLabel3 = new FlatUITheme.FlatLabel();
             this.flatLabel2 = new FlatUITheme.FlatLabel();
             this.flatLabel1 = new FlatUITheme.FlatLabel();
-            this.flatTextBox1 = new FlatUITheme.FlatTextBox();
+            this.tb_name = new FlatUITheme.FlatTextBox();
             this.tb_description = new FlatUITheme.FlatTextBox();
             this.tb_serverLogin = new FlatUITheme.FlatTextBox();
             this.tb_ServerPass = new FlatUITheme.FlatTextBox();
@@ -95,6 +95,17 @@
             this.tb_p2pPort = new FlatUITheme.FlatTextBox();
             this.tb_ServerPort = new FlatUITheme.FlatTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.n_warm_s = new FlatUITheme.FlatNumeric();
+            this.n_warm_h = new FlatUITheme.FlatNumeric();
+            this.n_forcelaps = new FlatUITheme.FlatNumeric();
+            this.n_warm_m = new FlatUITheme.FlatNumeric();
+            this.n_nbwarm = new FlatUITheme.FlatNumeric();
+            this.n_time_m = new FlatUITheme.FlatNumeric();
+            this.n_time_s = new FlatUITheme.FlatNumeric();
+            this.n_time_h = new FlatUITheme.FlatNumeric();
+            this.flatLabel30 = new FlatUITheme.FlatLabel();
+            this.flatLabel29 = new FlatUITheme.FlatLabel();
+            this.flatLabel28 = new FlatUITheme.FlatLabel();
             this.flatLabel27 = new FlatUITheme.FlatLabel();
             this.b_clearMapMatch = new FlatUITheme.FlatButton();
             this.b_addAll = new FlatUITheme.FlatButton();
@@ -110,17 +121,6 @@
             this.tb_matchFile = new FlatUITheme.FlatTextBox();
             this.tabPlugins = new System.Windows.Forms.TabPage();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.flatLabel28 = new FlatUITheme.FlatLabel();
-            this.flatLabel29 = new FlatUITheme.FlatLabel();
-            this.flatLabel30 = new FlatUITheme.FlatLabel();
-            this.n_time_h = new FlatUITheme.FlatNumeric();
-            this.n_time_s = new FlatUITheme.FlatNumeric();
-            this.n_time_m = new FlatUITheme.FlatNumeric();
-            this.n_nbwarm = new FlatUITheme.FlatNumeric();
-            this.n_warm_m = new FlatUITheme.FlatNumeric();
-            this.n_forcelaps = new FlatUITheme.FlatNumeric();
-            this.n_warm_h = new FlatUITheme.FlatNumeric();
-            this.n_warm_s = new FlatUITheme.FlatNumeric();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -161,6 +161,7 @@
             this.b_cancel.TabIndex = 2;
             this.b_cancel.Text = "Cancel";
             this.b_cancel.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_cancel.Click += new System.EventHandler(this.b_cancel_Click);
             // 
             // b_save
             // 
@@ -219,7 +220,7 @@
             this.tabPage1.Controls.Add(this.flatLabel3);
             this.tabPage1.Controls.Add(this.flatLabel2);
             this.tabPage1.Controls.Add(this.flatLabel1);
-            this.tabPage1.Controls.Add(this.flatTextBox1);
+            this.tabPage1.Controls.Add(this.tb_name);
             this.tabPage1.Controls.Add(this.tb_description);
             this.tabPage1.Controls.Add(this.tb_serverLogin);
             this.tabPage1.Controls.Add(this.tb_ServerPass);
@@ -515,19 +516,19 @@
             this.flatLabel1.TabIndex = 7;
             this.flatLabel1.Text = "Name :";
             // 
-            // flatTextBox1
+            // tb_name
             // 
-            this.flatTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.flatTextBox1.Location = new System.Drawing.Point(165, 19);
-            this.flatTextBox1.MaxLength = 32767;
-            this.flatTextBox1.Multiline = false;
-            this.flatTextBox1.Name = "flatTextBox1";
-            this.flatTextBox1.ReadOnly = false;
-            this.flatTextBox1.Size = new System.Drawing.Size(345, 34);
-            this.flatTextBox1.TabIndex = 1;
-            this.flatTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.flatTextBox1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.flatTextBox1.UseSystemPasswordChar = false;
+            this.tb_name.BackColor = System.Drawing.Color.Transparent;
+            this.tb_name.Location = new System.Drawing.Point(165, 19);
+            this.tb_name.MaxLength = 32767;
+            this.tb_name.Multiline = false;
+            this.tb_name.Name = "tb_name";
+            this.tb_name.ReadOnly = false;
+            this.tb_name.Size = new System.Drawing.Size(345, 34);
+            this.tb_name.TabIndex = 1;
+            this.tb_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.tb_name.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tb_name.UseSystemPasswordChar = false;
             // 
             // tb_description
             // 
@@ -1124,6 +1125,170 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "MatchSettings";
             // 
+            // n_warm_s
+            // 
+            this.n_warm_s.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_warm_s.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_warm_s.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_warm_s.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_warm_s.ForeColor = System.Drawing.Color.White;
+            this.n_warm_s.Location = new System.Drawing.Point(1142, 191);
+            this.n_warm_s.Maximum = ((long)(59));
+            this.n_warm_s.Minimum = ((long)(0));
+            this.n_warm_s.Name = "n_warm_s";
+            this.n_warm_s.Size = new System.Drawing.Size(75, 30);
+            this.n_warm_s.TabIndex = 38;
+            this.n_warm_s.Text = "flatNumeric2";
+            this.n_warm_s.Value = ((long)(0));
+            // 
+            // n_warm_h
+            // 
+            this.n_warm_h.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_warm_h.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_warm_h.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_warm_h.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_warm_h.ForeColor = System.Drawing.Color.White;
+            this.n_warm_h.Location = new System.Drawing.Point(1001, 191);
+            this.n_warm_h.Maximum = ((long)(9));
+            this.n_warm_h.Minimum = ((long)(0));
+            this.n_warm_h.Name = "n_warm_h";
+            this.n_warm_h.Size = new System.Drawing.Size(54, 30);
+            this.n_warm_h.TabIndex = 37;
+            this.n_warm_h.Text = "flatNumeric1";
+            this.n_warm_h.Value = ((long)(0));
+            // 
+            // n_forcelaps
+            // 
+            this.n_forcelaps.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_forcelaps.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_forcelaps.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_forcelaps.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_forcelaps.ForeColor = System.Drawing.Color.White;
+            this.n_forcelaps.Location = new System.Drawing.Point(1061, 228);
+            this.n_forcelaps.Maximum = ((long)(9999999));
+            this.n_forcelaps.Minimum = ((long)(0));
+            this.n_forcelaps.Name = "n_forcelaps";
+            this.n_forcelaps.Size = new System.Drawing.Size(75, 30);
+            this.n_forcelaps.TabIndex = 36;
+            this.n_forcelaps.Text = "flatNumeric6";
+            this.n_forcelaps.Value = ((long)(0));
+            // 
+            // n_warm_m
+            // 
+            this.n_warm_m.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_warm_m.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_warm_m.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_warm_m.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_warm_m.ForeColor = System.Drawing.Color.White;
+            this.n_warm_m.Location = new System.Drawing.Point(1061, 191);
+            this.n_warm_m.Maximum = ((long)(9999999));
+            this.n_warm_m.Minimum = ((long)(0));
+            this.n_warm_m.Name = "n_warm_m";
+            this.n_warm_m.Size = new System.Drawing.Size(75, 30);
+            this.n_warm_m.TabIndex = 35;
+            this.n_warm_m.Text = "flatNumeric5";
+            this.n_warm_m.Value = ((long)(0));
+            // 
+            // n_nbwarm
+            // 
+            this.n_nbwarm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_nbwarm.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_nbwarm.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_nbwarm.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_nbwarm.ForeColor = System.Drawing.Color.White;
+            this.n_nbwarm.Location = new System.Drawing.Point(1061, 155);
+            this.n_nbwarm.Maximum = ((long)(9999999));
+            this.n_nbwarm.Minimum = ((long)(0));
+            this.n_nbwarm.Name = "n_nbwarm";
+            this.n_nbwarm.Size = new System.Drawing.Size(75, 30);
+            this.n_nbwarm.TabIndex = 34;
+            this.n_nbwarm.Text = "flatNumeric4";
+            this.n_nbwarm.Value = ((long)(0));
+            // 
+            // n_time_m
+            // 
+            this.n_time_m.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_time_m.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_time_m.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_time_m.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_time_m.ForeColor = System.Drawing.Color.White;
+            this.n_time_m.Location = new System.Drawing.Point(1061, 117);
+            this.n_time_m.Maximum = ((long)(59));
+            this.n_time_m.Minimum = ((long)(0));
+            this.n_time_m.Name = "n_time_m";
+            this.n_time_m.Size = new System.Drawing.Size(75, 30);
+            this.n_time_m.TabIndex = 33;
+            this.n_time_m.Text = "flatNumeric3";
+            this.n_time_m.Value = ((long)(5));
+            // 
+            // n_time_s
+            // 
+            this.n_time_s.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_time_s.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_time_s.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_time_s.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_time_s.ForeColor = System.Drawing.Color.White;
+            this.n_time_s.Location = new System.Drawing.Point(1142, 117);
+            this.n_time_s.Maximum = ((long)(59));
+            this.n_time_s.Minimum = ((long)(0));
+            this.n_time_s.Name = "n_time_s";
+            this.n_time_s.Size = new System.Drawing.Size(75, 30);
+            this.n_time_s.TabIndex = 32;
+            this.n_time_s.Text = "flatNumeric2";
+            this.n_time_s.Value = ((long)(0));
+            // 
+            // n_time_h
+            // 
+            this.n_time_h.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_time_h.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_time_h.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_time_h.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_time_h.ForeColor = System.Drawing.Color.White;
+            this.n_time_h.Location = new System.Drawing.Point(1001, 117);
+            this.n_time_h.Maximum = ((long)(9));
+            this.n_time_h.Minimum = ((long)(0));
+            this.n_time_h.Name = "n_time_h";
+            this.n_time_h.Size = new System.Drawing.Size(54, 30);
+            this.n_time_h.TabIndex = 31;
+            this.n_time_h.Text = "flatNumeric1";
+            this.n_time_h.Value = ((long)(0));
+            // 
+            // flatLabel30
+            // 
+            this.flatLabel30.AutoSize = true;
+            this.flatLabel30.BackColor = System.Drawing.Color.Transparent;
+            this.flatLabel30.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatLabel30.ForeColor = System.Drawing.Color.White;
+            this.flatLabel30.Location = new System.Drawing.Point(893, 230);
+            this.flatLabel30.Name = "flatLabel30";
+            this.flatLabel30.Size = new System.Drawing.Size(127, 23);
+            this.flatLabel30.TabIndex = 30;
+            this.flatLabel30.Text = "Force Laps Nb :";
+            // 
+            // flatLabel29
+            // 
+            this.flatLabel29.AutoSize = true;
+            this.flatLabel29.BackColor = System.Drawing.Color.Transparent;
+            this.flatLabel29.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatLabel29.ForeColor = System.Drawing.Color.White;
+            this.flatLabel29.Location = new System.Drawing.Point(893, 195);
+            this.flatLabel29.Name = "flatLabel29";
+            this.flatLabel29.Size = new System.Drawing.Size(91, 23);
+            this.flatLabel29.TabIndex = 29;
+            this.flatLabel29.Text = "WarmUp  :";
+            // 
+            // flatLabel28
+            // 
+            this.flatLabel28.AutoSize = true;
+            this.flatLabel28.BackColor = System.Drawing.Color.Transparent;
+            this.flatLabel28.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatLabel28.ForeColor = System.Drawing.Color.White;
+            this.flatLabel28.Location = new System.Drawing.Point(893, 159);
+            this.flatLabel28.Name = "flatLabel28";
+            this.flatLabel28.Size = new System.Drawing.Size(114, 23);
+            this.flatLabel28.TabIndex = 28;
+            this.flatLabel28.Text = "Nb WarmUp :";
+            // 
             // flatLabel27
             // 
             this.flatLabel27.AutoSize = true;
@@ -1311,175 +1476,12 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(6, 6);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(1042, 379);
             this.checkedListBox1.TabIndex = 0;
-            // 
-            // flatLabel28
-            // 
-            this.flatLabel28.AutoSize = true;
-            this.flatLabel28.BackColor = System.Drawing.Color.Transparent;
-            this.flatLabel28.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flatLabel28.ForeColor = System.Drawing.Color.White;
-            this.flatLabel28.Location = new System.Drawing.Point(893, 159);
-            this.flatLabel28.Name = "flatLabel28";
-            this.flatLabel28.Size = new System.Drawing.Size(114, 23);
-            this.flatLabel28.TabIndex = 28;
-            this.flatLabel28.Text = "Nb WarmUp :";
-            // 
-            // flatLabel29
-            // 
-            this.flatLabel29.AutoSize = true;
-            this.flatLabel29.BackColor = System.Drawing.Color.Transparent;
-            this.flatLabel29.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flatLabel29.ForeColor = System.Drawing.Color.White;
-            this.flatLabel29.Location = new System.Drawing.Point(893, 195);
-            this.flatLabel29.Name = "flatLabel29";
-            this.flatLabel29.Size = new System.Drawing.Size(91, 23);
-            this.flatLabel29.TabIndex = 29;
-            this.flatLabel29.Text = "WarmUp  :";
-            // 
-            // flatLabel30
-            // 
-            this.flatLabel30.AutoSize = true;
-            this.flatLabel30.BackColor = System.Drawing.Color.Transparent;
-            this.flatLabel30.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flatLabel30.ForeColor = System.Drawing.Color.White;
-            this.flatLabel30.Location = new System.Drawing.Point(893, 230);
-            this.flatLabel30.Name = "flatLabel30";
-            this.flatLabel30.Size = new System.Drawing.Size(127, 23);
-            this.flatLabel30.TabIndex = 30;
-            this.flatLabel30.Text = "Force Laps Nb :";
-            // 
-            // n_time_h
-            // 
-            this.n_time_h.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.n_time_h.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.n_time_h.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.n_time_h.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.n_time_h.ForeColor = System.Drawing.Color.White;
-            this.n_time_h.Location = new System.Drawing.Point(1001, 117);
-            this.n_time_h.Maximum = ((long)(9));
-            this.n_time_h.Minimum = ((long)(0));
-            this.n_time_h.Name = "n_time_h";
-            this.n_time_h.Size = new System.Drawing.Size(54, 30);
-            this.n_time_h.TabIndex = 31;
-            this.n_time_h.Text = "flatNumeric1";
-            this.n_time_h.Value = ((long)(0));
-            // 
-            // n_time_s
-            // 
-            this.n_time_s.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.n_time_s.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.n_time_s.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.n_time_s.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.n_time_s.ForeColor = System.Drawing.Color.White;
-            this.n_time_s.Location = new System.Drawing.Point(1142, 117);
-            this.n_time_s.Maximum = ((long)(59));
-            this.n_time_s.Minimum = ((long)(0));
-            this.n_time_s.Name = "n_time_s";
-            this.n_time_s.Size = new System.Drawing.Size(75, 30);
-            this.n_time_s.TabIndex = 32;
-            this.n_time_s.Text = "flatNumeric2";
-            this.n_time_s.Value = ((long)(0));
-            // 
-            // n_time_m
-            // 
-            this.n_time_m.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.n_time_m.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.n_time_m.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.n_time_m.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.n_time_m.ForeColor = System.Drawing.Color.White;
-            this.n_time_m.Location = new System.Drawing.Point(1061, 117);
-            this.n_time_m.Maximum = ((long)(59));
-            this.n_time_m.Minimum = ((long)(0));
-            this.n_time_m.Name = "n_time_m";
-            this.n_time_m.Size = new System.Drawing.Size(75, 30);
-            this.n_time_m.TabIndex = 33;
-            this.n_time_m.Text = "flatNumeric3";
-            this.n_time_m.Value = ((long)(5));
-            // 
-            // n_nbwarm
-            // 
-            this.n_nbwarm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.n_nbwarm.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.n_nbwarm.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.n_nbwarm.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.n_nbwarm.ForeColor = System.Drawing.Color.White;
-            this.n_nbwarm.Location = new System.Drawing.Point(1061, 155);
-            this.n_nbwarm.Maximum = ((long)(9999999));
-            this.n_nbwarm.Minimum = ((long)(0));
-            this.n_nbwarm.Name = "n_nbwarm";
-            this.n_nbwarm.Size = new System.Drawing.Size(75, 30);
-            this.n_nbwarm.TabIndex = 34;
-            this.n_nbwarm.Text = "flatNumeric4";
-            this.n_nbwarm.Value = ((long)(0));
-            // 
-            // n_warm_m
-            // 
-            this.n_warm_m.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.n_warm_m.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.n_warm_m.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.n_warm_m.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.n_warm_m.ForeColor = System.Drawing.Color.White;
-            this.n_warm_m.Location = new System.Drawing.Point(1061, 191);
-            this.n_warm_m.Maximum = ((long)(9999999));
-            this.n_warm_m.Minimum = ((long)(0));
-            this.n_warm_m.Name = "n_warm_m";
-            this.n_warm_m.Size = new System.Drawing.Size(75, 30);
-            this.n_warm_m.TabIndex = 35;
-            this.n_warm_m.Text = "flatNumeric5";
-            this.n_warm_m.Value = ((long)(0));
-            // 
-            // n_forcelaps
-            // 
-            this.n_forcelaps.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.n_forcelaps.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.n_forcelaps.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.n_forcelaps.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.n_forcelaps.ForeColor = System.Drawing.Color.White;
-            this.n_forcelaps.Location = new System.Drawing.Point(1061, 228);
-            this.n_forcelaps.Maximum = ((long)(9999999));
-            this.n_forcelaps.Minimum = ((long)(0));
-            this.n_forcelaps.Name = "n_forcelaps";
-            this.n_forcelaps.Size = new System.Drawing.Size(75, 30);
-            this.n_forcelaps.TabIndex = 36;
-            this.n_forcelaps.Text = "flatNumeric6";
-            this.n_forcelaps.Value = ((long)(0));
-            // 
-            // n_warm_h
-            // 
-            this.n_warm_h.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.n_warm_h.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.n_warm_h.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.n_warm_h.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.n_warm_h.ForeColor = System.Drawing.Color.White;
-            this.n_warm_h.Location = new System.Drawing.Point(1001, 191);
-            this.n_warm_h.Maximum = ((long)(9));
-            this.n_warm_h.Minimum = ((long)(0));
-            this.n_warm_h.Name = "n_warm_h";
-            this.n_warm_h.Size = new System.Drawing.Size(54, 30);
-            this.n_warm_h.TabIndex = 37;
-            this.n_warm_h.Text = "flatNumeric1";
-            this.n_warm_h.Value = ((long)(0));
-            // 
-            // n_warm_s
-            // 
-            this.n_warm_s.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.n_warm_s.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.n_warm_s.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.n_warm_s.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.n_warm_s.ForeColor = System.Drawing.Color.White;
-            this.n_warm_s.Location = new System.Drawing.Point(1142, 191);
-            this.n_warm_s.Maximum = ((long)(59));
-            this.n_warm_s.Minimum = ((long)(0));
-            this.n_warm_s.Name = "n_warm_s";
-            this.n_warm_s.Size = new System.Drawing.Size(75, 30);
-            this.n_warm_s.TabIndex = 38;
-            this.n_warm_s.Text = "flatNumeric2";
-            this.n_warm_s.Value = ((long)(0));
             // 
             // ConfigServ
             // 
@@ -1521,7 +1523,7 @@
         private FlatUITheme.FlatLabel flatLabel3;
         private FlatUITheme.FlatLabel flatLabel2;
         private FlatUITheme.FlatLabel flatLabel1;
-        private FlatUITheme.FlatTextBox flatTextBox1;
+        private FlatUITheme.FlatTextBox tb_name;
         private FlatUITheme.FlatTextBox tb_description;
         private FlatUITheme.FlatTextBox tb_serverLogin;
         private FlatUITheme.FlatTextBox tb_ServerPass;

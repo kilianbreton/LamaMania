@@ -1,0 +1,13 @@
+﻿/help
+
+Start vote if user, force if admin
+
+/restart
+/skip
+/previous
+/playlistadd #map
+/playlist cancel
+/kick #login
+/warn #login
+/donate
+/pm #login #msg

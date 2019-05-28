@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaLang", "LamaLang\LamaLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaPlugin", "LamaPlugin.cs\LamaPlugin.csproj", "{6D5F0F62-232C-4611-9B40-C29E30492B70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaTest", "LamaTest\LamaTest.csproj", "{BB5C8333-966B-46A2-AEBF-236F5C71913C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicsCommandsPlugin", "BasicsCommandsPlugin\BasicsCommandsPlugin.csproj", "{F37E9401-7491-44BE-8BB4-6E41BCA5D52D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +33,18 @@ Global
 		{6D5F0F62-232C-4611-9B40-C29E30492B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D5F0F62-232C-4611-9B40-C29E30492B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D5F0F62-232C-4611-9B40-C29E30492B70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5C8333-966B-46A2-AEBF-236F5C71913C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5C8333-966B-46A2-AEBF-236F5C71913C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5C8333-966B-46A2-AEBF-236F5C71913C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5C8333-966B-46A2-AEBF-236F5C71913C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F37E9401-7491-44BE-8BB4-6E41BCA5D52D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F37E9401-7491-44BE-8BB4-6E41BCA5D52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F37E9401-7491-44BE-8BB4-6E41BCA5D52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F37E9401-7491-44BE-8BB4-6E41BCA5D52D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

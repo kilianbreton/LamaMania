@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TMXmlRpcLib;
+using NTK.IO;
 
 namespace LamaPlugin
 {
@@ -35,13 +36,14 @@ namespace LamaPlugin
     public abstract class BasePlugin
     {
         private XmlRpcClient client;
+        private List<Requirement> requirements = new List<Requirement>();
         protected Dictionary<int, string> handles = new Dictionary<int, string>();
+        protected Log logger;
+
 
         private string author = "";
-        private string plugin = "";
-        private float version = 0.1F;
-
-       
+        private string name = "";
+        private string version = "";
 
 
         /// <summary>
@@ -59,18 +61,28 @@ namespace LamaPlugin
             this.client = client;
         }
 
+        public void setLogger(Log logger)
+        {
+            this.logger = logger;
+        }
+
+       
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        // PROTECTED /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Send async request
         /// </summary>
         /// <param name="methodeName"></param>
         /// <param name="param"></param>
-        protected void asyncRequest(String methodeName, object[] param = null)
+        protected void asyncRequest(String methodeName, params object[] param)
         {
             if (param == null)
                 param = new object[] { };
             this.handles.Add(this.client.AsyncRequest(methodeName, param, onGbxAsyncResult), methodeName);
         }
+      
         /// <summary>
         /// Send async request
         /// </summary>
@@ -83,27 +95,47 @@ namespace LamaPlugin
                 param = new object[] { };
             this.client.AsyncRequest(methodeName, param, handler);
         }
+      
+        protected void log(string type, string text)
+        {
+            logger.add(type, text);
+            logger.flush();
+        }
 
-   
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        // ABSTRACT //////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+
         /// <summary>
         /// Actions on load
         /// </summary>
         /// <param name="lamaConfig"></param>
-        public abstract void onLoad(List<Dictionary<string, string>> lamaConfig);
+        public abstract bool onLoad(LamaConfig lamaConfig);
 
+        /// <summary>
+        /// CallBack Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         public abstract void onGbxCallBack(object sender, GbxCallbackEventArgs args);
-
+     
+        /// <summary>
+        /// Result of async request
+        /// </summary>
+        /// <param name="res"></param>
         public abstract void onGbxAsyncResult(GbxCall res);
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        // GETTERS ///////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        
 
+        public string Author { get => author; protected set => author = value; }
+        public string Name { get => name; protected set => name = value; }
+        public string Version { get => version; protected set => version = value; }
+        public List<Requirement> Requirements { get => requirements; protected set => requirements = value; }
 
-        protected string Author { get => author; set => author = value; }
-        protected string Plugin { get => plugin; set => plugin = value; }
-        protected float Version { get => version; set => version = value; }
-
-        public string getAuthor { get => author; }
-        public string getPlugin { get => plugin; }
-        public float getVersion { get => version; }
-
+   
+      
     }
 }

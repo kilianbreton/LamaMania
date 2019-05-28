@@ -49,6 +49,8 @@ namespace LAMAMAnia
             this.tb = tb;
         }
 
+        public ManiaColors() { }
+
         /// <summary>
         /// Ecrit le texte dans le control
         /// </summary>

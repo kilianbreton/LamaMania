@@ -10,14 +10,15 @@ namespace LamaPlugin
     {
         public TestPlugin()
         {
-            this.Plugin = "Test";
+            this.Name = "Test";
             this.Author = "Murdisto";
-            this.Version = 0.1F;
+            this.Version = "0.1.1";
         }
 
-        public override void onLoad(List<Dictionary<string,string>> lamaConfig)
+        public override bool onLoad(LamaConfig lamaConfig)
         {
             asyncRequest("GetPlayerList",new object[] { 32, 1 });
+            return true;
         }
 
         public override void onGbxAsyncResult(GbxCall res)
