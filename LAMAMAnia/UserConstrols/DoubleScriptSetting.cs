@@ -8,12 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LAMAMAnia.UserConstrols
+namespace LamaMania.UserConstrols
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class DoubleScriptSetting : UserControl, IScriptSetting
     {
         private string name;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="title"></param>
+        /// <param name="value"></param>
         public DoubleScriptSetting(string name, string title, double value)
         {
             InitializeComponent();
@@ -28,9 +36,17 @@ namespace LAMAMAnia.UserConstrols
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string SettingName { get => name; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object SettingValue { get => double.Parse(this.flatTextBox1.Text); }
+        /// <summary>
+        /// 
+        /// </summary>
         public string getValueType { get => "Double"; }
     }
 }

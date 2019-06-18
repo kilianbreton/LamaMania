@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicsCommandsPlugin", "Bas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{05ADDE83-272A-4807-8474-EC778A706496}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UAsecoPlugin", "UAsecoPlugin\UAsecoPlugin.csproj", "{5045BD0B-F2C6-4904-9AD9-EAE5D3EBCEA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05ADDE83-272A-4807-8474-EC778A706496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05ADDE83-272A-4807-8474-EC778A706496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05ADDE83-272A-4807-8474-EC778A706496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05ADDE83-272A-4807-8474-EC778A706496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5045BD0B-F2C6-4904-9AD9-EAE5D3EBCEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5045BD0B-F2C6-4904-9AD9-EAE5D3EBCEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5045BD0B-F2C6-4904-9AD9-EAE5D3EBCEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5045BD0B-F2C6-4904-9AD9-EAE5D3EBCEA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

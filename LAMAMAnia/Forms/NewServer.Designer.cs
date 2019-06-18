@@ -1,4 +1,4 @@
-﻿namespace LAMAMAnia
+﻿namespace LamaMania
 {
     partial class NewServer
     {

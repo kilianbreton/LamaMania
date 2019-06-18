@@ -1,4 +1,4 @@
-﻿namespace LAMAMAnia
+﻿namespace LamaMania
 {
     partial class ConfigSoft
     {
@@ -66,7 +66,7 @@
             this.flatLabel2.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel2.ForeColor = System.Drawing.Color.White;
-            this.flatLabel2.Location = new System.Drawing.Point(12, 125);
+            this.flatLabel2.Location = new System.Drawing.Point(8, 110);
             this.flatLabel2.Name = "flatLabel2";
             this.flatLabel2.Size = new System.Drawing.Size(94, 23);
             this.flatLabel2.TabIndex = 5;
@@ -85,9 +85,9 @@
             this.cb_lang.ItemHeight = 18;
             this.cb_lang.Items.AddRange(new object[] {
             "Default"});
-            this.cb_lang.Location = new System.Drawing.Point(120, 124);
+            this.cb_lang.Location = new System.Drawing.Point(120, 111);
             this.cb_lang.Name = "cb_lang";
-            this.cb_lang.Size = new System.Drawing.Size(323, 24);
+            this.cb_lang.Size = new System.Drawing.Size(174, 24);
             this.cb_lang.TabIndex = 4;
             // 
             // flatLabel1
@@ -145,7 +145,7 @@
             "Default"});
             this.cb_start.Location = new System.Drawing.Point(120, 72);
             this.cb_start.Name = "cb_start";
-            this.cb_start.Size = new System.Drawing.Size(323, 24);
+            this.cb_start.Size = new System.Drawing.Size(174, 24);
             this.cb_start.TabIndex = 0;
             // 
             // ConfigSoft

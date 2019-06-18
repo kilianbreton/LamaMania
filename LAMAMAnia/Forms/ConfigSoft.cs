@@ -8,10 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LAMAMAnia
+namespace LamaMania
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class ConfigSoft : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ConfigSoft()
         {
             InitializeComponent();

@@ -32,7 +32,7 @@ namespace LamaLang
     public abstract class BaseLang
     {
         public abstract Dictionary<String, Dictionary<String, String>> getLangDictionary();
-       
+        public abstract Dictionary<String, String> getScriptSettingsDictionary();
 
     //    public abstract string getMMServerInfosTitle();
       //  public abstract string getMMServerInfosTitle();

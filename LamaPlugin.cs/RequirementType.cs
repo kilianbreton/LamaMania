@@ -9,9 +9,7 @@ namespace LamaPlugin
         PLUGIN,
         DATABASE,
         FILE,
-        STATE,
-        GAMEMODE,
-        GameType,
-        VERSION
+       
+     
     }
 }

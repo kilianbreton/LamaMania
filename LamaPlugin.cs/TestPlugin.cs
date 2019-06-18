@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace LamaPlugin
 {
-    public class TestPlugin : BasePlugin
+    public class TestPlugin : InGamePlugin
     {
         public TestPlugin()
         {

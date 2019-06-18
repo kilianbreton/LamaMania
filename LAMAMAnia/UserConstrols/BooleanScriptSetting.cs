@@ -8,12 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LAMAMAnia.UserConstrols
+namespace LamaMania.UserConstrols
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class BooleanScriptSetting : UserControl, IScriptSetting
     {
         private string name;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="title"></param>
+        /// <param name="value"></param>
         public BooleanScriptSetting(string name, string title, bool value)
         {
             InitializeComponent();
@@ -26,10 +34,17 @@ namespace LAMAMAnia.UserConstrols
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string SettingName { get => name; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object SettingValue { get => this.flatCheckBox1.Checked; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string getValueType { get => "Boolean"; }
     }
 }

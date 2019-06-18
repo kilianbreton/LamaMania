@@ -31,34 +31,57 @@ using System.Text;
 using System.Threading.Tasks;
 using NTK.IO;
 
-namespace LAMAMAnia
+namespace LamaMania
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class LogLineXMLRPC : LogLine
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="text"></param>
+        /// <param name="date"></param>
         public LogLineXMLRPC(String type, String text, DateTime date) : base(type, text, date) { }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string toText()
         {
             return "[" + Date.ToShortDateString() + "][" + Type + "]>" + Text;
         }
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class LogXMLRPC : Log
     {
         private string path;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
         public LogXMLRPC(String path)
         {
             this.path = path;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="text"></param>
         public override void add(string type, string text)
         {
             base.lines.Add(new LogLineXMLRPC(type, text, DateTime.Now));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public override void flush()
         {
             try

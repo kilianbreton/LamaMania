@@ -8,12 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LAMAMAnia.UserConstrols
+namespace LamaMania.UserConstrols
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class NumericScriptSetting : UserControl, IScriptSetting
     {
         private string name;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="title"></param>
+        /// <param name="value"></param>
         public NumericScriptSetting(string name, string title, int value)
         {
             InitializeComponent();
@@ -28,9 +36,17 @@ namespace LAMAMAnia.UserConstrols
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string SettingName { get => name; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object SettingValue { get => this.flatNumeric1.Value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string getValueType { get => "Numeric"; }
     }
 }

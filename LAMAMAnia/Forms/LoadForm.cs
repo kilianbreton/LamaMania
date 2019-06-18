@@ -8,10 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LAMAMAnia
+namespace LamaMania
 {
+    /// <summary>
+    /// Loading Form
+    /// </summary>
     public partial class LoadForm : Form
     {
+        /// <summary>
+        /// Init
+        /// </summary>
         public LoadForm()
         {
             InitializeComponent();

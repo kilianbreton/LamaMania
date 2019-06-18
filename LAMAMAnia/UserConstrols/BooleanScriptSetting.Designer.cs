@@ -1,4 +1,4 @@
-﻿namespace LAMAMAnia.UserConstrols
+﻿namespace LamaMania.UserConstrols
 {
     partial class BooleanScriptSetting
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using NTK.IO;
 
 
-namespace LAMAMAnia
+namespace LamaMania
 {
     /// <summary>
     /// Représente une ligne de log

@@ -24,6 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\LAMAMAnia.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,42 +58,120 @@
     <Reference Include="TMXmlRpcLib">
       <HintPath>D:\Programmation\csLibrary\TMXmlRpcLib.dll</HintPath>
     </Reference>
-    <Reference Include="XmlRpcMvc, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XmlRpcMvc.0.2.2\lib\net40\XmlRpcMvc.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
-    <Compile Include="ConfigServ.cs">
+    <Compile Include="ExtensionsMethods.cs" />
+    <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfigServ.Designer.cs">
+    <Compile Include="Forms\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LamaDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LamaDialog.Designer.cs">
+      <DependentUpon>LamaDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AskLogins.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AskLogins.Designer.cs">
+      <DependentUpon>AskLogins.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoadForm.Designer.cs">
+      <DependentUpon>LoadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewServer.Designer.cs">
+      <DependentUpon>NewServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameMode.cs" />
+    <Compile Include="Lama.cs" />
+    <Compile Include="Forms\ConfigServ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfigServ.Designer.cs">
       <DependentUpon>ConfigServ.cs</DependentUpon>
     </Compile>
-    <Compile Include="HomeLauncher.cs">
+    <Compile Include="Forms\ConfigSoft.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HomeLauncher.Designer.cs">
+    <Compile Include="Forms\ConfigSoft.Designer.cs">
+      <DependentUpon>ConfigSoft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HomeLauncher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HomeLauncher.Designer.cs">
       <DependentUpon>HomeLauncher.cs</DependentUpon>
     </Compile>
+    <Compile Include="LamaLog.cs" />
     <Compile Include="LogXMLRPC.cs" />
-    <Compile Include="Main.cs">
+    <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
+    <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="ManiaColors.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ConfigServ.resx">
+    <Compile Include="StaticMethods.cs" />
+    <Compile Include="Structs.cs" />
+    <Compile Include="UserConstrols\IScriptSetting.cs" />
+    <Compile Include="UserConstrols\BooleanScriptSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\BooleanScriptSetting.Designer.cs">
+      <DependentUpon>BooleanScriptSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\NumericScriptSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\NumericScriptSetting.Designer.cs">
+      <DependentUpon>NumericScriptSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\DoubleScriptSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\DoubleScriptSetting.Designer.cs">
+      <DependentUpon>DoubleScriptSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\StringScriptSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\StringScriptSetting.Designer.cs">
+      <DependentUpon>StringScriptSetting.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\AskLogins.resx">
+      <DependentUpon>AskLogins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfigServ.resx">
       <DependentUpon>ConfigServ.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HomeLauncher.resx">
+    <EmbeddedResource Include="Forms\ConfigSoft.resx">
+      <DependentUpon>ConfigSoft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HomeLauncher.resx">
       <DependentUpon>HomeLauncher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="Forms\LamaDialog.resx">
+      <DependentUpon>LamaDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoadForm.resx">
+      <DependentUpon>LoadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewServer.resx">
+      <DependentUpon>NewServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,6 +183,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserConstrols\BooleanScriptSetting.resx">
+      <DependentUpon>BooleanScriptSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\NumericScriptSetting.resx">
+      <DependentUpon>NumericScriptSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\DoubleScriptSetting.resx">
+      <DependentUpon>DoubleScriptSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\StringScriptSetting.resx">
+      <DependentUpon>StringScriptSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

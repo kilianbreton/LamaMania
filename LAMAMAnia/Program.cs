@@ -29,7 +29,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LAMAMAnia
+namespace LamaMania
 {
     static class Program
     {
@@ -42,7 +42,6 @@ namespace LAMAMAnia
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new HomeLauncher());
-           
         }
     }
 }

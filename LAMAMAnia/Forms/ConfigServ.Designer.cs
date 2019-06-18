@@ -1,4 +1,4 @@
-﻿namespace LAMAMAnia
+﻿namespace LamaMania
 {
     partial class ConfigServ
     {
@@ -32,7 +32,7 @@
             this.b_cancel = new FlatUITheme.FlatButton();
             this.b_save = new FlatUITheme.FlatButton();
             this.flatTabControl1 = new FlatUITheme.FlatTabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tp_general = new System.Windows.Forms.TabPage();
             this.tb_title = new FlatUITheme.FlatTextBox();
             this.flatLabel15 = new FlatUITheme.FlatLabel();
             this.flatLabel14 = new FlatUITheme.FlatLabel();
@@ -62,7 +62,15 @@
             this.tb_validKey = new FlatUITheme.FlatTextBox();
             this.tb_playerPass = new FlatUITheme.FlatTextBox();
             this.tb_ingameName = new FlatUITheme.FlatTextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tp_advanced = new System.Windows.Forms.TabPage();
+            this.ch_internetServer = new FlatUITheme.FlatCheckBox();
+            this.flatLabel33 = new FlatUITheme.FlatLabel();
+            this.n_p2pCacheSize = new FlatUITheme.FlatNumeric();
+            this.ch_allowSpecRelay = new FlatUITheme.FlatCheckBox();
+            this.flatLabel32 = new FlatUITheme.FlatLabel();
+            this.n_paThreadCount = new FlatUITheme.FlatNumeric();
+            this.cb_hiddenServer = new FlatUITheme.FlatComboBox();
+            this.flatLabel31 = new FlatUITheme.FlatLabel();
             this.flatLabel25 = new FlatUITheme.FlatLabel();
             this.flatLabel24 = new FlatUITheme.FlatLabel();
             this.tb_voteRatio = new FlatUITheme.FlatTextBox();
@@ -94,7 +102,9 @@
             this.tb_XmlRpcPort = new FlatUITheme.FlatTextBox();
             this.tb_p2pPort = new FlatUITheme.FlatTextBox();
             this.tb_ServerPort = new FlatUITheme.FlatTextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tp_match = new System.Windows.Forms.TabPage();
+            this.flatLabel34 = new FlatUITheme.FlatLabel();
+            this.cb_gameMode = new FlatUITheme.FlatComboBox();
             this.n_warm_s = new FlatUITheme.FlatNumeric();
             this.n_warm_h = new FlatUITheme.FlatNumeric();
             this.n_forcelaps = new FlatUITheme.FlatNumeric();
@@ -123,9 +133,9 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tp_general.SuspendLayout();
+            this.tp_advanced.SuspendLayout();
+            this.tp_match.SuspendLayout();
             this.tabPlugins.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,9 +192,9 @@
             // 
             this.flatTabControl1.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.flatTabControl1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.flatTabControl1.Controls.Add(this.tabPage1);
-            this.flatTabControl1.Controls.Add(this.tabPage2);
-            this.flatTabControl1.Controls.Add(this.tabPage3);
+            this.flatTabControl1.Controls.Add(this.tp_general);
+            this.flatTabControl1.Controls.Add(this.tp_advanced);
+            this.flatTabControl1.Controls.Add(this.tp_match);
             this.flatTabControl1.Controls.Add(this.tabPlugins);
             this.flatTabControl1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.flatTabControl1.ItemSize = new System.Drawing.Size(120, 40);
@@ -194,45 +204,46 @@
             this.flatTabControl1.Size = new System.Drawing.Size(1237, 588);
             this.flatTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.flatTabControl1.TabIndex = 0;
+            this.flatTabControl1.SelectedIndexChanged += new System.EventHandler(this.flatTabControl1_SelectedIndexChanged);
             // 
-            // tabPage1
+            // tp_general
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.tabPage1.Controls.Add(this.tb_title);
-            this.tabPage1.Controls.Add(this.flatLabel15);
-            this.tabPage1.Controls.Add(this.flatLabel14);
-            this.tabPage1.Controls.Add(this.flatLabel13);
-            this.tabPage1.Controls.Add(this.tb_userPass);
-            this.tabPage1.Controls.Add(this.tb_adminPass);
-            this.tabPage1.Controls.Add(this.tb_superPass);
-            this.tabPage1.Controls.Add(this.flatLabel12);
-            this.tabPage1.Controls.Add(this.flatLabel11);
-            this.tabPage1.Controls.Add(this.flatLabel10);
-            this.tabPage1.Controls.Add(this.flatLabel9);
-            this.tabPage1.Controls.Add(this.n_playersLimit);
-            this.tabPage1.Controls.Add(this.flatLabel8);
-            this.tabPage1.Controls.Add(this.tb_specPass);
-            this.tabPage1.Controls.Add(this.flatLabel7);
-            this.tabPage1.Controls.Add(this.n_specsLimit);
-            this.tabPage1.Controls.Add(this.flatLabel6);
-            this.tabPage1.Controls.Add(this.flatLabel5);
-            this.tabPage1.Controls.Add(this.flatLabel4);
-            this.tabPage1.Controls.Add(this.flatLabel3);
-            this.tabPage1.Controls.Add(this.flatLabel2);
-            this.tabPage1.Controls.Add(this.flatLabel1);
-            this.tabPage1.Controls.Add(this.tb_name);
-            this.tabPage1.Controls.Add(this.tb_description);
-            this.tabPage1.Controls.Add(this.tb_serverLogin);
-            this.tabPage1.Controls.Add(this.tb_ServerPass);
-            this.tabPage1.Controls.Add(this.tb_validKey);
-            this.tabPage1.Controls.Add(this.tb_playerPass);
-            this.tabPage1.Controls.Add(this.tb_ingameName);
-            this.tabPage1.Location = new System.Drawing.Point(4, 44);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1229, 540);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "General";
+            this.tp_general.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.tp_general.Controls.Add(this.tb_title);
+            this.tp_general.Controls.Add(this.flatLabel15);
+            this.tp_general.Controls.Add(this.flatLabel14);
+            this.tp_general.Controls.Add(this.flatLabel13);
+            this.tp_general.Controls.Add(this.tb_userPass);
+            this.tp_general.Controls.Add(this.tb_adminPass);
+            this.tp_general.Controls.Add(this.tb_superPass);
+            this.tp_general.Controls.Add(this.flatLabel12);
+            this.tp_general.Controls.Add(this.flatLabel11);
+            this.tp_general.Controls.Add(this.flatLabel10);
+            this.tp_general.Controls.Add(this.flatLabel9);
+            this.tp_general.Controls.Add(this.n_playersLimit);
+            this.tp_general.Controls.Add(this.flatLabel8);
+            this.tp_general.Controls.Add(this.tb_specPass);
+            this.tp_general.Controls.Add(this.flatLabel7);
+            this.tp_general.Controls.Add(this.n_specsLimit);
+            this.tp_general.Controls.Add(this.flatLabel6);
+            this.tp_general.Controls.Add(this.flatLabel5);
+            this.tp_general.Controls.Add(this.flatLabel4);
+            this.tp_general.Controls.Add(this.flatLabel3);
+            this.tp_general.Controls.Add(this.flatLabel2);
+            this.tp_general.Controls.Add(this.flatLabel1);
+            this.tp_general.Controls.Add(this.tb_name);
+            this.tp_general.Controls.Add(this.tb_description);
+            this.tp_general.Controls.Add(this.tb_serverLogin);
+            this.tp_general.Controls.Add(this.tb_ServerPass);
+            this.tp_general.Controls.Add(this.tb_validKey);
+            this.tp_general.Controls.Add(this.tb_playerPass);
+            this.tp_general.Controls.Add(this.tb_ingameName);
+            this.tp_general.Location = new System.Drawing.Point(4, 44);
+            this.tp_general.Name = "tp_general";
+            this.tp_general.Padding = new System.Windows.Forms.Padding(3);
+            this.tp_general.Size = new System.Drawing.Size(1229, 540);
+            this.tp_general.TabIndex = 0;
+            this.tp_general.Text = "General";
             // 
             // tb_title
             // 
@@ -614,46 +625,172 @@
             this.tb_ingameName.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tb_ingameName.UseSystemPasswordChar = false;
             // 
-            // tabPage2
+            // tp_advanced
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.tabPage2.Controls.Add(this.flatLabel25);
-            this.tabPage2.Controls.Add(this.flatLabel24);
-            this.tabPage2.Controls.Add(this.tb_voteRatio);
-            this.tabPage2.Controls.Add(this.n_voteTimeout);
-            this.tabPage2.Controls.Add(this.tb_proxy);
-            this.tabPage2.Controls.Add(this.ch_proxy);
-            this.tabPage2.Controls.Add(this.flatLabel23);
-            this.tabPage2.Controls.Add(this.flatLabel22);
-            this.tabPage2.Controls.Add(this.n_UpRate);
-            this.tabPage2.Controls.Add(this.n_DownRate);
-            this.tabPage2.Controls.Add(this.ch_xmlRpcRemote);
-            this.tabPage2.Controls.Add(this.flatLabel21);
-            this.tabPage2.Controls.Add(this.n_maxLat);
-            this.tabPage2.Controls.Add(this.ch_horns);
-            this.tabPage2.Controls.Add(this.ch_mapDown);
-            this.tabPage2.Controls.Add(this.ch_saveValReplay);
-            this.tabPage2.Controls.Add(this.ch_autoSaveReplay);
-            this.tabPage2.Controls.Add(this.ch_p2pUp);
-            this.tabPage2.Controls.Add(this.ch_p2pDown);
-            this.tabPage2.Controls.Add(this.ch_keepPlayerSlot);
-            this.tabPage2.Controls.Add(this.ch_ladder);
-            this.tabPage2.Controls.Add(this.flatLabel20);
-            this.tabPage2.Controls.Add(this.cb_refereeValid);
-            this.tabPage2.Controls.Add(this.flatLabel19);
-            this.tabPage2.Controls.Add(this.tb_refereePass);
-            this.tabPage2.Controls.Add(this.flatLabel18);
-            this.tabPage2.Controls.Add(this.flatLabel17);
-            this.tabPage2.Controls.Add(this.flatLabel16);
-            this.tabPage2.Controls.Add(this.tb_XmlRpcPort);
-            this.tabPage2.Controls.Add(this.tb_p2pPort);
-            this.tabPage2.Controls.Add(this.tb_ServerPort);
-            this.tabPage2.Location = new System.Drawing.Point(4, 44);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1229, 540);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Advanced";
+            this.tp_advanced.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.tp_advanced.Controls.Add(this.ch_internetServer);
+            this.tp_advanced.Controls.Add(this.flatLabel33);
+            this.tp_advanced.Controls.Add(this.n_p2pCacheSize);
+            this.tp_advanced.Controls.Add(this.ch_allowSpecRelay);
+            this.tp_advanced.Controls.Add(this.flatLabel32);
+            this.tp_advanced.Controls.Add(this.n_paThreadCount);
+            this.tp_advanced.Controls.Add(this.cb_hiddenServer);
+            this.tp_advanced.Controls.Add(this.flatLabel31);
+            this.tp_advanced.Controls.Add(this.flatLabel25);
+            this.tp_advanced.Controls.Add(this.flatLabel24);
+            this.tp_advanced.Controls.Add(this.tb_voteRatio);
+            this.tp_advanced.Controls.Add(this.n_voteTimeout);
+            this.tp_advanced.Controls.Add(this.tb_proxy);
+            this.tp_advanced.Controls.Add(this.ch_proxy);
+            this.tp_advanced.Controls.Add(this.flatLabel23);
+            this.tp_advanced.Controls.Add(this.flatLabel22);
+            this.tp_advanced.Controls.Add(this.n_UpRate);
+            this.tp_advanced.Controls.Add(this.n_DownRate);
+            this.tp_advanced.Controls.Add(this.ch_xmlRpcRemote);
+            this.tp_advanced.Controls.Add(this.flatLabel21);
+            this.tp_advanced.Controls.Add(this.n_maxLat);
+            this.tp_advanced.Controls.Add(this.ch_horns);
+            this.tp_advanced.Controls.Add(this.ch_mapDown);
+            this.tp_advanced.Controls.Add(this.ch_saveValReplay);
+            this.tp_advanced.Controls.Add(this.ch_autoSaveReplay);
+            this.tp_advanced.Controls.Add(this.ch_p2pUp);
+            this.tp_advanced.Controls.Add(this.ch_p2pDown);
+            this.tp_advanced.Controls.Add(this.ch_keepPlayerSlot);
+            this.tp_advanced.Controls.Add(this.ch_ladder);
+            this.tp_advanced.Controls.Add(this.flatLabel20);
+            this.tp_advanced.Controls.Add(this.cb_refereeValid);
+            this.tp_advanced.Controls.Add(this.flatLabel19);
+            this.tp_advanced.Controls.Add(this.tb_refereePass);
+            this.tp_advanced.Controls.Add(this.flatLabel18);
+            this.tp_advanced.Controls.Add(this.flatLabel17);
+            this.tp_advanced.Controls.Add(this.flatLabel16);
+            this.tp_advanced.Controls.Add(this.tb_XmlRpcPort);
+            this.tp_advanced.Controls.Add(this.tb_p2pPort);
+            this.tp_advanced.Controls.Add(this.tb_ServerPort);
+            this.tp_advanced.Location = new System.Drawing.Point(4, 44);
+            this.tp_advanced.Name = "tp_advanced";
+            this.tp_advanced.Padding = new System.Windows.Forms.Padding(3);
+            this.tp_advanced.Size = new System.Drawing.Size(1229, 540);
+            this.tp_advanced.TabIndex = 1;
+            this.tp_advanced.Text = "Advanced";
+            // 
+            // ch_internetServer
+            // 
+            this.ch_internetServer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.ch_internetServer.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.ch_internetServer.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.ch_internetServer.Checked = false;
+            this.ch_internetServer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ch_internetServer.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ch_internetServer.Location = new System.Drawing.Point(1005, 340);
+            this.ch_internetServer.Name = "ch_internetServer";
+            this.ch_internetServer.Options = FlatUITheme.FlatCheckBox._Options.Style1;
+            this.ch_internetServer.Size = new System.Drawing.Size(202, 22);
+            this.ch_internetServer.TabIndex = 50;
+            this.ch_internetServer.Text = "Internet server";
+            // 
+            // flatLabel33
+            // 
+            this.flatLabel33.AutoSize = true;
+            this.flatLabel33.BackColor = System.Drawing.Color.Transparent;
+            this.flatLabel33.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatLabel33.ForeColor = System.Drawing.Color.White;
+            this.flatLabel33.Location = new System.Drawing.Point(977, 279);
+            this.flatLabel33.Name = "flatLabel33";
+            this.flatLabel33.Size = new System.Drawing.Size(128, 23);
+            this.flatLabel33.TabIndex = 49;
+            this.flatLabel33.Text = "P2PCache size :";
+            // 
+            // n_p2pCacheSize
+            // 
+            this.n_p2pCacheSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_p2pCacheSize.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_p2pCacheSize.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_p2pCacheSize.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_p2pCacheSize.ForeColor = System.Drawing.Color.White;
+            this.n_p2pCacheSize.Location = new System.Drawing.Point(1114, 275);
+            this.n_p2pCacheSize.Maximum = ((long)(9999999));
+            this.n_p2pCacheSize.Minimum = ((long)(0));
+            this.n_p2pCacheSize.Name = "n_p2pCacheSize";
+            this.n_p2pCacheSize.Size = new System.Drawing.Size(104, 30);
+            this.n_p2pCacheSize.TabIndex = 48;
+            this.n_p2pCacheSize.Text = "flatNumeric5";
+            this.n_p2pCacheSize.Value = ((long)(0));
+            // 
+            // ch_allowSpecRelay
+            // 
+            this.ch_allowSpecRelay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.ch_allowSpecRelay.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.ch_allowSpecRelay.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.ch_allowSpecRelay.Checked = false;
+            this.ch_allowSpecRelay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ch_allowSpecRelay.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ch_allowSpecRelay.Location = new System.Drawing.Point(15, 389);
+            this.ch_allowSpecRelay.Name = "ch_allowSpecRelay";
+            this.ch_allowSpecRelay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
+            this.ch_allowSpecRelay.Size = new System.Drawing.Size(244, 22);
+            this.ch_allowSpecRelay.TabIndex = 47;
+            this.ch_allowSpecRelay.Text = "Allow spectators Relay";
+            // 
+            // flatLabel32
+            // 
+            this.flatLabel32.AutoSize = true;
+            this.flatLabel32.BackColor = System.Drawing.Color.Transparent;
+            this.flatLabel32.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatLabel32.ForeColor = System.Drawing.Color.White;
+            this.flatLabel32.Location = new System.Drawing.Point(864, 241);
+            this.flatLabel32.Name = "flatLabel32";
+            this.flatLabel32.Size = new System.Drawing.Size(244, 23);
+            this.flatLabel32.TabIndex = 46;
+            this.flatLabel32.Text = "PacketAssembly ThreadCount :";
+            // 
+            // n_paThreadCount
+            // 
+            this.n_paThreadCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.n_paThreadCount.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.n_paThreadCount.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.n_paThreadCount.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.n_paThreadCount.ForeColor = System.Drawing.Color.White;
+            this.n_paThreadCount.Location = new System.Drawing.Point(1114, 236);
+            this.n_paThreadCount.Maximum = ((long)(9999999));
+            this.n_paThreadCount.Minimum = ((long)(0));
+            this.n_paThreadCount.Name = "n_paThreadCount";
+            this.n_paThreadCount.Size = new System.Drawing.Size(104, 30);
+            this.n_paThreadCount.TabIndex = 45;
+            this.n_paThreadCount.Text = "flatNumeric5";
+            this.n_paThreadCount.Value = ((long)(0));
+            // 
+            // cb_hiddenServer
+            // 
+            this.cb_hiddenServer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.cb_hiddenServer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cb_hiddenServer.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cb_hiddenServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_hiddenServer.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.cb_hiddenServer.ForeColor = System.Drawing.Color.White;
+            this.cb_hiddenServer.FormattingEnabled = true;
+            this.cb_hiddenServer.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.cb_hiddenServer.ItemHeight = 18;
+            this.cb_hiddenServer.Items.AddRange(new object[] {
+            "Allways shown",
+            "Allways hidden",
+            "Hidden from Nations"});
+            this.cb_hiddenServer.Location = new System.Drawing.Point(173, 170);
+            this.cb_hiddenServer.Name = "cb_hiddenServer";
+            this.cb_hiddenServer.Size = new System.Drawing.Size(253, 24);
+            this.cb_hiddenServer.TabIndex = 44;
+            // 
+            // flatLabel31
+            // 
+            this.flatLabel31.AutoSize = true;
+            this.flatLabel31.BackColor = System.Drawing.Color.Transparent;
+            this.flatLabel31.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatLabel31.ForeColor = System.Drawing.Color.White;
+            this.flatLabel31.Location = new System.Drawing.Point(12, 169);
+            this.flatLabel31.Name = "flatLabel31";
+            this.flatLabel31.Size = new System.Drawing.Size(126, 23);
+            this.flatLabel31.TabIndex = 43;
+            this.flatLabel31.Text = "Hidden Server :";
             // 
             // flatLabel25
             // 
@@ -712,7 +849,7 @@
             // tb_proxy
             // 
             this.tb_proxy.BackColor = System.Drawing.Color.Transparent;
-            this.tb_proxy.Location = new System.Drawing.Point(1006, 265);
+            this.tb_proxy.Location = new System.Drawing.Point(1006, 396);
             this.tb_proxy.MaxLength = 32767;
             this.tb_proxy.Multiline = false;
             this.tb_proxy.Name = "tb_proxy";
@@ -731,7 +868,7 @@
             this.ch_proxy.Checked = false;
             this.ch_proxy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_proxy.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_proxy.Location = new System.Drawing.Point(1006, 237);
+            this.ch_proxy.Location = new System.Drawing.Point(1006, 368);
             this.ch_proxy.Name = "ch_proxy";
             this.ch_proxy.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_proxy.Size = new System.Drawing.Size(100, 22);
@@ -802,7 +939,7 @@
             this.ch_xmlRpcRemote.Checked = false;
             this.ch_xmlRpcRemote.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_xmlRpcRemote.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_xmlRpcRemote.Location = new System.Drawing.Point(1009, 305);
+            this.ch_xmlRpcRemote.Location = new System.Drawing.Point(1009, 436);
             this.ch_xmlRpcRemote.Name = "ch_xmlRpcRemote";
             this.ch_xmlRpcRemote.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_xmlRpcRemote.Size = new System.Drawing.Size(198, 22);
@@ -845,7 +982,7 @@
             this.ch_horns.Checked = false;
             this.ch_horns.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_horns.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_horns.Location = new System.Drawing.Point(15, 328);
+            this.ch_horns.Location = new System.Drawing.Point(15, 359);
             this.ch_horns.Name = "ch_horns";
             this.ch_horns.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_horns.Size = new System.Drawing.Size(244, 22);
@@ -860,7 +997,7 @@
             this.ch_mapDown.Checked = false;
             this.ch_mapDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_mapDown.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_mapDown.Location = new System.Drawing.Point(15, 300);
+            this.ch_mapDown.Location = new System.Drawing.Point(15, 331);
             this.ch_mapDown.Name = "ch_mapDown";
             this.ch_mapDown.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_mapDown.Size = new System.Drawing.Size(244, 22);
@@ -875,7 +1012,7 @@
             this.ch_saveValReplay.Checked = false;
             this.ch_saveValReplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_saveValReplay.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_saveValReplay.Location = new System.Drawing.Point(15, 272);
+            this.ch_saveValReplay.Location = new System.Drawing.Point(15, 303);
             this.ch_saveValReplay.Name = "ch_saveValReplay";
             this.ch_saveValReplay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_saveValReplay.Size = new System.Drawing.Size(244, 22);
@@ -890,7 +1027,7 @@
             this.ch_autoSaveReplay.Checked = false;
             this.ch_autoSaveReplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_autoSaveReplay.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_autoSaveReplay.Location = new System.Drawing.Point(15, 244);
+            this.ch_autoSaveReplay.Location = new System.Drawing.Point(15, 275);
             this.ch_autoSaveReplay.Name = "ch_autoSaveReplay";
             this.ch_autoSaveReplay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_autoSaveReplay.Size = new System.Drawing.Size(244, 22);
@@ -905,7 +1042,7 @@
             this.ch_p2pUp.Checked = false;
             this.ch_p2pUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_p2pUp.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_p2pUp.Location = new System.Drawing.Point(1009, 361);
+            this.ch_p2pUp.Location = new System.Drawing.Point(1009, 492);
             this.ch_p2pUp.Name = "ch_p2pUp";
             this.ch_p2pUp.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_p2pUp.Size = new System.Drawing.Size(118, 22);
@@ -920,7 +1057,7 @@
             this.ch_p2pDown.Checked = false;
             this.ch_p2pDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_p2pDown.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_p2pDown.Location = new System.Drawing.Point(1009, 333);
+            this.ch_p2pDown.Location = new System.Drawing.Point(1009, 464);
             this.ch_p2pDown.Name = "ch_p2pDown";
             this.ch_p2pDown.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_p2pDown.Size = new System.Drawing.Size(149, 22);
@@ -935,7 +1072,7 @@
             this.ch_keepPlayerSlot.Checked = false;
             this.ch_keepPlayerSlot.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_keepPlayerSlot.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_keepPlayerSlot.Location = new System.Drawing.Point(15, 213);
+            this.ch_keepPlayerSlot.Location = new System.Drawing.Point(15, 244);
             this.ch_keepPlayerSlot.Name = "ch_keepPlayerSlot";
             this.ch_keepPlayerSlot.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_keepPlayerSlot.Size = new System.Drawing.Size(244, 22);
@@ -950,7 +1087,7 @@
             this.ch_ladder.Checked = false;
             this.ch_ladder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_ladder.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_ladder.Location = new System.Drawing.Point(15, 185);
+            this.ch_ladder.Location = new System.Drawing.Point(15, 216);
             this.ch_ladder.Name = "ch_ladder";
             this.ch_ladder.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_ladder.Size = new System.Drawing.Size(244, 22);
@@ -1092,38 +1229,72 @@
             this.tb_ServerPort.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tb_ServerPort.UseSystemPasswordChar = false;
             // 
-            // tabPage3
+            // tp_match
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.tabPage3.Controls.Add(this.n_warm_s);
-            this.tabPage3.Controls.Add(this.n_warm_h);
-            this.tabPage3.Controls.Add(this.n_forcelaps);
-            this.tabPage3.Controls.Add(this.n_warm_m);
-            this.tabPage3.Controls.Add(this.n_nbwarm);
-            this.tabPage3.Controls.Add(this.n_time_m);
-            this.tabPage3.Controls.Add(this.n_time_s);
-            this.tabPage3.Controls.Add(this.n_time_h);
-            this.tabPage3.Controls.Add(this.flatLabel30);
-            this.tabPage3.Controls.Add(this.flatLabel29);
-            this.tabPage3.Controls.Add(this.flatLabel28);
-            this.tabPage3.Controls.Add(this.flatLabel27);
-            this.tabPage3.Controls.Add(this.b_clearMapMatch);
-            this.tabPage3.Controls.Add(this.b_addAll);
-            this.tabPage3.Controls.Add(this.b_delmap);
-            this.tabPage3.Controls.Add(this.l_mapsMatch);
-            this.tabPage3.Controls.Add(this.l_mapsLocal);
-            this.tabPage3.Controls.Add(this.flatLabel26);
-            this.tabPage3.Controls.Add(this.labelLocalFiles);
-            this.tabPage3.Controls.Add(this.b_newMatch);
-            this.tabPage3.Controls.Add(this.b_add);
-            this.tabPage3.Controls.Add(this.treeView1);
-            this.tabPage3.Controls.Add(this.b_browseMatch);
-            this.tabPage3.Controls.Add(this.tb_matchFile);
-            this.tabPage3.Location = new System.Drawing.Point(4, 44);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1229, 540);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "MatchSettings";
+            this.tp_match.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.tp_match.Controls.Add(this.flatLabel34);
+            this.tp_match.Controls.Add(this.cb_gameMode);
+            this.tp_match.Controls.Add(this.n_warm_s);
+            this.tp_match.Controls.Add(this.n_warm_h);
+            this.tp_match.Controls.Add(this.n_forcelaps);
+            this.tp_match.Controls.Add(this.n_warm_m);
+            this.tp_match.Controls.Add(this.n_nbwarm);
+            this.tp_match.Controls.Add(this.n_time_m);
+            this.tp_match.Controls.Add(this.n_time_s);
+            this.tp_match.Controls.Add(this.n_time_h);
+            this.tp_match.Controls.Add(this.flatLabel30);
+            this.tp_match.Controls.Add(this.flatLabel29);
+            this.tp_match.Controls.Add(this.flatLabel28);
+            this.tp_match.Controls.Add(this.flatLabel27);
+            this.tp_match.Controls.Add(this.b_clearMapMatch);
+            this.tp_match.Controls.Add(this.b_addAll);
+            this.tp_match.Controls.Add(this.b_delmap);
+            this.tp_match.Controls.Add(this.l_mapsMatch);
+            this.tp_match.Controls.Add(this.l_mapsLocal);
+            this.tp_match.Controls.Add(this.flatLabel26);
+            this.tp_match.Controls.Add(this.labelLocalFiles);
+            this.tp_match.Controls.Add(this.b_newMatch);
+            this.tp_match.Controls.Add(this.b_add);
+            this.tp_match.Controls.Add(this.treeView1);
+            this.tp_match.Controls.Add(this.b_browseMatch);
+            this.tp_match.Controls.Add(this.tb_matchFile);
+            this.tp_match.Location = new System.Drawing.Point(4, 44);
+            this.tp_match.Name = "tp_match";
+            this.tp_match.Size = new System.Drawing.Size(1229, 540);
+            this.tp_match.TabIndex = 2;
+            this.tp_match.Text = "MatchSettings";
+            // 
+            // flatLabel34
+            // 
+            this.flatLabel34.AutoSize = true;
+            this.flatLabel34.BackColor = System.Drawing.Color.Transparent;
+            this.flatLabel34.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatLabel34.ForeColor = System.Drawing.Color.White;
+            this.flatLabel34.Location = new System.Drawing.Point(886, 142);
+            this.flatLabel34.Name = "flatLabel34";
+            this.flatLabel34.Size = new System.Drawing.Size(113, 23);
+            this.flatLabel34.TabIndex = 40;
+            this.flatLabel34.Text = "Game Mode :";
+            // 
+            // cb_gameMode
+            // 
+            this.cb_gameMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.cb_gameMode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cb_gameMode.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cb_gameMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_gameMode.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.cb_gameMode.ForeColor = System.Drawing.Color.White;
+            this.cb_gameMode.FormattingEnabled = true;
+            this.cb_gameMode.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.cb_gameMode.ItemHeight = 18;
+            this.cb_gameMode.Items.AddRange(new object[] {
+            "TimeAttack",
+            "Rounds",
+            "Team"});
+            this.cb_gameMode.Location = new System.Drawing.Point(1005, 141);
+            this.cb_gameMode.Name = "cb_gameMode";
+            this.cb_gameMode.Size = new System.Drawing.Size(216, 24);
+            this.cb_gameMode.TabIndex = 39;
             // 
             // n_warm_s
             // 
@@ -1132,7 +1303,7 @@
             this.n_warm_s.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_warm_s.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_s.ForeColor = System.Drawing.Color.White;
-            this.n_warm_s.Location = new System.Drawing.Point(1142, 191);
+            this.n_warm_s.Location = new System.Drawing.Point(1142, 256);
             this.n_warm_s.Maximum = ((long)(59));
             this.n_warm_s.Minimum = ((long)(0));
             this.n_warm_s.Name = "n_warm_s";
@@ -1148,11 +1319,11 @@
             this.n_warm_h.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_warm_h.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_h.ForeColor = System.Drawing.Color.White;
-            this.n_warm_h.Location = new System.Drawing.Point(1001, 191);
+            this.n_warm_h.Location = new System.Drawing.Point(985, 256);
             this.n_warm_h.Maximum = ((long)(9));
             this.n_warm_h.Minimum = ((long)(0));
             this.n_warm_h.Name = "n_warm_h";
-            this.n_warm_h.Size = new System.Drawing.Size(54, 30);
+            this.n_warm_h.Size = new System.Drawing.Size(70, 30);
             this.n_warm_h.TabIndex = 37;
             this.n_warm_h.Text = "flatNumeric1";
             this.n_warm_h.Value = ((long)(0));
@@ -1164,7 +1335,7 @@
             this.n_forcelaps.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_forcelaps.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_forcelaps.ForeColor = System.Drawing.Color.White;
-            this.n_forcelaps.Location = new System.Drawing.Point(1061, 228);
+            this.n_forcelaps.Location = new System.Drawing.Point(1061, 293);
             this.n_forcelaps.Maximum = ((long)(9999999));
             this.n_forcelaps.Minimum = ((long)(0));
             this.n_forcelaps.Name = "n_forcelaps";
@@ -1180,7 +1351,7 @@
             this.n_warm_m.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_warm_m.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_m.ForeColor = System.Drawing.Color.White;
-            this.n_warm_m.Location = new System.Drawing.Point(1061, 191);
+            this.n_warm_m.Location = new System.Drawing.Point(1061, 256);
             this.n_warm_m.Maximum = ((long)(9999999));
             this.n_warm_m.Minimum = ((long)(0));
             this.n_warm_m.Name = "n_warm_m";
@@ -1196,7 +1367,7 @@
             this.n_nbwarm.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_nbwarm.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_nbwarm.ForeColor = System.Drawing.Color.White;
-            this.n_nbwarm.Location = new System.Drawing.Point(1061, 155);
+            this.n_nbwarm.Location = new System.Drawing.Point(1061, 220);
             this.n_nbwarm.Maximum = ((long)(9999999));
             this.n_nbwarm.Minimum = ((long)(0));
             this.n_nbwarm.Name = "n_nbwarm";
@@ -1212,7 +1383,7 @@
             this.n_time_m.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_time_m.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_m.ForeColor = System.Drawing.Color.White;
-            this.n_time_m.Location = new System.Drawing.Point(1061, 117);
+            this.n_time_m.Location = new System.Drawing.Point(1061, 182);
             this.n_time_m.Maximum = ((long)(59));
             this.n_time_m.Minimum = ((long)(0));
             this.n_time_m.Name = "n_time_m";
@@ -1228,7 +1399,7 @@
             this.n_time_s.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_time_s.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_s.ForeColor = System.Drawing.Color.White;
-            this.n_time_s.Location = new System.Drawing.Point(1142, 117);
+            this.n_time_s.Location = new System.Drawing.Point(1142, 182);
             this.n_time_s.Maximum = ((long)(59));
             this.n_time_s.Minimum = ((long)(0));
             this.n_time_s.Name = "n_time_s";
@@ -1244,11 +1415,11 @@
             this.n_time_h.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_time_h.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_h.ForeColor = System.Drawing.Color.White;
-            this.n_time_h.Location = new System.Drawing.Point(1001, 117);
+            this.n_time_h.Location = new System.Drawing.Point(985, 182);
             this.n_time_h.Maximum = ((long)(9));
             this.n_time_h.Minimum = ((long)(0));
             this.n_time_h.Name = "n_time_h";
-            this.n_time_h.Size = new System.Drawing.Size(54, 30);
+            this.n_time_h.Size = new System.Drawing.Size(70, 30);
             this.n_time_h.TabIndex = 31;
             this.n_time_h.Text = "flatNumeric1";
             this.n_time_h.Value = ((long)(0));
@@ -1259,7 +1430,7 @@
             this.flatLabel30.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel30.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel30.ForeColor = System.Drawing.Color.White;
-            this.flatLabel30.Location = new System.Drawing.Point(893, 230);
+            this.flatLabel30.Location = new System.Drawing.Point(886, 295);
             this.flatLabel30.Name = "flatLabel30";
             this.flatLabel30.Size = new System.Drawing.Size(127, 23);
             this.flatLabel30.TabIndex = 30;
@@ -1271,7 +1442,7 @@
             this.flatLabel29.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel29.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel29.ForeColor = System.Drawing.Color.White;
-            this.flatLabel29.Location = new System.Drawing.Point(893, 195);
+            this.flatLabel29.Location = new System.Drawing.Point(886, 260);
             this.flatLabel29.Name = "flatLabel29";
             this.flatLabel29.Size = new System.Drawing.Size(91, 23);
             this.flatLabel29.TabIndex = 29;
@@ -1283,7 +1454,7 @@
             this.flatLabel28.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel28.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel28.ForeColor = System.Drawing.Color.White;
-            this.flatLabel28.Location = new System.Drawing.Point(893, 159);
+            this.flatLabel28.Location = new System.Drawing.Point(886, 224);
             this.flatLabel28.Name = "flatLabel28";
             this.flatLabel28.Size = new System.Drawing.Size(114, 23);
             this.flatLabel28.TabIndex = 28;
@@ -1295,7 +1466,7 @@
             this.flatLabel27.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel27.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel27.ForeColor = System.Drawing.Color.White;
-            this.flatLabel27.Location = new System.Drawing.Point(893, 120);
+            this.flatLabel27.Location = new System.Drawing.Point(886, 185);
             this.flatLabel27.Name = "flatLabel27";
             this.flatLabel27.Size = new System.Drawing.Size(98, 23);
             this.flatLabel27.TabIndex = 27;
@@ -1310,9 +1481,9 @@
             this.b_clearMapMatch.Location = new System.Drawing.Point(311, 434);
             this.b_clearMapMatch.Name = "b_clearMapMatch";
             this.b_clearMapMatch.Rounded = false;
-            this.b_clearMapMatch.Size = new System.Drawing.Size(47, 40);
+            this.b_clearMapMatch.Size = new System.Drawing.Size(127, 40);
             this.b_clearMapMatch.TabIndex = 26;
-            this.b_clearMapMatch.Text = "a";
+            this.b_clearMapMatch.Text = "Del all";
             this.b_clearMapMatch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.b_clearMapMatch.Click += new System.EventHandler(this.b_clearMapMatch_Click);
             // 
@@ -1325,9 +1496,9 @@
             this.b_addAll.Location = new System.Drawing.Point(311, 341);
             this.b_addAll.Name = "b_addAll";
             this.b_addAll.Rounded = false;
-            this.b_addAll.Size = new System.Drawing.Size(47, 41);
+            this.b_addAll.Size = new System.Drawing.Size(127, 41);
             this.b_addAll.TabIndex = 25;
-            this.b_addAll.Text = "a>";
+            this.b_addAll.Text = "Add all";
             this.b_addAll.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.b_addAll.Click += new System.EventHandler(this.b_addAll_Click);
             // 
@@ -1340,9 +1511,9 @@
             this.b_delmap.Location = new System.Drawing.Point(311, 480);
             this.b_delmap.Name = "b_delmap";
             this.b_delmap.Rounded = false;
-            this.b_delmap.Size = new System.Drawing.Size(47, 40);
+            this.b_delmap.Size = new System.Drawing.Size(127, 40);
             this.b_delmap.TabIndex = 24;
-            this.b_delmap.Text = "x";
+            this.b_delmap.Text = "Del one";
             this.b_delmap.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.b_delmap.Click += new System.EventHandler(this.flatButton1_Click);
             // 
@@ -1353,9 +1524,9 @@
             this.l_mapsMatch.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_mapsMatch.FormattingEnabled = true;
             this.l_mapsMatch.ItemHeight = 23;
-            this.l_mapsMatch.Location = new System.Drawing.Point(364, 46);
+            this.l_mapsMatch.Location = new System.Drawing.Point(444, 46);
             this.l_mapsMatch.Name = "l_mapsMatch";
-            this.l_mapsMatch.Size = new System.Drawing.Size(295, 483);
+            this.l_mapsMatch.Size = new System.Drawing.Size(330, 483);
             this.l_mapsMatch.TabIndex = 23;
             // 
             // l_mapsLocal
@@ -1376,7 +1547,7 @@
             this.flatLabel26.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel26.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel26.ForeColor = System.Drawing.Color.White;
-            this.flatLabel26.Location = new System.Drawing.Point(431, 11);
+            this.flatLabel26.Location = new System.Drawing.Point(524, 11);
             this.flatLabel26.Name = "flatLabel26";
             this.flatLabel26.Size = new System.Drawing.Size(146, 23);
             this.flatLabel26.TabIndex = 21;
@@ -1407,6 +1578,7 @@
             this.b_newMatch.TabIndex = 7;
             this.b_newMatch.Text = "New";
             this.b_newMatch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_newMatch.Click += new System.EventHandler(this.b_newMatch_Click);
             // 
             // b_add
             // 
@@ -1417,9 +1589,9 @@
             this.b_add.Location = new System.Drawing.Point(311, 388);
             this.b_add.Name = "b_add";
             this.b_add.Rounded = false;
-            this.b_add.Size = new System.Drawing.Size(47, 40);
+            this.b_add.Size = new System.Drawing.Size(127, 40);
             this.b_add.TabIndex = 6;
-            this.b_add.Text = ">";
+            this.b_add.Text = "Add one";
             this.b_add.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.b_add.Click += new System.EventHandler(this.b_add_Click);
             // 
@@ -1448,6 +1620,7 @@
             this.b_browseMatch.TabIndex = 1;
             this.b_browseMatch.Text = "Browse";
             this.b_browseMatch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_browseMatch.Click += new System.EventHandler(this.b_browseMatch_Click);
             // 
             // tb_matchFile
             // 
@@ -1496,12 +1669,12 @@
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.formSkin1.ResumeLayout(false);
             this.flatTabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tp_general.ResumeLayout(false);
+            this.tp_general.PerformLayout();
+            this.tp_advanced.ResumeLayout(false);
+            this.tp_advanced.PerformLayout();
+            this.tp_match.ResumeLayout(false);
+            this.tp_match.PerformLayout();
             this.tabPlugins.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1511,8 +1684,8 @@
 
         private FlatUITheme.FormSkin formSkin1;
         private FlatUITheme.FlatTabControl flatTabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tp_general;
+        private System.Windows.Forms.TabPage tp_advanced;
         private FlatUITheme.FlatLabel flatLabel8;
         private FlatUITheme.FlatTextBox tb_specPass;
         private FlatUITheme.FlatLabel flatLabel7;
@@ -1574,7 +1747,7 @@
         private FlatUITheme.FlatLabel flatLabel24;
         private FlatUITheme.FlatTextBox tb_voteRatio;
         private FlatUITheme.FlatNumeric n_voteTimeout;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tp_match;
         private FlatUITheme.FlatTextBox tb_title;
         private System.Windows.Forms.TabPage tabPlugins;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
@@ -1602,5 +1775,15 @@
         private FlatUITheme.FlatLabel flatLabel28;
         private FlatUITheme.FlatNumeric n_warm_s;
         private FlatUITheme.FlatNumeric n_warm_h;
+        private FlatUITheme.FlatComboBox cb_hiddenServer;
+        private FlatUITheme.FlatLabel flatLabel31;
+        private FlatUITheme.FlatLabel flatLabel32;
+        private FlatUITheme.FlatNumeric n_paThreadCount;
+        private FlatUITheme.FlatCheckBox ch_allowSpecRelay;
+        private FlatUITheme.FlatLabel flatLabel33;
+        private FlatUITheme.FlatNumeric n_p2pCacheSize;
+        private FlatUITheme.FlatCheckBox ch_internetServer;
+        private FlatUITheme.FlatLabel flatLabel34;
+        private FlatUITheme.FlatComboBox cb_gameMode;
     }
 }

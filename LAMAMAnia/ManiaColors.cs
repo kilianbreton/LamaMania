@@ -31,7 +31,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static NTK.Other.NTKF;
 
-namespace LAMAMAnia
+namespace LamaMania
 {
     /// <summary>
     /// Classe permettant de parser les couleurs maniaplanet et d'écrire le texte coloré dans un Control
@@ -39,6 +39,19 @@ namespace LAMAMAnia
     public class ManiaColors
     {
         private RichTextBox tb;
+        private Color defaultColor = Color.White;
+        private static List<string> nadeoCodes = new List<string>() { "$w", "$W", "$n", "$N", "$o", "$O", "$i", "$I", "$t", "$T", "$s", "$S", "$g", "$G", "$z", "$Z", "$<", "$>"};
+        private static Dictionary<string, FontStyle> nadeoStyles = new Dictionary<string, FontStyle>()
+        {
+            {"$W", FontStyle.Bold },
+            {"$O", FontStyle.Bold },
+            {"$I", FontStyle.Italic },
+            {"$Z", FontStyle.Regular },
+        };
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Instanciation de la classe
@@ -48,137 +61,108 @@ namespace LAMAMAnia
         {
             this.tb = tb;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tb"></param>
+        /// <param name="defaultColor"></param>
+        public ManiaColors(RichTextBox tb, Color defaultColor)
+        {
+            this.tb = tb;
+            this.defaultColor = defaultColor;
+        }
 
-        public ManiaColors() { }
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Methodes Publiques ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
         /// <summary>
         /// Ecrit le texte dans le control
         /// </summary>
-        /// <param name="text"></param>
-        public void write(String text)
+        /// <param name="txt"></param>
+        public void write(string txt)
         {
-            String tmp = "";
-            List<FontStyle> styles = new List<FontStyle>();
-            Color color = Color.White;
-            String textUp = text.ToUpper();
-            bool haveDol = false;
-
-            
-            for(int i = 0; i < textUp.Length; i++)
+            string text = txt;
+            Color color = defaultColor;
+            List<FontStyle> fonts = new List<FontStyle>() { FontStyle.Regular };
+            for(int i = 0; i < text.Length; i++)
             {
                 char c = text[i];
                 if (c == '$')
                 {
-                    if (haveDol)
+                    string str = new string(new char[] { c, text[i + 1] });
+                    //Check Styles codes
+                    if (nadeoStyles.ContainsKey(str.ToUpper()))
                     {
-                        //write & reset
-                        writeRich(tmp, color, styles);
-                        tmp = "";
+                        //If $z clear style list
+                        var style = nadeoStyles[str.ToUpper()];
+                        if (style == FontStyle.Regular)
+                            color = defaultColor;
+                        fonts[0]= style;
+
+                        text = text.Remove(i, 2); //remove code
+                    }
+                    else if (nadeoCodes.Contains(str))
+                    {
+                        if(str.ToUpper() == "$G")
+                        {
+                            color = defaultColor;
+                        }
+                        text = text.Remove(i, 2); //remove code
                     }
                     else
                     {
-                        haveDol = true;
-                    }
-                   
-                    switch (textUp[i + 1])
-                    {
-
-                        case '$':   //Display Dol
-                            tmp += "$";
-                            break;
-                        case 'O':   //Bold
-                            styles.Add(FontStyle.Bold);
-                            break;
-                        case 'W':   //Wide
-                            styles.Add(FontStyle.Bold);
-                            break;
-                        case 'Z':   //Reset
-                            color = Color.White;
-                            styles.Clear();
-                            break;
-                        case 'I':   //Italic
-                            styles.Add(FontStyle.Italic);
-                            break;
-                        default:    //Colors
-                            string colorCode = textUp.Substring(i+1, 3);
+                        try
+                        {
+                            //Check colors codes
+                            string colorCode = text.ToUpper().Substring(i + 1, 3);
                             color = parseColorCode(colorCode);
-                            i += 2;
+                            text = text.Remove(i, 4); //remove code
+                        }catch(Exception e)
+                        {
+                            Lama.log("ERROR", "[ManiaColors]>" + txt + " : " + e.Message);
                             break;
+                        }
                     }
-                    i++;
+                    i--;
                 }
-                else
+                else //Write one by one
                 {
-                    tmp += c;
+                    writeRich(c.ToString(), color, fonts);
                 }
-            }
-            if (tmp.Length > 0)
-            {
-                writeRich(tmp, color, styles);
             }
         }
-
+        
         /// <summary>
         /// Obtient le texte sans les codes couleur
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public string getText(string text)
-        {
-            String tmp = "";
-            List<FontStyle> styles = new List<FontStyle>();
-            Color color = Color.White;
-            String textUp = text.ToUpper();
-            bool haveDol = false;
-
-
-            for (int i = 0; i < textUp.Length; i++)
+        public static string getText(string text)
+        { 
+            foreach(string str in nadeoCodes)
             {
-                char c = text[i];
-                if (c == '$')
-                {
-                    if (haveDol)
-                    {
-                      
-                    }
-                    else
-                    {
-                        haveDol = true;
-                    }
-
-                    switch (textUp[i + 1])
-                    {
-
-                        case '$':   //Display Dol
-                            tmp += "$";
-                            break;
-                        case 'O':   //Bold
-                            styles.Add(FontStyle.Bold);
-                            break;
-                        case 'W':   //Wide
-                            styles.Add(FontStyle.Bold);
-                            break;
-                        case 'Z':   //Reset
-                            color = Color.White;
-                            styles.Clear();
-                            break;
-                        case 'I':   //Italic
-                            styles.Add(FontStyle.Italic);
-                            break;
-                        default:    //Colors
-                         
-                            i += 2;
-                            break;
-                    }
-                    i++;
-                }
-                else
-                {
-                    tmp += c;
-                }
+                text = text.Replace(str, "");
             }
-            return tmp;
+            text = text.Replace("$$", "<[{(DOL)}]>");
+            while (text.Contains("$"))
+            {
+                if(text.IndexOf("$") + 3 < text.Length)
+                {
+                    text = text.Remove(text.IndexOf("$"), 4);
+                    
+                }
+
+            }
+            text.Replace("<[{(DOL)}]>", "$");
+
+
+            return text;
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Methodes privées //////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Retourne un objet Color depuis un code couleur maniaplanet
@@ -208,58 +192,29 @@ namespace LAMAMAnia
         /// <returns></returns>
         int hexaToInt(Char hex)
         {
-            int ret = 0;
-            switch (hex)
+            if (!int.TryParse(hex.ToString(), out int ret))
             {
-                case '0':
-                    ret = 0;
-                    break;
-                case '1':
-                    ret = 1;
-                    break;
-                case '2':
-                    ret = 2;
-                    break;
-                case '3':
-                    ret = 3;
-                    break;
-                case '4':
-                    ret = 4;
-                    break;
-                case '5':
-                    ret = 5;
-                    break;
-                case '6':
-                    ret = 6;
-                    break;
-                case '7':
-                    ret = 7;
-                    break;
-                case '8':
-                    ret = 8;
-                    break;
-                case '9':
-                    ret = 9;
-                    break;
-                case 'A':
-                    ret = 10;
-                    break;
-                case 'B':
-                    ret = 11;
-                    break;
-                case 'C':
-                    ret = 12;
-                    break;
-                case 'D':
-                    ret = 13;
-                    break;
-                case 'E':
-                    ret = 14;
-                    break;
-                case 'F':
-                    ret = 15;
-                    break;
-               
+                switch (hex)
+                {
+                    case 'A':
+                        ret = 10;
+                        break;
+                    case 'B':
+                        ret = 11;
+                        break;
+                    case 'C':
+                        ret = 12;
+                        break;
+                    case 'D':
+                        ret = 13;
+                        break;
+                    case 'E':
+                        ret = 14;
+                        break;
+                    case 'F':
+                        ret = 15;
+                        break;
+                }
             }
             return (ret)*17;
         }
@@ -280,7 +235,7 @@ namespace LAMAMAnia
             {
                 if (fs.Count > 0)
                     this.tb.SelectionFont = new Font(this.tb.Font, fs[0]);
-
+                
                 //this.tb.Font = new Font(FontFamily.GenericSansSerif,10,fs[0]);
                 this.tb.SelectionColor = color;
                 this.tb.AppendText(text);
@@ -288,6 +243,15 @@ namespace LAMAMAnia
             }
            
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // GETTERS & SETTERS /////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Default color (White)
+        /// </summary>
+        public Color DefaultColor { get => defaultColor; set => defaultColor = value; }
 
 
     }

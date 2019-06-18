@@ -33,8 +33,10 @@ using NTK.IO;
 using LamaLang;
 using LamaPlugin;
 using System.Windows.Forms;
+using FlatUITheme;
+using System.Diagnostics;
 
-namespace LAMAMAnia
+namespace LamaMania
 {
     /// <summary>
     /// Lama Configuration
@@ -49,10 +51,20 @@ namespace LAMAMAnia
         /// Servers list
         /// </summary>
         public static Dictionary<int, String> servers = new Dictionary<int, string>();
+      
         /// <summary>
         /// Plugins list
         /// </summary>
-        public static List<BasePlugin> plugins = new List<BasePlugin>();
+        public static List<InGamePlugin> inGamePlugins = new List<InGamePlugin>();
+        /// <summary>
+        /// Home component for MainForm
+        /// </summary>
+        public static List<HomeComponent> homeComponentPlugins = new List<HomeComponent>();
+        /// <summary>
+        /// Tab plugin for Main or ConfigServ
+        /// </summary>
+        public static List<TabPlugin> tabPlugins = new List<TabPlugin>();
+        
         /// <summary>
         /// Main xml config
         /// </summary>
@@ -62,7 +74,7 @@ namespace LAMAMAnia
         /// </summary>
         public static bool invisibleServer = false;
         /// <summary>
-        /// Is launched
+        /// Server is launched
         /// </summary>
         public static bool launched = false;
         /// <summary>
@@ -84,18 +96,29 @@ namespace LAMAMAnia
         /// <summary>
         /// 
         /// </summary>
+        public static Process serverProcess;
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool connected = false;
         /// <summary>
         /// 
         /// </summary>
         public static bool useLogs = true;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static Log lamaLogger;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static LoadForm loadForm = new LoadForm();
 
-        //Methodes--------------------------------------------------------------------------
-       
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Methods /////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+
         /// <summary>
         /// Add a log line in Lama.log
         /// </summary>
@@ -106,31 +129,7 @@ namespace LAMAMAnia
             lamaLogger.add(type, msg);
             lamaLogger.flush();
         }
-
-        /// <summary>
-        /// Convert seconds to H M S
-        /// </summary>
-        /// <param name="time"></param>
-        /// <param name="h"></param>
-        /// <param name="m"></param>
-        /// <param name="s"></param>
-        public static void parseTime(int time, out int h, out int m, out int s)
-        {
-            h = 0;
-            m = 0;
-            s = 0;
-            while (time >= 60)
-            {
-                time = time - 60;
-                if (++m == 60)
-                {
-                    m = 0;
-                    h++;
-                }
-            }
-            s = time;
-        }
-
+      
         /// <summary>
         /// Show Error dialog
         /// </summary>
@@ -139,7 +138,9 @@ namespace LAMAMAnia
         /// <param name="text"></param>
         public static void onError(object sender, string title, string text)
         {
-            MessageBox.Show(text + "\nFrom : " + sender.GetType().Name, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            //MessageBox.Show(text + "\nFrom : " + sender.GetType().Name, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            LamaDialog dialog = new LamaDialog(title, text + "\nFrom : " + sender.GetType().Name, FlatAlertBox._Kind.Error, MessageBoxButtons.OK);
+            dialog.ShowDialog();
         }
 
         /// <summary>
@@ -157,55 +158,6 @@ namespace LAMAMAnia
 
             MessageBox.Show(txt, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
         }
-
-        /// <summary>
-        /// 0 = string, 1 = int, 2 = bool
-        /// </summary>
-        /// <returns></returns>
-        public static int getType(object value) {
-            if (value.GetType() == true.GetType())
-            {
-                return 2;
-            }
-            else if(value.GetType() == 0.1.GetType())
-            {
-                return 3;
-            }
-            else if (value.GetType() == 0.GetType())
-            {
-                return 1;
-            }
-            else if (value.GetType() == "".GetType())
-            {
-                return 0;
-            }
-            else
-            {
-                return -1;
-            }
-        }
-
-        /// <summary>
-        /// Get key of value
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <param name="dic"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static T getKeyFromValue<T,T2>(IDictionary<T,T2> dic, T2 value)
-        {
-            T ret = default(T);
-            foreach(KeyValuePair<T,T2> kvp in dic)
-            {
-                if(kvp.Value.Equals(value))
-                {
-                    ret = kvp.Key;
-                    break;
-                }
-            }
-            return ret;
-        } 
 
     }
 }

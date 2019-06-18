@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LAMAMAnia.UserConstrols
+namespace LamaMania.UserConstrols
 {
     /// <summary>
     /// Interface for ScriptsSettings

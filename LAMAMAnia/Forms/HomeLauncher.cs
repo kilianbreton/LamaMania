@@ -33,13 +33,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using NTK.IO.Xml;
 using NTK.IO;
 using LamaLang;
 using LamaPlugin;
 
-namespace LAMAMAnia
+namespace LamaMania
 {
+    /// <summary>
+    /// Launcher
+    /// </summary>
     public partial class HomeLauncher : Form
     {
         /// <summary>
@@ -50,12 +54,14 @@ namespace LAMAMAnia
             InitializeComponent();
 
             Lama.lamaLogger = new LamaLog(@"Logs\Lama.log");
-            Lama.log("NOTICE", "Init");
+         
             loadPlugins();
             load();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void load()
         {
             
@@ -92,8 +98,6 @@ namespace LAMAMAnia
                                     DllLoader loader = new DllLoader(file.FullName);
                                     lstLang.AddRange(loader.getAllInstances<BaseLang>());
                                 }
-
-
                                 break;
                         }
 
@@ -105,10 +109,10 @@ namespace LAMAMAnia
                     case "servers":
                         Lama.servers.Clear();
                         flatComboBox1.Items.Clear();
-                        foreach (XmlNode n in node.getChildList())
+                        foreach (XmlNode n in node.Childs)
                         {
-                            Lama.servers.Add(int.Parse(n.getAttibuteV("id")), n.Value);
-                            flatComboBox1.Items.Add(n.Value);
+                            Lama.servers.Add(int.Parse(n.getAttibuteV("id")), n["name"].Value);
+                            flatComboBox1.Items.Add(n["name"].Value);
                         }
                         break;
                 }
@@ -119,7 +123,142 @@ namespace LAMAMAnia
                 start(Lama.startMode);
             }
         }
-      
+
+        void start(int index)
+        {
+            //  Lama.loadForm.Show();
+            //Open Server config
+            XmlNode cfg = Lama.mainConfig[0]["servers"].getChildsByAttribute("id", index.ToString())[0];
+            if (cfg["remote"].getAttibuteV("value").ToUpper().Equals("TRUE"))
+            {
+                Lama.remoteAdrs = cfg["remote"]["ip"].Value;
+                Lama.remotePort = (int)cfg["remote"]["port"].LValue;
+                string login = cfg["remote"]["login"].Value;
+                var askLogs = new AskLogins(login);
+                var result = askLogs.getDialogResult();
+                if (result.Res)
+                {
+                    Lama.launched = true;
+                    Main main = new Main(result.Login, result.Pass);
+                    main.Show();
+                    this.Close();
+                }
+
+            }
+            else
+            {
+                var config = new XmlDocument(@"Servers\" + index + @"\UserData\Config\dedicated_cfg.txt");
+
+                string path = @"Servers\" + index + @"\ManiaPlanetServer.exe";
+
+                string cmd = "/Title=" + config[0]["system_config"]["title"].Value;
+                cmd += " /dedicated_cfg=dedicated_cfg.txt";
+                cmd += " /game_settings=" + cfg["matchSettings"].Value;
+                if(cfg["internetServer"].Value.ToUpper() == "TRUE")
+                {
+                    cmd += " /lan";
+                }
+
+
+                if (Lama.invisibleServer)
+                {
+                    Lama.serverProcess = new Process();
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        FileName = path,
+                        Arguments = cmd
+                    };
+                    Lama.serverProcess.Exited += new EventHandler(Process_Exited);
+                    Lama.serverProcess.Disposed += new EventHandler(Process_Disposed);
+                    Lama.serverProcess.ErrorDataReceived += Process_ErrorDataReceived;
+                    Lama.serverProcess.StartInfo = startInfo;
+                    Lama.serverProcess.Start();
+                }
+                else
+                {
+                    Lama.serverProcess = new Process();
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        WindowStyle = ProcessWindowStyle.Normal,
+                        FileName = path,
+                        Arguments = cmd,
+                    };
+                    
+                    Lama.serverProcess.Exited += new EventHandler(Process_Exited);
+                    Lama.serverProcess.Disposed += new EventHandler(Process_Disposed);
+                    Lama.serverProcess.StartInfo = startInfo;
+                    Lama.serverProcess.Start();
+                }
+
+                Lama.launched = true;
+
+                //Open main form
+                try
+                {
+                    var mainForm = new Main(config);
+                    mainForm.Show();
+                }
+                catch (Exception)
+                {
+                  
+
+                }
+            }
+        }
+
+        private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Process_Disposed(object sender, EventArgs e)
+        {
+            Lama.launched = false;
+        }
+
+        private void Process_Exited(object sender, EventArgs e)
+        {
+            Lama.launched = false;
+        }
+
+        void loadLang()
+        {
+
+        }
+
+        void loadPlugins()
+        {
+            try
+            {
+                DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
+                foreach (FileInfo file in pluginsDir.GetFiles())
+                {
+                    if (file.Extension.Equals(".dll"))
+                    {
+                        try
+                        {
+                            //Todo : add method in DllLoader to multiload
+                            DllLoader loader = new DllLoader(file.FullName);
+                            Lama.inGamePlugins.AddRange(loader.getAllInstances<InGamePlugin>());
+                            Lama.homeComponentPlugins.AddRange(loader.getAllInstances<HomeComponent>());
+                            Lama.tabPlugins.AddRange(loader.getAllInstances<TabPlugin>());
+                        }
+                        catch (Exception er)
+                        {
+                            // Lama.log("ERROR", "[LoadPlugins][" + file.FullName + "]" + er.Message);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Lama.log("ERROR", "[LoadPlugins]" + e.Message);
+            }
+        }
+
+
         //New
         private void flatButton4_Click(object sender, EventArgs e)
         {
@@ -132,9 +271,18 @@ namespace LAMAMAnia
             if (flatComboBox1.SelectedIndex != -1)
             {
                 int index = flatComboBox1.SelectedIndex;
-
-                var conf = new ConfigServ(index);
-                conf.Show();
+                var cfg = Lama.mainConfig[0]["servers"].getChildsByAttribute("id", index.ToString())[0];
+                if (cfg["remote"].getAttribute("value").Value.ToUpper().Equals("TRUE"))
+                {
+                    var conf = new NewServer(this, cfg);
+                    conf.Show();
+                }
+                else
+                {
+                    var conf = new ConfigServ(index);
+                    conf.Show();
+                }
+             
             }
         }
         //Remove
@@ -145,29 +293,22 @@ namespace LAMAMAnia
             {
                 return;
             }
-            int index = Lama.getKeyFromValue(Lama.servers, flatComboBox1.SelectedText);
-            string configPath = @"Config\Servers\" + index + ".xml";
+            int index = Lama.servers.getKeyFromValue(flatComboBox1.Text);
+            XmlNode cfg = Lama.mainConfig[0].getChildsByAttribute("id", index.ToString())[0];
+
             try
             {
-                XmlDocument cfg = new XmlDocument(configPath);
-                if (cfg[0]["remote"].getAttibuteV("value").ToUpper().Equals("FALSE"))
+                if (cfg["remote"].getAttibuteV("value").ToUpper().Equals("FALSE"))
                 {
-                    Directory.Delete(@"Servers\" + index);
+                    Directory.Delete(Application.StartupPath + @"\Servers\" + index + @"\", true);
                 }
-                cfg = null;
-            }
-            catch (Exception er)
-            {
 
             }
-            try
-            {
-                File.Delete(configPath);
+            catch (Exception dirEx){
+                Lama.onException(this, dirEx);
             }
-            catch(Exception er)
-            {
-
-            }
+         
+            //Update Main Config
             int total = Lama.mainConfig[0]["servers"].removeChildsByAttribute("server", "id", index.ToString());
 
 
@@ -187,7 +328,7 @@ namespace LAMAMAnia
         {
             try
             {
-                int index = Lama.getKeyFromValue(Lama.servers, flatComboBox1.SelectedText);
+                int index = Lama.servers.getKeyFromValue(flatComboBox1.Text);
                 start(index);
             }
             catch (Exception)
@@ -196,90 +337,7 @@ namespace LAMAMAnia
             }
         }
 
-        void start(int index)
-        {
-            //  Lama.loadForm.Show();
-            //Open Server config
-            XmlDocument cfg = new XmlDocument(@"Config\Servers\" + index + ".xml");
-            if (cfg[0]["remote"].getAttibuteV("value").ToUpper().Equals("TRUE"))
-            {
-                Lama.remoteAdrs = cfg[0]["remote"]["ip"].Value;
-                Lama.remotePort = (int)cfg[0]["remote"]["port"].LValue;
-                string login = cfg[0]["remote"]["login"].Value;
-                var askLogs = new AskLogins(login);
-                askLogs.Show();
-            }
-            else
-            {
-
-                string path = @"Servers\" + index + @"\ManiaPlanetServer.exe";
-                string cmd = "/Title=TMStadium /lan /dedicated_cfg=dedicated_cfg.txt /game_settings=MatchSettings/MatchSetting_kamphare_2019_04_01_15_44.txt";
-                if (Lama.invisibleServer)
-                {
-                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                    startInfo.FileName = path;
-                    startInfo.Arguments = cmd;
-                    process.StartInfo = startInfo;
-                    process.Start();
-                }
-                else
-                {
-                    System.Diagnostics.Process.Start(path, cmd);
-                }
-
-                Lama.launched = true;
-                var config = new XmlDocument(@"Servers\" + index + @"\UserData\Config\dedicated_cfg.txt");
-
-                //Open main form
-                try
-                {
-                    var mainForm = new Main(config);
-                    mainForm.Show();
-                }
-                catch (Exception e)
-                {
-                    Lama.loadForm.Hide();
-                    Lama.onException(this, e);
-
-                }
-            }
-        }
-
-
-        void loadLang()
-        {
-         
-        }
-
-        void loadPlugins()
-        {
-            try
-            {
-                DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
-                foreach(FileInfo file in pluginsDir.GetFiles())
-                {
-                    if (file.Extension.Equals(".dll"))
-                    {
-                        try
-                        {
-                            DllLoader loader = new DllLoader(file.FullName);
-                            Lama.plugins.AddRange(loader.getAllInstances<BasePlugin>());
-                        }
-                        catch (Exception er)
-                        {
-                           // Lama.log("ERROR", "[LoadPlugins][" + file.FullName + "]" + er.Message);
-                        }
-                    }
-                }    
-               
-            }
-            catch (Exception e)
-            {
-                Lama.log("ERROR", "[LoadPlugins]" + e.Message);
-            }
-        }
+      
 
     }
 }

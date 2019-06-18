@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LAMAMAnia
+namespace LamaMania
 {
     /// <summary>
     /// NewServer Form
@@ -17,15 +17,41 @@ namespace LAMAMAnia
     public partial class NewServer : Form
     {
         private HomeLauncher hl;
-        
+        private XmlNode cfg;
+
         /// <summary>
-        /// Init NewServer
+        /// New Server
         /// </summary>
         /// <param name="hl">The homeLauncher Form to reload</param>
         public NewServer(HomeLauncher hl)
         {
             InitializeComponent();
             this.hl = hl;
+            formSkin1.Text = "New Server";
+        }
+
+        /// <summary>
+        /// Edit remote server
+        /// </summary>
+        /// <param name="hl"></param>
+        /// <param name="cfg"></param>
+        public NewServer(HomeLauncher hl, XmlNode cfg)
+        {
+            InitializeComponent();
+            formSkin1.Text = "Edit server";
+            this.hl = hl;
+            this.cfg = cfg;
+            tb_name.Text = cfg["name"].Value;
+            tb_ip.Text = cfg["remote"]["ip"].Value;
+            tb_port.Text = cfg["remote"]["port"].Value;
+            tb_login.Text = cfg["remote"]["login"].Value;
+            b_create.Text = "Save";
+            tog_remote.Checked = true;
+            tog_remote.Enabled = false;
+            tb_name.Enabled = true;
+            tb_ip.Enabled = true;
+            tb_port.Enabled = true;
+            tb_login.Enabled = true;
         }
 
         private void tog_remote_CheckedChanged(object sender)
@@ -42,38 +68,47 @@ namespace LAMAMAnia
 
         private void b_create_Click(object sender, EventArgs e)
         {
-            if (tog_remote.Checked)
+            if (cfg == null) //Creation mode
             {
-                var index = Lama.mainConfig[0]["servers"].count();
-                var configPath = @"Config\Servers\" + index + ".xml";
-                //MakeConfig------------------------------------------------------------------
-                var config = new XmlDocument(configPath);
-                var root = config.addNode("server_config");
+                if (tog_remote.Checked)
+                {
+                    var index = Lama.mainConfig[0]["servers"].count();
+                    var configPath = @"Config\Servers\" + index + ".xml";
+                    //MakeConfig------------------------------------------------------------------
+                    //Actualize main Config
+                    var root = Lama.mainConfig[0]["servers"].addChild("server")
+                                                 .addAttribute("id", index.ToString());
+                    root.addChild("name", tb_name.Text);
+                    root.addChild("internetServer", "true");
+                    root.addChild("matchSettings");
+                    root.addChild("remote").addAttribute("value", "true")
+                                           .addChild("ip", tb_ip.Text);
 
-                root.addChild("matchSettings");
-                root.addChild("remote").addAttribute("value", "true")
-                                       .addChild("ip", tb_ip.Text);
+                    root["remote"].addChild("port", tb_port.Text);
+                    root["remote"].addChild("login", tb_login.Text);
 
-                root["remote"].addChild("port", tb_port.Text);
-                root["remote"].addChild("login", tb_login.Text);
+                    root.addChild("plugins");
+                    Lama.mainConfig.save();
 
-                root.addChild("plugins");
-                config.save();
-
-                //Actualize main Config
-                Lama.mainConfig[0]["servers"].addChild("server")
-                                             .addAttribute("id", index.ToString())
-                                             .Value = tb_name.Text;
-
-                Lama.mainConfig.save();
-                Lama.mainConfig = new XmlDocument(@"Config\Main.xml");
-                this.hl.load();
-                this.Close();
+                    this.hl.load();
+                    this.Close();
+                }
+                else
+                {
+                    ConfigServ cs = new ConfigServ(tb_name.Text);
+                    cs.Show();
+                    this.hl.load();
+                    this.Close();
+                }
             }
-            else
+            else //Remote Edit mode
             {
-                ConfigServ cs = new ConfigServ(tb_name.Text);
-                cs.Show();
+                cfg["name"].Value = tb_name.Text;
+                cfg["remote"]["ip"].Value = tb_ip.Text;
+                cfg["remote"]["port"].Value = tb_port.Text;
+                cfg["remote"]["login"].Value = tb_login.Text;
+                Lama.mainConfig.save();
+                hl.load();
                 this.Close();
             }
         }
