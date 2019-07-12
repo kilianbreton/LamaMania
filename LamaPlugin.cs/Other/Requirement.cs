@@ -4,6 +4,13 @@ using System.Text;
 
 namespace LamaPlugin
 {
+    public enum RequirementType
+    {
+        PLUGIN,
+        DATABASE,
+        FILE,
+    }
+
     public class Requirement
     {
         private RequirementType type;

@@ -38,6 +38,7 @@ using NTK.IO.Xml;
 using NTK.IO;
 using LamaLang;
 using LamaPlugin;
+using static LamaMania.StaticMethods;
 
 namespace LamaMania
 {
@@ -54,19 +55,77 @@ namespace LamaMania
             InitializeComponent();
 
             Lama.lamaLogger = new LamaLog(@"Logs\Lama.log");
-         
+
             loadPlugins();
             load();
         }
+
+
+        void loadLang()
+        {
+
+        }
+
+        void loadPlugins()
+        {
+            Lama.log("NOTICE", "Load plugins");
+            try
+            {
+                DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
+                //Read dllignore
+                List<string> dllignore = new List<string>(File.ReadAllLines(pluginsDir.FullName + "dllignore"));
+                //Read dll
+                foreach (FileInfo file in pluginsDir.GetFiles())
+                {
+                    if (file.Extension.Equals(".dll") && !dllignore.Contains(file.Name))
+                    {
+                        try
+                        {
+                            DllLoader loader = new DllLoader(file.FullName);
+                            
+                            int cpt = loader.getAllCountInstances(Lama.inGamePlugins)
+                                    + loader.getAllCountInstances(Lama.homeComponentPlugins)
+                                    + loader.getAllCountInstances(Lama.tabPlugins);
+
+                            if (cpt == 0)
+                            {
+                                StreamWriter sw = new StreamWriter(File.Open(pluginsDir.FullName + "dllignore", FileMode.Append));
+                                sw.WriteLine(file.Name);
+                                sw.Close();
+                            }
+                        }
+                        //catch (NullReferenceException) { }
+                        catch (IOException) { }
+                        catch (Exception er)
+                        {
+                            Lama.log("ERROR", "[LoadPlugins][" + file.FullName + "]" + er.Message + er.GetType().Name);
+                            try
+                            {
+                                StreamWriter sw = new StreamWriter(File.Open(pluginsDir.FullName + "dllignore", FileMode.Append));
+                                sw.WriteLine(file.Name);
+                                sw.Close();
+                            }
+                            catch (Exception) { }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Lama.log("ERROR", "[LoadPlugins]" + e.Message);
+            }
+        }
+
 
         /// <summary>
         /// 
         /// </summary>
         public void load()
         {
-            
+            Lama.log("NOTICE", "Read main config");
             Lama.mainConfig = new XmlDocument(@"Config\Main.xml");
-            var root = Lama.mainConfig[0];
+            XmlNode root = Lama.mainConfig[0];
             while (root.read())
             {
                 var node = root.getNode();
@@ -77,7 +136,6 @@ namespace LamaMania
                         {
                             Lama.startMode = int.Parse(node.Value);
                         }
-
                         break;
 
                     case "lang":
@@ -107,6 +165,7 @@ namespace LamaMania
                         break;
 
                     case "servers":
+                        Lama.log("NOTICE", "Read server list");
                         Lama.servers.Clear();
                         flatComboBox1.Items.Clear();
                         foreach (XmlNode n in node.Childs)
@@ -128,7 +187,8 @@ namespace LamaMania
         {
             //  Lama.loadForm.Show();
             //Open Server config
-            XmlNode cfg = Lama.mainConfig[0]["servers"].getChildsByAttribute("id", index.ToString())[0];
+            Lama.serverIndex = index;
+            XmlNode cfg = Lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
             if (cfg["remote"].getAttibuteV("value").ToUpper().Equals("TRUE"))
             {
                 Lama.remoteAdrs = cfg["remote"]["ip"].Value;
@@ -141,7 +201,7 @@ namespace LamaMania
                     Lama.launched = true;
                     Main main = new Main(result.Login, result.Pass);
                     main.Show();
-                    this.Close();
+                    this.Hide();
                 }
 
             }
@@ -159,7 +219,19 @@ namespace LamaMania
                     cmd += " /lan";
                 }
 
-
+                if (cfg["plugins"].getAttibuteV("value").ToUpper().Equals("TRUE"))
+                {
+                    List<InGamePlugin> nlst = new List<InGamePlugin>();
+                    foreach (XmlNode n in cfg["plugins"].Childs)
+                    {
+                        try
+                        {
+                            nlst.Add(getPluginByName(n.Value));
+                        }
+                        catch (Exception) { }
+                    }
+                    Lama.inGamePlugins = nlst;
+                }
                 if (Lama.invisibleServer)
                 {
                     Lama.serverProcess = new Process();
@@ -222,42 +294,6 @@ namespace LamaMania
             Lama.launched = false;
         }
 
-        void loadLang()
-        {
-
-        }
-
-        void loadPlugins()
-        {
-            try
-            {
-                DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
-                foreach (FileInfo file in pluginsDir.GetFiles())
-                {
-                    if (file.Extension.Equals(".dll"))
-                    {
-                        try
-                        {
-                            //Todo : add method in DllLoader to multiload
-                            DllLoader loader = new DllLoader(file.FullName);
-                            Lama.inGamePlugins.AddRange(loader.getAllInstances<InGamePlugin>());
-                            Lama.homeComponentPlugins.AddRange(loader.getAllInstances<HomeComponent>());
-                            Lama.tabPlugins.AddRange(loader.getAllInstances<TabPlugin>());
-                        }
-                        catch (Exception er)
-                        {
-                            // Lama.log("ERROR", "[LoadPlugins][" + file.FullName + "]" + er.Message);
-                        }
-                    }
-                }
-
-            }
-            catch (Exception e)
-            {
-                Lama.log("ERROR", "[LoadPlugins]" + e.Message);
-            }
-        }
-
 
         //New
         private void flatButton4_Click(object sender, EventArgs e)
@@ -271,7 +307,7 @@ namespace LamaMania
             if (flatComboBox1.SelectedIndex != -1)
             {
                 int index = flatComboBox1.SelectedIndex;
-                var cfg = Lama.mainConfig[0]["servers"].getChildsByAttribute("id", index.ToString())[0];
+                XmlNode cfg = Lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
                 if (cfg["remote"].getAttribute("value").Value.ToUpper().Equals("TRUE"))
                 {
                     var conf = new NewServer(this, cfg);
@@ -282,7 +318,6 @@ namespace LamaMania
                     var conf = new ConfigServ(index);
                     conf.Show();
                 }
-             
             }
         }
         //Remove
@@ -290,11 +325,10 @@ namespace LamaMania
         {
             DialogResult res = MessageBox.Show("Are you sure ?", "Are you sure to remove"+ flatComboBox1.SelectedText, MessageBoxButtons.YesNo);
             if(res == DialogResult.No)
-            {
                 return;
-            }
+            
             int index = Lama.servers.getKeyFromValue(flatComboBox1.Text);
-            XmlNode cfg = Lama.mainConfig[0].getChildsByAttribute("id", index.ToString())[0];
+            XmlNode cfg = Lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
 
             try
             {

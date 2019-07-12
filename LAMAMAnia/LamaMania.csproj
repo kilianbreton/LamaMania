@@ -38,6 +38,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Arc.TrackMania">
+      <HintPath>..\..\TMPacktool\Arc.TrackMania\bin\Debug\Arc.TrackMania.dll</HintPath>
+    </Reference>
     <Reference Include="FlatUITheme">
       <HintPath>..\..\FlatUITheme\FlatUITheme\bin\Debug\FlatUITheme.dll</HintPath>
     </Reference>
@@ -91,7 +94,7 @@
     <Compile Include="Forms\NewServer.Designer.cs">
       <DependentUpon>NewServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameMode.cs" />
+    <Compile Include="Other\GameMode.cs" />
     <Compile Include="Lama.cs" />
     <Compile Include="Forms\ConfigServ.cs">
       <SubType>Form</SubType>
@@ -111,8 +114,9 @@
     <Compile Include="Forms\HomeLauncher.Designer.cs">
       <DependentUpon>HomeLauncher.cs</DependentUpon>
     </Compile>
-    <Compile Include="LamaLog.cs" />
-    <Compile Include="LogXMLRPC.cs" />
+    <Compile Include="Other\GBXMethods.cs" />
+    <Compile Include="Other\LamaLog.cs" />
+    <Compile Include="Other\LogXMLRPC.cs" />
     <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,7 +127,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticMethods.cs" />
-    <Compile Include="Structs.cs" />
+    <Compile Include="Other\Structs.cs" />
     <Compile Include="UserConstrols\IScriptSetting.cs" />
     <Compile Include="UserConstrols\BooleanScriptSetting.cs">
       <SubType>UserControl</SubType>

@@ -7,11 +7,12 @@ using System.Windows.Forms;
 
 namespace LamaPlugin
 {
-    public abstract class TabPlugin : BasePlugin
+    public class TabPlugin : UserControl, ITab
     {
-        public abstract Control getTab();
-
-        public bool IsConfigServPlugin { protected set; get; }
-
+        public GetConfigValue getConfigValue { get; set; }
+        public string Author { get; set; }
+        public string Version { get; set; }
+        public List<Requirement> Requirements { get; set; }
+        public string PluginName { get; set; }
     }
 }

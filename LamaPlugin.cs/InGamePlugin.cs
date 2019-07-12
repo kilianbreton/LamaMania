@@ -38,7 +38,7 @@ namespace LamaPlugin
         private XmlRpcClient client;
        
         protected Dictionary<int, string> handles = new Dictionary<int, string>();
-        protected Log logger;
+  
 
 
         /// <summary>
@@ -56,11 +56,7 @@ namespace LamaPlugin
             this.client = client;
         }
 
-        public void setLogger(Log logger)
-        {
-            this.logger = logger;
-        }
-
+      
        
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // PROTECTED /////////////////////////////////////////////////////////////////////////////////////
@@ -77,25 +73,29 @@ namespace LamaPlugin
                 param = new object[] { };
             this.handles.Add(this.client.AsyncRequest(methodeName, param, onGbxAsyncResult), methodeName);
         }
-      
-        /// <summary>
-        /// Send async request
-        /// </summary>
-        /// <param name="methodeName"></param>
-        /// <param name="param"></param>
-        /// <param name="handler"></param>
-        protected void asyncRequest(String methodeName, object[] param, GbxCallCallbackHandler handler)
+
+        protected void asyncRequest(GbxCallCallbackHandler handler, String methodName, params object[] param)
         {
             if (param == null)
                 param = new object[] { };
-            this.client.AsyncRequest(methodeName, param, handler);
+            this.client.AsyncRequest(methodName, param, handler);
         }
-      
-        protected void log(string type, string text)
+
+        protected void asyncRequest(String methodName, GbxCallCallbackHandler handler)
         {
-            logger.add(type, text);
-            logger.flush();
+            this.client.AsyncRequest(methodName, new object[] { }, handler);
         }
+
+
+        protected void checkError(GbxCall res)
+        {
+            if (res.Error)
+            {
+
+            }
+        }
+
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // ABSTRACT //////////////////////////////////////////////////////////////////////////////////////

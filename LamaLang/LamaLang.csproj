@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="BaseFR.cs" />
     <Compile Include="BaseLang.cs" />
+    <Compile Include="NodeLang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

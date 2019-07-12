@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.formSkin1 = new FlatUITheme.FormSkin();
             this.flatTabControl1 = new FlatUITheme.FlatTabControl();
             this.tp_main = new System.Windows.Forms.TabPage();
@@ -107,6 +107,18 @@
             this.tb_chatLogin = new FlatUITheme.FlatTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tp_users = new System.Windows.Forms.TabPage();
+            this.b_ForceRed = new FlatUITheme.FlatButton();
+            this.b_ForceBlue = new FlatUITheme.FlatButton();
+            this.b_toBlacks = new FlatUITheme.FlatButton();
+            this.b_toBans = new FlatUITheme.FlatButton();
+            this.b_kick = new FlatUITheme.FlatButton();
+            this.b_toGuests = new FlatUITheme.FlatButton();
+            this.flatGroupBox3 = new FlatUITheme.FlatGroupBox();
+            this.l_black = new System.Windows.Forms.ListBox();
+            this.flatGroupBox2 = new FlatUITheme.FlatGroupBox();
+            this.l_ban = new System.Windows.Forms.ListBox();
+            this.flatGroupBox1 = new FlatUITheme.FlatGroupBox();
+            this.l_guests = new System.Windows.Forms.ListBox();
             this.dg_users = new System.Windows.Forms.DataGridView();
             this.c_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -134,18 +146,6 @@
             this.utilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flatGroupBox1 = new FlatUITheme.FlatGroupBox();
-            this.l_guests = new System.Windows.Forms.ListBox();
-            this.flatGroupBox2 = new FlatUITheme.FlatGroupBox();
-            this.l_ban = new System.Windows.Forms.ListBox();
-            this.flatGroupBox3 = new FlatUITheme.FlatGroupBox();
-            this.l_black = new System.Windows.Forms.ListBox();
-            this.b_toGuests = new FlatUITheme.FlatButton();
-            this.b_kick = new FlatUITheme.FlatButton();
-            this.b_toBans = new FlatUITheme.FlatButton();
-            this.b_toBlacks = new FlatUITheme.FlatButton();
-            this.b_ForceBlue = new FlatUITheme.FlatButton();
-            this.b_ForceRed = new FlatUITheme.FlatButton();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tp_main.SuspendLayout();
@@ -158,13 +158,13 @@
             this.tp_gameSett.SuspendLayout();
             this.tp_chat.SuspendLayout();
             this.tp_users.SuspendLayout();
+            this.flatGroupBox3.SuspendLayout();
+            this.flatGroupBox2.SuspendLayout();
+            this.flatGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_users)).BeginInit();
             this.tp_maps.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_map)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.flatGroupBox1.SuspendLayout();
-            this.flatGroupBox2.SuspendLayout();
-            this.flatGroupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // formSkin1
@@ -1346,6 +1346,193 @@
             this.tp_users.TabIndex = 2;
             this.tp_users.Text = "Users";
             // 
+            // b_ForceRed
+            // 
+            this.b_ForceRed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.b_ForceRed.BackColor = System.Drawing.Color.Transparent;
+            this.b_ForceRed.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.b_ForceRed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b_ForceRed.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.b_ForceRed.Location = new System.Drawing.Point(5, 462);
+            this.b_ForceRed.Name = "b_ForceRed";
+            this.b_ForceRed.Rounded = false;
+            this.b_ForceRed.Size = new System.Drawing.Size(103, 32);
+            this.b_ForceRed.TabIndex = 10;
+            this.b_ForceRed.Text = "Force red";
+            this.b_ForceRed.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_ForceRed.Click += new System.EventHandler(this.b_ForceRed_Click);
+            // 
+            // b_ForceBlue
+            // 
+            this.b_ForceBlue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.b_ForceBlue.BackColor = System.Drawing.Color.Transparent;
+            this.b_ForceBlue.BaseColor = System.Drawing.Color.DodgerBlue;
+            this.b_ForceBlue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b_ForceBlue.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.b_ForceBlue.Location = new System.Drawing.Point(108, 462);
+            this.b_ForceBlue.Name = "b_ForceBlue";
+            this.b_ForceBlue.Rounded = false;
+            this.b_ForceBlue.Size = new System.Drawing.Size(120, 32);
+            this.b_ForceBlue.TabIndex = 9;
+            this.b_ForceBlue.Text = "Force blue";
+            this.b_ForceBlue.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_ForceBlue.Click += new System.EventHandler(this.b_ForceBlue_Click);
+            // 
+            // b_toBlacks
+            // 
+            this.b_toBlacks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.b_toBlacks.BackColor = System.Drawing.Color.Transparent;
+            this.b_toBlacks.BaseColor = System.Drawing.Color.Black;
+            this.b_toBlacks.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b_toBlacks.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.b_toBlacks.Location = new System.Drawing.Point(530, 462);
+            this.b_toBlacks.Name = "b_toBlacks";
+            this.b_toBlacks.Rounded = false;
+            this.b_toBlacks.Size = new System.Drawing.Size(100, 32);
+            this.b_toBlacks.TabIndex = 8;
+            this.b_toBlacks.Text = "To blacks";
+            this.b_toBlacks.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_toBlacks.Click += new System.EventHandler(this.b_toBlacks_Click);
+            // 
+            // b_toBans
+            // 
+            this.b_toBans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.b_toBans.BackColor = System.Drawing.Color.Transparent;
+            this.b_toBans.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.b_toBans.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b_toBans.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.b_toBans.Location = new System.Drawing.Point(431, 462);
+            this.b_toBans.Name = "b_toBans";
+            this.b_toBans.Rounded = false;
+            this.b_toBans.Size = new System.Drawing.Size(100, 32);
+            this.b_toBans.TabIndex = 7;
+            this.b_toBans.Text = "To bans";
+            this.b_toBans.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_toBans.Click += new System.EventHandler(this.b_toBans_Click);
+            // 
+            // b_kick
+            // 
+            this.b_kick.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.b_kick.BackColor = System.Drawing.Color.Transparent;
+            this.b_kick.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.b_kick.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b_kick.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.b_kick.Location = new System.Drawing.Point(335, 462);
+            this.b_kick.Name = "b_kick";
+            this.b_kick.Rounded = false;
+            this.b_kick.Size = new System.Drawing.Size(96, 32);
+            this.b_kick.TabIndex = 6;
+            this.b_kick.Text = "Kick";
+            this.b_kick.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_kick.Click += new System.EventHandler(this.b_kick_Click);
+            // 
+            // b_toGuests
+            // 
+            this.b_toGuests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.b_toGuests.BackColor = System.Drawing.Color.Transparent;
+            this.b_toGuests.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.b_toGuests.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b_toGuests.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.b_toGuests.Location = new System.Drawing.Point(235, 462);
+            this.b_toGuests.Name = "b_toGuests";
+            this.b_toGuests.Rounded = false;
+            this.b_toGuests.Size = new System.Drawing.Size(100, 32);
+            this.b_toGuests.TabIndex = 5;
+            this.b_toGuests.Text = "To guests";
+            this.b_toGuests.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_toGuests.Click += new System.EventHandler(this.b_toGuests_Click);
+            // 
+            // flatGroupBox3
+            // 
+            this.flatGroupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.flatGroupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.flatGroupBox3.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.flatGroupBox3.Controls.Add(this.l_black);
+            this.flatGroupBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.flatGroupBox3.Location = new System.Drawing.Point(634, 247);
+            this.flatGroupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flatGroupBox3.Name = "flatGroupBox3";
+            this.flatGroupBox3.ShowText = true;
+            this.flatGroupBox3.Size = new System.Drawing.Size(669, 259);
+            this.flatGroupBox3.TabIndex = 4;
+            this.flatGroupBox3.Text = "Black";
+            // 
+            // l_black
+            // 
+            this.l_black.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_black.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.l_black.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.l_black.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.l_black.FormattingEnabled = true;
+            this.l_black.ItemHeight = 23;
+            this.l_black.Location = new System.Drawing.Point(23, 49);
+            this.l_black.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.l_black.Name = "l_black";
+            this.l_black.Size = new System.Drawing.Size(620, 184);
+            this.l_black.TabIndex = 0;
+            // 
+            // flatGroupBox2
+            // 
+            this.flatGroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flatGroupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.flatGroupBox2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.flatGroupBox2.Controls.Add(this.l_ban);
+            this.flatGroupBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.flatGroupBox2.Location = new System.Drawing.Point(972, 4);
+            this.flatGroupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flatGroupBox2.Name = "flatGroupBox2";
+            this.flatGroupBox2.ShowText = true;
+            this.flatGroupBox2.Size = new System.Drawing.Size(331, 245);
+            this.flatGroupBox2.TabIndex = 4;
+            this.flatGroupBox2.Text = "Ban";
+            // 
+            // l_ban
+            // 
+            this.l_ban.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_ban.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.l_ban.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.l_ban.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.l_ban.FormattingEnabled = true;
+            this.l_ban.ItemHeight = 23;
+            this.l_ban.Location = new System.Drawing.Point(26, 52);
+            this.l_ban.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.l_ban.Name = "l_ban";
+            this.l_ban.Size = new System.Drawing.Size(276, 161);
+            this.l_ban.TabIndex = 0;
+            // 
+            // flatGroupBox1
+            // 
+            this.flatGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flatGroupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.flatGroupBox1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.flatGroupBox1.Controls.Add(this.l_guests);
+            this.flatGroupBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.flatGroupBox1.Location = new System.Drawing.Point(634, 4);
+            this.flatGroupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flatGroupBox1.Name = "flatGroupBox1";
+            this.flatGroupBox1.ShowText = true;
+            this.flatGroupBox1.Size = new System.Drawing.Size(331, 245);
+            this.flatGroupBox1.TabIndex = 3;
+            this.flatGroupBox1.Text = "Guests";
+            // 
+            // l_guests
+            // 
+            this.l_guests.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_guests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.l_guests.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.l_guests.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.l_guests.FormattingEnabled = true;
+            this.l_guests.ItemHeight = 23;
+            this.l_guests.Location = new System.Drawing.Point(23, 52);
+            this.l_guests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.l_guests.Name = "l_guests";
+            this.l_guests.Size = new System.Drawing.Size(276, 161);
+            this.l_guests.TabIndex = 0;
+            // 
             // dg_users
             // 
             this.dg_users.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1362,8 +1549,8 @@
             this.dg_users.Location = new System.Drawing.Point(3, 2);
             this.dg_users.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dg_users.Name = "dg_users";
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_users.RowTemplate.Height = 24;
             this.dg_users.Size = new System.Drawing.Size(626, 457);
             this.dg_users.TabIndex = 0;
@@ -1520,8 +1707,8 @@
             this.dg_map.Location = new System.Drawing.Point(453, 14);
             this.dg_map.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dg_map.Name = "dg_map";
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dg_map.RowTemplate.Height = 24;
             this.dg_map.Size = new System.Drawing.Size(851, 484);
             this.dg_map.TabIndex = 1;
@@ -1623,193 +1810,6 @@
             this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
             this.pluginsToolStripMenuItem.Text = "Plugins";
             // 
-            // flatGroupBox1
-            // 
-            this.flatGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flatGroupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.flatGroupBox1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
-            this.flatGroupBox1.Controls.Add(this.l_guests);
-            this.flatGroupBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.flatGroupBox1.Location = new System.Drawing.Point(634, 4);
-            this.flatGroupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flatGroupBox1.Name = "flatGroupBox1";
-            this.flatGroupBox1.ShowText = true;
-            this.flatGroupBox1.Size = new System.Drawing.Size(331, 245);
-            this.flatGroupBox1.TabIndex = 3;
-            this.flatGroupBox1.Text = "Guests";
-            // 
-            // l_guests
-            // 
-            this.l_guests.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.l_guests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.l_guests.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.l_guests.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.l_guests.FormattingEnabled = true;
-            this.l_guests.ItemHeight = 23;
-            this.l_guests.Location = new System.Drawing.Point(23, 52);
-            this.l_guests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.l_guests.Name = "l_guests";
-            this.l_guests.Size = new System.Drawing.Size(276, 161);
-            this.l_guests.TabIndex = 0;
-            // 
-            // flatGroupBox2
-            // 
-            this.flatGroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flatGroupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.flatGroupBox2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
-            this.flatGroupBox2.Controls.Add(this.l_ban);
-            this.flatGroupBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.flatGroupBox2.Location = new System.Drawing.Point(972, 4);
-            this.flatGroupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flatGroupBox2.Name = "flatGroupBox2";
-            this.flatGroupBox2.ShowText = true;
-            this.flatGroupBox2.Size = new System.Drawing.Size(331, 245);
-            this.flatGroupBox2.TabIndex = 4;
-            this.flatGroupBox2.Text = "Ban";
-            // 
-            // l_ban
-            // 
-            this.l_ban.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.l_ban.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.l_ban.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.l_ban.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.l_ban.FormattingEnabled = true;
-            this.l_ban.ItemHeight = 23;
-            this.l_ban.Location = new System.Drawing.Point(26, 52);
-            this.l_ban.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.l_ban.Name = "l_ban";
-            this.l_ban.Size = new System.Drawing.Size(276, 161);
-            this.l_ban.TabIndex = 0;
-            // 
-            // flatGroupBox3
-            // 
-            this.flatGroupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.flatGroupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.flatGroupBox3.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
-            this.flatGroupBox3.Controls.Add(this.l_black);
-            this.flatGroupBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.flatGroupBox3.Location = new System.Drawing.Point(634, 247);
-            this.flatGroupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flatGroupBox3.Name = "flatGroupBox3";
-            this.flatGroupBox3.ShowText = true;
-            this.flatGroupBox3.Size = new System.Drawing.Size(669, 259);
-            this.flatGroupBox3.TabIndex = 4;
-            this.flatGroupBox3.Text = "Black";
-            // 
-            // l_black
-            // 
-            this.l_black.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.l_black.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.l_black.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.l_black.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.l_black.FormattingEnabled = true;
-            this.l_black.ItemHeight = 23;
-            this.l_black.Location = new System.Drawing.Point(23, 49);
-            this.l_black.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.l_black.Name = "l_black";
-            this.l_black.Size = new System.Drawing.Size(620, 184);
-            this.l_black.TabIndex = 0;
-            // 
-            // b_toGuests
-            // 
-            this.b_toGuests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b_toGuests.BackColor = System.Drawing.Color.Transparent;
-            this.b_toGuests.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.b_toGuests.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b_toGuests.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_toGuests.Location = new System.Drawing.Point(235, 462);
-            this.b_toGuests.Name = "b_toGuests";
-            this.b_toGuests.Rounded = false;
-            this.b_toGuests.Size = new System.Drawing.Size(100, 32);
-            this.b_toGuests.TabIndex = 5;
-            this.b_toGuests.Text = "To guests";
-            this.b_toGuests.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.b_toGuests.Click += new System.EventHandler(this.b_toGuests_Click);
-            // 
-            // b_kick
-            // 
-            this.b_kick.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b_kick.BackColor = System.Drawing.Color.Transparent;
-            this.b_kick.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.b_kick.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b_kick.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_kick.Location = new System.Drawing.Point(335, 462);
-            this.b_kick.Name = "b_kick";
-            this.b_kick.Rounded = false;
-            this.b_kick.Size = new System.Drawing.Size(96, 32);
-            this.b_kick.TabIndex = 6;
-            this.b_kick.Text = "Kick";
-            this.b_kick.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.b_kick.Click += new System.EventHandler(this.b_kick_Click);
-            // 
-            // b_toBans
-            // 
-            this.b_toBans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b_toBans.BackColor = System.Drawing.Color.Transparent;
-            this.b_toBans.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.b_toBans.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b_toBans.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_toBans.Location = new System.Drawing.Point(431, 462);
-            this.b_toBans.Name = "b_toBans";
-            this.b_toBans.Rounded = false;
-            this.b_toBans.Size = new System.Drawing.Size(100, 32);
-            this.b_toBans.TabIndex = 7;
-            this.b_toBans.Text = "To bans";
-            this.b_toBans.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.b_toBans.Click += new System.EventHandler(this.b_toBans_Click);
-            // 
-            // b_toBlacks
-            // 
-            this.b_toBlacks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b_toBlacks.BackColor = System.Drawing.Color.Transparent;
-            this.b_toBlacks.BaseColor = System.Drawing.Color.Black;
-            this.b_toBlacks.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b_toBlacks.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_toBlacks.Location = new System.Drawing.Point(530, 462);
-            this.b_toBlacks.Name = "b_toBlacks";
-            this.b_toBlacks.Rounded = false;
-            this.b_toBlacks.Size = new System.Drawing.Size(100, 32);
-            this.b_toBlacks.TabIndex = 8;
-            this.b_toBlacks.Text = "To blacks";
-            this.b_toBlacks.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.b_toBlacks.Click += new System.EventHandler(this.b_toBlacks_Click);
-            // 
-            // b_ForceBlue
-            // 
-            this.b_ForceBlue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b_ForceBlue.BackColor = System.Drawing.Color.Transparent;
-            this.b_ForceBlue.BaseColor = System.Drawing.Color.DodgerBlue;
-            this.b_ForceBlue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b_ForceBlue.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_ForceBlue.Location = new System.Drawing.Point(108, 462);
-            this.b_ForceBlue.Name = "b_ForceBlue";
-            this.b_ForceBlue.Rounded = false;
-            this.b_ForceBlue.Size = new System.Drawing.Size(120, 32);
-            this.b_ForceBlue.TabIndex = 9;
-            this.b_ForceBlue.Text = "Force blue";
-            this.b_ForceBlue.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.b_ForceBlue.Click += new System.EventHandler(this.b_ForceBlue_Click);
-            // 
-            // b_ForceRed
-            // 
-            this.b_ForceRed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b_ForceRed.BackColor = System.Drawing.Color.Transparent;
-            this.b_ForceRed.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.b_ForceRed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b_ForceRed.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_ForceRed.Location = new System.Drawing.Point(5, 462);
-            this.b_ForceRed.Name = "b_ForceRed";
-            this.b_ForceRed.Rounded = false;
-            this.b_ForceRed.Size = new System.Drawing.Size(103, 32);
-            this.b_ForceRed.TabIndex = 10;
-            this.b_ForceRed.Text = "Force red";
-            this.b_ForceRed.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.b_ForceRed.Click += new System.EventHandler(this.b_ForceRed_Click);
-            // 
             // Main
             // 
             this.AcceptButton = this.button1;
@@ -1842,15 +1842,15 @@
             this.tp_gameSett.ResumeLayout(false);
             this.tp_chat.ResumeLayout(false);
             this.tp_users.ResumeLayout(false);
+            this.flatGroupBox3.ResumeLayout(false);
+            this.flatGroupBox2.ResumeLayout(false);
+            this.flatGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dg_users)).EndInit();
             this.tp_maps.ResumeLayout(false);
             this.tp_maps.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_map)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.flatGroupBox1.ResumeLayout(false);
-            this.flatGroupBox2.ResumeLayout(false);
-            this.flatGroupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

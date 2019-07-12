@@ -59,12 +59,13 @@ namespace LamaMania
         /// <summary>
         /// Home component for MainForm
         /// </summary>
-        public static List<HomeComponent> homeComponentPlugins = new List<HomeComponent>();
+        public static List<HomeComponentPlugin> homeComponentPlugins = new List<HomeComponentPlugin>();
         /// <summary>
         /// Tab plugin for Main or ConfigServ
         /// </summary>
         public static List<TabPlugin> tabPlugins = new List<TabPlugin>();
-        
+
+        public static int serverIndex;
         /// <summary>
         /// Main xml config
         /// </summary>

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NTK, Version=1.0.0.1, Culture=neutral, PublicKeyToken=cdcb176b1fe72ba9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LAMAMAnia\bin\Debug\NTK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -41,6 +45,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TMXmlRpcLib, Version=1.0.2527.28621, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\csLibrary\TMXmlRpcLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigServControl.cs">
@@ -49,7 +57,13 @@
     <Compile Include="ConfigServControl.Designer.cs">
       <DependentUpon>ConfigServControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UAsecoConfigServ.cs" />
+    <Compile Include="ExempleInGame.cs" />
+    <Compile Include="MainHc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainHc.Designer.cs">
+      <DependentUpon>MainHc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

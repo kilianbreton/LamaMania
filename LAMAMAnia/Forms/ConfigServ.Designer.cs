@@ -103,6 +103,7 @@
             this.tb_p2pPort = new FlatUITheme.FlatTextBox();
             this.tb_ServerPort = new FlatUITheme.FlatTextBox();
             this.tp_match = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flatLabel34 = new FlatUITheme.FlatLabel();
             this.cb_gameMode = new FlatUITheme.FlatComboBox();
             this.n_warm_s = new FlatUITheme.FlatNumeric();
@@ -136,6 +137,7 @@
             this.tp_general.SuspendLayout();
             this.tp_advanced.SuspendLayout();
             this.tp_match.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPlugins.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1232,6 +1234,7 @@
             // tp_match
             // 
             this.tp_match.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.tp_match.Controls.Add(this.pictureBox1);
             this.tp_match.Controls.Add(this.flatLabel34);
             this.tp_match.Controls.Add(this.cb_gameMode);
             this.tp_match.Controls.Add(this.n_warm_s);
@@ -1263,6 +1266,15 @@
             this.tp_match.Size = new System.Drawing.Size(1229, 540);
             this.tp_match.TabIndex = 2;
             this.tp_match.Text = "MatchSettings";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(444, 41);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(330, 206);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 41;
+            this.pictureBox1.TabStop = false;
             // 
             // flatLabel34
             // 
@@ -1524,10 +1536,11 @@
             this.l_mapsMatch.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_mapsMatch.FormattingEnabled = true;
             this.l_mapsMatch.ItemHeight = 23;
-            this.l_mapsMatch.Location = new System.Drawing.Point(444, 46);
+            this.l_mapsMatch.Location = new System.Drawing.Point(444, 276);
             this.l_mapsMatch.Name = "l_mapsMatch";
-            this.l_mapsMatch.Size = new System.Drawing.Size(330, 483);
+            this.l_mapsMatch.Size = new System.Drawing.Size(330, 253);
             this.l_mapsMatch.TabIndex = 23;
+            this.l_mapsMatch.SelectedIndexChanged += new System.EventHandler(this.l_mapsMatch_SelectedIndexChanged);
             // 
             // l_mapsLocal
             // 
@@ -1540,6 +1553,7 @@
             this.l_mapsLocal.Name = "l_mapsLocal";
             this.l_mapsLocal.Size = new System.Drawing.Size(295, 253);
             this.l_mapsLocal.TabIndex = 22;
+            this.l_mapsLocal.SelectedIndexChanged += new System.EventHandler(this.l_mapsLocal_SelectedIndexChanged);
             // 
             // flatLabel26
             // 
@@ -1547,7 +1561,7 @@
             this.flatLabel26.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel26.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel26.ForeColor = System.Drawing.Color.White;
-            this.flatLabel26.Location = new System.Drawing.Point(524, 11);
+            this.flatLabel26.Location = new System.Drawing.Point(527, 250);
             this.flatLabel26.Name = "flatLabel26";
             this.flatLabel26.Size = new System.Drawing.Size(146, 23);
             this.flatLabel26.TabIndex = 21;
@@ -1675,6 +1689,7 @@
             this.tp_advanced.PerformLayout();
             this.tp_match.ResumeLayout(false);
             this.tp_match.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPlugins.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1785,5 +1800,6 @@
         private FlatUITheme.FlatCheckBox ch_internetServer;
         private FlatUITheme.FlatLabel flatLabel34;
         private FlatUITheme.FlatComboBox cb_gameMode;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

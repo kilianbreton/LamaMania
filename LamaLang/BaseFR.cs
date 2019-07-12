@@ -6,20 +6,28 @@ namespace LamaLang
 {
     public class BaseFR : BaseLang
     {
-        public override Dictionary<string, Dictionary<string, string>> getLangDictionary()
+        public BaseFR(string name) : base(name)
         {
-            throw new NotImplementedException();
-        }
+            NodeLang main = this.addChild("main");
+            NodeLang home = main.addChild("home");
+            home.addChild("", "");
+            home.addChild("", "");
+            home.addChild("", "");
+            home.addChild("", "");
+            home.addChild("", "");
+            home.addChild("", "");
+            home.addChild("", "");
 
-        public override Dictionary<string, string> getScriptSettingsDictionary()
-        {
-            return new Dictionary<string, string>()
-            {
-                {"S_TimeLimit","Time Limit" },
-                {"S_","" },
-                {"","" },
-  
-            };
+            NodeLang users = main.addChild("users");
+            users.addChild("", "");
+            users.addChild("", "");
+            users.addChild("", "");
+            users.addChild("", "");
+            users.addChild("", "");
+            users.addChild("", "");
+            users.addChild("", "");
+
+
         }
     }
 }

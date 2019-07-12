@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LamaPlugin;
 
 namespace LamaMania
 {
@@ -182,6 +183,20 @@ namespace LamaMania
             cb.SelectedText = selectedValue;
         }
         
+        public static void appendCombo(FlatComboBox cb, string value)
+        {
+            if(cb.InvokeRequired)
+            {
+                cb.Invoke(new Action<FlatComboBox, string>(appendCombo), cb, value);
+            }
+            else
+            {
+                cb.Items.Add(value);
+            }
+            
+
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -302,6 +317,19 @@ namespace LamaMania
                 makeTreeview(child, node.Nodes.Add(child.Name));
             }
         }
+
+        public static InGamePlugin getPluginByName(string name)
+        {
+            int cpt = 0;
+
+            while (cpt < Lama.inGamePlugins.Count && Lama.inGamePlugins[cpt].PluginName != name){ cpt++; }
+
+            if (cpt < Lama.inGamePlugins.Count && Lama.inGamePlugins[cpt].PluginName == name)
+                return Lama.inGamePlugins[cpt];
+            else
+                return null;
+        }
+
 
     }
 }

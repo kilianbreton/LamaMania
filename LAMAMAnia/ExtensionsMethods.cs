@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMXmlRpcLib;
+using LamaPlugin;
 
 namespace LamaMania
 {
@@ -35,19 +36,32 @@ namespace LamaMania
         }
 
         /// <summary>
+        /// Simple request
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="methodName"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static GbxCall Request(this XmlRpcClient client, string methodName, params object[] param)
+        {
+            return client.Request(methodName, param);
+        }
+
+
+        /// <summary>
         /// Get key of value
         /// </summary>
-        /// <typeparam name="T">Key type</typeparam>
-        /// <typeparam name="T2">Value type</typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
         /// <param name="dic"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static T getKeyFromValue<T, T2>(this IDictionary<T, T2> dic, T2 value)
+        public static TKey getKeyFromValue<TKey, TValue>(this IDictionary<TKey, TValue> dic, TValue value)
         {
-            T ret = default(T);
+            TKey ret = default(TKey);
             bool find = false;
 
-            foreach (KeyValuePair<T, T2> kvp in dic)
+            foreach (KeyValuePair<TKey, TValue> kvp in dic)
             {
                 if (kvp.Value.Equals(value))
                 {
@@ -76,6 +90,11 @@ namespace LamaMania
             {
                 return (T)(object)control;
             }
+        }
+
+        public static ITab getITabInterface(this UserControl uc)
+        {
+            return (ITab) uc;
         }
 
     }

@@ -25,6 +25,7 @@ namespace LamaMania
         /// <param name="hl">The homeLauncher Form to reload</param>
         public NewServer(HomeLauncher hl)
         {
+            Lama.log("NOTICE", "Open NewServer");
             InitializeComponent();
             this.hl = hl;
             formSkin1.Text = "New Server";
@@ -37,6 +38,7 @@ namespace LamaMania
         /// <param name="cfg"></param>
         public NewServer(HomeLauncher hl, XmlNode cfg)
         {
+            Lama.log("NOTICE", "Open NewServer in Edit mode");
             InitializeComponent();
             formSkin1.Text = "Edit server";
             this.hl = hl;
@@ -68,6 +70,7 @@ namespace LamaMania
 
         private void b_create_Click(object sender, EventArgs e)
         {
+            Lama.log("NOTICE", "Save server");
             if (cfg == null) //Creation mode
             {
                 if (tog_remote.Checked)
@@ -95,6 +98,7 @@ namespace LamaMania
                 }
                 else
                 {
+                    Lama.mainConfig.save();
                     ConfigServ cs = new ConfigServ(tb_name.Text);
                     cs.Show();
                     this.hl.load();

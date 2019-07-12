@@ -53,8 +53,9 @@
             this.formSkin1.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
             this.formSkin1.HeaderMaximize = false;
             this.formSkin1.Location = new System.Drawing.Point(0, 0);
+            this.formSkin1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.formSkin1.Name = "formSkin1";
-            this.formSkin1.Size = new System.Drawing.Size(556, 169);
+            this.formSkin1.Size = new System.Drawing.Size(417, 137);
             this.formSkin1.TabIndex = 0;
             this.formSkin1.Text = "Launcher";
             // 
@@ -64,10 +65,11 @@
             this.flatButton4.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.flatButton4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flatButton4.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.flatButton4.Location = new System.Drawing.Point(5, 95);
+            this.flatButton4.Location = new System.Drawing.Point(4, 83);
+            this.flatButton4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flatButton4.Name = "flatButton4";
             this.flatButton4.Rounded = false;
-            this.flatButton4.Size = new System.Drawing.Size(30, 24);
+            this.flatButton4.Size = new System.Drawing.Size(22, 20);
             this.flatButton4.TabIndex = 4;
             this.flatButton4.Text = "+";
             this.flatButton4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -79,10 +81,11 @@
             this.flatButton3.BaseColor = System.Drawing.Color.Crimson;
             this.flatButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flatButton3.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.flatButton3.Location = new System.Drawing.Point(469, 125);
+            this.flatButton3.Location = new System.Drawing.Point(357, 108);
+            this.flatButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flatButton3.Name = "flatButton3";
             this.flatButton3.Rounded = false;
-            this.flatButton3.Size = new System.Drawing.Size(70, 24);
+            this.flatButton3.Size = new System.Drawing.Size(52, 20);
             this.flatButton3.TabIndex = 3;
             this.flatButton3.Text = "Rm";
             this.flatButton3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -94,10 +97,11 @@
             this.flatButton2.BaseColor = System.Drawing.Color.Teal;
             this.flatButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flatButton2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.flatButton2.Location = new System.Drawing.Point(469, 65);
+            this.flatButton2.Location = new System.Drawing.Point(357, 59);
+            this.flatButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flatButton2.Name = "flatButton2";
             this.flatButton2.Rounded = false;
-            this.flatButton2.Size = new System.Drawing.Size(70, 24);
+            this.flatButton2.Size = new System.Drawing.Size(52, 20);
             this.flatButton2.TabIndex = 2;
             this.flatButton2.Text = "Edit";
             this.flatButton2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -109,10 +113,11 @@
             this.flatButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.flatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flatButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.flatButton1.Location = new System.Drawing.Point(469, 95);
+            this.flatButton1.Location = new System.Drawing.Point(357, 84);
+            this.flatButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flatButton1.Name = "flatButton1";
             this.flatButton1.Rounded = false;
-            this.flatButton1.Size = new System.Drawing.Size(70, 24);
+            this.flatButton1.Size = new System.Drawing.Size(52, 20);
             this.flatButton1.TabIndex = 1;
             this.flatButton1.Text = "Start";
             this.flatButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -129,18 +134,20 @@
             this.flatComboBox1.FormattingEnabled = true;
             this.flatComboBox1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.flatComboBox1.ItemHeight = 18;
-            this.flatComboBox1.Location = new System.Drawing.Point(41, 95);
+            this.flatComboBox1.Location = new System.Drawing.Point(32, 82);
+            this.flatComboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flatComboBox1.Name = "flatComboBox1";
-            this.flatComboBox1.Size = new System.Drawing.Size(422, 24);
+            this.flatComboBox1.Size = new System.Drawing.Size(318, 24);
             this.flatComboBox1.TabIndex = 0;
             // 
             // HomeLauncher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 169);
+            this.ClientSize = new System.Drawing.Size(417, 137);
             this.Controls.Add(this.formSkin1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "HomeLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

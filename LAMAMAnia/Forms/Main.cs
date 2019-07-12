@@ -33,6 +33,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using System.IO;
 using TMXmlRpcLib;
 using NTK.IO.Xml;
 using NTK.IO;
@@ -41,6 +42,7 @@ using FlatUITheme;
 using LamaMania.UserConstrols;
 using static NTK.Other.NTKF;
 using static LamaMania.StaticMethods;
+using static LamaMania.GBXMethods;
 
 namespace LamaMania
 {
@@ -76,7 +78,9 @@ namespace LamaMania
         private string serverPass;
         private string serverSpecPass;
         private string game;
-        private GameMode gameMode;
+        private SMGameMode smGameMode;
+        private TMGameMode tmGameMode;
+        private bool isTM = true;
 
         private Timer netStatsTimer;
         #endregion
@@ -161,8 +165,78 @@ namespace LamaMania
                 this.b_xmlrpcConnect.Enabled = false;
                 this.b_uasecoStop.Enabled = false;
                 this.b_usaecoStart.Enabled = false;
-
+                
+                //Requêtes
                 startupRequests();
+
+                Lama.log("NOTICE", "Init inGamePlugins ...");
+                //Init plugins
+                if (!Lama.remote) {
+                    List<InGamePlugin> removeLST = new List<InGamePlugin>();
+                    foreach (InGamePlugin plug in Lama.inGamePlugins)
+                    {
+                        bool badRequirement = false;
+                        string brInfos = "";
+                        LamaConfig conf2plug = new LamaConfig()
+                        {
+                            connected = true,
+                            scriptName = "",
+                            remote = Lama.remote,
+                            configFiles = new Dictionary<string, XmlDocument>()
+                        };
+                        foreach (Requirement r in plug.Requirements)
+                        {
+                            switch (r.Type)
+                            {
+                                case RequirementType.PLUGIN:
+                                    if (getPluginByName(r.Value) == null)
+                                    {
+                                        badRequirement = true;
+                                        brInfos = "Requiredplugin '" + r.Value + "does not exists";
+                                    }
+
+                                    break;
+
+                                case RequirementType.FILE:
+                                    try
+                                    {
+                                        conf2plug.configFiles.Add(r.Value, new XmlDocument(@"Config\Servers\" + Lama.serverIndex + @"\" + r.Value));
+                                    }
+                                    catch (Exception)
+                                    {
+                                        badRequirement = true;
+                                        brInfos = @"Unable to load Config\Servers\" + Lama.serverIndex + @"\" + r.Value;
+                                    }
+                                    break;
+
+                                case RequirementType.DATABASE:
+                                    conf2plug.dbConnected = false;
+                                    break;
+                            }
+                        }
+                        if(!badRequirement)
+                        {
+                            badRequirement = !plug.onLoad(conf2plug);
+                            brInfos = "onLoad method returned false";
+                        }
+
+                        if(badRequirement)
+                        {
+                            Lama.log("ERROR", "Unable to init [" + plug.PluginName + "] Plugin, " + brInfos);
+                            removeLST.Add(plug);
+                        }
+                        else
+                        {
+                            Lama.log("NOTICE", "[" + plug.PluginName + "] Plugin loaded");
+                        }
+
+                    }
+                    foreach(InGamePlugin plug in removeLST)
+                    {
+                        Lama.inGamePlugins.Remove(plug);
+                    }
+                }
+                
             }
             else
             {
@@ -181,23 +255,24 @@ namespace LamaMania
 
         void startupRequests()
         {
+            
             //Requêtes
-            asyncRequest("GetStatus", res => {
+            asyncRequest(GetStatus, res => {
                 Hashtable ht = res.getHashTable();
                 setLabel(this.l_server, "Status : " + (string)ht["Name"]);
             });
-            asyncRequest("GetVersion", res => {
+            asyncRequest(GetVersion, res => {
                 setLabel(l_version, "Version : " + (string)res.getHashTable()["Version"]);
             });
 
-            asyncRequest("GetChatLines");
+            asyncRequest(GetChatLines);
 
-            asyncRequest("GetServerOptions", getServerOptions);
-            asyncRequest("GetCurrentGameInfo", getCurrentGameInfo);
-            asyncRequest("GetModeScriptSettings", getModeScriptSettings);
-            asyncRequest("GetScriptName");
+            asyncRequest(GetServerOptions, getServerOptions);
+            asyncRequest(GetCurrentGameInfo, getCurrentGameInfo);
+            asyncRequest(GetModeScriptSettings, getModeScriptSettings);
+            asyncRequest(GetScriptName);
 
-            asyncRequest("GetCurrentMapInfo", res => {
+            asyncRequest(GetCurrentMapInfo, res => {
                 var htcm = res.getHashTable();
                 setLabel(l_map, "Map : " + ManiaColors.getText((string)htcm["Name"]));
             });
@@ -205,11 +280,11 @@ namespace LamaMania
                 this.mapPath = (string)res.Params[0];
             });
 
-            asyncRequest("GetPlayerList", this.maxPlayers + this.maxSpectators, 0);
-            asyncRequest("GetGuestList", this.maxPlayers + this.maxSpectators, 0);
-            asyncRequest("GetBanList", this.maxPlayers + this.maxSpectators, 0);
-            asyncRequest("GetBlackList", this.maxPlayers + this.maxSpectators, 0);
-            asyncRequest("GetMapList", 999, 0);
+            asyncRequest(GetPlayerList, this.maxPlayers + this.maxSpectators, 0);
+            asyncRequest(GetGuestList, this.maxPlayers + this.maxSpectators, 0);
+            asyncRequest(GetBanList, this.maxPlayers + this.maxSpectators, 0);
+            asyncRequest(GetBlackList, this.maxPlayers + this.maxSpectators, 0);
+            asyncRequest(GetMapList, 999, 0);
 
             this.netStatsTimer = new Timer();
             this.netStatsTimer.Tick += new EventHandler(netStatsTimer_Tick);
@@ -223,6 +298,7 @@ namespace LamaMania
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         #region "UI Methods"
+        //Other UI Methods in StaticMethods
         void loadLang()
         {
             if (Lama.lang != null)
@@ -250,7 +326,6 @@ namespace LamaMania
             {
                 richTextBox1.Clear();
             }
-
         }
         
         /// <summary>
@@ -295,11 +370,7 @@ namespace LamaMania
                 try
                 {
                     this.client = new XmlRpcClient(this.adrs, this.port);
-                    var authAnsw = this.client.Request("Authenticate", new object[]
-                    {
-                            this.login,
-                            this.passwd
-                    });
+                    GbxCall authAnsw = this.client.Request(Authenticate, this.login, this.passwd);
                     if (authAnsw.Params[0].Equals(true)) //Auth success---------------------------------
                     {
                         this.client.EnableCallbacks(true);
@@ -308,16 +379,19 @@ namespace LamaMania
 
                         Lama.connected = true; //exit loop
                     }
-
                 }
                 catch (Exception)
                 {
+
+
+
+
                     System.Threading.Thread.Sleep(WAIT_AUTH_TIME);
                 }
             }
         }
 
-        //Requests
+        //Requests====================================================================================
         void asyncRequest(String methodName, params object[] param)
         {
             if(param == null)
@@ -337,7 +411,7 @@ namespace LamaMania
             this.client.AsyncRequest(methodName, new object[] { }, handler);
         }
 
-        //Main Async results
+        //Main Async results==========================================================================
         void asyncResult(GbxCall res)
         {        
             //Manage result------------------------------------------------------------------------
@@ -352,38 +426,67 @@ namespace LamaMania
                         //////////////////////////////////////////////////////////////////////////////////////////////////////
                         // Server Infos /////////////////////////////////////////////////////////////////////////////////////
                         ////////////////////////////////////////////////////////////////////////////////////////////////////
-                        case "GetScriptName":
+                        case GetScriptName:
                             var htscript = res.getHashTable();
-                            var script = (string)htscript["CurrentValue"];
+                            string script = (string)htscript["CurrentValue"];
                             if (script.Contains(".Script.txt"))
                             {
                                 script = subsep(script, 0, ".");
                             }
                             setLabel(this.l_gameMode, "GameMode : " + script);
-                            Enum.TryParse(script, out this.gameMode);
 
+                            this.isTM = Enum.TryParse(script, out this.tmGameMode);
+                            if (this.isTM)
+                            {
+                                foreach (TMGameMode suit in (TMGameMode[])Enum.GetValues(typeof(TMGameMode)))
+                                {
+                                    appendCombo(cb_serverGMScript, suit.ToString());
+                                }
+                            }
+                            else
+                            {
+                                if(Enum.TryParse(script, out this.smGameMode))
+                                {
+                                    foreach (SMGameMode suit in (SMGameMode[])Enum.GetValues(typeof(SMGameMode)))
+                                    {
+                                        appendCombo(cb_serverGMScript,suit.ToString());
+                                    }
+                                }
+                                else
+                                {
+                                    //Show select game dialog
+                                }
+
+                            }
                             break;
-                        case "GetMapList":
-                            ArrayList maps = (ArrayList)res.Params[0];
+                        case GetMapList:
+                            Hashtable maps = res.getHashTable();
                             clearDg(dg_map);
                             foreach (Hashtable map in maps)
                             {
                                 addDgRow(dg_map, ManiaColors.getText((string)map["Name"]), map["Author"], map["Environnement"], map["LadderRanking"]);
                             }
                             break;
-                        case "GetCurrentMapIndex":
+                        case GetCurrentMapIndex:
                             if (this.currentMapId != -1)
                                 this.previousMapId = this.currentMapId;
                             this.currentMapId = (int)res.Params[0];
                             break;
 
+                        case SetScriptName:
+                            if ((bool)res.Params[0])
+                            {
+                                setLabel(this.l_gameMode, "GameMode: "+this.cb_serverGMScript.Text);
+                            }
+
+                            break;
                             #endregion
 
                         #region "Chat"
-                            //////////////////////////////////////////////////////////////////////////////////////////////////////
-                            // Chat /////////////////////////////////////////////////////////////////////////////////////////////
-                            ////////////////////////////////////////////////////////////////////////////////////////////////////
-                            case "GetChatLines":
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////
+                        // Chat /////////////////////////////////////////////////////////////////////////////////////////////
+                        ////////////////////////////////////////////////////////////////////////////////////////////////////
+                        case GetChatLines:
 
                                 clearConsole();
                                 var al = (ArrayList)res.Params[0];
@@ -407,7 +510,7 @@ namespace LamaMania
                         // Players List /////////////////////////////////////////////////////////////////////////////////////
                         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                        case "GetPlayerList":
+                        case GetPlayerList:
                             ArrayList userList = (ArrayList)res.Params[0];
                             clearList(l_users);
                             clearDg(dg_users);
@@ -425,14 +528,14 @@ namespace LamaMania
                                 appendList(l_users, ManiaColors.getText((string)user["NickName"]));
                             }
                             break;
-                        case "SendDisplayManialinkPageToId":
+                        case SendDisplayManialinkPageToId:
                            
                             break;
-                        case "GetGuestList":
+                        case GetGuestList:
                             break;
-                        case "GetBlackList":
+                        case GetBlackList:
                             break;
-                        case "GetBanList":
+                        case GetBanList:
                             break;
                         #endregion
 
@@ -452,7 +555,7 @@ namespace LamaMania
                     }
                     catch (Exception e)
                     {
-                        Lama.log("ERROR", "Plugins " + plug.Name +" throws Gbx Error :" + e.Message);
+                        Lama.log("ERROR", "Plugins " + plug.PluginName +" throws Gbx Error :" + e.Message);
                     }
                 }
 
@@ -508,6 +611,7 @@ namespace LamaMania
             setCheckBox(ch_keepPlayerSlot, false);
             setCheckBox(ch_mapDown, false);
             setCheckBox(ch_horns, false);
+            
         }
 
         void getCurrentGameInfo(GbxCall res)
@@ -543,7 +647,7 @@ namespace LamaMania
             }
         }
 
-        //CallBacks
+        //CallBacks=============================================================================================
         void gbxCallBack(object sender, GbxCallbackEventArgs args)
         {
             switch (args.Response.MethodName)
@@ -567,7 +671,7 @@ namespace LamaMania
 
                     break;
                 case "ManiaPlanet.BillUpdated":
-
+                  
                     break;
 
                 #endregion
@@ -719,7 +823,7 @@ namespace LamaMania
 
         private void netStatsTimer_Tick(object sender, EventArgs a)
         {
-            asyncRequest("GetNetworkStats", res => {
+            asyncRequest(GetNetworkStats, res => {
                 var ht = res.getHashTable();
                 setLabel(this.l_upTime, "UpTime : " + ht["UpTime"]);
                 setLabel(this.l_nbConn, "Nb Connections : " + ht["NbrConnection"]);
@@ -741,29 +845,35 @@ namespace LamaMania
         private void b_prevMap_Click(object sender, EventArgs e)
         {
             if(this.previousMapId != -1)
-                asyncRequest(res => {if (!res.Error) { asyncRequest("NextMap"); }},
-                    "SetNextMapIndex", this.previousMapId);
+                asyncRequest(res => {if (!res.Error) { asyncRequest(NextMap); }},
+                    SetNextMapIndex, this.previousMapId);
         }
 
         private void b_restart_Click(object sender, EventArgs e)
         {
-            asyncRequest("RestartMap", checkError);
+            asyncRequest(RestartMap, checkError);
         }
 
         private void b_nextMap_Click(object sender, EventArgs e)
         {
-            asyncRequest("NextMap", checkError);
+            asyncRequest(NextMap, checkError);
         }
 
         private void b_stopRound_Click(object sender, EventArgs e)
         {
-            asyncRequest("ForceEndRound", checkError);
+            asyncRequest(ForceEndRound, checkError);
         }
 
         private void b_makeNextGameMode_Click(object sender, EventArgs e)
         {
-            if(cb_serverGMScript.SelectedText != "")
-                asyncRequest(checkError, "SetScriptName", cb_serverGMScript.SelectedText );
+            string gm = cb_serverGMScript.Text;
+            if (gm != "")
+            {
+                if (!gm.Contains(".Script.txt"))
+                    gm += ".Script.Txt";
+
+                asyncRequest(SetScriptName, gm);
+            }
         }
 
         private void b_join_Click(object sender, EventArgs e)
@@ -820,7 +930,7 @@ namespace LamaMania
         //Chat Tab===============================================================================================
         private void b_send_Click(object sender, EventArgs e)
         {
-            asyncRequest("ChatSend", tb_chat.Text);
+            asyncRequest(ChatSend, tb_chat.Text);
             tb_chat.Text = "";
 
         }
@@ -861,7 +971,7 @@ namespace LamaMania
           
             Hashtable serverOptions = new Hashtable(so);
 
-            asyncRequest(checkError, "SetServerOptions", serverOptions);
+            asyncRequest(checkError, SetServerOptions, serverOptions);
         }
 
        
@@ -892,7 +1002,7 @@ namespace LamaMania
                 dic.Add(setting.SettingName, value);
             }
             Hashtable ht = new Hashtable(dic);
-            asyncRequest(checkError, "SetModeScriptSettings", dic);
+            asyncRequest(checkError, SetModeScriptSettings, dic);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -906,9 +1016,9 @@ namespace LamaMania
             foreach (DataGridViewRow row in rows)
             {
                 int uId = (int)row.Cells[0].Value;
-                asyncRequest(checkError, "AddGuestId", uId);
+                asyncRequest(checkError, AddGuestId, uId);
             }
-            asyncRequest("GetGuestList");
+            asyncRequest(GetGuestList);
         }
 
         private void b_toBans_Click(object sender, EventArgs e)
@@ -917,9 +1027,9 @@ namespace LamaMania
             foreach (DataGridViewRow row in rows)
             {
                 int uId = (int)row.Cells[0].Value;
-                asyncRequest(checkError, "BanId", uId, "BAN");
+                asyncRequest(checkError, BanId, uId, "BAN");
             }
-            asyncRequest("GetBanList");
+            asyncRequest(GetBanList);
         }
 
         private void b_toBlacks_Click(object sender, EventArgs e)
@@ -928,9 +1038,9 @@ namespace LamaMania
             foreach (DataGridViewRow row in rows)
             {
                 int uId = (int)row.Cells[0].Value;
-                asyncRequest(checkError, "BlackListId", uId);
+                asyncRequest(checkError, BlackListId, uId);
             }
-            asyncRequest("GetBlackList");
+            asyncRequest(GetBlackList);
         }
 
         private void b_kick_Click(object sender, EventArgs e)
@@ -939,18 +1049,18 @@ namespace LamaMania
             foreach (DataGridViewRow row in rows)
             {
                 int uId = (int)row.Cells[0].Value;
-                asyncRequest(checkError, "KickId", uId, "KICK");
+                asyncRequest(checkError, KickId, uId, "KICK");
             }
         }
 
         private void b_ForceRed_Click(object sender, EventArgs e)
         {
-            forceTeam(0);
+            forceTeam(1);
         }
 
         private void b_ForceBlue_Click(object sender, EventArgs e)
         {
-            forceTeam(1);
+            forceTeam(0);
         }
 
         void forceTeam(int team)
@@ -959,9 +1069,9 @@ namespace LamaMania
             foreach (DataGridViewRow row in rows)
             {
                 int uId = (int)row.Cells[0].Value;
-                asyncRequest(checkError, "ForcePlayerTeamId", uId, team);
+                asyncRequest(checkError, ForcePlayerTeamId, uId, team);
             }
-            asyncRequest("GetPlayerList", this.maxPlayers + this.maxSpectators, 0);
+            asyncRequest(GetPlayerList, this.maxPlayers + this.maxSpectators, 0);
         }
 
         #endregion

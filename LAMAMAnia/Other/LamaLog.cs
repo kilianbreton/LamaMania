@@ -37,17 +37,22 @@ namespace LamaMania
     public class LamaLog : Log
     {
         private string path;
+        private bool writeNotices;
 
         /// <summary>
         /// Init logger
         /// </summary>
         /// <param name="path"></param>
-        public LamaLog(string path)
+        /// <param name="writeNotices"></param>
+        public LamaLog(string path, bool writeNotices = true)
         {
-            this.path = path;  
+            this.path = path;
+            this.writeNotices = writeNotices;
+            this.add("NOTICE", "[INIT]==============================================================================================================================================");
+            this.flush();
         }
 
-
+     
         /// <summary>
         /// Add logLine to temp list
         /// </summary>
@@ -55,7 +60,8 @@ namespace LamaMania
         /// <param name="text"></param>
         public override void add(string type, string text)
         {
-            this.lines.Add(new LamaLogLine(type, text));
+            if(type != "NOTICE" || writeNotices)
+                this.lines.Add(new LamaLogLine(type, text));
         }
 
         /// <summary>
@@ -79,5 +85,8 @@ namespace LamaMania
             }
 
         }
+
+        public bool WriteNotices { get => writeNotices; set => writeNotices = value; }
+
     }
 }

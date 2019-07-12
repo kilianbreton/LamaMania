@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EFC74C3D-88AC-4060-9BBC-BB1B4140CEB6}</ProjectGuid>
+    <ProjectGuid>{43C7BB08-58BD-4DBF-9096-702A25511842}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleTest</RootNamespace>
-    <AssemblyName>ConsoleTest</AssemblyName>
+    <RootNamespace>LamaController</RootNamespace>
+    <AssemblyName>LamaController</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LAMAMAnia\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="NTK">
       <HintPath>..\LAMAMAnia\bin\Debug\NTK.dll</HintPath>
     </Reference>
@@ -44,13 +48,24 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TMXmlRpcLib">
+      <HintPath>..\LAMAMAnia\bin\Debug\TMXmlRpcLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LamaController.cs" />
+    <Compile Include="MainLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LamaPlugin.cs\LamaPlugin.csproj">
+      <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
+      <Name>LamaPlugin</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

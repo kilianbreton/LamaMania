@@ -29,10 +29,12 @@ using System.Text;
 
 namespace LamaLang
 {
-    public abstract class BaseLang
+    public abstract class BaseLang : NodeLang
     {
-        public abstract Dictionary<String, Dictionary<String, String>> getLangDictionary();
-        public abstract Dictionary<String, String> getScriptSettingsDictionary();
+        public BaseLang(string name) : base(name)
+        {
+
+        }
 
     //    public abstract string getMMServerInfosTitle();
       //  public abstract string getMMServerInfosTitle();

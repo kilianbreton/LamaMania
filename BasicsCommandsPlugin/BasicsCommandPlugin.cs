@@ -26,7 +26,7 @@ namespace BasicsCommandsPlugin
         public BasicsCommandPlugin()
         {
             this.Author = "Breton Kilian";
-            this.Name = "Basics Commands";
+            this.PluginName = "Basics Commands";
             this.Version = "0.1";
             this.Requirements.Add(new Requirement(RequirementType.DATABASE, "MySql://cmdPlug:root>mdp"));
             this.Requirements.Add(new Requirement(RequirementType.FILE, "locales.xml"));
