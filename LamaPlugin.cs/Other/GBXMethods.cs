@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LamaMania
+namespace LamaPlugin
 {
     /// <summary>
     /// GbxMethods
@@ -2861,8 +2861,6 @@ namespace LamaMania
         /// boolean
         /// </returns>
         public const String StartServerInternet = "StartServerInternet";
-
-
 
     }
 }

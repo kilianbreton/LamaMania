@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.formSkin1 = new FlatUITheme.FormSkin();
             this.flatTabControl1 = new FlatUITheme.FlatTabControl();
             this.tp_main = new System.Windows.Forms.TabPage();
@@ -101,11 +102,11 @@
             this.b_gameSettingsSave = new FlatUITheme.FlatButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tp_chat = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.tb_chat = new FlatUITheme.FlatTextBox();
             this.b_send = new FlatUITheme.FlatButton();
             this.tb_chatLogin = new FlatUITheme.FlatTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tp_users = new System.Windows.Forms.TabPage();
             this.b_ForceRed = new FlatUITheme.FlatButton();
             this.b_ForceBlue = new FlatUITheme.FlatButton();
@@ -180,9 +181,9 @@
             this.formSkin1.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
             this.formSkin1.HeaderMaximize = true;
             this.formSkin1.Location = new System.Drawing.Point(0, 0);
-            this.formSkin1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.formSkin1.Margin = new System.Windows.Forms.Padding(2);
             this.formSkin1.Name = "formSkin1";
-            this.formSkin1.Size = new System.Drawing.Size(1319, 633);
+            this.formSkin1.Size = new System.Drawing.Size(1086, 588);
             this.formSkin1.TabIndex = 0;
             this.formSkin1.Text = "LamaMania";
             // 
@@ -201,16 +202,17 @@
             this.flatTabControl1.Controls.Add(this.tp_maps);
             this.flatTabControl1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.flatTabControl1.ItemSize = new System.Drawing.Size(120, 40);
-            this.flatTabControl1.Location = new System.Drawing.Point(0, 79);
-            this.flatTabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flatTabControl1.Location = new System.Drawing.Point(0, 64);
+            this.flatTabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.flatTabControl1.Name = "flatTabControl1";
             this.flatTabControl1.SelectedIndex = 0;
-            this.flatTabControl1.Size = new System.Drawing.Size(1319, 553);
+            this.flatTabControl1.Size = new System.Drawing.Size(1086, 523);
             this.flatTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.flatTabControl1.TabIndex = 0;
             // 
             // tp_main
             // 
+            this.tp_main.AutoScroll = true;
             this.tp_main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
             this.tp_main.Controls.Add(this.gb_netStats);
             this.tp_main.Controls.Add(this.gb_serverInfos);
@@ -218,10 +220,10 @@
             this.tp_main.Controls.Add(this.gb_gameInfos);
             this.tp_main.Controls.Add(this.gb_status);
             this.tp_main.Location = new System.Drawing.Point(4, 44);
-            this.tp_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tp_main.Margin = new System.Windows.Forms.Padding(2);
             this.tp_main.Name = "tp_main";
-            this.tp_main.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tp_main.Size = new System.Drawing.Size(1311, 505);
+            this.tp_main.Padding = new System.Windows.Forms.Padding(2);
+            this.tp_main.Size = new System.Drawing.Size(1078, 475);
             this.tp_main.TabIndex = 0;
             this.tp_main.Text = "Main";
             // 
@@ -235,11 +237,11 @@
             this.gb_netStats.Controls.Add(this.l_nbConn);
             this.gb_netStats.Controls.Add(this.l_upTime);
             this.gb_netStats.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gb_netStats.Location = new System.Drawing.Point(487, 187);
-            this.gb_netStats.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gb_netStats.Location = new System.Drawing.Point(365, 152);
+            this.gb_netStats.Margin = new System.Windows.Forms.Padding(2);
             this.gb_netStats.Name = "gb_netStats";
             this.gb_netStats.ShowText = true;
-            this.gb_netStats.Size = new System.Drawing.Size(420, 284);
+            this.gb_netStats.Size = new System.Drawing.Size(315, 231);
             this.gb_netStats.TabIndex = 4;
             this.gb_netStats.Text = "NetworkStats";
             // 
@@ -249,9 +251,10 @@
             this.l_sendRate.BackColor = System.Drawing.Color.Transparent;
             this.l_sendRate.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_sendRate.ForeColor = System.Drawing.Color.White;
-            this.l_sendRate.Location = new System.Drawing.Point(19, 178);
+            this.l_sendRate.Location = new System.Drawing.Point(14, 145);
+            this.l_sendRate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_sendRate.Name = "l_sendRate";
-            this.l_sendRate.Size = new System.Drawing.Size(129, 23);
+            this.l_sendRate.Size = new System.Drawing.Size(103, 19);
             this.l_sendRate.TabIndex = 9;
             this.l_sendRate.Text = "Send Net Rate :";
             // 
@@ -261,9 +264,10 @@
             this.l_recvRate.BackColor = System.Drawing.Color.Transparent;
             this.l_recvRate.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_recvRate.ForeColor = System.Drawing.Color.White;
-            this.l_recvRate.Location = new System.Drawing.Point(19, 147);
+            this.l_recvRate.Location = new System.Drawing.Point(14, 119);
+            this.l_recvRate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_recvRate.Name = "l_recvRate";
-            this.l_recvRate.Size = new System.Drawing.Size(134, 23);
+            this.l_recvRate.Size = new System.Drawing.Size(107, 19);
             this.l_recvRate.TabIndex = 8;
             this.l_recvRate.Text = "Recive NetRate :";
             // 
@@ -273,9 +277,10 @@
             this.l_conTimeAvg.BackColor = System.Drawing.Color.Transparent;
             this.l_conTimeAvg.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_conTimeAvg.ForeColor = System.Drawing.Color.White;
-            this.l_conTimeAvg.Location = new System.Drawing.Point(19, 114);
+            this.l_conTimeAvg.Location = new System.Drawing.Point(14, 93);
+            this.l_conTimeAvg.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_conTimeAvg.Name = "l_conTimeAvg";
-            this.l_conTimeAvg.Size = new System.Drawing.Size(210, 23);
+            this.l_conTimeAvg.Size = new System.Drawing.Size(168, 19);
             this.l_conTimeAvg.TabIndex = 7;
             this.l_conTimeAvg.Text = "Connexion Time Average :";
             // 
@@ -285,9 +290,10 @@
             this.l_nbConn.BackColor = System.Drawing.Color.Transparent;
             this.l_nbConn.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_nbConn.ForeColor = System.Drawing.Color.White;
-            this.l_nbConn.Location = new System.Drawing.Point(19, 83);
+            this.l_nbConn.Location = new System.Drawing.Point(14, 67);
+            this.l_nbConn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_nbConn.Name = "l_nbConn";
-            this.l_nbConn.Size = new System.Drawing.Size(142, 23);
+            this.l_nbConn.Size = new System.Drawing.Size(114, 19);
             this.l_nbConn.TabIndex = 6;
             this.l_nbConn.Text = "Nb Connections :";
             // 
@@ -297,9 +303,10 @@
             this.l_upTime.BackColor = System.Drawing.Color.Transparent;
             this.l_upTime.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_upTime.ForeColor = System.Drawing.Color.White;
-            this.l_upTime.Location = new System.Drawing.Point(19, 54);
+            this.l_upTime.Location = new System.Drawing.Point(14, 44);
+            this.l_upTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_upTime.Name = "l_upTime";
-            this.l_upTime.Size = new System.Drawing.Size(78, 23);
+            this.l_upTime.Size = new System.Drawing.Size(63, 19);
             this.l_upTime.TabIndex = 5;
             this.l_upTime.Text = "UpTime :";
             // 
@@ -312,22 +319,24 @@
             this.gb_serverInfos.Controls.Add(this.l_serverDescritpion);
             this.gb_serverInfos.Controls.Add(this.l_serverName);
             this.gb_serverInfos.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gb_serverInfos.Location = new System.Drawing.Point(8, 186);
-            this.gb_serverInfos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gb_serverInfos.Location = new System.Drawing.Point(6, 151);
+            this.gb_serverInfos.Margin = new System.Windows.Forms.Padding(2);
             this.gb_serverInfos.Name = "gb_serverInfos";
             this.gb_serverInfos.ShowText = true;
-            this.gb_serverInfos.Size = new System.Drawing.Size(473, 284);
+            this.gb_serverInfos.Size = new System.Drawing.Size(355, 231);
             this.gb_serverInfos.TabIndex = 3;
             this.gb_serverInfos.Text = "Server Infos";
+            this.gb_serverInfos.Click += new System.EventHandler(this.Gb_serverInfos_Click);
             // 
             // l_serverTitle
             // 
             this.l_serverTitle.BackColor = System.Drawing.Color.Transparent;
             this.l_serverTitle.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_serverTitle.ForeColor = System.Drawing.Color.White;
-            this.l_serverTitle.Location = new System.Drawing.Point(19, 107);
+            this.l_serverTitle.Location = new System.Drawing.Point(14, 87);
+            this.l_serverTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_serverTitle.Name = "l_serverTitle";
-            this.l_serverTitle.Size = new System.Drawing.Size(399, 23);
+            this.l_serverTitle.Size = new System.Drawing.Size(299, 19);
             this.l_serverTitle.TabIndex = 5;
             this.l_serverTitle.Text = "Title :";
             // 
@@ -337,9 +346,10 @@
             this.l_version.BackColor = System.Drawing.Color.Transparent;
             this.l_version.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_version.ForeColor = System.Drawing.Color.White;
-            this.l_version.Location = new System.Drawing.Point(19, 46);
+            this.l_version.Location = new System.Drawing.Point(14, 37);
+            this.l_version.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_version.Name = "l_version";
-            this.l_version.Size = new System.Drawing.Size(75, 23);
+            this.l_version.Size = new System.Drawing.Size(61, 19);
             this.l_version.TabIndex = 4;
             this.l_version.Text = "Version :";
             // 
@@ -348,9 +358,10 @@
             this.l_serverDescritpion.BackColor = System.Drawing.Color.Transparent;
             this.l_serverDescritpion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_serverDescritpion.ForeColor = System.Drawing.Color.White;
-            this.l_serverDescritpion.Location = new System.Drawing.Point(19, 135);
+            this.l_serverDescritpion.Location = new System.Drawing.Point(14, 110);
+            this.l_serverDescritpion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_serverDescritpion.Name = "l_serverDescritpion";
-            this.l_serverDescritpion.Size = new System.Drawing.Size(431, 122);
+            this.l_serverDescritpion.Size = new System.Drawing.Size(323, 99);
             this.l_serverDescritpion.TabIndex = 2;
             this.l_serverDescritpion.Text = "Description :";
             // 
@@ -360,9 +371,10 @@
             this.l_serverName.BackColor = System.Drawing.Color.Transparent;
             this.l_serverName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_serverName.ForeColor = System.Drawing.Color.White;
-            this.l_serverName.Location = new System.Drawing.Point(19, 76);
+            this.l_serverName.Location = new System.Drawing.Point(14, 62);
+            this.l_serverName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_serverName.Name = "l_serverName";
-            this.l_serverName.Size = new System.Drawing.Size(65, 23);
+            this.l_serverName.Size = new System.Drawing.Size(52, 19);
             this.l_serverName.TabIndex = 1;
             this.l_serverName.Text = "Name :";
             // 
@@ -372,11 +384,11 @@
             this.gb_players.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
             this.gb_players.Controls.Add(this.l_users);
             this.gb_players.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gb_players.Location = new System.Drawing.Point(913, 189);
-            this.gb_players.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gb_players.Location = new System.Drawing.Point(685, 154);
+            this.gb_players.Margin = new System.Windows.Forms.Padding(2);
             this.gb_players.Name = "gb_players";
             this.gb_players.ShowText = true;
-            this.gb_players.Size = new System.Drawing.Size(390, 284);
+            this.gb_players.Size = new System.Drawing.Size(307, 231);
             this.gb_players.TabIndex = 2;
             this.gb_players.Text = "Players";
             // 
@@ -386,11 +398,11 @@
             this.l_users.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.l_users.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_users.FormattingEnabled = true;
-            this.l_users.ItemHeight = 23;
-            this.l_users.Location = new System.Drawing.Point(23, 52);
-            this.l_users.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.l_users.ItemHeight = 17;
+            this.l_users.Location = new System.Drawing.Point(15, 42);
+            this.l_users.Margin = new System.Windows.Forms.Padding(2);
             this.l_users.Name = "l_users";
-            this.l_users.Size = new System.Drawing.Size(341, 184);
+            this.l_users.Size = new System.Drawing.Size(275, 136);
             this.l_users.TabIndex = 0;
             // 
             // gb_gameInfos
@@ -408,11 +420,11 @@
             this.gb_gameInfos.Controls.Add(this.l_map);
             this.gb_gameInfos.Controls.Add(this.l_gameMode);
             this.gb_gameInfos.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gb_gameInfos.Location = new System.Drawing.Point(487, 6);
-            this.gb_gameInfos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gb_gameInfos.Location = new System.Drawing.Point(365, 5);
+            this.gb_gameInfos.Margin = new System.Windows.Forms.Padding(2);
             this.gb_gameInfos.Name = "gb_gameInfos";
             this.gb_gameInfos.ShowText = true;
-            this.gb_gameInfos.Size = new System.Drawing.Size(816, 177);
+            this.gb_gameInfos.Size = new System.Drawing.Size(627, 144);
             this.gb_gameInfos.TabIndex = 1;
             this.gb_gameInfos.Text = "Game infos";
             // 
@@ -422,11 +434,11 @@
             this.b_makeNextGameMode.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_makeNextGameMode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_makeNextGameMode.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_makeNextGameMode.Location = new System.Drawing.Point(685, 57);
-            this.b_makeNextGameMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_makeNextGameMode.Location = new System.Drawing.Point(514, 46);
+            this.b_makeNextGameMode.Margin = new System.Windows.Forms.Padding(2);
             this.b_makeNextGameMode.Name = "b_makeNextGameMode";
             this.b_makeNextGameMode.Rounded = false;
-            this.b_makeNextGameMode.Size = new System.Drawing.Size(105, 23);
+            this.b_makeNextGameMode.Size = new System.Drawing.Size(96, 19);
             this.b_makeNextGameMode.TabIndex = 10;
             this.b_makeNextGameMode.Text = "Make next";
             this.b_makeNextGameMode.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -443,10 +455,10 @@
             this.cb_serverGMScript.FormattingEnabled = true;
             this.cb_serverGMScript.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.cb_serverGMScript.ItemHeight = 18;
-            this.cb_serverGMScript.Location = new System.Drawing.Point(255, 57);
-            this.cb_serverGMScript.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cb_serverGMScript.Location = new System.Drawing.Point(191, 46);
+            this.cb_serverGMScript.Margin = new System.Windows.Forms.Padding(2);
             this.cb_serverGMScript.Name = "cb_serverGMScript";
-            this.cb_serverGMScript.Size = new System.Drawing.Size(424, 24);
+            this.cb_serverGMScript.Size = new System.Drawing.Size(319, 24);
             this.cb_serverGMScript.TabIndex = 9;
             // 
             // b_join
@@ -455,11 +467,11 @@
             this.b_join.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_join.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_join.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_join.Location = new System.Drawing.Point(255, 122);
-            this.b_join.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_join.Location = new System.Drawing.Point(191, 99);
+            this.b_join.Margin = new System.Windows.Forms.Padding(2);
             this.b_join.Name = "b_join";
             this.b_join.Rounded = false;
-            this.b_join.Size = new System.Drawing.Size(95, 23);
+            this.b_join.Size = new System.Drawing.Size(71, 19);
             this.b_join.TabIndex = 8;
             this.b_join.Text = "Join";
             this.b_join.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -471,11 +483,11 @@
             this.b_restart.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.b_restart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_restart.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_restart.Location = new System.Drawing.Point(356, 89);
-            this.b_restart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_restart.Location = new System.Drawing.Point(267, 72);
+            this.b_restart.Margin = new System.Windows.Forms.Padding(2);
             this.b_restart.Name = "b_restart";
             this.b_restart.Rounded = false;
-            this.b_restart.Size = new System.Drawing.Size(95, 23);
+            this.b_restart.Size = new System.Drawing.Size(71, 19);
             this.b_restart.TabIndex = 7;
             this.b_restart.Text = "Restart";
             this.b_restart.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -487,9 +499,10 @@
             this.l_players.BackColor = System.Drawing.Color.Transparent;
             this.l_players.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_players.ForeColor = System.Drawing.Color.White;
-            this.l_players.Location = new System.Drawing.Point(19, 122);
+            this.l_players.Location = new System.Drawing.Point(14, 99);
+            this.l_players.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_players.Name = "l_players";
-            this.l_players.Size = new System.Drawing.Size(111, 23);
+            this.l_players.Size = new System.Drawing.Size(92, 19);
             this.l_players.TabIndex = 6;
             this.l_players.Text = "Players : 1/31";
             // 
@@ -499,11 +512,11 @@
             this.b_stopRound.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_stopRound.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_stopRound.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_stopRound.Location = new System.Drawing.Point(557, 89);
-            this.b_stopRound.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_stopRound.Location = new System.Drawing.Point(418, 72);
+            this.b_stopRound.Margin = new System.Windows.Forms.Padding(2);
             this.b_stopRound.Name = "b_stopRound";
             this.b_stopRound.Rounded = false;
-            this.b_stopRound.Size = new System.Drawing.Size(121, 23);
+            this.b_stopRound.Size = new System.Drawing.Size(91, 19);
             this.b_stopRound.TabIndex = 4;
             this.b_stopRound.Text = "Stop Round";
             this.b_stopRound.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -515,11 +528,11 @@
             this.b_prevMap.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.b_prevMap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_prevMap.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_prevMap.Location = new System.Drawing.Point(255, 89);
-            this.b_prevMap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_prevMap.Location = new System.Drawing.Point(191, 72);
+            this.b_prevMap.Margin = new System.Windows.Forms.Padding(2);
             this.b_prevMap.Name = "b_prevMap";
             this.b_prevMap.Rounded = false;
-            this.b_prevMap.Size = new System.Drawing.Size(95, 23);
+            this.b_prevMap.Size = new System.Drawing.Size(71, 19);
             this.b_prevMap.TabIndex = 3;
             this.b_prevMap.Text = "Previous";
             this.b_prevMap.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -531,11 +544,11 @@
             this.b_nextMap.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_nextMap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_nextMap.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_nextMap.Location = new System.Drawing.Point(457, 89);
-            this.b_nextMap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_nextMap.Location = new System.Drawing.Point(343, 72);
+            this.b_nextMap.Margin = new System.Windows.Forms.Padding(2);
             this.b_nextMap.Name = "b_nextMap";
             this.b_nextMap.Rounded = false;
-            this.b_nextMap.Size = new System.Drawing.Size(95, 23);
+            this.b_nextMap.Size = new System.Drawing.Size(71, 19);
             this.b_nextMap.TabIndex = 2;
             this.b_nextMap.Text = "Next";
             this.b_nextMap.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -547,9 +560,10 @@
             this.l_map.BackColor = System.Drawing.Color.Transparent;
             this.l_map.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_map.ForeColor = System.Drawing.Color.White;
-            this.l_map.Location = new System.Drawing.Point(19, 87);
+            this.l_map.Location = new System.Drawing.Point(14, 71);
+            this.l_map.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_map.Name = "l_map";
-            this.l_map.Size = new System.Drawing.Size(177, 23);
+            this.l_map.Size = new System.Drawing.Size(147, 19);
             this.l_map.TabIndex = 1;
             this.l_map.Text = "Map : FUNCTECH-001";
             // 
@@ -559,9 +573,10 @@
             this.l_gameMode.BackColor = System.Drawing.Color.Transparent;
             this.l_gameMode.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_gameMode.ForeColor = System.Drawing.Color.White;
-            this.l_gameMode.Location = new System.Drawing.Point(19, 57);
+            this.l_gameMode.Location = new System.Drawing.Point(14, 46);
+            this.l_gameMode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_gameMode.Name = "l_gameMode";
-            this.l_gameMode.Size = new System.Drawing.Size(198, 23);
+            this.l_gameMode.Size = new System.Drawing.Size(160, 19);
             this.l_gameMode.TabIndex = 0;
             this.l_gameMode.Text = "GameMode : TimeAttack";
             // 
@@ -579,11 +594,11 @@
             this.gb_status.Controls.Add(this.l_server);
             this.gb_status.Controls.Add(this.l_xmlrpc);
             this.gb_status.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gb_status.Location = new System.Drawing.Point(8, 6);
-            this.gb_status.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gb_status.Location = new System.Drawing.Point(6, 5);
+            this.gb_status.Margin = new System.Windows.Forms.Padding(2);
             this.gb_status.Name = "gb_status";
             this.gb_status.ShowText = true;
-            this.gb_status.Size = new System.Drawing.Size(473, 174);
+            this.gb_status.Size = new System.Drawing.Size(355, 141);
             this.gb_status.TabIndex = 0;
             this.gb_status.Text = "Status";
             // 
@@ -593,11 +608,11 @@
             this.b_uasecoStop.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_uasecoStop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_uasecoStop.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_uasecoStop.Location = new System.Drawing.Point(369, 122);
-            this.b_uasecoStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_uasecoStop.Location = new System.Drawing.Point(277, 99);
+            this.b_uasecoStop.Margin = new System.Windows.Forms.Padding(2);
             this.b_uasecoStop.Name = "b_uasecoStop";
             this.b_uasecoStop.Rounded = false;
-            this.b_uasecoStop.Size = new System.Drawing.Size(85, 23);
+            this.b_uasecoStop.Size = new System.Drawing.Size(64, 19);
             this.b_uasecoStop.TabIndex = 8;
             this.b_uasecoStop.Text = "Stop";
             this.b_uasecoStop.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -609,11 +624,11 @@
             this.b_usaecoStart.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_usaecoStart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_usaecoStart.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_usaecoStart.Location = new System.Drawing.Point(274, 122);
-            this.b_usaecoStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_usaecoStart.Location = new System.Drawing.Point(206, 99);
+            this.b_usaecoStart.Margin = new System.Windows.Forms.Padding(2);
             this.b_usaecoStart.Name = "b_usaecoStart";
             this.b_usaecoStart.Rounded = false;
-            this.b_usaecoStart.Size = new System.Drawing.Size(85, 23);
+            this.b_usaecoStart.Size = new System.Drawing.Size(64, 19);
             this.b_usaecoStart.TabIndex = 7;
             this.b_usaecoStart.Text = "Start";
             this.b_usaecoStart.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -625,9 +640,10 @@
             this.l_uaseco.BackColor = System.Drawing.Color.Transparent;
             this.l_uaseco.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_uaseco.ForeColor = System.Drawing.Color.White;
-            this.l_uaseco.Location = new System.Drawing.Point(19, 122);
+            this.l_uaseco.Location = new System.Drawing.Point(14, 99);
+            this.l_uaseco.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_uaseco.Name = "l_uaseco";
-            this.l_uaseco.Size = new System.Drawing.Size(131, 23);
+            this.l_uaseco.Size = new System.Drawing.Size(106, 19);
             this.l_uaseco.TabIndex = 6;
             this.l_uaseco.Text = "UASECO : None";
             // 
@@ -637,11 +653,11 @@
             this.b_serverStop.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_serverStop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_serverStop.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_serverStop.Location = new System.Drawing.Point(369, 87);
-            this.b_serverStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_serverStop.Location = new System.Drawing.Point(277, 71);
+            this.b_serverStop.Margin = new System.Windows.Forms.Padding(2);
             this.b_serverStop.Name = "b_serverStop";
             this.b_serverStop.Rounded = false;
-            this.b_serverStop.Size = new System.Drawing.Size(85, 23);
+            this.b_serverStop.Size = new System.Drawing.Size(64, 19);
             this.b_serverStop.TabIndex = 5;
             this.b_serverStop.Text = "Stop";
             this.b_serverStop.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -653,11 +669,11 @@
             this.b_xmlrpcClose.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_xmlrpcClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_xmlrpcClose.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_xmlrpcClose.Location = new System.Drawing.Point(369, 53);
-            this.b_xmlrpcClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_xmlrpcClose.Location = new System.Drawing.Point(277, 43);
+            this.b_xmlrpcClose.Margin = new System.Windows.Forms.Padding(2);
             this.b_xmlrpcClose.Name = "b_xmlrpcClose";
             this.b_xmlrpcClose.Rounded = false;
-            this.b_xmlrpcClose.Size = new System.Drawing.Size(85, 23);
+            this.b_xmlrpcClose.Size = new System.Drawing.Size(64, 19);
             this.b_xmlrpcClose.TabIndex = 4;
             this.b_xmlrpcClose.Text = "Close";
             this.b_xmlrpcClose.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -669,11 +685,11 @@
             this.b_serverStarted.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_serverStarted.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_serverStarted.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_serverStarted.Location = new System.Drawing.Point(274, 87);
-            this.b_serverStarted.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_serverStarted.Location = new System.Drawing.Point(206, 71);
+            this.b_serverStarted.Margin = new System.Windows.Forms.Padding(2);
             this.b_serverStarted.Name = "b_serverStarted";
             this.b_serverStarted.Rounded = false;
-            this.b_serverStarted.Size = new System.Drawing.Size(85, 23);
+            this.b_serverStarted.Size = new System.Drawing.Size(64, 19);
             this.b_serverStarted.TabIndex = 3;
             this.b_serverStarted.Text = "Connect";
             this.b_serverStarted.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -685,11 +701,11 @@
             this.b_xmlrpcConnect.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_xmlrpcConnect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_xmlrpcConnect.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_xmlrpcConnect.Location = new System.Drawing.Point(274, 53);
-            this.b_xmlrpcConnect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_xmlrpcConnect.Location = new System.Drawing.Point(206, 43);
+            this.b_xmlrpcConnect.Margin = new System.Windows.Forms.Padding(2);
             this.b_xmlrpcConnect.Name = "b_xmlrpcConnect";
             this.b_xmlrpcConnect.Rounded = false;
-            this.b_xmlrpcConnect.Size = new System.Drawing.Size(85, 23);
+            this.b_xmlrpcConnect.Size = new System.Drawing.Size(64, 19);
             this.b_xmlrpcConnect.TabIndex = 2;
             this.b_xmlrpcConnect.Text = "Connect";
             this.b_xmlrpcConnect.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -701,9 +717,10 @@
             this.l_server.BackColor = System.Drawing.Color.Transparent;
             this.l_server.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_server.ForeColor = System.Drawing.Color.White;
-            this.l_server.Location = new System.Drawing.Point(19, 87);
+            this.l_server.Location = new System.Drawing.Point(14, 71);
+            this.l_server.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_server.Name = "l_server";
-            this.l_server.Size = new System.Drawing.Size(135, 23);
+            this.l_server.Size = new System.Drawing.Size(109, 19);
             this.l_server.TabIndex = 1;
             this.l_server.Text = "Server : Running";
             // 
@@ -713,9 +730,10 @@
             this.l_xmlrpc.BackColor = System.Drawing.Color.Transparent;
             this.l_xmlrpc.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_xmlrpc.ForeColor = System.Drawing.Color.White;
-            this.l_xmlrpc.Location = new System.Drawing.Point(19, 53);
+            this.l_xmlrpc.Location = new System.Drawing.Point(14, 43);
+            this.l_xmlrpc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_xmlrpc.Name = "l_xmlrpc";
-            this.l_xmlrpc.Size = new System.Drawing.Size(171, 23);
+            this.l_xmlrpc.Size = new System.Drawing.Size(137, 19);
             this.l_xmlrpc.TabIndex = 0;
             this.l_xmlrpc.Text = "Xml-Rpc : Connected";
             // 
@@ -752,10 +770,10 @@
             this.tp_servOpt.Controls.Add(this.tb_playerPass);
             this.tp_servOpt.Controls.Add(this.tb_ingameName);
             this.tp_servOpt.Location = new System.Drawing.Point(4, 44);
-            this.tp_servOpt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tp_servOpt.Margin = new System.Windows.Forms.Padding(2);
             this.tp_servOpt.Name = "tp_servOpt";
-            this.tp_servOpt.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tp_servOpt.Size = new System.Drawing.Size(1311, 505);
+            this.tp_servOpt.Padding = new System.Windows.Forms.Padding(2);
+            this.tp_servOpt.Size = new System.Drawing.Size(1078, 475);
             this.tp_servOpt.TabIndex = 7;
             this.tp_servOpt.Text = "ServerOptions";
             // 
@@ -766,11 +784,11 @@
             this.b_save_serverOptions.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_save_serverOptions.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_save_serverOptions.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_save_serverOptions.Location = new System.Drawing.Point(1115, 466);
-            this.b_save_serverOptions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_save_serverOptions.Location = new System.Drawing.Point(933, 444);
+            this.b_save_serverOptions.Margin = new System.Windows.Forms.Padding(2);
             this.b_save_serverOptions.Name = "b_save_serverOptions";
             this.b_save_serverOptions.Rounded = false;
-            this.b_save_serverOptions.Size = new System.Drawing.Size(183, 32);
+            this.b_save_serverOptions.Size = new System.Drawing.Size(137, 26);
             this.b_save_serverOptions.TabIndex = 60;
             this.b_save_serverOptions.Text = "Save";
             this.b_save_serverOptions.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -785,11 +803,11 @@
             this.ch_p2pUp.Checked = false;
             this.ch_p2pUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_p2pUp.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_p2pUp.Location = new System.Drawing.Point(1099, 204);
-            this.ch_p2pUp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ch_p2pUp.Location = new System.Drawing.Point(921, 166);
+            this.ch_p2pUp.Margin = new System.Windows.Forms.Padding(2);
             this.ch_p2pUp.Name = "ch_p2pUp";
             this.ch_p2pUp.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_p2pUp.Size = new System.Drawing.Size(112, 22);
+            this.ch_p2pUp.Size = new System.Drawing.Size(84, 22);
             this.ch_p2pUp.TabIndex = 59;
             this.ch_p2pUp.Text = "P2P Upload";
             // 
@@ -802,11 +820,11 @@
             this.ch_p2pDown.Checked = false;
             this.ch_p2pDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_p2pDown.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_p2pDown.Location = new System.Drawing.Point(1099, 176);
-            this.ch_p2pDown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ch_p2pDown.Location = new System.Drawing.Point(921, 143);
+            this.ch_p2pDown.Margin = new System.Windows.Forms.Padding(2);
             this.ch_p2pDown.Name = "ch_p2pDown";
             this.ch_p2pDown.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_p2pDown.Size = new System.Drawing.Size(143, 22);
+            this.ch_p2pDown.Size = new System.Drawing.Size(107, 22);
             this.ch_p2pDown.TabIndex = 58;
             this.ch_p2pDown.Text = "P2P Downlaod";
             // 
@@ -816,9 +834,10 @@
             this.flatLabel25.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel25.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel25.ForeColor = System.Drawing.Color.White;
-            this.flatLabel25.Location = new System.Drawing.Point(11, 417);
+            this.flatLabel25.Location = new System.Drawing.Point(8, 339);
+            this.flatLabel25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel25.Name = "flatLabel25";
-            this.flatLabel25.Size = new System.Drawing.Size(98, 23);
+            this.flatLabel25.Size = new System.Drawing.Size(79, 19);
             this.flatLabel25.TabIndex = 57;
             this.flatLabel25.Text = "Vote Ratio :";
             // 
@@ -828,22 +847,23 @@
             this.flatLabel24.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel24.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel24.ForeColor = System.Drawing.Color.White;
-            this.flatLabel24.Location = new System.Drawing.Point(11, 378);
+            this.flatLabel24.Location = new System.Drawing.Point(8, 307);
+            this.flatLabel24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel24.Name = "flatLabel24";
-            this.flatLabel24.Size = new System.Drawing.Size(122, 23);
+            this.flatLabel24.Size = new System.Drawing.Size(98, 19);
             this.flatLabel24.TabIndex = 56;
             this.flatLabel24.Text = "Vote Timeout :";
             // 
             // tb_voteRatio
             // 
             this.tb_voteRatio.BackColor = System.Drawing.Color.Transparent;
-            this.tb_voteRatio.Location = new System.Drawing.Point(171, 414);
-            this.tb_voteRatio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_voteRatio.Location = new System.Drawing.Point(128, 336);
+            this.tb_voteRatio.Margin = new System.Windows.Forms.Padding(2);
             this.tb_voteRatio.MaxLength = 32767;
             this.tb_voteRatio.Multiline = false;
             this.tb_voteRatio.Name = "tb_voteRatio";
             this.tb_voteRatio.ReadOnly = false;
-            this.tb_voteRatio.Size = new System.Drawing.Size(329, 34);
+            this.tb_voteRatio.Size = new System.Drawing.Size(247, 29);
             this.tb_voteRatio.TabIndex = 55;
             this.tb_voteRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_voteRatio.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -856,12 +876,12 @@
             this.n_voteTimeout.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_voteTimeout.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_voteTimeout.ForeColor = System.Drawing.Color.White;
-            this.n_voteTimeout.Location = new System.Drawing.Point(171, 374);
-            this.n_voteTimeout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.n_voteTimeout.Location = new System.Drawing.Point(128, 304);
+            this.n_voteTimeout.Margin = new System.Windows.Forms.Padding(2);
             this.n_voteTimeout.Maximum = ((long)(9999999));
             this.n_voteTimeout.Minimum = ((long)(0));
             this.n_voteTimeout.Name = "n_voteTimeout";
-            this.n_voteTimeout.Size = new System.Drawing.Size(75, 30);
+            this.n_voteTimeout.Size = new System.Drawing.Size(56, 30);
             this.n_voteTimeout.TabIndex = 54;
             this.n_voteTimeout.Text = "n_voteTimeout";
             this.n_voteTimeout.Value = ((long)(0));
@@ -875,11 +895,11 @@
             this.ch_horns.Checked = false;
             this.ch_horns.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_horns.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_horns.Location = new System.Drawing.Point(1099, 148);
-            this.ch_horns.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ch_horns.Location = new System.Drawing.Point(921, 120);
+            this.ch_horns.Margin = new System.Windows.Forms.Padding(2);
             this.ch_horns.Name = "ch_horns";
             this.ch_horns.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_horns.Size = new System.Drawing.Size(177, 22);
+            this.ch_horns.Size = new System.Drawing.Size(133, 22);
             this.ch_horns.TabIndex = 53;
             this.ch_horns.Text = "Disable Horns";
             // 
@@ -892,11 +912,11 @@
             this.ch_mapDown.Checked = false;
             this.ch_mapDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_mapDown.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_mapDown.Location = new System.Drawing.Point(1099, 121);
-            this.ch_mapDown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ch_mapDown.Location = new System.Drawing.Point(921, 98);
+            this.ch_mapDown.Margin = new System.Windows.Forms.Padding(2);
             this.ch_mapDown.Name = "ch_mapDown";
             this.ch_mapDown.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_mapDown.Size = new System.Drawing.Size(211, 22);
+            this.ch_mapDown.Size = new System.Drawing.Size(158, 22);
             this.ch_mapDown.TabIndex = 52;
             this.ch_mapDown.Text = "Map Download";
             // 
@@ -909,11 +929,11 @@
             this.ch_saveValReplay.Checked = false;
             this.ch_saveValReplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_saveValReplay.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_saveValReplay.Location = new System.Drawing.Point(1099, 92);
-            this.ch_saveValReplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ch_saveValReplay.Location = new System.Drawing.Point(921, 75);
+            this.ch_saveValReplay.Margin = new System.Windows.Forms.Padding(2);
             this.ch_saveValReplay.Name = "ch_saveValReplay";
             this.ch_saveValReplay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_saveValReplay.Size = new System.Drawing.Size(211, 22);
+            this.ch_saveValReplay.Size = new System.Drawing.Size(158, 22);
             this.ch_saveValReplay.TabIndex = 51;
             this.ch_saveValReplay.Text = "Save Validation Replays";
             // 
@@ -926,11 +946,11 @@
             this.ch_autoSaveReplay.Checked = false;
             this.ch_autoSaveReplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_autoSaveReplay.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_autoSaveReplay.Location = new System.Drawing.Point(1099, 64);
-            this.ch_autoSaveReplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ch_autoSaveReplay.Location = new System.Drawing.Point(921, 52);
+            this.ch_autoSaveReplay.Margin = new System.Windows.Forms.Padding(2);
             this.ch_autoSaveReplay.Name = "ch_autoSaveReplay";
             this.ch_autoSaveReplay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_autoSaveReplay.Size = new System.Drawing.Size(211, 22);
+            this.ch_autoSaveReplay.Size = new System.Drawing.Size(158, 22);
             this.ch_autoSaveReplay.TabIndex = 50;
             this.ch_autoSaveReplay.Text = "Auto Save Replays";
             // 
@@ -943,11 +963,11 @@
             this.ch_keepPlayerSlot.Checked = false;
             this.ch_keepPlayerSlot.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_keepPlayerSlot.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_keepPlayerSlot.Location = new System.Drawing.Point(1099, 33);
-            this.ch_keepPlayerSlot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ch_keepPlayerSlot.Location = new System.Drawing.Point(921, 27);
+            this.ch_keepPlayerSlot.Margin = new System.Windows.Forms.Padding(2);
             this.ch_keepPlayerSlot.Name = "ch_keepPlayerSlot";
             this.ch_keepPlayerSlot.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_keepPlayerSlot.Size = new System.Drawing.Size(211, 22);
+            this.ch_keepPlayerSlot.Size = new System.Drawing.Size(158, 22);
             this.ch_keepPlayerSlot.TabIndex = 49;
             this.ch_keepPlayerSlot.Text = "Keep Player Slots";
             // 
@@ -960,11 +980,11 @@
             this.ch_ladder.Checked = false;
             this.ch_ladder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_ladder.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_ladder.Location = new System.Drawing.Point(1099, 5);
-            this.ch_ladder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ch_ladder.Location = new System.Drawing.Point(921, 4);
+            this.ch_ladder.Margin = new System.Windows.Forms.Padding(2);
             this.ch_ladder.Name = "ch_ladder";
             this.ch_ladder.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_ladder.Size = new System.Drawing.Size(211, 22);
+            this.ch_ladder.Size = new System.Drawing.Size(158, 22);
             this.ch_ladder.TabIndex = 48;
             this.ch_ladder.Text = "Force Ladder";
             // 
@@ -974,9 +994,10 @@
             this.flatLabel20.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel20.ForeColor = System.Drawing.Color.White;
-            this.flatLabel20.Location = new System.Drawing.Point(9, 341);
+            this.flatLabel20.Location = new System.Drawing.Point(7, 277);
+            this.flatLabel20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel20.Name = "flatLabel20";
-            this.flatLabel20.Size = new System.Drawing.Size(155, 23);
+            this.flatLabel20.Size = new System.Drawing.Size(124, 19);
             this.flatLabel20.TabIndex = 47;
             this.flatLabel20.Text = "Referee validation :";
             // 
@@ -994,10 +1015,10 @@
             this.cb_refereeValid.Items.AddRange(new object[] {
             "TOP3",
             "ALL"});
-            this.cb_refereeValid.Location = new System.Drawing.Point(171, 341);
-            this.cb_refereeValid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cb_refereeValid.Location = new System.Drawing.Point(128, 277);
+            this.cb_refereeValid.Margin = new System.Windows.Forms.Padding(2);
             this.cb_refereeValid.Name = "cb_refereeValid";
-            this.cb_refereeValid.Size = new System.Drawing.Size(329, 24);
+            this.cb_refereeValid.Size = new System.Drawing.Size(248, 24);
             this.cb_refereeValid.TabIndex = 46;
             // 
             // flatLabel19
@@ -1006,22 +1027,23 @@
             this.flatLabel19.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel19.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel19.ForeColor = System.Drawing.Color.White;
-            this.flatLabel19.Location = new System.Drawing.Point(9, 303);
+            this.flatLabel19.Location = new System.Drawing.Point(7, 246);
+            this.flatLabel19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel19.Name = "flatLabel19";
-            this.flatLabel19.Size = new System.Drawing.Size(151, 23);
+            this.flatLabel19.Size = new System.Drawing.Size(123, 19);
             this.flatLabel19.TabIndex = 45;
             this.flatLabel19.Text = "Referee Password :";
             // 
             // tb_refereePass
             // 
             this.tb_refereePass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_refereePass.Location = new System.Drawing.Point(171, 299);
-            this.tb_refereePass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_refereePass.Location = new System.Drawing.Point(128, 243);
+            this.tb_refereePass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_refereePass.MaxLength = 32767;
             this.tb_refereePass.Multiline = false;
             this.tb_refereePass.Name = "tb_refereePass";
             this.tb_refereePass.ReadOnly = false;
-            this.tb_refereePass.Size = new System.Drawing.Size(329, 34);
+            this.tb_refereePass.Size = new System.Drawing.Size(247, 29);
             this.tb_refereePass.TabIndex = 44;
             this.tb_refereePass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_refereePass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1033,9 +1055,10 @@
             this.flatLabel10.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel10.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel10.ForeColor = System.Drawing.Color.White;
-            this.flatLabel10.Location = new System.Drawing.Point(315, 260);
+            this.flatLabel10.Location = new System.Drawing.Point(236, 211);
+            this.flatLabel10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel10.Name = "flatLabel10";
-            this.flatLabel10.Size = new System.Drawing.Size(104, 23);
+            this.flatLabel10.Size = new System.Drawing.Size(84, 19);
             this.flatLabel10.TabIndex = 41;
             this.flatLabel10.Text = "Specs Limit :";
             // 
@@ -1045,9 +1068,10 @@
             this.flatLabel9.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel9.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel9.ForeColor = System.Drawing.Color.White;
-            this.flatLabel9.Location = new System.Drawing.Point(8, 260);
+            this.flatLabel9.Location = new System.Drawing.Point(6, 211);
+            this.flatLabel9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel9.Name = "flatLabel9";
-            this.flatLabel9.Size = new System.Drawing.Size(114, 23);
+            this.flatLabel9.Size = new System.Drawing.Size(93, 19);
             this.flatLabel9.TabIndex = 40;
             this.flatLabel9.Text = "Players Limit :";
             // 
@@ -1058,12 +1082,12 @@
             this.n_playersLimit.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_playersLimit.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_playersLimit.ForeColor = System.Drawing.Color.White;
-            this.n_playersLimit.Location = new System.Drawing.Point(171, 256);
-            this.n_playersLimit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.n_playersLimit.Location = new System.Drawing.Point(128, 208);
+            this.n_playersLimit.Margin = new System.Windows.Forms.Padding(2);
             this.n_playersLimit.Maximum = ((long)(9999999));
             this.n_playersLimit.Minimum = ((long)(0));
             this.n_playersLimit.Name = "n_playersLimit";
-            this.n_playersLimit.Size = new System.Drawing.Size(75, 30);
+            this.n_playersLimit.Size = new System.Drawing.Size(56, 30);
             this.n_playersLimit.TabIndex = 39;
             this.n_playersLimit.Text = "flatNumeric2";
             this.n_playersLimit.Value = ((long)(0));
@@ -1074,22 +1098,23 @@
             this.l_specPass.BackColor = System.Drawing.Color.Transparent;
             this.l_specPass.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_specPass.ForeColor = System.Drawing.Color.White;
-            this.l_specPass.Location = new System.Drawing.Point(8, 222);
+            this.l_specPass.Location = new System.Drawing.Point(6, 180);
+            this.l_specPass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_specPass.Name = "l_specPass";
-            this.l_specPass.Size = new System.Drawing.Size(130, 23);
+            this.l_specPass.Size = new System.Drawing.Size(106, 19);
             this.l_specPass.TabIndex = 38;
             this.l_specPass.Text = "Spec Password :";
             // 
             // tb_specPass
             // 
             this.tb_specPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_specPass.Location = new System.Drawing.Point(171, 217);
-            this.tb_specPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_specPass.Location = new System.Drawing.Point(128, 176);
+            this.tb_specPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_specPass.MaxLength = 32767;
             this.tb_specPass.Multiline = false;
             this.tb_specPass.Name = "tb_specPass";
             this.tb_specPass.ReadOnly = false;
-            this.tb_specPass.Size = new System.Drawing.Size(329, 34);
+            this.tb_specPass.Size = new System.Drawing.Size(247, 29);
             this.tb_specPass.TabIndex = 37;
             this.tb_specPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_specPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1101,9 +1126,10 @@
             this.l_so_playerPass.BackColor = System.Drawing.Color.Transparent;
             this.l_so_playerPass.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_so_playerPass.ForeColor = System.Drawing.Color.White;
-            this.l_so_playerPass.Location = new System.Drawing.Point(5, 181);
+            this.l_so_playerPass.Location = new System.Drawing.Point(4, 147);
+            this.l_so_playerPass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_so_playerPass.Name = "l_so_playerPass";
-            this.l_so_playerPass.Size = new System.Drawing.Size(140, 23);
+            this.l_so_playerPass.Size = new System.Drawing.Size(115, 19);
             this.l_so_playerPass.TabIndex = 36;
             this.l_so_playerPass.Text = "Player Password :";
             // 
@@ -1114,12 +1140,12 @@
             this.n_specsLimit.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_specsLimit.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_specsLimit.ForeColor = System.Drawing.Color.White;
-            this.n_specsLimit.Location = new System.Drawing.Point(425, 256);
-            this.n_specsLimit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.n_specsLimit.Location = new System.Drawing.Point(319, 208);
+            this.n_specsLimit.Margin = new System.Windows.Forms.Padding(2);
             this.n_specsLimit.Maximum = ((long)(9999999));
             this.n_specsLimit.Minimum = ((long)(0));
             this.n_specsLimit.Name = "n_specsLimit";
-            this.n_specsLimit.Size = new System.Drawing.Size(75, 30);
+            this.n_specsLimit.Size = new System.Drawing.Size(56, 30);
             this.n_specsLimit.TabIndex = 35;
             this.n_specsLimit.Text = "flatNumeric1";
             this.n_specsLimit.Value = ((long)(0));
@@ -1130,9 +1156,10 @@
             this.l_so_descr.BackColor = System.Drawing.Color.Transparent;
             this.l_so_descr.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_so_descr.ForeColor = System.Drawing.Color.White;
-            this.l_so_descr.Location = new System.Drawing.Point(8, 94);
+            this.l_so_descr.Location = new System.Drawing.Point(6, 76);
+            this.l_so_descr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_so_descr.Name = "l_so_descr";
-            this.l_so_descr.Size = new System.Drawing.Size(105, 23);
+            this.l_so_descr.Size = new System.Drawing.Size(85, 19);
             this.l_so_descr.TabIndex = 34;
             this.l_so_descr.Text = "Description :";
             // 
@@ -1142,22 +1169,23 @@
             this.l_so_name.BackColor = System.Drawing.Color.Transparent;
             this.l_so_name.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_so_name.ForeColor = System.Drawing.Color.White;
-            this.l_so_name.Location = new System.Drawing.Point(8, 15);
+            this.l_so_name.Location = new System.Drawing.Point(6, 12);
+            this.l_so_name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_so_name.Name = "l_so_name";
-            this.l_so_name.Size = new System.Drawing.Size(128, 23);
+            this.l_so_name.Size = new System.Drawing.Size(102, 19);
             this.l_so_name.TabIndex = 33;
             this.l_so_name.Text = "Ingame Name :";
             // 
             // tb_description
             // 
             this.tb_description.BackColor = System.Drawing.Color.Transparent;
-            this.tb_description.Location = new System.Drawing.Point(171, 50);
-            this.tb_description.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_description.Location = new System.Drawing.Point(128, 41);
+            this.tb_description.Margin = new System.Windows.Forms.Padding(2);
             this.tb_description.MaxLength = 32767;
             this.tb_description.Multiline = true;
             this.tb_description.Name = "tb_description";
             this.tb_description.ReadOnly = false;
-            this.tb_description.Size = new System.Drawing.Size(329, 119);
+            this.tb_description.Size = new System.Drawing.Size(247, 97);
             this.tb_description.TabIndex = 32;
             this.tb_description.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_description.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1166,13 +1194,13 @@
             // tb_playerPass
             // 
             this.tb_playerPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_playerPass.Location = new System.Drawing.Point(171, 176);
-            this.tb_playerPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_playerPass.Location = new System.Drawing.Point(128, 143);
+            this.tb_playerPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_playerPass.MaxLength = 32767;
             this.tb_playerPass.Multiline = false;
             this.tb_playerPass.Name = "tb_playerPass";
             this.tb_playerPass.ReadOnly = false;
-            this.tb_playerPass.Size = new System.Drawing.Size(329, 34);
+            this.tb_playerPass.Size = new System.Drawing.Size(247, 29);
             this.tb_playerPass.TabIndex = 30;
             this.tb_playerPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_playerPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1181,13 +1209,13 @@
             // tb_ingameName
             // 
             this.tb_ingameName.BackColor = System.Drawing.Color.Transparent;
-            this.tb_ingameName.Location = new System.Drawing.Point(171, 11);
-            this.tb_ingameName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_ingameName.Location = new System.Drawing.Point(128, 9);
+            this.tb_ingameName.Margin = new System.Windows.Forms.Padding(2);
             this.tb_ingameName.MaxLength = 32767;
             this.tb_ingameName.Multiline = false;
             this.tb_ingameName.Name = "tb_ingameName";
             this.tb_ingameName.ReadOnly = false;
-            this.tb_ingameName.Size = new System.Drawing.Size(329, 34);
+            this.tb_ingameName.Size = new System.Drawing.Size(247, 29);
             this.tb_ingameName.TabIndex = 31;
             this.tb_ingameName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_ingameName.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1199,9 +1227,9 @@
             this.tp_gameSett.Controls.Add(this.b_gameSettingsSave);
             this.tp_gameSett.Controls.Add(this.flowLayoutPanel1);
             this.tp_gameSett.Location = new System.Drawing.Point(4, 44);
-            this.tp_gameSett.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tp_gameSett.Margin = new System.Windows.Forms.Padding(2);
             this.tp_gameSett.Name = "tp_gameSett";
-            this.tp_gameSett.Size = new System.Drawing.Size(1311, 505);
+            this.tp_gameSett.Size = new System.Drawing.Size(1078, 475);
             this.tp_gameSett.TabIndex = 8;
             this.tp_gameSett.Text = "GameSetting";
             // 
@@ -1213,11 +1241,11 @@
             this.b_gameSettingsSave.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_gameSettingsSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_gameSettingsSave.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_gameSettingsSave.Location = new System.Drawing.Point(8, 462);
-            this.b_gameSettingsSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_gameSettingsSave.Location = new System.Drawing.Point(6, 445);
+            this.b_gameSettingsSave.Margin = new System.Windows.Forms.Padding(2);
             this.b_gameSettingsSave.Name = "b_gameSettingsSave";
             this.b_gameSettingsSave.Rounded = false;
-            this.b_gameSettingsSave.Size = new System.Drawing.Size(1292, 32);
+            this.b_gameSettingsSave.Size = new System.Drawing.Size(1066, 26);
             this.b_gameSettingsSave.TabIndex = 1;
             this.b_gameSettingsSave.Text = "Save";
             this.b_gameSettingsSave.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1229,50 +1257,40 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(8, 15);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 12);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1295, 433);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1068, 426);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // tp_chat
             // 
             this.tp_chat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.tp_chat.Controls.Add(this.button1);
             this.tp_chat.Controls.Add(this.tb_chat);
             this.tp_chat.Controls.Add(this.b_send);
             this.tp_chat.Controls.Add(this.tb_chatLogin);
             this.tp_chat.Controls.Add(this.richTextBox1);
+            this.tp_chat.Controls.Add(this.button1);
             this.tp_chat.Location = new System.Drawing.Point(4, 44);
-            this.tp_chat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tp_chat.Margin = new System.Windows.Forms.Padding(2);
             this.tp_chat.Name = "tp_chat";
-            this.tp_chat.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tp_chat.Size = new System.Drawing.Size(1311, 505);
+            this.tp_chat.Padding = new System.Windows.Forms.Padding(2);
+            this.tp_chat.Size = new System.Drawing.Size(1078, 475);
             this.tp_chat.TabIndex = 1;
             this.tp_chat.Text = "Chat";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(988, 470);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 10);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tb_chat
             // 
             this.tb_chat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_chat.BackColor = System.Drawing.Color.Transparent;
-            this.tb_chat.Location = new System.Drawing.Point(189, 459);
-            this.tb_chat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_chat.Location = new System.Drawing.Point(142, 439);
+            this.tb_chat.Margin = new System.Windows.Forms.Padding(2);
             this.tb_chat.MaxLength = 32767;
             this.tb_chat.Multiline = false;
             this.tb_chat.Name = "tb_chat";
             this.tb_chat.ReadOnly = false;
-            this.tb_chat.Size = new System.Drawing.Size(1003, 34);
+            this.tb_chat.Size = new System.Drawing.Size(849, 29);
             this.tb_chat.TabIndex = 5;
             this.tb_chat.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_chat.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1285,11 +1303,11 @@
             this.b_send.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_send.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_send.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_send.Location = new System.Drawing.Point(1197, 459);
-            this.b_send.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_send.Location = new System.Drawing.Point(995, 439);
+            this.b_send.Margin = new System.Windows.Forms.Padding(2);
             this.b_send.Name = "b_send";
             this.b_send.Rounded = false;
-            this.b_send.Size = new System.Drawing.Size(107, 34);
+            this.b_send.Size = new System.Drawing.Size(80, 28);
             this.b_send.TabIndex = 3;
             this.b_send.Text = "Send";
             this.b_send.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1299,13 +1317,13 @@
             // 
             this.tb_chatLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tb_chatLogin.BackColor = System.Drawing.Color.Transparent;
-            this.tb_chatLogin.Location = new System.Drawing.Point(8, 459);
-            this.tb_chatLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_chatLogin.Location = new System.Drawing.Point(6, 439);
+            this.tb_chatLogin.Margin = new System.Windows.Forms.Padding(2);
             this.tb_chatLogin.MaxLength = 32767;
             this.tb_chatLogin.Multiline = false;
             this.tb_chatLogin.Name = "tb_chatLogin";
             this.tb_chatLogin.ReadOnly = false;
-            this.tb_chatLogin.Size = new System.Drawing.Size(175, 34);
+            this.tb_chatLogin.Size = new System.Drawing.Size(131, 29);
             this.tb_chatLogin.TabIndex = 2;
             this.tb_chatLogin.Text = "Admin";
             this.tb_chatLogin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1319,12 +1337,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Location = new System.Drawing.Point(8, 2);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.richTextBox1.Location = new System.Drawing.Point(6, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1295, 444);
+            this.richTextBox1.Size = new System.Drawing.Size(1068, 428);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(875, 378);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 8);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tp_users
             // 
@@ -1340,9 +1369,9 @@
             this.tp_users.Controls.Add(this.flatGroupBox1);
             this.tp_users.Controls.Add(this.dg_users);
             this.tp_users.Location = new System.Drawing.Point(4, 44);
-            this.tp_users.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tp_users.Margin = new System.Windows.Forms.Padding(2);
             this.tp_users.Name = "tp_users";
-            this.tp_users.Size = new System.Drawing.Size(1311, 505);
+            this.tp_users.Size = new System.Drawing.Size(1078, 475);
             this.tp_users.TabIndex = 2;
             this.tp_users.Text = "Users";
             // 
@@ -1353,10 +1382,11 @@
             this.b_ForceRed.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_ForceRed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_ForceRed.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_ForceRed.Location = new System.Drawing.Point(5, 462);
+            this.b_ForceRed.Location = new System.Drawing.Point(101, 442);
+            this.b_ForceRed.Margin = new System.Windows.Forms.Padding(2);
             this.b_ForceRed.Name = "b_ForceRed";
             this.b_ForceRed.Rounded = false;
-            this.b_ForceRed.Size = new System.Drawing.Size(103, 32);
+            this.b_ForceRed.Size = new System.Drawing.Size(77, 26);
             this.b_ForceRed.TabIndex = 10;
             this.b_ForceRed.Text = "Force red";
             this.b_ForceRed.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1369,10 +1399,11 @@
             this.b_ForceBlue.BaseColor = System.Drawing.Color.DodgerBlue;
             this.b_ForceBlue.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_ForceBlue.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_ForceBlue.Location = new System.Drawing.Point(108, 462);
+            this.b_ForceBlue.Location = new System.Drawing.Point(178, 442);
+            this.b_ForceBlue.Margin = new System.Windows.Forms.Padding(2);
             this.b_ForceBlue.Name = "b_ForceBlue";
             this.b_ForceBlue.Rounded = false;
-            this.b_ForceBlue.Size = new System.Drawing.Size(120, 32);
+            this.b_ForceBlue.Size = new System.Drawing.Size(90, 26);
             this.b_ForceBlue.TabIndex = 9;
             this.b_ForceBlue.Text = "Force blue";
             this.b_ForceBlue.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1385,10 +1416,11 @@
             this.b_toBlacks.BaseColor = System.Drawing.Color.Black;
             this.b_toBlacks.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_toBlacks.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_toBlacks.Location = new System.Drawing.Point(530, 462);
+            this.b_toBlacks.Location = new System.Drawing.Point(495, 442);
+            this.b_toBlacks.Margin = new System.Windows.Forms.Padding(2);
             this.b_toBlacks.Name = "b_toBlacks";
             this.b_toBlacks.Rounded = false;
-            this.b_toBlacks.Size = new System.Drawing.Size(100, 32);
+            this.b_toBlacks.Size = new System.Drawing.Size(75, 26);
             this.b_toBlacks.TabIndex = 8;
             this.b_toBlacks.Text = "To blacks";
             this.b_toBlacks.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1401,10 +1433,11 @@
             this.b_toBans.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_toBans.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_toBans.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_toBans.Location = new System.Drawing.Point(431, 462);
+            this.b_toBans.Location = new System.Drawing.Point(420, 442);
+            this.b_toBans.Margin = new System.Windows.Forms.Padding(2);
             this.b_toBans.Name = "b_toBans";
             this.b_toBans.Rounded = false;
-            this.b_toBans.Size = new System.Drawing.Size(100, 32);
+            this.b_toBans.Size = new System.Drawing.Size(75, 26);
             this.b_toBans.TabIndex = 7;
             this.b_toBans.Text = "To bans";
             this.b_toBans.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1417,10 +1450,11 @@
             this.b_kick.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.b_kick.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_kick.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_kick.Location = new System.Drawing.Point(335, 462);
+            this.b_kick.Location = new System.Drawing.Point(348, 442);
+            this.b_kick.Margin = new System.Windows.Forms.Padding(2);
             this.b_kick.Name = "b_kick";
             this.b_kick.Rounded = false;
-            this.b_kick.Size = new System.Drawing.Size(96, 32);
+            this.b_kick.Size = new System.Drawing.Size(72, 26);
             this.b_kick.TabIndex = 6;
             this.b_kick.Text = "Kick";
             this.b_kick.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1433,10 +1467,11 @@
             this.b_toGuests.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_toGuests.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_toGuests.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_toGuests.Location = new System.Drawing.Point(235, 462);
+            this.b_toGuests.Location = new System.Drawing.Point(273, 442);
+            this.b_toGuests.Margin = new System.Windows.Forms.Padding(2);
             this.b_toGuests.Name = "b_toGuests";
             this.b_toGuests.Rounded = false;
-            this.b_toGuests.Size = new System.Drawing.Size(100, 32);
+            this.b_toGuests.Size = new System.Drawing.Size(75, 26);
             this.b_toGuests.TabIndex = 5;
             this.b_toGuests.Text = "To guests";
             this.b_toGuests.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1449,11 +1484,11 @@
             this.flatGroupBox3.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
             this.flatGroupBox3.Controls.Add(this.l_black);
             this.flatGroupBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.flatGroupBox3.Location = new System.Drawing.Point(634, 247);
-            this.flatGroupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flatGroupBox3.Location = new System.Drawing.Point(573, 275);
+            this.flatGroupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.flatGroupBox3.Name = "flatGroupBox3";
             this.flatGroupBox3.ShowText = true;
-            this.flatGroupBox3.Size = new System.Drawing.Size(669, 259);
+            this.flatGroupBox3.Size = new System.Drawing.Size(502, 198);
             this.flatGroupBox3.TabIndex = 4;
             this.flatGroupBox3.Text = "Black";
             // 
@@ -1464,11 +1499,11 @@
             this.l_black.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.l_black.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_black.FormattingEnabled = true;
-            this.l_black.ItemHeight = 23;
-            this.l_black.Location = new System.Drawing.Point(23, 49);
-            this.l_black.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.l_black.ItemHeight = 17;
+            this.l_black.Location = new System.Drawing.Point(17, 28);
+            this.l_black.Margin = new System.Windows.Forms.Padding(2);
             this.l_black.Name = "l_black";
-            this.l_black.Size = new System.Drawing.Size(620, 184);
+            this.l_black.Size = new System.Drawing.Size(465, 136);
             this.l_black.TabIndex = 0;
             // 
             // flatGroupBox2
@@ -1479,11 +1514,11 @@
             this.flatGroupBox2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
             this.flatGroupBox2.Controls.Add(this.l_ban);
             this.flatGroupBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.flatGroupBox2.Location = new System.Drawing.Point(972, 4);
-            this.flatGroupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flatGroupBox2.Location = new System.Drawing.Point(826, 3);
+            this.flatGroupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.flatGroupBox2.Name = "flatGroupBox2";
             this.flatGroupBox2.ShowText = true;
-            this.flatGroupBox2.Size = new System.Drawing.Size(331, 245);
+            this.flatGroupBox2.Size = new System.Drawing.Size(248, 273);
             this.flatGroupBox2.TabIndex = 4;
             this.flatGroupBox2.Text = "Ban";
             // 
@@ -1495,11 +1530,11 @@
             this.l_ban.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.l_ban.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_ban.FormattingEnabled = true;
-            this.l_ban.ItemHeight = 23;
-            this.l_ban.Location = new System.Drawing.Point(26, 52);
-            this.l_ban.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.l_ban.ItemHeight = 17;
+            this.l_ban.Location = new System.Drawing.Point(20, 42);
+            this.l_ban.Margin = new System.Windows.Forms.Padding(2);
             this.l_ban.Name = "l_ban";
-            this.l_ban.Size = new System.Drawing.Size(276, 161);
+            this.l_ban.Size = new System.Drawing.Size(207, 187);
             this.l_ban.TabIndex = 0;
             // 
             // flatGroupBox1
@@ -1510,11 +1545,11 @@
             this.flatGroupBox1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
             this.flatGroupBox1.Controls.Add(this.l_guests);
             this.flatGroupBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.flatGroupBox1.Location = new System.Drawing.Point(634, 4);
-            this.flatGroupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flatGroupBox1.Location = new System.Drawing.Point(573, 3);
+            this.flatGroupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.flatGroupBox1.Name = "flatGroupBox1";
             this.flatGroupBox1.ShowText = true;
-            this.flatGroupBox1.Size = new System.Drawing.Size(331, 245);
+            this.flatGroupBox1.Size = new System.Drawing.Size(248, 273);
             this.flatGroupBox1.TabIndex = 3;
             this.flatGroupBox1.Text = "Guests";
             // 
@@ -1526,11 +1561,11 @@
             this.l_guests.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.l_guests.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_guests.FormattingEnabled = true;
-            this.l_guests.ItemHeight = 23;
-            this.l_guests.Location = new System.Drawing.Point(23, 52);
-            this.l_guests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.l_guests.ItemHeight = 17;
+            this.l_guests.Location = new System.Drawing.Point(17, 42);
+            this.l_guests.Margin = new System.Windows.Forms.Padding(2);
             this.l_guests.Name = "l_guests";
-            this.l_guests.Size = new System.Drawing.Size(276, 161);
+            this.l_guests.Size = new System.Drawing.Size(207, 187);
             this.l_guests.TabIndex = 0;
             // 
             // dg_users
@@ -1546,13 +1581,13 @@
             this.c_Login,
             this.c_ladder});
             this.dg_users.GridColor = System.Drawing.Color.White;
-            this.dg_users.Location = new System.Drawing.Point(3, 2);
-            this.dg_users.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dg_users.Location = new System.Drawing.Point(2, 2);
+            this.dg_users.Margin = new System.Windows.Forms.Padding(2);
             this.dg_users.Name = "dg_users";
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_users.RowTemplate.Height = 24;
-            this.dg_users.Size = new System.Drawing.Size(626, 457);
+            this.dg_users.Size = new System.Drawing.Size(567, 432);
             this.dg_users.TabIndex = 0;
             // 
             // c_Id
@@ -1587,9 +1622,9 @@
             this.tp_maps.Controls.Add(this.treeView1);
             this.tp_maps.Controls.Add(this.dg_map);
             this.tp_maps.Location = new System.Drawing.Point(4, 44);
-            this.tp_maps.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tp_maps.Margin = new System.Windows.Forms.Padding(2);
             this.tp_maps.Name = "tp_maps";
-            this.tp_maps.Size = new System.Drawing.Size(1311, 505);
+            this.tp_maps.Size = new System.Drawing.Size(1078, 475);
             this.tp_maps.TabIndex = 3;
             this.tp_maps.Text = "Maps";
             // 
@@ -1599,11 +1634,11 @@
             this.b_clearMapMatch.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_clearMapMatch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_clearMapMatch.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_clearMapMatch.Location = new System.Drawing.Point(395, 389);
-            this.b_clearMapMatch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_clearMapMatch.Location = new System.Drawing.Point(296, 316);
+            this.b_clearMapMatch.Margin = new System.Windows.Forms.Padding(2);
             this.b_clearMapMatch.Name = "b_clearMapMatch";
             this.b_clearMapMatch.Rounded = false;
-            this.b_clearMapMatch.Size = new System.Drawing.Size(47, 39);
+            this.b_clearMapMatch.Size = new System.Drawing.Size(35, 32);
             this.b_clearMapMatch.TabIndex = 35;
             this.b_clearMapMatch.Text = "a";
             this.b_clearMapMatch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1614,11 +1649,11 @@
             this.b_addAll.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_addAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_addAll.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_addAll.Location = new System.Drawing.Point(395, 295);
-            this.b_addAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_addAll.Location = new System.Drawing.Point(296, 240);
+            this.b_addAll.Margin = new System.Windows.Forms.Padding(2);
             this.b_addAll.Name = "b_addAll";
             this.b_addAll.Rounded = false;
-            this.b_addAll.Size = new System.Drawing.Size(47, 41);
+            this.b_addAll.Size = new System.Drawing.Size(35, 33);
             this.b_addAll.TabIndex = 34;
             this.b_addAll.Text = "a>";
             this.b_addAll.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1629,11 +1664,11 @@
             this.b_delmap.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_delmap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_delmap.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_delmap.Location = new System.Drawing.Point(395, 434);
-            this.b_delmap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_delmap.Location = new System.Drawing.Point(296, 353);
+            this.b_delmap.Margin = new System.Windows.Forms.Padding(2);
             this.b_delmap.Name = "b_delmap";
             this.b_delmap.Rounded = false;
-            this.b_delmap.Size = new System.Drawing.Size(47, 39);
+            this.b_delmap.Size = new System.Drawing.Size(35, 32);
             this.b_delmap.TabIndex = 33;
             this.b_delmap.Text = "x";
             this.b_delmap.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1646,11 +1681,11 @@
             this.l_mapsLocal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.l_mapsLocal.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_mapsLocal.FormattingEnabled = true;
-            this.l_mapsLocal.ItemHeight = 23;
-            this.l_mapsLocal.Location = new System.Drawing.Point(12, 268);
-            this.l_mapsLocal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.l_mapsLocal.ItemHeight = 17;
+            this.l_mapsLocal.Location = new System.Drawing.Point(9, 218);
+            this.l_mapsLocal.Margin = new System.Windows.Forms.Padding(2);
             this.l_mapsLocal.Name = "l_mapsLocal";
-            this.l_mapsLocal.Size = new System.Drawing.Size(377, 230);
+            this.l_mapsLocal.Size = new System.Drawing.Size(283, 255);
             this.l_mapsLocal.TabIndex = 31;
             // 
             // labelLocalFiles
@@ -1659,9 +1694,10 @@
             this.labelLocalFiles.BackColor = System.Drawing.Color.Transparent;
             this.labelLocalFiles.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLocalFiles.ForeColor = System.Drawing.Color.White;
-            this.labelLocalFiles.Location = new System.Drawing.Point(77, 2);
+            this.labelLocalFiles.Location = new System.Drawing.Point(58, 2);
+            this.labelLocalFiles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLocalFiles.Name = "labelLocalFiles";
-            this.labelLocalFiles.Size = new System.Drawing.Size(95, 23);
+            this.labelLocalFiles.Size = new System.Drawing.Size(77, 19);
             this.labelLocalFiles.TabIndex = 29;
             this.labelLocalFiles.Text = "Local Files :";
             // 
@@ -1671,11 +1707,11 @@
             this.b_add.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_add.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_add.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_add.Location = new System.Drawing.Point(395, 343);
-            this.b_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.b_add.Location = new System.Drawing.Point(296, 279);
+            this.b_add.Margin = new System.Windows.Forms.Padding(2);
             this.b_add.Name = "b_add";
             this.b_add.Rounded = false;
-            this.b_add.Size = new System.Drawing.Size(47, 39);
+            this.b_add.Size = new System.Drawing.Size(35, 32);
             this.b_add.TabIndex = 28;
             this.b_add.Text = ">";
             this.b_add.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1686,11 +1722,12 @@
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.treeView1.LineColor = System.Drawing.Color.Gray;
-            this.treeView1.Location = new System.Drawing.Point(11, 33);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.treeView1.Location = new System.Drawing.Point(8, 27);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(2);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(379, 229);
+            this.treeView1.Size = new System.Drawing.Size(284, 186);
             this.treeView1.TabIndex = 27;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1_AfterSelect);
             // 
             // dg_map
             // 
@@ -1698,25 +1735,35 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dg_map.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_map.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dg_map.ColumnHeadersHeight = 30;
             this.dg_map.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.c_m_name,
             this.c_m_author,
             this.c_environnement});
             this.dg_map.GridColor = System.Drawing.Color.White;
-            this.dg_map.Location = new System.Drawing.Point(453, 14);
-            this.dg_map.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dg_map.Location = new System.Drawing.Point(340, 11);
+            this.dg_map.Margin = new System.Windows.Forms.Padding(2);
             this.dg_map.Name = "dg_map";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dg_map.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             this.dg_map.RowTemplate.Height = 24;
-            this.dg_map.Size = new System.Drawing.Size(851, 484);
+            this.dg_map.Size = new System.Drawing.Size(735, 467);
             this.dg_map.TabIndex = 1;
             // 
             // c_m_name
             // 
             this.c_m_name.HeaderText = "Name";
             this.c_m_name.Name = "c_m_name";
+            this.c_m_name.Width = 70;
             // 
             // c_m_author
             // 
@@ -1740,10 +1787,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fichierToolStripMenuItem,
             this.outilsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 50);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 41);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1319, 30);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1086, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1755,31 +1802,31 @@
             this.exitToolStripMenuItem,
             this.exitCloseServerToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(44, 26);
+            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fichierToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveConfigToolStripMenuItem
             // 
             this.saveConfigToolStripMenuItem.Name = "saveConfigToolStripMenuItem";
-            this.saveConfigToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.saveConfigToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.saveConfigToolStripMenuItem.Text = "Save config";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // exitCloseServerToolStripMenuItem
             // 
             this.exitCloseServerToolStripMenuItem.Name = "exitCloseServerToolStripMenuItem";
-            this.exitCloseServerToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.exitCloseServerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.exitCloseServerToolStripMenuItem.Text = "Exit & close server";
             // 
             // outilsToolStripMenuItem
@@ -1789,38 +1836,38 @@
             this.mapsToolStripMenuItem,
             this.pluginsToolStripMenuItem});
             this.outilsToolStripMenuItem.Name = "outilsToolStripMenuItem";
-            this.outilsToolStripMenuItem.Size = new System.Drawing.Size(56, 26);
+            this.outilsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.outilsToolStripMenuItem.Text = "Tools";
             // 
             // utilisateursToolStripMenuItem
             // 
             this.utilisateursToolStripMenuItem.Name = "utilisateursToolStripMenuItem";
-            this.utilisateursToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.utilisateursToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.utilisateursToolStripMenuItem.Text = "Users";
             // 
             // mapsToolStripMenuItem
             // 
             this.mapsToolStripMenuItem.Name = "mapsToolStripMenuItem";
-            this.mapsToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.mapsToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.mapsToolStripMenuItem.Text = "Maps";
             // 
             // pluginsToolStripMenuItem
             // 
             this.pluginsToolStripMenuItem.Name = "pluginsToolStripMenuItem";
-            this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.pluginsToolStripMenuItem.Text = "Plugins";
             // 
             // Main
             // 
             this.AcceptButton = this.button1;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1319, 633);
+            this.ClientSize = new System.Drawing.Size(1086, 588);
             this.Controls.Add(this.formSkin1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
@@ -1871,6 +1918,7 @@
         private FlatUITheme.FlatLabel l_server;
         private FlatUITheme.FlatLabel l_xmlrpc;
         private System.Windows.Forms.TabPage tp_chat;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tp_users;
         private System.Windows.Forms.TabPage tp_maps;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -1910,9 +1958,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn c_ladder;
         private System.Windows.Forms.ListBox l_users;
         private FlatUITheme.FlatLabel l_version;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_environnement;
         private System.Windows.Forms.TabPage tp_servOpt;
         private FlatUITheme.FlatButton b_clearMapMatch;
         private FlatUITheme.FlatButton b_addAll;
@@ -1960,7 +2005,6 @@
         private FlatUITheme.FlatLabel l_conTimeAvg;
         private FlatUITheme.FlatLabel l_nbConn;
         private FlatUITheme.FlatLabel l_upTime;
-        private System.Windows.Forms.Button button1;
         private FlatUITheme.FlatGroupBox flatGroupBox1;
         private System.Windows.Forms.ListBox l_guests;
         private FlatUITheme.FlatGroupBox flatGroupBox3;
@@ -1973,5 +2017,8 @@
         private FlatUITheme.FlatButton b_toGuests;
         private FlatUITheme.FlatButton b_ForceRed;
         private FlatUITheme.FlatButton b_ForceBlue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_author;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_environnement;
     }
 }

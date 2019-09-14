@@ -61,6 +61,7 @@ namespace LamaMania
         {
             this.tb = tb;
         }
+     
         /// <summary>
         /// 
         /// </summary>
@@ -186,7 +187,7 @@ namespace LamaMania
         }
 
         /// <summary>
-        /// Valeur hexadécimale vers entier (result x 17)
+        /// Valeur hexadécimale vers entier (result x 17) 255/15=17
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>

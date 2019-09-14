@@ -34,6 +34,18 @@ namespace LamaMania.UserConstrols
         {
 
         }
+
+        public void setColor(Color color)
+        {
+            this.BackColor = color;
+            this.flatCheckBox1.BackColor = color;
+        }
+
+        public UserControl GetControl()
+        {
+            return this;
+        }
+
         /// <summary>
         /// 
         /// </summary>

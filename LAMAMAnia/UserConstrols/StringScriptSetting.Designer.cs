@@ -38,7 +38,7 @@
             this.flatLabel1.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel1.ForeColor = System.Drawing.Color.White;
-            this.flatLabel1.Location = new System.Drawing.Point(13, 16);
+            this.flatLabel1.Location = new System.Drawing.Point(13, 11);
             this.flatLabel1.Name = "flatLabel1";
             this.flatLabel1.Size = new System.Drawing.Size(83, 23);
             this.flatLabel1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // flatTextBox1
             // 
             this.flatTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.flatTextBox1.Location = new System.Drawing.Point(507, 13);
+            this.flatTextBox1.Location = new System.Drawing.Point(507, 7);
             this.flatTextBox1.MaxLength = 32767;
             this.flatTextBox1.Multiline = false;
             this.flatTextBox1.Name = "flatTextBox1";
@@ -62,11 +62,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(83)))));
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.Controls.Add(this.flatTextBox1);
             this.Controls.Add(this.flatLabel1);
             this.Name = "StringScriptSetting";
-            this.Size = new System.Drawing.Size(1069, 57);
+            this.Size = new System.Drawing.Size(1069, 47);
             this.Load += new System.EventHandler(this.StringScriptSetting_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

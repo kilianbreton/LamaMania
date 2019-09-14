@@ -24,6 +24,8 @@ namespace LamaTest
             Assert.AreEqual(0, h);
             Assert.AreEqual(5, m);
             Assert.AreEqual(23, s);
+      
+
         }
 
         [TestMethod]

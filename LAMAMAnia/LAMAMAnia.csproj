@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5C07A2BC-0B93-4970-A23E-5CE6F89693AC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LAMAMAnia</RootNamespace>
-    <AssemblyName>LAMAMAnia</AssemblyName>
+    <RootNamespace>LamaMania</RootNamespace>
+    <AssemblyName>LamaMania</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -24,7 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Debug\LAMAMAnia.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\LamaMania.xml</DocumentationFile>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -37,7 +37,13 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LamaMania.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Arc.TrackMania">
+      <HintPath>..\..\TMPacktool\Arc.TrackMania\bin\Debug\Arc.TrackMania.dll</HintPath>
+    </Reference>
     <Reference Include="FlatUITheme">
       <HintPath>..\..\FlatUITheme\FlatUITheme\bin\Debug\FlatUITheme.dll</HintPath>
     </Reference>
@@ -50,7 +56,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -60,7 +68,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlThreadManager.cs" />
     <Compile Include="ExtensionsMethods.cs" />
+    <Compile Include="Forms\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LamaDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LamaDialog.Designer.cs">
+      <DependentUpon>LamaDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AskLogins.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,7 +100,13 @@
     <Compile Include="Forms\NewServer.Designer.cs">
       <DependentUpon>NewServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameMode.cs" />
+    <Compile Include="HomeComponents\HCGameInfos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCGameInfos.Designer.cs">
+      <DependentUpon>HCGameInfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Other\GameMode.cs" />
     <Compile Include="Lama.cs" />
     <Compile Include="Forms\ConfigServ.cs">
       <SubType>Form</SubType>
@@ -99,8 +126,8 @@
     <Compile Include="Forms\HomeLauncher.Designer.cs">
       <DependentUpon>HomeLauncher.cs</DependentUpon>
     </Compile>
-    <Compile Include="LamaLog.cs" />
-    <Compile Include="LogXMLRPC.cs" />
+    <Compile Include="Other\LamaLog.cs" />
+    <Compile Include="Other\LogXMLRPC.cs" />
     <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +135,11 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="ManiaColors.cs" />
+    <Compile Include="PluginManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Structs.cs" />
+    <Compile Include="StaticMethods.cs" />
+    <Compile Include="Other\Structs.cs" />
     <Compile Include="UserConstrols\IScriptSetting.cs" />
     <Compile Include="UserConstrols\BooleanScriptSetting.cs">
       <SubType>UserControl</SubType>
@@ -148,6 +177,9 @@
     <EmbeddedResource Include="Forms\HomeLauncher.resx">
       <DependentUpon>HomeLauncher.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LamaDialog.resx">
+      <DependentUpon>LamaDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoadForm.resx">
       <DependentUpon>LoadForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewServer.resx">
       <DependentUpon>NewServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCGameInfos.resx">
+      <DependentUpon>HCGameInfos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -194,6 +229,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GBXMapParser\GBXMapParser.csproj">
+      <Project>{f59b1bd4-1531-4a3f-8f5d-ea982e49b34d}</Project>
+      <Name>GBXMapParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LamaLang\LamaLang.csproj">
       <Project>{186ecf1d-2bed-41e1-ad22-4532c349c0e5}</Project>
       <Name>LamaLang</Name>

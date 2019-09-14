@@ -30,7 +30,15 @@ namespace LamaMania.UserConstrols
             this.flatNumeric1.Value = value;
         }
 
-     
+        public void setColor(Color color)
+        {
+            this.BackColor = color;
+        }
+
+        public UserControl GetControl()
+        {
+            return this;
+        }
 
         private void StringScriptSetting_Load(object sender, EventArgs e)
         {

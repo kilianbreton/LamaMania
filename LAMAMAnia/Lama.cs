@@ -1,4 +1,5 @@
-﻿/* ----------------------------------------------------------------------------------
+﻿/* 
+----------------------------------------------------------------------------------
  * Project : LamaMania
  * Launch Authenticate Manage & Access ManiaPlanet Servers
  * Inspired by ServerMania by Cyrlaur
@@ -35,6 +36,7 @@ using LamaPlugin;
 using System.Windows.Forms;
 using FlatUITheme;
 using System.Diagnostics;
+using System.Threading;
 
 namespace LamaMania
 {
@@ -51,20 +53,13 @@ namespace LamaMania
         /// Servers list
         /// </summary>
         public static Dictionary<int, String> servers = new Dictionary<int, string>();
-      
         /// <summary>
-        /// Plugins list
+        /// Plugin manager
         /// </summary>
-        public static List<InGamePlugin> inGamePlugins = new List<InGamePlugin>();
+        public static PluginManager pluginManager = new PluginManager();
         /// <summary>
-        /// Home component for MainForm
+        /// Index of selected server
         /// </summary>
-        public static List<HomeComponentPlugin> homeComponentPlugins = new List<HomeComponentPlugin>();
-        /// <summary>
-        /// Tab plugin for Main or ConfigServ
-        /// </summary>
-        public static List<TabPlugin> tabPlugins = new List<TabPlugin>();
-
         public static int serverIndex;
         /// <summary>
         /// Main xml config
@@ -94,10 +89,16 @@ namespace LamaMania
         /// Language Module
         /// </summary>
         public static BaseLang lang;
+
+        public static Dictionary<string, string> scriptSettingsLocales = new Dictionary<string, string>();
         /// <summary>
         /// 
         /// </summary>
         public static Process serverProcess;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool serverProcessExited = true;
         /// <summary>
         /// 
         /// </summary>
@@ -106,7 +107,6 @@ namespace LamaMania
         /// 
         /// </summary>
         public static bool useLogs = true;
-
         /// <summary>
         /// 
         /// </summary>
@@ -115,6 +115,11 @@ namespace LamaMania
         /// 
         /// </summary>
         public static LoadForm loadForm = new LoadForm();
+
+        public static Thread loadThread;
+
+        public static int previousMapId = -1;
+        public static int currentMapId = -1;
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methods /////////////////////////////////////////////////////////////////////////////////////////
@@ -127,8 +132,16 @@ namespace LamaMania
         /// <param name="msg"></param>
         public static void log(string type, string msg)
         {
-            lamaLogger.add(type, msg);
-            lamaLogger.flush();
+            
+            if (lamaLogger != null)
+            {
+                lamaLogger.add(type, msg);
+                lamaLogger.flush();
+            }
+            else
+            {
+                onError(null, "Try to log without logger", "Application try to log with lamaLogger but it's not instancied");
+            }
         }
       
         /// <summary>
@@ -160,5 +173,20 @@ namespace LamaMania
             MessageBox.Show(txt, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
         }
 
+
+        public static void Process_Disposed(object sender, EventArgs e)
+        {
+            Lama.launched = false;
+        }
+
+        public static void Process_Exited(object sender, EventArgs e)
+        {
+            Lama.launched = false;
+        }
+
+        internal static void Process_DataReceived(object sender, DataReceivedEventArgs e)
+        {
+          
+        }
     }
 }

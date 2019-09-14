@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FlatUITheme">
+      <HintPath>..\LAMAMAnia\bin\Debug\FlatUITheme.dll</HintPath>
+    </Reference>
     <Reference Include="NTK, Version=1.0.0.1, Culture=neutral, PublicKeyToken=cdcb176b1fe72ba9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\LAMAMAnia\bin\Debug\NTK.dll</HintPath>
@@ -58,6 +61,7 @@
       <DependentUpon>ConfigServControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ExempleInGame.cs" />
+    <Compile Include="ExempleUpdateMethod.cs" />
     <Compile Include="MainHc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="ConfigServControl.resx">
       <DependentUpon>ConfigServControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainHc.resx">
+      <DependentUpon>MainHc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

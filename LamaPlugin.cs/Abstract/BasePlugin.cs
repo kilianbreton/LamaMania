@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NTK.IO.Xml;
 
 namespace LamaPlugin
 {
     public delegate void OnError(object sender, string title, string text);
     public delegate void Logger(string type, string text);
+    public delegate void MakeXml(object sender, string fileName, XmlDocument doc = null);
+
 
     public abstract class BasePlugin : IBase
     {
@@ -17,7 +20,10 @@ namespace LamaPlugin
         private string version = "";
         private OnError onError;
         private Logger log;
-        
+        private MakeXml makeXml;
+        private string pluginFolder;
+        private PluginType type = PluginType.Base;
+
         public BasePlugin() { }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,5 +37,8 @@ namespace LamaPlugin
 
         public OnError OnError { get => onError; set => onError = value; }
         public Logger Log { get => log; set => log = value; }
+        public MakeXml MakeXml { get => makeXml; set => makeXml = value; }
+        public string PluginFolder { get => pluginFolder; set => pluginFolder = value; }
+        public PluginType PluginType { get => type; set => type = value; }
     }
 }

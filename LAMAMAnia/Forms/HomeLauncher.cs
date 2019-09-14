@@ -34,6 +34,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Threading;
 using NTK.IO.Xml;
 using NTK.IO;
 using LamaLang;
@@ -53,70 +54,12 @@ namespace LamaMania
         public HomeLauncher()
         {
             InitializeComponent();
-
+            
             Lama.lamaLogger = new LamaLog(@"Logs\Lama.log");
-
-            loadPlugins();
+            Lama.pluginManager = new PluginManager();
+            Lama.pluginManager.loadPlugins();
             load();
         }
-
-
-        void loadLang()
-        {
-
-        }
-
-        void loadPlugins()
-        {
-            Lama.log("NOTICE", "Load plugins");
-            try
-            {
-                DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
-                //Read dllignore
-                List<string> dllignore = new List<string>(File.ReadAllLines(pluginsDir.FullName + "dllignore"));
-                //Read dll
-                foreach (FileInfo file in pluginsDir.GetFiles())
-                {
-                    if (file.Extension.Equals(".dll") && !dllignore.Contains(file.Name))
-                    {
-                        try
-                        {
-                            DllLoader loader = new DllLoader(file.FullName);
-                            
-                            int cpt = loader.getAllCountInstances(Lama.inGamePlugins)
-                                    + loader.getAllCountInstances(Lama.homeComponentPlugins)
-                                    + loader.getAllCountInstances(Lama.tabPlugins);
-
-                            if (cpt == 0)
-                            {
-                                StreamWriter sw = new StreamWriter(File.Open(pluginsDir.FullName + "dllignore", FileMode.Append));
-                                sw.WriteLine(file.Name);
-                                sw.Close();
-                            }
-                        }
-                        //catch (NullReferenceException) { }
-                        catch (IOException) { }
-                        catch (Exception er)
-                        {
-                            Lama.log("ERROR", "[LoadPlugins][" + file.FullName + "]" + er.Message + er.GetType().Name);
-                            try
-                            {
-                                StreamWriter sw = new StreamWriter(File.Open(pluginsDir.FullName + "dllignore", FileMode.Append));
-                                sw.WriteLine(file.Name);
-                                sw.Close();
-                            }
-                            catch (Exception) { }
-                        }
-                    }
-                }
-
-            }
-            catch (Exception e)
-            {
-                Lama.log("ERROR", "[LoadPlugins]" + e.Message);
-            }
-        }
-
 
         /// <summary>
         /// 
@@ -139,13 +82,14 @@ namespace LamaMania
                         break;
 
                     case "lang":
+                        loadScriptSettings(node.Value);
                         switch (node.Value)
                         {
                             case "FR":
-                             //   Lama.lang = new BaseFR();
+                                
                                 break;
                             case "EN":
-                             //   Lama.lang = new BaseEN();
+                                //   Lama.lang = new BaseEN();
                                 break;
                             default:
                                 //TODO: Manage dll
@@ -183,8 +127,25 @@ namespace LamaMania
             }
         }
 
+        void loadLang()
+        {
+
+        }
+
+        void loadScriptSettings(string locale)
+        {
+            XmlDocument script = new XmlDocument(@"Config\locales\" + locale + @"\ScriptSettings.xml");
+            foreach(XmlNode n in script[0].Childs)
+            {
+                Lama.scriptSettingsLocales.Add(n.Name, n.Value);
+            }
+            
+        }
+
         void start(int index)
         {
+          /*  Thread tLoad = new Thread(Lama.loadForm.Show);
+            tLoad.Start();*/
             //  Lama.loadForm.Show();
             //Open Server config
             Lama.serverIndex = index;
@@ -218,20 +179,12 @@ namespace LamaMania
                 {
                     cmd += " /lan";
                 }
-
+                //Select plugin list
                 if (cfg["plugins"].getAttibuteV("value").ToUpper().Equals("TRUE"))
                 {
-                    List<InGamePlugin> nlst = new List<InGamePlugin>();
-                    foreach (XmlNode n in cfg["plugins"].Childs)
-                    {
-                        try
-                        {
-                            nlst.Add(getPluginByName(n.Value));
-                        }
-                        catch (Exception) { }
-                    }
-                    Lama.inGamePlugins = nlst;
+                    Lama.pluginManager.selectInGamePlugins(cfg["plugins"]);
                 }
+
                 if (Lama.invisibleServer)
                 {
                     Lama.serverProcess = new Process();
@@ -241,14 +194,16 @@ namespace LamaMania
                         FileName = path,
                         Arguments = cmd
                     };
-                    Lama.serverProcess.Exited += new EventHandler(Process_Exited);
-                    Lama.serverProcess.Disposed += new EventHandler(Process_Disposed);
+                    Lama.serverProcess.Exited += new EventHandler(Lama.Process_Exited);
+                    Lama.serverProcess.Disposed += new EventHandler(Lama.Process_Disposed);
+                    
                     Lama.serverProcess.ErrorDataReceived += Process_ErrorDataReceived;
                     Lama.serverProcess.StartInfo = startInfo;
                     Lama.serverProcess.Start();
                 }
                 else
                 {
+                    
                     Lama.serverProcess = new Process();
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
@@ -256,11 +211,15 @@ namespace LamaMania
                         FileName = path,
                         Arguments = cmd,
                     };
-                    
-                    Lama.serverProcess.Exited += new EventHandler(Process_Exited);
-                    Lama.serverProcess.Disposed += new EventHandler(Process_Disposed);
+                    Lama.serverProcess.EnableRaisingEvents = true;
+                    Lama.serverProcess.Exited += new EventHandler(Lama.Process_Exited);
+                    Lama.serverProcess.Disposed += new EventHandler(Lama.Process_Disposed);
                     Lama.serverProcess.StartInfo = startInfo;
+                    Lama.serverProcessExited = false;
                     Lama.serverProcess.Start();
+                    Lama.serverProcess.OutputDataReceived += new DataReceivedEventHandler(Lama.Process_DataReceived);
+
+                    
                 }
 
                 Lama.launched = true;
@@ -268,8 +227,11 @@ namespace LamaMania
                 //Open main form
                 try
                 {
+                    
                     var mainForm = new Main(config);
+                  //  Thread t = new Thread(mainForm.Show);
                     mainForm.Show();
+                   // t.Start();
                 }
                 catch (Exception)
                 {
@@ -279,21 +241,20 @@ namespace LamaMania
             }
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Autres Methodes /////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        private void Process_Disposed(object sender, EventArgs e)
-        {
-            Lama.launched = false;
-        }
+     
 
-        private void Process_Exited(object sender, EventArgs e)
-        {
-            Lama.launched = false;
-        }
-
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Methodes Event UI ///////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //New
         private void flatButton4_Click(object sender, EventArgs e)
@@ -369,9 +330,6 @@ namespace LamaMania
             {
                 Lama.onError(this, "Error", "Undefined server : " + flatComboBox1.Text);
             }
-        }
-
-      
-
+        }            
     }
 }

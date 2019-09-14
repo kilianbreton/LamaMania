@@ -36,16 +36,18 @@ namespace LamaPlugin
     public abstract class InGamePlugin : BasePlugin
     {
         private XmlRpcClient client;
-       
         protected Dictionary<int, string> handles = new Dictionary<int, string>();
-  
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTOR ///////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Init
         /// </summary>
-        public InGamePlugin() { }
-        
+        public InGamePlugin() {
+            base.PluginType = PluginType.InGamePlugin;
+        }  
 
         /// <summary>
         /// Method for plugin manager
@@ -55,8 +57,6 @@ namespace LamaPlugin
         {
             this.client = client;
         }
-
-      
        
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // PROTECTED /////////////////////////////////////////////////////////////////////////////////////
@@ -73,20 +73,34 @@ namespace LamaPlugin
                 param = new object[] { };
             this.handles.Add(this.client.AsyncRequest(methodeName, param, onGbxAsyncResult), methodeName);
         }
-
+    
+        /// <summary>
+        /// Async request
+        /// </summary>
+        /// <param name="handler">Call back method</param>
+        /// <param name="methodName">The method name</param>
+        /// <param name="param">Request params</param>
         protected void asyncRequest(GbxCallCallbackHandler handler, String methodName, params object[] param)
         {
             if (param == null)
                 param = new object[] { };
             this.client.AsyncRequest(methodName, param, handler);
         }
-
+        
+        /// <summary>
+        /// Async request without args
+        /// </summary>
+        /// <param name="methodName"></param>
+        /// <param name="handler"></param>
         protected void asyncRequest(String methodName, GbxCallCallbackHandler handler)
         {
             this.client.AsyncRequest(methodName, new object[] { }, handler);
         }
-
-
+  
+        /// <summary>
+        /// Request CallBack to manage error
+        /// </summary>
+        /// <param name="res"></param>
         protected void checkError(GbxCall res)
         {
             if (res.Error)
@@ -94,7 +108,6 @@ namespace LamaPlugin
 
             }
         }
-
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,7 +133,7 @@ namespace LamaPlugin
         /// <param name="res"></param>
         public abstract void onGbxAsyncResult(GbxCall res);
 
-   
-      
+       
+
     }
 }

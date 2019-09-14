@@ -20,9 +20,13 @@ namespace UAsecoPlugin
             this.Author = "";
             this.PluginName = "";
             this.Version = "";
+            this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "NOT EXIST"));
             
+            //If a control ovveride HomeCompenent, use this to add Mouse Events
+            addMouseEvents(this.flatGroupBox1);
+           
         }
-
+     
         protected override void onGbxAsyncResult(GbxCall res)
         {
             switch (res.MethodName)

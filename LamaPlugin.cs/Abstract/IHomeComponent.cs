@@ -22,5 +22,6 @@ namespace LamaPlugin
 
         HomeComponentType Type { get; set; }
 
+
     }
 }

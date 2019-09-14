@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using NTK.IO.Xml;
 using static NTK.Other.NTKF;
 using NTK.IO;
+using NTK;
 using TMXmlRpcLib;
 using System.IO;
 using System.Net;
 using LamaPlugin;
-
+using XmlRpcEncrypted;
+using NTK.Service;
+using CGE.OUT;
 
 namespace LamaController
 {
@@ -22,9 +25,20 @@ namespace LamaController
 
     public class LamaController
     {
+        //CGE
+
+        DataGrid dg;
+
+        //Network
+        NTKServer ntkServer;
+        XmlRpcClient client;
+
         XmlNode mainConfig;
         XmlNode pluginsConfig;
         XmlNode logsConfig;
+        MainLogger mainLogger;
+        NTKLogger ntkLogger;
+
         List<InGamePlugin> plugins = new List<InGamePlugin>();
         string ip;
         int port;
@@ -32,10 +46,15 @@ namespace LamaController
         string pass;
         Game game;
         bool connected;
+        bool remoteXmlRpc = true;
 
 
         public LamaController(XmlDocument config)
         {
+            Console.WriteLine("LamaController V0.1");
+            Console.WriteLine("GNU");
+            Console.WriteLine();
+
             this.logsConfig = config["Logs"];
             //manage logger
 
@@ -45,21 +64,39 @@ namespace LamaController
             this.port = (int)this.mainConfig["Port"].LValue;
             this.login = this.mainConfig["Login"].Value;
             this.pass = this.mainConfig["Password"].Value;
-         
+        //    this.remoteXmlRpc = (this.mainConfig["RemoteXmlRpx"].Value.ToUpper().Equals("TRUE"));
 
             this.pluginsConfig = config["Plugins"];
             foreach(XmlNode node in this.pluginsConfig.Childs)
             {
-                if(!node.haveAttribute("enable") 
-                || (node.haveAttribute("enable") && node.getAttribute("enable").Value.ToUpper().Equals("TRUE")))
+                if ((!node.haveAttribute("enable")) || (node.haveAttribute("enable") && node.getAttribute("enable").Value.ToUpper() == "TRUE"))
                 {
                     loadPlugin(node.Value);
                 }
             }
-          
+            try
+            {
+                this.client = new XmlRpcClient(this.ip, this.port);
 
+                if (remoteXmlRpc)
+                {
+                    this.ntkServer = new NTKServer(1141, CTYPE.OTHER, true, new SXmlRpcEncrypted(this.client, this.login, this.pass))
+                    {   //Précisions :
+                        Plugins = false,
+                        FileTransfert = false,
+                        Header = true,
+                        Logs = new NTKLogger(@"Logs\XmlRpcEncrypted.log"),
+                        ConsoleLog = new NTKLogger(@"Logs\NTKServer.log")
+                    };
+                    this.ntkServer.start();
 
-
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Err: " + e.ToString());
+            }
+            Console.ReadKey();
         }
 
 
@@ -67,34 +104,45 @@ namespace LamaController
 
         void loadPlugin(string name)
         {
-            List<string> args = new List<string>();
-            
-            //Manage params
-            if (name.Contains("["))
+            Loading load = new Loading(name);
+            try
             {
-                if (!name.Contains("]"))
-                    throw new Exception("Syntax error in : " + name);
+                load.start();
 
-                string param = subsep(name, "[", "]");
-                args.AddRange(param.Split('|'));
-                name = subsep(name, 0, "[");
-            }
+                List<string> args = new List<string>();
 
-            DllLoader loader = new DllLoader(name);
-
-            if(args.Count != 0)
-            {
-                foreach(string arg in args)
+                //Manage params
+                if (name.Contains("["))
                 {
-                    plugins.Add(loader.getClassInstance<InGamePlugin>(arg));
+                    if (!name.Contains("]"))
+                        throw new Exception("Syntax error in : " + name);
+
+                    string param = subsep(name, "[", "]");
+                    args.AddRange(param.Split('|'));
+                    name = subsep(name, 0, "[");
                 }
+
+                DllLoader loader = new DllLoader(name);
+
+                if (args.Count != 0)
+                {
+                    foreach (string arg in args)
+                    {
+                        plugins.Add(loader.getClassInstance<InGamePlugin>(arg));
+                    }
+                }
+                else
+                {
+                    plugins.AddRange(loader.getAllInstances<InGamePlugin>());
+                }
+
+                load.stop();
             }
-            else
+            catch(Exception e)
             {
-                plugins.AddRange(loader.getAllInstances<InGamePlugin>());
+                load.stop(true);
             }
-
-
+           
         }
 
     }

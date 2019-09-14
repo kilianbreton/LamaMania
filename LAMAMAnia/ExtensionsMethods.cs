@@ -34,6 +34,26 @@ namespace LamaMania
         {
             return (Hashtable)call.Response.Params[0];
         }
+     
+        /// <summary>
+        /// Cast .Params[0] to ArrayList
+        /// </summary>
+        /// <param name="call"></param>
+        /// <returns></returns>
+        public static ArrayList getArrayList(this GbxCall call)
+        {
+            return (ArrayList)call.Params[0];
+        }
+
+        /// <summary>
+        /// Cast .Params[0] to ArrayList
+        /// </summary>
+        /// <param name="call"></param>
+        /// <returns></returns>
+        public static ArrayList getArrayList(this GbxCallbackEventArgs call)
+        {
+            return (ArrayList)call.Response.Params[0];
+        }
 
         /// <summary>
         /// Simple request

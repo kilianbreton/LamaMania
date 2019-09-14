@@ -108,11 +108,23 @@ namespace LamaMania
         {
             if (control.InvokeRequired) //Permet de revenir au Thread de gestion des composants UI
             {
-                control.Invoke(new Action<Button, bool>(enableControl), control, value);
+                control.Invoke(new Action<FlatButton, bool>(enableControl), control, value);
             }
             else
             {
                 control.Enabled = value;
+            }
+        }
+
+        public static string getText(Control ctrl)
+        {
+            if (ctrl.InvokeRequired)
+            {
+                return (string)ctrl.Invoke(new Func<Control, string>(getText), ctrl);
+            }
+            else
+            {
+                return ctrl.Text;
             }
         }
      
@@ -183,6 +195,11 @@ namespace LamaMania
             cb.SelectedText = selectedValue;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cb"></param>
+        /// <param name="value"></param>
         public static void appendCombo(FlatComboBox cb, string value)
         {
             if(cb.InvokeRequired)
@@ -235,18 +252,11 @@ namespace LamaMania
         public static void parseTime(int time, out int h, out int m, out int s)
         {
             h = 0;
-            m = 0;
-            s = 0;
-            while (time >= 60)
-            {
-                time = time - 60;
-                if (++m == 60)
-                {
-                    m = 0;
-                    h++;
-                }
-            }
-            s = time;
+   
+            m = time / 60;
+            if (m >= 60)
+                h = m / 60;
+            s = time % 60;
         }
 
         /// <summary>
@@ -318,14 +328,15 @@ namespace LamaMania
             }
         }
 
+
         public static InGamePlugin getPluginByName(string name)
         {
             int cpt = 0;
 
-            while (cpt < Lama.inGamePlugins.Count && Lama.inGamePlugins[cpt].PluginName != name){ cpt++; }
+            while (cpt < Lama.pluginManager.InGamePlugins.Count && Lama.pluginManager.InGamePlugins[cpt].PluginName != name){ cpt++; }
 
-            if (cpt < Lama.inGamePlugins.Count && Lama.inGamePlugins[cpt].PluginName == name)
-                return Lama.inGamePlugins[cpt];
+            if (cpt < Lama.pluginManager.InGamePlugins.Count && Lama.pluginManager.InGamePlugins[cpt].PluginName == name)
+                return Lama.pluginManager.InGamePlugins[cpt];
             else
                 return null;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LamaPlugin.Other
+namespace LamaPlugin
 {
     public static class StaticM
     {
@@ -23,6 +23,13 @@ namespace LamaPlugin.Other
 
 
         }
+
+        public static T useT<T>(object obj)
+        {
+            return (T) obj;
+        }
+
+
 
     }
 }

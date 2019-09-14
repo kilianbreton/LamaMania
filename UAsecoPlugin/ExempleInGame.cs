@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 using LamaPlugin;
 using TMXmlRpcLib;
 using NTK.IO.Xml;
+using static NTK.Other.NTKF;
+using System.Text.RegularExpressions;
+using static LamaPlugin.GBXMethods;
 
 namespace UAsecoPlugin
 {
     public class ExempleInGame : InGamePlugin
     {
         XmlDocument config;
+        private List<String> adminLogins = new List<string>();
+        private Regex rx = new Regex("^/[a-zA-Z0-9_ ]");
 
         public ExempleInGame()
         {
@@ -20,17 +25,20 @@ namespace UAsecoPlugin
             this.Author = "Kilian";
             this.Version = "0.1";
             this.Requirements.Add(new Requirement(RequirementType.FILE, "exemple.xml"));
-
+            adminLogins.Add("kamphare");
         }
         
         public override void onGbxAsyncResult(GbxCall res)
         {
-            if (res.Error)
+            if (!res.Error)
             {
-                switch (this.handles[res.Handle])
+                if (this.handles.ContainsKey(res.Handle))
                 {
-                    case "GetBanList":
-                        break;
+                    switch (this.handles[res.Handle])
+                    {
+                        case "GetBanList":
+                            break;
+                    }
                 }
             }
             else //Error
@@ -46,9 +54,64 @@ namespace UAsecoPlugin
         {
             switch (args.Response.MethodName)
             {
+                case "ManiaPlanet.PlayerChat":
                 case "TrackMania.PlayerChat":
-                    ArrayList chatInfos = args.Response.Params;
+                    var htPlayerChat = args.Response.Params;
+                    string msg = (string)htPlayerChat[2];
+                    string login = (string)htPlayerChat[1];
 
+                    if (rx.IsMatch(msg)) //Check is command (/....)------------------------
+                    {
+                        //Admin Commands////////////////////////////////////////////////////////////////
+                        if (msg.Contains("/admin ") && msg.Length > 7 && adminLogins.Contains(login))
+                        {
+                            msg = subsep(msg, "/admin ");
+                            switch (msg)
+                            {
+                                case "help":
+                                    break;
+                                case "savematchfile":
+                                    break;
+
+                                default: //Commands with args or bad command
+                                    if (msg.IndexOf("setgamemode ") == 0)
+                                    {
+                                        string gameMode = subsep(msg, "mode ");
+                                        asyncRequest(SetScriptName, gameMode + ".Script.txt");
+                                    }
+                                    else if (msg.IndexOf("restart") == 0)
+                                    {
+                                        asyncRequest(RestartMap);
+                                    }
+                                    else if (msg.IndexOf("warn ") == 0)
+                                    {
+
+                                    }
+                                    else if (msg.IndexOf("kick ") == 0)
+                                    {
+
+                                    }
+                                    else if (msg.IndexOf("ban ") == 0)
+                                    {
+
+                                    }
+                                    else if (msg.IndexOf("black ") == 0)
+                                    {
+
+                                    }
+                                    else if (msg.IndexOf("guest ") == 0)
+                                    {
+
+                                    }
+
+                                    break;
+                            }
+                        }
+                        else //User Commands//////////////////////////////////////////////////////////
+                        {
+
+                        }
+                    }
                     break;
             }
         }
@@ -59,13 +122,13 @@ namespace UAsecoPlugin
             if (ret)
             {
                 config = lamaConfig.configFiles["exemple.xml"];
-         /*       int param2 = 2;
-                asyncRequest("MethodName", "param1", param2);
-                asyncRequest("GetMethodName", checkError); //checkError is GbxCallCallBackHandler delegate
-                asyncRequest("methodName", res =>{
-                    //do something
-                });
-                asyncRequest(checkError, "MethodName", "param1", "param2");*/
+                List<XmlNode> lst = config[0]["Admins"].Childs;
+                foreach(XmlNode n in lst)
+                {
+                    this.adminLogins.Add(n.Value);
+                }
+
+
             }
             return ret;
         }

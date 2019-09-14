@@ -24,7 +24,7 @@ namespace UAsecoPlugin
      
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show((string)this.getConfigValue(this, ""));
+            MessageBox.Show((string)this.getConfigValue(this, "Admin"));
         }
     }
 }

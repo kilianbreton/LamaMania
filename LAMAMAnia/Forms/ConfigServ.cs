@@ -42,6 +42,7 @@ using LamaPlugin;
 using Arc.TrackMania.GameBox;
 using Arc.TrackMania.NadeoPak;
 using Arc.TrackMania.Classes;
+using GBXMapParser;
 
 namespace LamaMania
 {
@@ -50,14 +51,14 @@ namespace LamaMania
     /// </summary>
     public partial class ConfigServ : Form
     {
-        private XmlNode serverConfig; //View to server config in main Lama config
+        private XmlNode serverConfig; //View on server config in main Lama config
         private XmlDocument dedicated_config;
         private string serverPath;
         private string mapPath;
         private XmlDocument matchSettings;
         private Dictionary<string, string> mapFiles = new Dictionary<string, string>();
         private int index;
-        private string title; //Save title for change check
+        private string title; //Save title for check change
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Constructeurs ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,17 +69,17 @@ namespace LamaMania
         /// </summary>
         public ConfigServ(string name)
         {
-            Lama.log("NOTICE", "ConvigServ in NewServer mode");
-            Lama.log("NOTICE", "Create directory");
             InitializeComponent();
+            Lama.log("NOTICE", "ConvigServ in NewServer mode");
+
             this.index = Lama.mainConfig[0]["servers"].count();
             this.serverPath = @"Servers\" + index + @"\";
 
-       //     loadLang();
-
             //Make server-----------------------------------------------------------------
+            Lama.log("NOTICE", "Create directory");
             Directory.CreateDirectory(this.serverPath);
             DirectoryInfo mps = new DirectoryInfo(@"Ressources\mps\");
+
             Lama.log("NOTICE", "Copy Directory");
             copyDirectory(mps, this.serverPath);
             this.mapPath = serverPath + @"UserData\Maps\";
@@ -99,9 +100,9 @@ namespace LamaMania
             root.addChild("plugins");
             Lama.mainConfig.save(false);
 
-            loadPlugins();
+            Lama.pluginManager.loadConfigServ(flatTabControl1.TabPages, checkedListBox1.Items, this.getConfigValue);
             loadDedicated();
-            loadScript();
+            loadScriptList();
             loadMain();
             loadMaps();
         }
@@ -112,8 +113,8 @@ namespace LamaMania
         /// <param name="index"></param>
         public ConfigServ(int index)
         {
-            Lama.log("NOTICE", "ConfigServ in Edit mode");
             InitializeComponent();
+            Lama.log("NOTICE", "ConfigServ in Edit mode");
             this.serverPath = @"Servers\" + index + @"\";
             this.mapPath = serverPath + @"UserData\Maps\";
             this.index = index;
@@ -123,9 +124,9 @@ namespace LamaMania
 
             this.tb_name.Text = this.serverConfig["name"].Value;
 
-            loadPlugins();
+            Lama.pluginManager.loadConfigServ(flatTabControl1.TabPages, checkedListBox1.Items, this.getConfigValue);
             loadDedicated();
-            loadScript();
+            loadScriptList();
             loadMain();
             loadMaps(); 
         }
@@ -156,35 +157,6 @@ namespace LamaMania
             else
             {
                 this.matchSettings = new XmlDocument(this.serverPath + @"\UserData\Maps\MatchSettings\Default.txt");
-            }
-        }
-
-        void loadPlugins()
-        {
-            Lama.log("NOTICE", "Load Plugins");
-            //Load ConfigServPlugins
-            if (Lama.tabPlugins != null)
-            {
-                checkedListBox1.Items.Clear();
-                foreach (TabPlugin plugin in Lama.tabPlugins)
-                {
-                    plugin.getITabInterface().getConfigValue = this.getConfigValue;
-                    Control ctrl = plugin;
-                    TabPage tp = new TabPage(plugin.PluginName);
-                    tp.Controls.Add(ctrl);
-                    ctrl.Dock = DockStyle.Fill;
-                    flatTabControl1.TabPages.Add(tp);
-                    
-                }
-            }
-            //Load InGamePlugins List
-            if (Lama.inGamePlugins != null)
-            {
-                checkedListBox1.Items.Clear();
-                foreach (BasePlugin plugin in Lama.inGamePlugins)
-                {
-                    checkedListBox1.Items.Add(plugin.PluginName);
-                }
             }
         }
 
@@ -268,10 +240,7 @@ namespace LamaMania
             this.title = tb_title.Text;
         }
 
-        /// <summary>
-        /// Load scripts list
-        /// </summary>
-        void loadScript()
+        void loadScriptList()
         {
             Lama.log("NOTICE", "Load script list");
             cb_gameMode.Items.Clear();
@@ -532,14 +501,52 @@ namespace LamaMania
         }
 
         //Used by plugins
-        private object getConfigValue(ITab sender, string inputName)
+        object getConfigValue(ITab sender, string inputName)
         {
+            object value = null;
             switch (inputName)
             {
-                case "":
+                case "Name":
+                    value = tb_name.Text;
+                    break;
+                case "Title":
+                    value = tb_title.Text;
+                    break;
+                case "InGameName":
+                    value = tb_ingameName.Text;
+                    break;
+                case "Description":
+                    value = tb_description.Text;
+                    break;
+                case "PlayerPassword":
+                    value = tb_playerPass.Text;
+                    break;
+                case "SpecPassword":
+                    value = tb_specPass.Text;
+                    break;
+                case "PlayersLimit":
+                    value = n_playersLimit.Value;
+                    break;
+                case "SpecLimit":
+                    value = n_specsLimit.Value;
+                    break;
+                case "ServerLogin":
+                    value = tb_serverLogin.Text;
+                    break;
+                case "ServerPassword":
+                    value = tb_ServerPass.Text;
+                    break;
+                case "ValidationKey":
+                    value = tb_validKey.Text;
+                    break;
+                case "SuperAdmin":
+                    value = tb_superPass.Text;
+                    break;
+                case "Admin":
+                    value = tb_adminPass.Text;
                     break;
             }
-            return "test";
+            return value;
         }
 
 
@@ -557,21 +564,28 @@ namespace LamaMania
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            l_mapsLocal.Items.Clear();
-            DirectoryInfo dir = new DirectoryInfo(serverPath + @"UserData\" + e.Node.FullPath);
-            foreach (FileInfo file in dir.EnumerateFiles())
-            {
-                l_mapsLocal.Items.Add(file.Name);
-                if (!mapFiles.ContainsValue(file.FullName))
+            try { 
+                l_mapsLocal.Items.Clear();
+                DirectoryInfo dir = new DirectoryInfo(serverPath + @"UserData\" + e.Node.FullPath);
+                foreach (FileInfo file in dir.EnumerateFiles())
                 {
-                    try
+                    l_mapsLocal.Items.Add(file.Name);
+                    if (!mapFiles.ContainsKey(file.Name))
                     {
-                        mapFiles.Add(file.Name, subsep(file.FullName, @"\Maps\"));
-                    }
-                    catch (Exception) {
-                      
+                        try
+                        {
+                            //mapFiles.Add(file.Name, subsep(file.FullName, @"\Maps\"));
+                            mapFiles.Add(file.Name, file.FullName);
+                        }
+                        catch (Exception err) {
+                            Lama.log("ERROR", "[ConfigServ][TreeViewAfterSelect] PathParse error : " + err.Message);
+                        }
                     }
                 }
+            }
+            catch (Exception err)
+            {
+                Lama.log("ERROR", "[ConfigServ][TreeViewAfterSelect] Load error : " + err.Message);
             }
         }
 
@@ -654,24 +668,38 @@ namespace LamaMania
             if(flatTabControl1.SelectedTab == tp_match && this.title != tb_title.Text)
             {
                 this.title = tb_title.Text;
-                loadScript();
+                loadScriptList();
             }
         }
 
         private void l_mapsMatch_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // mapSelected(l_mapsMatch.Items[l_mapsMatch.SelectedIndex].ToString());
+            mapSelected(l_mapsMatch.Items[l_mapsMatch.SelectedIndex].ToString());
         }
 
         private void l_mapsLocal_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // mapSelected(l_mapsLocal.Items[l_mapsLocal.SelectedIndex].ToString());
+            mapSelected(l_mapsLocal.Items[l_mapsLocal.SelectedIndex].ToString());
         }
 
         void mapSelected(string name)
         {
-            GameBox gbx2 = new GameBox(File.Open(mapFiles[name],FileMode.Open));
-            
+            try
+            {
+                MapInformation mi = MapParser.ReadFile(mapFiles[name]);
+                MemoryStream mStream = new MemoryStream();
+
+                mStream.Write(mi.Thumbnail, 0, Convert.ToInt32(mi.Thumbnail.Length));
+
+                Bitmap bm = new Bitmap(mStream, false);
+                bm.RotateFlip(RotateFlipType.Rotate180FlipX);
+
+                this.pictureBox1.Image = bm;
+            }
+            catch (Exception er)
+            {
+                Lama.log("ERROR", "[ConfigServ][MapSelect]>" + er.Message);
+            }
         }
     }
 }

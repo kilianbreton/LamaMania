@@ -155,8 +155,9 @@
             this.formSkin1.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
             this.formSkin1.HeaderMaximize = false;
             this.formSkin1.Location = new System.Drawing.Point(0, 0);
+            this.formSkin1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.formSkin1.Name = "formSkin1";
-            this.formSkin1.Size = new System.Drawing.Size(1237, 684);
+            this.formSkin1.Size = new System.Drawing.Size(928, 556);
             this.formSkin1.TabIndex = 0;
             this.formSkin1.Text = "Configuration";
             // 
@@ -166,10 +167,11 @@
             this.b_cancel.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.b_cancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_cancel.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_cancel.Location = new System.Drawing.Point(12, 640);
+            this.b_cancel.Location = new System.Drawing.Point(9, 520);
+            this.b_cancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_cancel.Name = "b_cancel";
             this.b_cancel.Rounded = false;
-            this.b_cancel.Size = new System.Drawing.Size(106, 32);
+            this.b_cancel.Size = new System.Drawing.Size(80, 26);
             this.b_cancel.TabIndex = 2;
             this.b_cancel.Text = "Cancel";
             this.b_cancel.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -181,10 +183,11 @@
             this.b_save.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_save.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_save.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_save.Location = new System.Drawing.Point(1119, 640);
+            this.b_save.Location = new System.Drawing.Point(839, 520);
+            this.b_save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_save.Name = "b_save";
             this.b_save.Rounded = false;
-            this.b_save.Size = new System.Drawing.Size(106, 32);
+            this.b_save.Size = new System.Drawing.Size(80, 26);
             this.b_save.TabIndex = 1;
             this.b_save.Text = "Save";
             this.b_save.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -200,10 +203,11 @@
             this.flatTabControl1.Controls.Add(this.tabPlugins);
             this.flatTabControl1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.flatTabControl1.ItemSize = new System.Drawing.Size(120, 40);
-            this.flatTabControl1.Location = new System.Drawing.Point(0, 46);
+            this.flatTabControl1.Location = new System.Drawing.Point(0, 37);
+            this.flatTabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flatTabControl1.Name = "flatTabControl1";
             this.flatTabControl1.SelectedIndex = 0;
-            this.flatTabControl1.Size = new System.Drawing.Size(1237, 588);
+            this.flatTabControl1.Size = new System.Drawing.Size(928, 478);
             this.flatTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.flatTabControl1.TabIndex = 0;
             this.flatTabControl1.SelectedIndexChanged += new System.EventHandler(this.flatTabControl1_SelectedIndexChanged);
@@ -241,21 +245,23 @@
             this.tp_general.Controls.Add(this.tb_playerPass);
             this.tp_general.Controls.Add(this.tb_ingameName);
             this.tp_general.Location = new System.Drawing.Point(4, 44);
+            this.tp_general.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tp_general.Name = "tp_general";
-            this.tp_general.Padding = new System.Windows.Forms.Padding(3);
-            this.tp_general.Size = new System.Drawing.Size(1229, 540);
+            this.tp_general.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_general.Size = new System.Drawing.Size(920, 430);
             this.tp_general.TabIndex = 0;
             this.tp_general.Text = "General";
             // 
             // tb_title
             // 
             this.tb_title.BackColor = System.Drawing.Color.Transparent;
-            this.tb_title.Location = new System.Drawing.Point(165, 58);
+            this.tb_title.Location = new System.Drawing.Point(124, 47);
+            this.tb_title.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_title.MaxLength = 32767;
             this.tb_title.Multiline = false;
             this.tb_title.Name = "tb_title";
             this.tb_title.ReadOnly = false;
-            this.tb_title.Size = new System.Drawing.Size(345, 34);
+            this.tb_title.Size = new System.Drawing.Size(259, 29);
             this.tb_title.TabIndex = 29;
             this.tb_title.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_title.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -267,9 +273,10 @@
             this.flatLabel15.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel15.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel15.ForeColor = System.Drawing.Color.White;
-            this.flatLabel15.Location = new System.Drawing.Point(798, 270);
+            this.flatLabel15.Location = new System.Drawing.Point(598, 219);
+            this.flatLabel15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel15.Name = "flatLabel15";
-            this.flatLabel15.Size = new System.Drawing.Size(53, 23);
+            this.flatLabel15.Size = new System.Drawing.Size(44, 19);
             this.flatLabel15.TabIndex = 28;
             this.flatLabel15.Text = "User :";
             // 
@@ -279,9 +286,10 @@
             this.flatLabel14.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel14.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel14.ForeColor = System.Drawing.Color.White;
-            this.flatLabel14.Location = new System.Drawing.Point(782, 230);
+            this.flatLabel14.Location = new System.Drawing.Point(586, 187);
+            this.flatLabel14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel14.Name = "flatLabel14";
-            this.flatLabel14.Size = new System.Drawing.Size(69, 23);
+            this.flatLabel14.Size = new System.Drawing.Size(56, 19);
             this.flatLabel14.TabIndex = 27;
             this.flatLabel14.Text = "Admin :";
             // 
@@ -291,21 +299,23 @@
             this.flatLabel13.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel13.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel13.ForeColor = System.Drawing.Color.White;
-            this.flatLabel13.Location = new System.Drawing.Point(737, 190);
+            this.flatLabel13.Location = new System.Drawing.Point(553, 154);
+            this.flatLabel13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel13.Name = "flatLabel13";
-            this.flatLabel13.Size = new System.Drawing.Size(113, 23);
+            this.flatLabel13.Size = new System.Drawing.Size(91, 19);
             this.flatLabel13.TabIndex = 26;
             this.flatLabel13.Text = "SuperAdmin :";
             // 
             // tb_userPass
             // 
             this.tb_userPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_userPass.Location = new System.Drawing.Point(858, 265);
+            this.tb_userPass.Location = new System.Drawing.Point(644, 215);
+            this.tb_userPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_userPass.MaxLength = 32767;
             this.tb_userPass.Multiline = false;
             this.tb_userPass.Name = "tb_userPass";
             this.tb_userPass.ReadOnly = false;
-            this.tb_userPass.Size = new System.Drawing.Size(352, 34);
+            this.tb_userPass.Size = new System.Drawing.Size(264, 29);
             this.tb_userPass.TabIndex = 25;
             this.tb_userPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_userPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -314,12 +324,13 @@
             // tb_adminPass
             // 
             this.tb_adminPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_adminPass.Location = new System.Drawing.Point(858, 224);
+            this.tb_adminPass.Location = new System.Drawing.Point(644, 182);
+            this.tb_adminPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_adminPass.MaxLength = 32767;
             this.tb_adminPass.Multiline = false;
             this.tb_adminPass.Name = "tb_adminPass";
             this.tb_adminPass.ReadOnly = false;
-            this.tb_adminPass.Size = new System.Drawing.Size(352, 34);
+            this.tb_adminPass.Size = new System.Drawing.Size(264, 29);
             this.tb_adminPass.TabIndex = 24;
             this.tb_adminPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_adminPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -328,12 +339,13 @@
             // tb_superPass
             // 
             this.tb_superPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_superPass.Location = new System.Drawing.Point(858, 184);
+            this.tb_superPass.Location = new System.Drawing.Point(644, 150);
+            this.tb_superPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_superPass.MaxLength = 32767;
             this.tb_superPass.Multiline = false;
             this.tb_superPass.Name = "tb_superPass";
             this.tb_superPass.ReadOnly = false;
-            this.tb_superPass.Size = new System.Drawing.Size(352, 34);
+            this.tb_superPass.Size = new System.Drawing.Size(264, 29);
             this.tb_superPass.TabIndex = 23;
             this.tb_superPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_superPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -345,9 +357,10 @@
             this.flatLabel12.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel12.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel12.ForeColor = System.Drawing.Color.White;
-            this.flatLabel12.Location = new System.Drawing.Point(709, 140);
+            this.flatLabel12.Location = new System.Drawing.Point(532, 114);
+            this.flatLabel12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel12.Name = "flatLabel12";
-            this.flatLabel12.Size = new System.Drawing.Size(507, 23);
+            this.flatLabel12.Size = new System.Drawing.Size(435, 19);
             this.flatLabel12.TabIndex = 22;
             this.flatLabel12.Text = "_______________________________________________________________________";
             // 
@@ -357,9 +370,10 @@
             this.flatLabel11.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel11.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel11.ForeColor = System.Drawing.Color.White;
-            this.flatLabel11.Location = new System.Drawing.Point(18, 63);
+            this.flatLabel11.Location = new System.Drawing.Point(14, 51);
+            this.flatLabel11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel11.Name = "flatLabel11";
-            this.flatLabel11.Size = new System.Drawing.Size(51, 23);
+            this.flatLabel11.Size = new System.Drawing.Size(41, 19);
             this.flatLabel11.TabIndex = 21;
             this.flatLabel11.Text = "Title :";
             // 
@@ -369,9 +383,10 @@
             this.flatLabel10.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel10.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel10.ForeColor = System.Drawing.Color.White;
-            this.flatLabel10.Location = new System.Drawing.Point(324, 345);
+            this.flatLabel10.Location = new System.Drawing.Point(243, 280);
+            this.flatLabel10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel10.Name = "flatLabel10";
-            this.flatLabel10.Size = new System.Drawing.Size(104, 23);
+            this.flatLabel10.Size = new System.Drawing.Size(84, 19);
             this.flatLabel10.TabIndex = 19;
             this.flatLabel10.Text = "Specs Limit :";
             // 
@@ -381,9 +396,10 @@
             this.flatLabel9.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel9.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel9.ForeColor = System.Drawing.Color.White;
-            this.flatLabel9.Location = new System.Drawing.Point(18, 345);
+            this.flatLabel9.Location = new System.Drawing.Point(14, 280);
+            this.flatLabel9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel9.Name = "flatLabel9";
-            this.flatLabel9.Size = new System.Drawing.Size(114, 23);
+            this.flatLabel9.Size = new System.Drawing.Size(93, 19);
             this.flatLabel9.TabIndex = 18;
             this.flatLabel9.Text = "Players Limit :";
             // 
@@ -394,11 +410,12 @@
             this.n_playersLimit.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_playersLimit.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_playersLimit.ForeColor = System.Drawing.Color.White;
-            this.n_playersLimit.Location = new System.Drawing.Point(165, 341);
+            this.n_playersLimit.Location = new System.Drawing.Point(124, 277);
+            this.n_playersLimit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_playersLimit.Maximum = ((long)(9999999));
             this.n_playersLimit.Minimum = ((long)(0));
             this.n_playersLimit.Name = "n_playersLimit";
-            this.n_playersLimit.Size = new System.Drawing.Size(75, 30);
+            this.n_playersLimit.Size = new System.Drawing.Size(56, 30);
             this.n_playersLimit.TabIndex = 17;
             this.n_playersLimit.Text = "flatNumeric2";
             this.n_playersLimit.Value = ((long)(0));
@@ -409,21 +426,23 @@
             this.flatLabel8.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel8.ForeColor = System.Drawing.Color.White;
-            this.flatLabel8.Location = new System.Drawing.Point(18, 307);
+            this.flatLabel8.Location = new System.Drawing.Point(14, 249);
+            this.flatLabel8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel8.Name = "flatLabel8";
-            this.flatLabel8.Size = new System.Drawing.Size(130, 23);
+            this.flatLabel8.Size = new System.Drawing.Size(106, 19);
             this.flatLabel8.TabIndex = 16;
             this.flatLabel8.Text = "Spec Password :";
             // 
             // tb_specPass
             // 
             this.tb_specPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_specPass.Location = new System.Drawing.Point(165, 301);
+            this.tb_specPass.Location = new System.Drawing.Point(124, 245);
+            this.tb_specPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_specPass.MaxLength = 32767;
             this.tb_specPass.Multiline = false;
             this.tb_specPass.Name = "tb_specPass";
             this.tb_specPass.ReadOnly = false;
-            this.tb_specPass.Size = new System.Drawing.Size(345, 34);
+            this.tb_specPass.Size = new System.Drawing.Size(259, 29);
             this.tb_specPass.TabIndex = 15;
             this.tb_specPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_specPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -435,9 +454,10 @@
             this.flatLabel7.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel7.ForeColor = System.Drawing.Color.White;
-            this.flatLabel7.Location = new System.Drawing.Point(16, 266);
+            this.flatLabel7.Location = new System.Drawing.Point(12, 216);
+            this.flatLabel7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel7.Name = "flatLabel7";
-            this.flatLabel7.Size = new System.Drawing.Size(140, 23);
+            this.flatLabel7.Size = new System.Drawing.Size(115, 19);
             this.flatLabel7.TabIndex = 14;
             this.flatLabel7.Text = "Player Password :";
             // 
@@ -448,11 +468,12 @@
             this.n_specsLimit.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_specsLimit.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_specsLimit.ForeColor = System.Drawing.Color.White;
-            this.n_specsLimit.Location = new System.Drawing.Point(435, 341);
+            this.n_specsLimit.Location = new System.Drawing.Point(326, 277);
+            this.n_specsLimit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_specsLimit.Maximum = ((long)(9999999));
             this.n_specsLimit.Minimum = ((long)(0));
             this.n_specsLimit.Name = "n_specsLimit";
-            this.n_specsLimit.Size = new System.Drawing.Size(75, 30);
+            this.n_specsLimit.Size = new System.Drawing.Size(56, 30);
             this.n_specsLimit.TabIndex = 13;
             this.n_specsLimit.Text = "flatNumeric1";
             this.n_specsLimit.Value = ((long)(0));
@@ -463,9 +484,10 @@
             this.flatLabel6.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel6.ForeColor = System.Drawing.Color.White;
-            this.flatLabel6.Location = new System.Drawing.Point(18, 179);
+            this.flatLabel6.Location = new System.Drawing.Point(14, 145);
+            this.flatLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel6.Name = "flatLabel6";
-            this.flatLabel6.Size = new System.Drawing.Size(105, 23);
+            this.flatLabel6.Size = new System.Drawing.Size(85, 19);
             this.flatLabel6.TabIndex = 12;
             this.flatLabel6.Text = "Description :";
             // 
@@ -475,9 +497,10 @@
             this.flatLabel5.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel5.ForeColor = System.Drawing.Color.White;
-            this.flatLabel5.Location = new System.Drawing.Point(969, 104);
+            this.flatLabel5.Location = new System.Drawing.Point(727, 84);
+            this.flatLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel5.Name = "flatLabel5";
-            this.flatLabel5.Size = new System.Drawing.Size(127, 23);
+            this.flatLabel5.Size = new System.Drawing.Size(102, 19);
             this.flatLabel5.TabIndex = 11;
             this.flatLabel5.Text = "Validation Key :";
             // 
@@ -487,9 +510,10 @@
             this.flatLabel4.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel4.ForeColor = System.Drawing.Color.White;
-            this.flatLabel4.Location = new System.Drawing.Point(710, 63);
+            this.flatLabel4.Location = new System.Drawing.Point(532, 51);
+            this.flatLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel4.Name = "flatLabel4";
-            this.flatLabel4.Size = new System.Drawing.Size(141, 23);
+            this.flatLabel4.Size = new System.Drawing.Size(116, 19);
             this.flatLabel4.TabIndex = 10;
             this.flatLabel4.Text = "Server Password :";
             // 
@@ -499,9 +523,10 @@
             this.flatLabel3.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel3.ForeColor = System.Drawing.Color.White;
-            this.flatLabel3.Location = new System.Drawing.Point(738, 26);
+            this.flatLabel3.Location = new System.Drawing.Point(554, 21);
+            this.flatLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel3.Name = "flatLabel3";
-            this.flatLabel3.Size = new System.Drawing.Size(113, 23);
+            this.flatLabel3.Size = new System.Drawing.Size(92, 19);
             this.flatLabel3.TabIndex = 9;
             this.flatLabel3.Text = "Server Login :";
             // 
@@ -511,9 +536,10 @@
             this.flatLabel2.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel2.ForeColor = System.Drawing.Color.White;
-            this.flatLabel2.Location = new System.Drawing.Point(18, 100);
+            this.flatLabel2.Location = new System.Drawing.Point(14, 81);
+            this.flatLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel2.Name = "flatLabel2";
-            this.flatLabel2.Size = new System.Drawing.Size(128, 23);
+            this.flatLabel2.Size = new System.Drawing.Size(102, 19);
             this.flatLabel2.TabIndex = 8;
             this.flatLabel2.Text = "Ingame Name :";
             // 
@@ -523,21 +549,23 @@
             this.flatLabel1.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel1.ForeColor = System.Drawing.Color.White;
-            this.flatLabel1.Location = new System.Drawing.Point(18, 26);
+            this.flatLabel1.Location = new System.Drawing.Point(14, 21);
+            this.flatLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel1.Name = "flatLabel1";
-            this.flatLabel1.Size = new System.Drawing.Size(65, 23);
+            this.flatLabel1.Size = new System.Drawing.Size(52, 19);
             this.flatLabel1.TabIndex = 7;
             this.flatLabel1.Text = "Name :";
             // 
             // tb_name
             // 
             this.tb_name.BackColor = System.Drawing.Color.Transparent;
-            this.tb_name.Location = new System.Drawing.Point(165, 19);
+            this.tb_name.Location = new System.Drawing.Point(124, 15);
+            this.tb_name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_name.MaxLength = 32767;
             this.tb_name.Multiline = false;
             this.tb_name.Name = "tb_name";
             this.tb_name.ReadOnly = false;
-            this.tb_name.Size = new System.Drawing.Size(345, 34);
+            this.tb_name.Size = new System.Drawing.Size(259, 29);
             this.tb_name.TabIndex = 1;
             this.tb_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_name.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -546,12 +574,13 @@
             // tb_description
             // 
             this.tb_description.BackColor = System.Drawing.Color.Transparent;
-            this.tb_description.Location = new System.Drawing.Point(165, 136);
+            this.tb_description.Location = new System.Drawing.Point(124, 110);
+            this.tb_description.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_description.MaxLength = 32767;
             this.tb_description.Multiline = true;
             this.tb_description.Name = "tb_description";
             this.tb_description.ReadOnly = false;
-            this.tb_description.Size = new System.Drawing.Size(345, 119);
+            this.tb_description.Size = new System.Drawing.Size(259, 97);
             this.tb_description.TabIndex = 3;
             this.tb_description.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_description.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -560,12 +589,13 @@
             // tb_serverLogin
             // 
             this.tb_serverLogin.BackColor = System.Drawing.Color.Transparent;
-            this.tb_serverLogin.Location = new System.Drawing.Point(858, 19);
+            this.tb_serverLogin.Location = new System.Drawing.Point(644, 15);
+            this.tb_serverLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_serverLogin.MaxLength = 32767;
             this.tb_serverLogin.Multiline = false;
             this.tb_serverLogin.Name = "tb_serverLogin";
             this.tb_serverLogin.ReadOnly = false;
-            this.tb_serverLogin.Size = new System.Drawing.Size(352, 34);
+            this.tb_serverLogin.Size = new System.Drawing.Size(264, 29);
             this.tb_serverLogin.TabIndex = 4;
             this.tb_serverLogin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_serverLogin.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -574,12 +604,13 @@
             // tb_ServerPass
             // 
             this.tb_ServerPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_ServerPass.Location = new System.Drawing.Point(858, 59);
+            this.tb_ServerPass.Location = new System.Drawing.Point(644, 48);
+            this.tb_ServerPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_ServerPass.MaxLength = 32767;
             this.tb_ServerPass.Multiline = false;
             this.tb_ServerPass.Name = "tb_ServerPass";
             this.tb_ServerPass.ReadOnly = false;
-            this.tb_ServerPass.Size = new System.Drawing.Size(352, 34);
+            this.tb_ServerPass.Size = new System.Drawing.Size(264, 29);
             this.tb_ServerPass.TabIndex = 5;
             this.tb_ServerPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_ServerPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -588,12 +619,13 @@
             // tb_validKey
             // 
             this.tb_validKey.BackColor = System.Drawing.Color.Transparent;
-            this.tb_validKey.Location = new System.Drawing.Point(1103, 99);
+            this.tb_validKey.Location = new System.Drawing.Point(827, 80);
+            this.tb_validKey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_validKey.MaxLength = 32767;
             this.tb_validKey.Multiline = false;
             this.tb_validKey.Name = "tb_validKey";
             this.tb_validKey.ReadOnly = false;
-            this.tb_validKey.Size = new System.Drawing.Size(107, 34);
+            this.tb_validKey.Size = new System.Drawing.Size(80, 29);
             this.tb_validKey.TabIndex = 6;
             this.tb_validKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_validKey.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -602,12 +634,13 @@
             // tb_playerPass
             // 
             this.tb_playerPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_playerPass.Location = new System.Drawing.Point(165, 261);
+            this.tb_playerPass.Location = new System.Drawing.Point(124, 212);
+            this.tb_playerPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_playerPass.MaxLength = 32767;
             this.tb_playerPass.Multiline = false;
             this.tb_playerPass.Name = "tb_playerPass";
             this.tb_playerPass.ReadOnly = false;
-            this.tb_playerPass.Size = new System.Drawing.Size(345, 34);
+            this.tb_playerPass.Size = new System.Drawing.Size(259, 29);
             this.tb_playerPass.TabIndex = 0;
             this.tb_playerPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_playerPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -616,12 +649,13 @@
             // tb_ingameName
             // 
             this.tb_ingameName.BackColor = System.Drawing.Color.Transparent;
-            this.tb_ingameName.Location = new System.Drawing.Point(165, 96);
+            this.tb_ingameName.Location = new System.Drawing.Point(124, 78);
+            this.tb_ingameName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_ingameName.MaxLength = 32767;
             this.tb_ingameName.Multiline = false;
             this.tb_ingameName.Name = "tb_ingameName";
             this.tb_ingameName.ReadOnly = false;
-            this.tb_ingameName.Size = new System.Drawing.Size(345, 34);
+            this.tb_ingameName.Size = new System.Drawing.Size(259, 29);
             this.tb_ingameName.TabIndex = 2;
             this.tb_ingameName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_ingameName.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -670,9 +704,10 @@
             this.tp_advanced.Controls.Add(this.tb_p2pPort);
             this.tp_advanced.Controls.Add(this.tb_ServerPort);
             this.tp_advanced.Location = new System.Drawing.Point(4, 44);
+            this.tp_advanced.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tp_advanced.Name = "tp_advanced";
-            this.tp_advanced.Padding = new System.Windows.Forms.Padding(3);
-            this.tp_advanced.Size = new System.Drawing.Size(1229, 540);
+            this.tp_advanced.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_advanced.Size = new System.Drawing.Size(920, 430);
             this.tp_advanced.TabIndex = 1;
             this.tp_advanced.Text = "Advanced";
             // 
@@ -684,10 +719,11 @@
             this.ch_internetServer.Checked = false;
             this.ch_internetServer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_internetServer.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_internetServer.Location = new System.Drawing.Point(1005, 340);
+            this.ch_internetServer.Location = new System.Drawing.Point(754, 276);
+            this.ch_internetServer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_internetServer.Name = "ch_internetServer";
             this.ch_internetServer.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_internetServer.Size = new System.Drawing.Size(202, 22);
+            this.ch_internetServer.Size = new System.Drawing.Size(152, 22);
             this.ch_internetServer.TabIndex = 50;
             this.ch_internetServer.Text = "Internet server";
             // 
@@ -697,9 +733,10 @@
             this.flatLabel33.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel33.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel33.ForeColor = System.Drawing.Color.White;
-            this.flatLabel33.Location = new System.Drawing.Point(977, 279);
+            this.flatLabel33.Location = new System.Drawing.Point(733, 227);
+            this.flatLabel33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel33.Name = "flatLabel33";
-            this.flatLabel33.Size = new System.Drawing.Size(128, 23);
+            this.flatLabel33.Size = new System.Drawing.Size(103, 19);
             this.flatLabel33.TabIndex = 49;
             this.flatLabel33.Text = "P2PCache size :";
             // 
@@ -710,11 +747,12 @@
             this.n_p2pCacheSize.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_p2pCacheSize.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_p2pCacheSize.ForeColor = System.Drawing.Color.White;
-            this.n_p2pCacheSize.Location = new System.Drawing.Point(1114, 275);
+            this.n_p2pCacheSize.Location = new System.Drawing.Point(836, 223);
+            this.n_p2pCacheSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_p2pCacheSize.Maximum = ((long)(9999999));
             this.n_p2pCacheSize.Minimum = ((long)(0));
             this.n_p2pCacheSize.Name = "n_p2pCacheSize";
-            this.n_p2pCacheSize.Size = new System.Drawing.Size(104, 30);
+            this.n_p2pCacheSize.Size = new System.Drawing.Size(78, 30);
             this.n_p2pCacheSize.TabIndex = 48;
             this.n_p2pCacheSize.Text = "flatNumeric5";
             this.n_p2pCacheSize.Value = ((long)(0));
@@ -727,10 +765,11 @@
             this.ch_allowSpecRelay.Checked = false;
             this.ch_allowSpecRelay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_allowSpecRelay.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_allowSpecRelay.Location = new System.Drawing.Point(15, 389);
+            this.ch_allowSpecRelay.Location = new System.Drawing.Point(11, 316);
+            this.ch_allowSpecRelay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_allowSpecRelay.Name = "ch_allowSpecRelay";
             this.ch_allowSpecRelay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_allowSpecRelay.Size = new System.Drawing.Size(244, 22);
+            this.ch_allowSpecRelay.Size = new System.Drawing.Size(183, 22);
             this.ch_allowSpecRelay.TabIndex = 47;
             this.ch_allowSpecRelay.Text = "Allow spectators Relay";
             // 
@@ -740,9 +779,10 @@
             this.flatLabel32.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel32.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel32.ForeColor = System.Drawing.Color.White;
-            this.flatLabel32.Location = new System.Drawing.Point(864, 241);
+            this.flatLabel32.Location = new System.Drawing.Point(648, 196);
+            this.flatLabel32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel32.Name = "flatLabel32";
-            this.flatLabel32.Size = new System.Drawing.Size(244, 23);
+            this.flatLabel32.Size = new System.Drawing.Size(198, 19);
             this.flatLabel32.TabIndex = 46;
             this.flatLabel32.Text = "PacketAssembly ThreadCount :";
             // 
@@ -753,11 +793,12 @@
             this.n_paThreadCount.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_paThreadCount.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_paThreadCount.ForeColor = System.Drawing.Color.White;
-            this.n_paThreadCount.Location = new System.Drawing.Point(1114, 236);
+            this.n_paThreadCount.Location = new System.Drawing.Point(836, 192);
+            this.n_paThreadCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_paThreadCount.Maximum = ((long)(9999999));
             this.n_paThreadCount.Minimum = ((long)(0));
             this.n_paThreadCount.Name = "n_paThreadCount";
-            this.n_paThreadCount.Size = new System.Drawing.Size(104, 30);
+            this.n_paThreadCount.Size = new System.Drawing.Size(78, 30);
             this.n_paThreadCount.TabIndex = 45;
             this.n_paThreadCount.Text = "flatNumeric5";
             this.n_paThreadCount.Value = ((long)(0));
@@ -777,9 +818,10 @@
             "Allways shown",
             "Allways hidden",
             "Hidden from Nations"});
-            this.cb_hiddenServer.Location = new System.Drawing.Point(173, 170);
+            this.cb_hiddenServer.Location = new System.Drawing.Point(130, 138);
+            this.cb_hiddenServer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cb_hiddenServer.Name = "cb_hiddenServer";
-            this.cb_hiddenServer.Size = new System.Drawing.Size(253, 24);
+            this.cb_hiddenServer.Size = new System.Drawing.Size(191, 24);
             this.cb_hiddenServer.TabIndex = 44;
             // 
             // flatLabel31
@@ -788,9 +830,10 @@
             this.flatLabel31.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel31.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel31.ForeColor = System.Drawing.Color.White;
-            this.flatLabel31.Location = new System.Drawing.Point(12, 169);
+            this.flatLabel31.Location = new System.Drawing.Point(9, 137);
+            this.flatLabel31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel31.Name = "flatLabel31";
-            this.flatLabel31.Size = new System.Drawing.Size(126, 23);
+            this.flatLabel31.Size = new System.Drawing.Size(102, 19);
             this.flatLabel31.TabIndex = 43;
             this.flatLabel31.Text = "Hidden Server :";
             // 
@@ -800,9 +843,10 @@
             this.flatLabel25.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel25.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel25.ForeColor = System.Drawing.Color.White;
-            this.flatLabel25.Location = new System.Drawing.Point(12, 133);
+            this.flatLabel25.Location = new System.Drawing.Point(9, 108);
+            this.flatLabel25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel25.Name = "flatLabel25";
-            this.flatLabel25.Size = new System.Drawing.Size(98, 23);
+            this.flatLabel25.Size = new System.Drawing.Size(79, 19);
             this.flatLabel25.TabIndex = 42;
             this.flatLabel25.Text = "Vote Ratio :";
             // 
@@ -812,21 +856,23 @@
             this.flatLabel24.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel24.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel24.ForeColor = System.Drawing.Color.White;
-            this.flatLabel24.Location = new System.Drawing.Point(12, 94);
+            this.flatLabel24.Location = new System.Drawing.Point(9, 76);
+            this.flatLabel24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel24.Name = "flatLabel24";
-            this.flatLabel24.Size = new System.Drawing.Size(122, 23);
+            this.flatLabel24.Size = new System.Drawing.Size(98, 19);
             this.flatLabel24.TabIndex = 41;
             this.flatLabel24.Text = "Vote Timeout :";
             // 
             // tb_voteRatio
             // 
             this.tb_voteRatio.BackColor = System.Drawing.Color.Transparent;
-            this.tb_voteRatio.Location = new System.Drawing.Point(173, 129);
+            this.tb_voteRatio.Location = new System.Drawing.Point(130, 105);
+            this.tb_voteRatio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_voteRatio.MaxLength = 32767;
             this.tb_voteRatio.Multiline = false;
             this.tb_voteRatio.Name = "tb_voteRatio";
             this.tb_voteRatio.ReadOnly = false;
-            this.tb_voteRatio.Size = new System.Drawing.Size(253, 34);
+            this.tb_voteRatio.Size = new System.Drawing.Size(190, 29);
             this.tb_voteRatio.TabIndex = 40;
             this.tb_voteRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_voteRatio.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -839,11 +885,12 @@
             this.n_voteTimeout.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_voteTimeout.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_voteTimeout.ForeColor = System.Drawing.Color.White;
-            this.n_voteTimeout.Location = new System.Drawing.Point(173, 90);
+            this.n_voteTimeout.Location = new System.Drawing.Point(130, 73);
+            this.n_voteTimeout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_voteTimeout.Maximum = ((long)(9999999));
             this.n_voteTimeout.Minimum = ((long)(0));
             this.n_voteTimeout.Name = "n_voteTimeout";
-            this.n_voteTimeout.Size = new System.Drawing.Size(253, 30);
+            this.n_voteTimeout.Size = new System.Drawing.Size(190, 30);
             this.n_voteTimeout.TabIndex = 39;
             this.n_voteTimeout.Text = "n_voteTimeout";
             this.n_voteTimeout.Value = ((long)(0));
@@ -851,12 +898,13 @@
             // tb_proxy
             // 
             this.tb_proxy.BackColor = System.Drawing.Color.Transparent;
-            this.tb_proxy.Location = new System.Drawing.Point(1006, 396);
+            this.tb_proxy.Location = new System.Drawing.Point(754, 322);
+            this.tb_proxy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_proxy.MaxLength = 32767;
             this.tb_proxy.Multiline = false;
             this.tb_proxy.Name = "tb_proxy";
             this.tb_proxy.ReadOnly = false;
-            this.tb_proxy.Size = new System.Drawing.Size(212, 34);
+            this.tb_proxy.Size = new System.Drawing.Size(159, 29);
             this.tb_proxy.TabIndex = 38;
             this.tb_proxy.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_proxy.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -870,10 +918,11 @@
             this.ch_proxy.Checked = false;
             this.ch_proxy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_proxy.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_proxy.Location = new System.Drawing.Point(1006, 368);
+            this.ch_proxy.Location = new System.Drawing.Point(754, 299);
+            this.ch_proxy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_proxy.Name = "ch_proxy";
             this.ch_proxy.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_proxy.Size = new System.Drawing.Size(100, 22);
+            this.ch_proxy.Size = new System.Drawing.Size(75, 22);
             this.ch_proxy.TabIndex = 37;
             this.ch_proxy.Text = "Proxy";
             // 
@@ -883,9 +932,10 @@
             this.flatLabel23.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel23.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel23.ForeColor = System.Drawing.Color.White;
-            this.flatLabel23.Location = new System.Drawing.Point(992, 205);
+            this.flatLabel23.Location = new System.Drawing.Point(744, 167);
+            this.flatLabel23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel23.Name = "flatLabel23";
-            this.flatLabel23.Size = new System.Drawing.Size(113, 23);
+            this.flatLabel23.Size = new System.Drawing.Size(91, 19);
             this.flatLabel23.TabIndex = 36;
             this.flatLabel23.Text = "Upload Rate :";
             // 
@@ -895,9 +945,10 @@
             this.flatLabel22.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel22.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel22.ForeColor = System.Drawing.Color.White;
-            this.flatLabel22.Location = new System.Drawing.Point(970, 169);
+            this.flatLabel22.Location = new System.Drawing.Point(728, 137);
+            this.flatLabel22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel22.Name = "flatLabel22";
-            this.flatLabel22.Size = new System.Drawing.Size(135, 23);
+            this.flatLabel22.Size = new System.Drawing.Size(109, 19);
             this.flatLabel22.TabIndex = 35;
             this.flatLabel22.Text = "Download Rate :";
             // 
@@ -908,11 +959,12 @@
             this.n_UpRate.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_UpRate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_UpRate.ForeColor = System.Drawing.Color.White;
-            this.n_UpRate.Location = new System.Drawing.Point(1114, 200);
+            this.n_UpRate.Location = new System.Drawing.Point(836, 162);
+            this.n_UpRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_UpRate.Maximum = ((long)(9999999));
             this.n_UpRate.Minimum = ((long)(0));
             this.n_UpRate.Name = "n_UpRate";
-            this.n_UpRate.Size = new System.Drawing.Size(104, 30);
+            this.n_UpRate.Size = new System.Drawing.Size(78, 30);
             this.n_UpRate.TabIndex = 34;
             this.n_UpRate.Text = "flatNumeric5";
             this.n_UpRate.Value = ((long)(0));
@@ -924,11 +976,12 @@
             this.n_DownRate.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_DownRate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_DownRate.ForeColor = System.Drawing.Color.White;
-            this.n_DownRate.Location = new System.Drawing.Point(1114, 164);
+            this.n_DownRate.Location = new System.Drawing.Point(836, 133);
+            this.n_DownRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_DownRate.Maximum = ((long)(9999999));
             this.n_DownRate.Minimum = ((long)(0));
             this.n_DownRate.Name = "n_DownRate";
-            this.n_DownRate.Size = new System.Drawing.Size(104, 30);
+            this.n_DownRate.Size = new System.Drawing.Size(78, 30);
             this.n_DownRate.TabIndex = 33;
             this.n_DownRate.Text = "flatNumeric4";
             this.n_DownRate.Value = ((long)(0));
@@ -941,10 +994,11 @@
             this.ch_xmlRpcRemote.Checked = false;
             this.ch_xmlRpcRemote.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_xmlRpcRemote.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_xmlRpcRemote.Location = new System.Drawing.Point(1009, 436);
+            this.ch_xmlRpcRemote.Location = new System.Drawing.Point(757, 354);
+            this.ch_xmlRpcRemote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_xmlRpcRemote.Name = "ch_xmlRpcRemote";
             this.ch_xmlRpcRemote.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_xmlRpcRemote.Size = new System.Drawing.Size(198, 22);
+            this.ch_xmlRpcRemote.Size = new System.Drawing.Size(148, 22);
             this.ch_xmlRpcRemote.TabIndex = 32;
             this.ch_xmlRpcRemote.Text = "XMLRPC Allow remote";
             // 
@@ -954,9 +1008,10 @@
             this.flatLabel21.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel21.ForeColor = System.Drawing.Color.White;
-            this.flatLabel21.Location = new System.Drawing.Point(981, 132);
+            this.flatLabel21.Location = new System.Drawing.Point(736, 107);
+            this.flatLabel21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel21.Name = "flatLabel21";
-            this.flatLabel21.Size = new System.Drawing.Size(124, 23);
+            this.flatLabel21.Size = new System.Drawing.Size(101, 19);
             this.flatLabel21.TabIndex = 31;
             this.flatLabel21.Text = "Max Lantency :";
             // 
@@ -967,11 +1022,12 @@
             this.n_maxLat.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_maxLat.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_maxLat.ForeColor = System.Drawing.Color.White;
-            this.n_maxLat.Location = new System.Drawing.Point(1114, 128);
+            this.n_maxLat.Location = new System.Drawing.Point(836, 104);
+            this.n_maxLat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_maxLat.Maximum = ((long)(9999999));
             this.n_maxLat.Minimum = ((long)(0));
             this.n_maxLat.Name = "n_maxLat";
-            this.n_maxLat.Size = new System.Drawing.Size(104, 30);
+            this.n_maxLat.Size = new System.Drawing.Size(78, 30);
             this.n_maxLat.TabIndex = 30;
             this.n_maxLat.Text = "flatNumeric3";
             this.n_maxLat.Value = ((long)(0));
@@ -984,10 +1040,11 @@
             this.ch_horns.Checked = false;
             this.ch_horns.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_horns.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_horns.Location = new System.Drawing.Point(15, 359);
+            this.ch_horns.Location = new System.Drawing.Point(11, 292);
+            this.ch_horns.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_horns.Name = "ch_horns";
             this.ch_horns.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_horns.Size = new System.Drawing.Size(244, 22);
+            this.ch_horns.Size = new System.Drawing.Size(183, 22);
             this.ch_horns.TabIndex = 29;
             this.ch_horns.Text = "Disable Horns";
             // 
@@ -999,10 +1056,11 @@
             this.ch_mapDown.Checked = false;
             this.ch_mapDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_mapDown.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_mapDown.Location = new System.Drawing.Point(15, 331);
+            this.ch_mapDown.Location = new System.Drawing.Point(11, 269);
+            this.ch_mapDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_mapDown.Name = "ch_mapDown";
             this.ch_mapDown.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_mapDown.Size = new System.Drawing.Size(244, 22);
+            this.ch_mapDown.Size = new System.Drawing.Size(183, 22);
             this.ch_mapDown.TabIndex = 28;
             this.ch_mapDown.Text = "Map Download";
             // 
@@ -1014,10 +1072,11 @@
             this.ch_saveValReplay.Checked = false;
             this.ch_saveValReplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_saveValReplay.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_saveValReplay.Location = new System.Drawing.Point(15, 303);
+            this.ch_saveValReplay.Location = new System.Drawing.Point(11, 246);
+            this.ch_saveValReplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_saveValReplay.Name = "ch_saveValReplay";
             this.ch_saveValReplay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_saveValReplay.Size = new System.Drawing.Size(244, 22);
+            this.ch_saveValReplay.Size = new System.Drawing.Size(183, 22);
             this.ch_saveValReplay.TabIndex = 27;
             this.ch_saveValReplay.Text = "Save Validation Replays";
             // 
@@ -1029,10 +1088,11 @@
             this.ch_autoSaveReplay.Checked = false;
             this.ch_autoSaveReplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_autoSaveReplay.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_autoSaveReplay.Location = new System.Drawing.Point(15, 275);
+            this.ch_autoSaveReplay.Location = new System.Drawing.Point(11, 223);
+            this.ch_autoSaveReplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_autoSaveReplay.Name = "ch_autoSaveReplay";
             this.ch_autoSaveReplay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_autoSaveReplay.Size = new System.Drawing.Size(244, 22);
+            this.ch_autoSaveReplay.Size = new System.Drawing.Size(183, 22);
             this.ch_autoSaveReplay.TabIndex = 26;
             this.ch_autoSaveReplay.Text = "Auto Save Replays";
             // 
@@ -1044,10 +1104,11 @@
             this.ch_p2pUp.Checked = false;
             this.ch_p2pUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_p2pUp.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_p2pUp.Location = new System.Drawing.Point(1009, 492);
+            this.ch_p2pUp.Location = new System.Drawing.Point(757, 400);
+            this.ch_p2pUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_p2pUp.Name = "ch_p2pUp";
             this.ch_p2pUp.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_p2pUp.Size = new System.Drawing.Size(118, 22);
+            this.ch_p2pUp.Size = new System.Drawing.Size(88, 22);
             this.ch_p2pUp.TabIndex = 25;
             this.ch_p2pUp.Text = "P2P Upload";
             // 
@@ -1059,10 +1120,11 @@
             this.ch_p2pDown.Checked = false;
             this.ch_p2pDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_p2pDown.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_p2pDown.Location = new System.Drawing.Point(1009, 464);
+            this.ch_p2pDown.Location = new System.Drawing.Point(757, 377);
+            this.ch_p2pDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_p2pDown.Name = "ch_p2pDown";
             this.ch_p2pDown.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_p2pDown.Size = new System.Drawing.Size(149, 22);
+            this.ch_p2pDown.Size = new System.Drawing.Size(112, 22);
             this.ch_p2pDown.TabIndex = 24;
             this.ch_p2pDown.Text = "P2P Downlaod";
             // 
@@ -1074,10 +1136,11 @@
             this.ch_keepPlayerSlot.Checked = false;
             this.ch_keepPlayerSlot.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_keepPlayerSlot.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_keepPlayerSlot.Location = new System.Drawing.Point(15, 244);
+            this.ch_keepPlayerSlot.Location = new System.Drawing.Point(11, 198);
+            this.ch_keepPlayerSlot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_keepPlayerSlot.Name = "ch_keepPlayerSlot";
             this.ch_keepPlayerSlot.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_keepPlayerSlot.Size = new System.Drawing.Size(244, 22);
+            this.ch_keepPlayerSlot.Size = new System.Drawing.Size(183, 22);
             this.ch_keepPlayerSlot.TabIndex = 23;
             this.ch_keepPlayerSlot.Text = "Keep Player Slots";
             // 
@@ -1089,10 +1152,11 @@
             this.ch_ladder.Checked = false;
             this.ch_ladder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_ladder.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_ladder.Location = new System.Drawing.Point(15, 216);
+            this.ch_ladder.Location = new System.Drawing.Point(11, 176);
+            this.ch_ladder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ch_ladder.Name = "ch_ladder";
             this.ch_ladder.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_ladder.Size = new System.Drawing.Size(244, 22);
+            this.ch_ladder.Size = new System.Drawing.Size(183, 22);
             this.ch_ladder.TabIndex = 22;
             this.ch_ladder.Text = "Force Ladder";
             // 
@@ -1102,9 +1166,10 @@
             this.flatLabel20.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel20.ForeColor = System.Drawing.Color.White;
-            this.flatLabel20.Location = new System.Drawing.Point(11, 57);
+            this.flatLabel20.Location = new System.Drawing.Point(8, 46);
+            this.flatLabel20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel20.Name = "flatLabel20";
-            this.flatLabel20.Size = new System.Drawing.Size(155, 23);
+            this.flatLabel20.Size = new System.Drawing.Size(124, 19);
             this.flatLabel20.TabIndex = 21;
             this.flatLabel20.Text = "Referee validation :";
             // 
@@ -1122,9 +1187,10 @@
             this.cb_refereeValid.Items.AddRange(new object[] {
             "TOP3",
             "ALL"});
-            this.cb_refereeValid.Location = new System.Drawing.Point(173, 57);
+            this.cb_refereeValid.Location = new System.Drawing.Point(130, 46);
+            this.cb_refereeValid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cb_refereeValid.Name = "cb_refereeValid";
-            this.cb_refereeValid.Size = new System.Drawing.Size(253, 24);
+            this.cb_refereeValid.Size = new System.Drawing.Size(191, 24);
             this.cb_refereeValid.TabIndex = 20;
             // 
             // flatLabel19
@@ -1133,21 +1199,23 @@
             this.flatLabel19.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel19.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel19.ForeColor = System.Drawing.Color.White;
-            this.flatLabel19.Location = new System.Drawing.Point(11, 19);
+            this.flatLabel19.Location = new System.Drawing.Point(8, 15);
+            this.flatLabel19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel19.Name = "flatLabel19";
-            this.flatLabel19.Size = new System.Drawing.Size(151, 23);
+            this.flatLabel19.Size = new System.Drawing.Size(123, 19);
             this.flatLabel19.TabIndex = 19;
             this.flatLabel19.Text = "Referee Password :";
             // 
             // tb_refereePass
             // 
             this.tb_refereePass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_refereePass.Location = new System.Drawing.Point(173, 15);
+            this.tb_refereePass.Location = new System.Drawing.Point(130, 12);
+            this.tb_refereePass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_refereePass.MaxLength = 32767;
             this.tb_refereePass.Multiline = false;
             this.tb_refereePass.Name = "tb_refereePass";
             this.tb_refereePass.ReadOnly = false;
-            this.tb_refereePass.Size = new System.Drawing.Size(253, 34);
+            this.tb_refereePass.Size = new System.Drawing.Size(190, 29);
             this.tb_refereePass.TabIndex = 18;
             this.tb_refereePass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_refereePass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1159,9 +1227,10 @@
             this.flatLabel18.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel18.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel18.ForeColor = System.Drawing.Color.White;
-            this.flatLabel18.Location = new System.Drawing.Point(1015, 90);
+            this.flatLabel18.Location = new System.Drawing.Point(761, 73);
+            this.flatLabel18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel18.Name = "flatLabel18";
-            this.flatLabel18.Size = new System.Drawing.Size(90, 23);
+            this.flatLabel18.Size = new System.Drawing.Size(75, 19);
             this.flatLabel18.TabIndex = 17;
             this.flatLabel18.Text = "XML-RPC :";
             // 
@@ -1171,9 +1240,10 @@
             this.flatLabel17.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel17.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel17.ForeColor = System.Drawing.Color.White;
-            this.flatLabel17.Location = new System.Drawing.Point(1022, 51);
+            this.flatLabel17.Location = new System.Drawing.Point(766, 41);
+            this.flatLabel17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel17.Name = "flatLabel17";
-            this.flatLabel17.Size = new System.Drawing.Size(84, 23);
+            this.flatLabel17.Size = new System.Drawing.Size(69, 19);
             this.flatLabel17.TabIndex = 16;
             this.flatLabel17.Text = "P2P Port :";
             // 
@@ -1183,21 +1253,23 @@
             this.flatLabel16.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel16.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel16.ForeColor = System.Drawing.Color.White;
-            this.flatLabel16.Location = new System.Drawing.Point(1004, 11);
+            this.flatLabel16.Location = new System.Drawing.Point(753, 9);
+            this.flatLabel16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel16.Name = "flatLabel16";
-            this.flatLabel16.Size = new System.Drawing.Size(102, 23);
+            this.flatLabel16.Size = new System.Drawing.Size(83, 19);
             this.flatLabel16.TabIndex = 15;
             this.flatLabel16.Text = "Server Port :";
             // 
             // tb_XmlRpcPort
             // 
             this.tb_XmlRpcPort.BackColor = System.Drawing.Color.Transparent;
-            this.tb_XmlRpcPort.Location = new System.Drawing.Point(1114, 85);
+            this.tb_XmlRpcPort.Location = new System.Drawing.Point(836, 69);
+            this.tb_XmlRpcPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_XmlRpcPort.MaxLength = 32767;
             this.tb_XmlRpcPort.Multiline = false;
             this.tb_XmlRpcPort.Name = "tb_XmlRpcPort";
             this.tb_XmlRpcPort.ReadOnly = false;
-            this.tb_XmlRpcPort.Size = new System.Drawing.Size(104, 34);
+            this.tb_XmlRpcPort.Size = new System.Drawing.Size(78, 29);
             this.tb_XmlRpcPort.TabIndex = 2;
             this.tb_XmlRpcPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_XmlRpcPort.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1206,12 +1278,13 @@
             // tb_p2pPort
             // 
             this.tb_p2pPort.BackColor = System.Drawing.Color.Transparent;
-            this.tb_p2pPort.Location = new System.Drawing.Point(1114, 46);
+            this.tb_p2pPort.Location = new System.Drawing.Point(836, 37);
+            this.tb_p2pPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_p2pPort.MaxLength = 32767;
             this.tb_p2pPort.Multiline = false;
             this.tb_p2pPort.Name = "tb_p2pPort";
             this.tb_p2pPort.ReadOnly = false;
-            this.tb_p2pPort.Size = new System.Drawing.Size(104, 34);
+            this.tb_p2pPort.Size = new System.Drawing.Size(78, 29);
             this.tb_p2pPort.TabIndex = 1;
             this.tb_p2pPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_p2pPort.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1220,12 +1293,13 @@
             // tb_ServerPort
             // 
             this.tb_ServerPort.BackColor = System.Drawing.Color.Transparent;
-            this.tb_ServerPort.Location = new System.Drawing.Point(1114, 7);
+            this.tb_ServerPort.Location = new System.Drawing.Point(836, 6);
+            this.tb_ServerPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_ServerPort.MaxLength = 32767;
             this.tb_ServerPort.Multiline = false;
             this.tb_ServerPort.Name = "tb_ServerPort";
             this.tb_ServerPort.ReadOnly = false;
-            this.tb_ServerPort.Size = new System.Drawing.Size(104, 34);
+            this.tb_ServerPort.Size = new System.Drawing.Size(78, 29);
             this.tb_ServerPort.TabIndex = 0;
             this.tb_ServerPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_ServerPort.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1262,16 +1336,18 @@
             this.tp_match.Controls.Add(this.b_browseMatch);
             this.tp_match.Controls.Add(this.tb_matchFile);
             this.tp_match.Location = new System.Drawing.Point(4, 44);
+            this.tp_match.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tp_match.Name = "tp_match";
-            this.tp_match.Size = new System.Drawing.Size(1229, 540);
+            this.tp_match.Size = new System.Drawing.Size(920, 430);
             this.tp_match.TabIndex = 2;
             this.tp_match.Text = "MatchSettings";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(444, 41);
+            this.pictureBox1.Location = new System.Drawing.Point(333, 33);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(330, 206);
+            this.pictureBox1.Size = new System.Drawing.Size(248, 167);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
@@ -1282,9 +1358,10 @@
             this.flatLabel34.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel34.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel34.ForeColor = System.Drawing.Color.White;
-            this.flatLabel34.Location = new System.Drawing.Point(886, 142);
+            this.flatLabel34.Location = new System.Drawing.Point(664, 115);
+            this.flatLabel34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel34.Name = "flatLabel34";
-            this.flatLabel34.Size = new System.Drawing.Size(113, 23);
+            this.flatLabel34.Size = new System.Drawing.Size(92, 19);
             this.flatLabel34.TabIndex = 40;
             this.flatLabel34.Text = "Game Mode :";
             // 
@@ -1303,9 +1380,10 @@
             "TimeAttack",
             "Rounds",
             "Team"});
-            this.cb_gameMode.Location = new System.Drawing.Point(1005, 141);
+            this.cb_gameMode.Location = new System.Drawing.Point(754, 115);
+            this.cb_gameMode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cb_gameMode.Name = "cb_gameMode";
-            this.cb_gameMode.Size = new System.Drawing.Size(216, 24);
+            this.cb_gameMode.Size = new System.Drawing.Size(163, 24);
             this.cb_gameMode.TabIndex = 39;
             // 
             // n_warm_s
@@ -1315,11 +1393,12 @@
             this.n_warm_s.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_warm_s.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_s.ForeColor = System.Drawing.Color.White;
-            this.n_warm_s.Location = new System.Drawing.Point(1142, 256);
+            this.n_warm_s.Location = new System.Drawing.Point(856, 208);
+            this.n_warm_s.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_warm_s.Maximum = ((long)(59));
             this.n_warm_s.Minimum = ((long)(0));
             this.n_warm_s.Name = "n_warm_s";
-            this.n_warm_s.Size = new System.Drawing.Size(75, 30);
+            this.n_warm_s.Size = new System.Drawing.Size(56, 30);
             this.n_warm_s.TabIndex = 38;
             this.n_warm_s.Text = "flatNumeric2";
             this.n_warm_s.Value = ((long)(0));
@@ -1331,11 +1410,12 @@
             this.n_warm_h.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_warm_h.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_h.ForeColor = System.Drawing.Color.White;
-            this.n_warm_h.Location = new System.Drawing.Point(985, 256);
+            this.n_warm_h.Location = new System.Drawing.Point(739, 208);
+            this.n_warm_h.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_warm_h.Maximum = ((long)(9));
             this.n_warm_h.Minimum = ((long)(0));
             this.n_warm_h.Name = "n_warm_h";
-            this.n_warm_h.Size = new System.Drawing.Size(70, 30);
+            this.n_warm_h.Size = new System.Drawing.Size(52, 30);
             this.n_warm_h.TabIndex = 37;
             this.n_warm_h.Text = "flatNumeric1";
             this.n_warm_h.Value = ((long)(0));
@@ -1347,11 +1427,12 @@
             this.n_forcelaps.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_forcelaps.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_forcelaps.ForeColor = System.Drawing.Color.White;
-            this.n_forcelaps.Location = new System.Drawing.Point(1061, 293);
+            this.n_forcelaps.Location = new System.Drawing.Point(796, 238);
+            this.n_forcelaps.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_forcelaps.Maximum = ((long)(9999999));
             this.n_forcelaps.Minimum = ((long)(0));
             this.n_forcelaps.Name = "n_forcelaps";
-            this.n_forcelaps.Size = new System.Drawing.Size(75, 30);
+            this.n_forcelaps.Size = new System.Drawing.Size(56, 30);
             this.n_forcelaps.TabIndex = 36;
             this.n_forcelaps.Text = "flatNumeric6";
             this.n_forcelaps.Value = ((long)(0));
@@ -1363,11 +1444,12 @@
             this.n_warm_m.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_warm_m.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_m.ForeColor = System.Drawing.Color.White;
-            this.n_warm_m.Location = new System.Drawing.Point(1061, 256);
+            this.n_warm_m.Location = new System.Drawing.Point(796, 208);
+            this.n_warm_m.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_warm_m.Maximum = ((long)(9999999));
             this.n_warm_m.Minimum = ((long)(0));
             this.n_warm_m.Name = "n_warm_m";
-            this.n_warm_m.Size = new System.Drawing.Size(75, 30);
+            this.n_warm_m.Size = new System.Drawing.Size(56, 30);
             this.n_warm_m.TabIndex = 35;
             this.n_warm_m.Text = "flatNumeric5";
             this.n_warm_m.Value = ((long)(0));
@@ -1379,11 +1461,12 @@
             this.n_nbwarm.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_nbwarm.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_nbwarm.ForeColor = System.Drawing.Color.White;
-            this.n_nbwarm.Location = new System.Drawing.Point(1061, 220);
+            this.n_nbwarm.Location = new System.Drawing.Point(796, 179);
+            this.n_nbwarm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_nbwarm.Maximum = ((long)(9999999));
             this.n_nbwarm.Minimum = ((long)(0));
             this.n_nbwarm.Name = "n_nbwarm";
-            this.n_nbwarm.Size = new System.Drawing.Size(75, 30);
+            this.n_nbwarm.Size = new System.Drawing.Size(56, 30);
             this.n_nbwarm.TabIndex = 34;
             this.n_nbwarm.Text = "flatNumeric4";
             this.n_nbwarm.Value = ((long)(0));
@@ -1395,11 +1478,12 @@
             this.n_time_m.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_time_m.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_m.ForeColor = System.Drawing.Color.White;
-            this.n_time_m.Location = new System.Drawing.Point(1061, 182);
+            this.n_time_m.Location = new System.Drawing.Point(796, 148);
+            this.n_time_m.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_time_m.Maximum = ((long)(59));
             this.n_time_m.Minimum = ((long)(0));
             this.n_time_m.Name = "n_time_m";
-            this.n_time_m.Size = new System.Drawing.Size(75, 30);
+            this.n_time_m.Size = new System.Drawing.Size(56, 30);
             this.n_time_m.TabIndex = 33;
             this.n_time_m.Text = "flatNumeric3";
             this.n_time_m.Value = ((long)(5));
@@ -1411,11 +1495,12 @@
             this.n_time_s.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_time_s.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_s.ForeColor = System.Drawing.Color.White;
-            this.n_time_s.Location = new System.Drawing.Point(1142, 182);
+            this.n_time_s.Location = new System.Drawing.Point(856, 148);
+            this.n_time_s.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_time_s.Maximum = ((long)(59));
             this.n_time_s.Minimum = ((long)(0));
             this.n_time_s.Name = "n_time_s";
-            this.n_time_s.Size = new System.Drawing.Size(75, 30);
+            this.n_time_s.Size = new System.Drawing.Size(56, 30);
             this.n_time_s.TabIndex = 32;
             this.n_time_s.Text = "flatNumeric2";
             this.n_time_s.Value = ((long)(0));
@@ -1427,11 +1512,12 @@
             this.n_time_h.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_time_h.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_h.ForeColor = System.Drawing.Color.White;
-            this.n_time_h.Location = new System.Drawing.Point(985, 182);
+            this.n_time_h.Location = new System.Drawing.Point(739, 148);
+            this.n_time_h.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.n_time_h.Maximum = ((long)(9));
             this.n_time_h.Minimum = ((long)(0));
             this.n_time_h.Name = "n_time_h";
-            this.n_time_h.Size = new System.Drawing.Size(70, 30);
+            this.n_time_h.Size = new System.Drawing.Size(52, 30);
             this.n_time_h.TabIndex = 31;
             this.n_time_h.Text = "flatNumeric1";
             this.n_time_h.Value = ((long)(0));
@@ -1442,9 +1528,10 @@
             this.flatLabel30.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel30.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel30.ForeColor = System.Drawing.Color.White;
-            this.flatLabel30.Location = new System.Drawing.Point(886, 295);
+            this.flatLabel30.Location = new System.Drawing.Point(664, 240);
+            this.flatLabel30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel30.Name = "flatLabel30";
-            this.flatLabel30.Size = new System.Drawing.Size(127, 23);
+            this.flatLabel30.Size = new System.Drawing.Size(103, 19);
             this.flatLabel30.TabIndex = 30;
             this.flatLabel30.Text = "Force Laps Nb :";
             // 
@@ -1454,9 +1541,10 @@
             this.flatLabel29.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel29.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel29.ForeColor = System.Drawing.Color.White;
-            this.flatLabel29.Location = new System.Drawing.Point(886, 260);
+            this.flatLabel29.Location = new System.Drawing.Point(664, 211);
+            this.flatLabel29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel29.Name = "flatLabel29";
-            this.flatLabel29.Size = new System.Drawing.Size(91, 23);
+            this.flatLabel29.Size = new System.Drawing.Size(74, 19);
             this.flatLabel29.TabIndex = 29;
             this.flatLabel29.Text = "WarmUp  :";
             // 
@@ -1466,9 +1554,10 @@
             this.flatLabel28.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel28.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel28.ForeColor = System.Drawing.Color.White;
-            this.flatLabel28.Location = new System.Drawing.Point(886, 224);
+            this.flatLabel28.Location = new System.Drawing.Point(664, 182);
+            this.flatLabel28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel28.Name = "flatLabel28";
-            this.flatLabel28.Size = new System.Drawing.Size(114, 23);
+            this.flatLabel28.Size = new System.Drawing.Size(92, 19);
             this.flatLabel28.TabIndex = 28;
             this.flatLabel28.Text = "Nb WarmUp :";
             // 
@@ -1478,9 +1567,10 @@
             this.flatLabel27.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel27.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel27.ForeColor = System.Drawing.Color.White;
-            this.flatLabel27.Location = new System.Drawing.Point(886, 185);
+            this.flatLabel27.Location = new System.Drawing.Point(664, 150);
+            this.flatLabel27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel27.Name = "flatLabel27";
-            this.flatLabel27.Size = new System.Drawing.Size(98, 23);
+            this.flatLabel27.Size = new System.Drawing.Size(79, 19);
             this.flatLabel27.TabIndex = 27;
             this.flatLabel27.Text = "Time Limit :";
             // 
@@ -1490,10 +1580,11 @@
             this.b_clearMapMatch.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_clearMapMatch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_clearMapMatch.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_clearMapMatch.Location = new System.Drawing.Point(311, 434);
+            this.b_clearMapMatch.Location = new System.Drawing.Point(233, 353);
+            this.b_clearMapMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_clearMapMatch.Name = "b_clearMapMatch";
             this.b_clearMapMatch.Rounded = false;
-            this.b_clearMapMatch.Size = new System.Drawing.Size(127, 40);
+            this.b_clearMapMatch.Size = new System.Drawing.Size(95, 32);
             this.b_clearMapMatch.TabIndex = 26;
             this.b_clearMapMatch.Text = "Del all";
             this.b_clearMapMatch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1505,10 +1596,11 @@
             this.b_addAll.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_addAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_addAll.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_addAll.Location = new System.Drawing.Point(311, 341);
+            this.b_addAll.Location = new System.Drawing.Point(233, 277);
+            this.b_addAll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_addAll.Name = "b_addAll";
             this.b_addAll.Rounded = false;
-            this.b_addAll.Size = new System.Drawing.Size(127, 41);
+            this.b_addAll.Size = new System.Drawing.Size(95, 33);
             this.b_addAll.TabIndex = 25;
             this.b_addAll.Text = "Add all";
             this.b_addAll.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1520,10 +1612,11 @@
             this.b_delmap.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.b_delmap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_delmap.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_delmap.Location = new System.Drawing.Point(311, 480);
+            this.b_delmap.Location = new System.Drawing.Point(233, 390);
+            this.b_delmap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_delmap.Name = "b_delmap";
             this.b_delmap.Rounded = false;
-            this.b_delmap.Size = new System.Drawing.Size(127, 40);
+            this.b_delmap.Size = new System.Drawing.Size(95, 32);
             this.b_delmap.TabIndex = 24;
             this.b_delmap.Text = "Del one";
             this.b_delmap.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1535,10 +1628,11 @@
             this.l_mapsMatch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.l_mapsMatch.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_mapsMatch.FormattingEnabled = true;
-            this.l_mapsMatch.ItemHeight = 23;
-            this.l_mapsMatch.Location = new System.Drawing.Point(444, 276);
+            this.l_mapsMatch.ItemHeight = 17;
+            this.l_mapsMatch.Location = new System.Drawing.Point(333, 224);
+            this.l_mapsMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.l_mapsMatch.Name = "l_mapsMatch";
-            this.l_mapsMatch.Size = new System.Drawing.Size(330, 253);
+            this.l_mapsMatch.Size = new System.Drawing.Size(248, 204);
             this.l_mapsMatch.TabIndex = 23;
             this.l_mapsMatch.SelectedIndexChanged += new System.EventHandler(this.l_mapsMatch_SelectedIndexChanged);
             // 
@@ -1548,10 +1642,11 @@
             this.l_mapsLocal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.l_mapsLocal.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_mapsLocal.FormattingEnabled = true;
-            this.l_mapsLocal.ItemHeight = 23;
-            this.l_mapsLocal.Location = new System.Drawing.Point(9, 276);
+            this.l_mapsLocal.ItemHeight = 17;
+            this.l_mapsLocal.Location = new System.Drawing.Point(7, 224);
+            this.l_mapsLocal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.l_mapsLocal.Name = "l_mapsLocal";
-            this.l_mapsLocal.Size = new System.Drawing.Size(295, 253);
+            this.l_mapsLocal.Size = new System.Drawing.Size(221, 204);
             this.l_mapsLocal.TabIndex = 22;
             this.l_mapsLocal.SelectedIndexChanged += new System.EventHandler(this.l_mapsLocal_SelectedIndexChanged);
             // 
@@ -1561,9 +1656,10 @@
             this.flatLabel26.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel26.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel26.ForeColor = System.Drawing.Color.White;
-            this.flatLabel26.Location = new System.Drawing.Point(527, 250);
+            this.flatLabel26.Location = new System.Drawing.Point(395, 203);
+            this.flatLabel26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel26.Name = "flatLabel26";
-            this.flatLabel26.Size = new System.Drawing.Size(146, 23);
+            this.flatLabel26.Size = new System.Drawing.Size(120, 19);
             this.flatLabel26.TabIndex = 21;
             this.flatLabel26.Text = "Current Map List :";
             // 
@@ -1573,9 +1669,10 @@
             this.labelLocalFiles.BackColor = System.Drawing.Color.Transparent;
             this.labelLocalFiles.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLocalFiles.ForeColor = System.Drawing.Color.White;
-            this.labelLocalFiles.Location = new System.Drawing.Point(75, 11);
+            this.labelLocalFiles.Location = new System.Drawing.Point(56, 9);
+            this.labelLocalFiles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLocalFiles.Name = "labelLocalFiles";
-            this.labelLocalFiles.Size = new System.Drawing.Size(95, 23);
+            this.labelLocalFiles.Size = new System.Drawing.Size(77, 19);
             this.labelLocalFiles.TabIndex = 20;
             this.labelLocalFiles.Text = "Local Files :";
             // 
@@ -1585,10 +1682,11 @@
             this.b_newMatch.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_newMatch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_newMatch.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_newMatch.Location = new System.Drawing.Point(1155, 11);
+            this.b_newMatch.Location = new System.Drawing.Point(866, 9);
+            this.b_newMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_newMatch.Name = "b_newMatch";
             this.b_newMatch.Rounded = false;
-            this.b_newMatch.Size = new System.Drawing.Size(62, 34);
+            this.b_newMatch.Size = new System.Drawing.Size(46, 28);
             this.b_newMatch.TabIndex = 7;
             this.b_newMatch.Text = "New";
             this.b_newMatch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1600,10 +1698,11 @@
             this.b_add.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_add.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_add.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_add.Location = new System.Drawing.Point(311, 388);
+            this.b_add.Location = new System.Drawing.Point(233, 315);
+            this.b_add.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_add.Name = "b_add";
             this.b_add.Rounded = false;
-            this.b_add.Size = new System.Drawing.Size(127, 40);
+            this.b_add.Size = new System.Drawing.Size(95, 32);
             this.b_add.TabIndex = 6;
             this.b_add.Text = "Add one";
             this.b_add.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1615,9 +1714,10 @@
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.treeView1.LineColor = System.Drawing.Color.Gray;
-            this.treeView1.Location = new System.Drawing.Point(8, 41);
+            this.treeView1.Location = new System.Drawing.Point(6, 33);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(297, 229);
+            this.treeView1.Size = new System.Drawing.Size(223, 186);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -1627,10 +1727,11 @@
             this.b_browseMatch.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.b_browseMatch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_browseMatch.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.b_browseMatch.Location = new System.Drawing.Point(1062, 11);
+            this.b_browseMatch.Location = new System.Drawing.Point(796, 9);
+            this.b_browseMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_browseMatch.Name = "b_browseMatch";
             this.b_browseMatch.Rounded = false;
-            this.b_browseMatch.Size = new System.Drawing.Size(87, 34);
+            this.b_browseMatch.Size = new System.Drawing.Size(65, 28);
             this.b_browseMatch.TabIndex = 1;
             this.b_browseMatch.Text = "Browse";
             this.b_browseMatch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -1639,12 +1740,13 @@
             // tb_matchFile
             // 
             this.tb_matchFile.BackColor = System.Drawing.Color.Transparent;
-            this.tb_matchFile.Location = new System.Drawing.Point(817, 11);
+            this.tb_matchFile.Location = new System.Drawing.Point(613, 9);
+            this.tb_matchFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tb_matchFile.MaxLength = 32767;
             this.tb_matchFile.Multiline = false;
             this.tb_matchFile.Name = "tb_matchFile";
             this.tb_matchFile.ReadOnly = false;
-            this.tb_matchFile.Size = new System.Drawing.Size(239, 34);
+            this.tb_matchFile.Size = new System.Drawing.Size(179, 29);
             this.tb_matchFile.TabIndex = 0;
             this.tb_matchFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_matchFile.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1655,9 +1757,10 @@
             this.tabPlugins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
             this.tabPlugins.Controls.Add(this.checkedListBox1);
             this.tabPlugins.Location = new System.Drawing.Point(4, 44);
+            this.tabPlugins.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPlugins.Name = "tabPlugins";
-            this.tabPlugins.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlugins.Size = new System.Drawing.Size(1229, 540);
+            this.tabPlugins.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPlugins.Size = new System.Drawing.Size(920, 430);
             this.tabPlugins.TabIndex = 3;
             this.tabPlugins.Text = "Plugins";
             // 
@@ -1665,18 +1768,20 @@
             // 
             this.checkedListBox1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(6, 6);
+            this.checkedListBox1.Location = new System.Drawing.Point(4, 5);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(1042, 379);
+            this.checkedListBox1.Size = new System.Drawing.Size(782, 304);
             this.checkedListBox1.TabIndex = 0;
             // 
             // ConfigServ
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1237, 684);
+            this.ClientSize = new System.Drawing.Size(928, 556);
             this.Controls.Add(this.formSkin1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ConfigServ";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConfigServ";

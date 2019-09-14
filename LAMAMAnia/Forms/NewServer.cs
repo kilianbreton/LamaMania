@@ -80,7 +80,8 @@ namespace LamaMania
                     //MakeConfig------------------------------------------------------------------
                     //Actualize main Config
                     var root = Lama.mainConfig[0]["servers"].addChild("server")
-                                                 .addAttribute("id", index.ToString());
+                                                            .addAttribute("id", index.ToString());
+
                     root.addChild("name", tb_name.Text);
                     root.addChild("internetServer", "true");
                     root.addChild("matchSettings");

@@ -33,12 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CGE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NTK\ServerAdmin\Kernel\CGE.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\LAMAMAnia\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="NTK">
-      <HintPath>..\LAMAMAnia\bin\Debug\NTK.dll</HintPath>
+    <Reference Include="NTK, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NTK\ServerAdmin\Kernel\NTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,8 +58,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLLIReadLineWithEvents.cs" />
+    <Compile Include="LamaCLI.cs" />
     <Compile Include="LamaController.cs" />
     <Compile Include="MainLogger.cs" />
+    <Compile Include="NTKLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,6 +73,10 @@
     <ProjectReference Include="..\LamaPlugin.cs\LamaPlugin.csproj">
       <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
       <Name>LamaPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlRpcEncrypted\XmlRpcEncrypted.csproj">
+      <Project>{623e08a4-74e0-4cb6-8cf9-66b8d65b4ad9}</Project>
+      <Name>XmlRpcEncrypted</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -29,8 +29,16 @@ namespace LamaMania.UserConstrols
             this.flatLabel1.Text = title;
             this.flatTextBox1.Text = value.ToString();
         }
+        public UserControl GetControl()
+        {
+            return this;
+        }
 
-     
+        public void setColor(Color color)
+        {
+            this.BackColor = color;
+        }
+
 
         private void StringScriptSetting_Load(object sender, EventArgs e)
         {
