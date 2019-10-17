@@ -39,9 +39,28 @@ namespace LamaMania
         [STAThread]
         static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HomeLauncher());
+           // args = new string[] { "reset cache" };
+
+            if(args.Length != 0)
+            {
+                if(args[0].ToUpper() == "RESET CACHE")
+                {
+                    PluginManager.PMCache cache = new PluginManager.PMCache(@"Cache\PM.cache");
+                    cache.ClearCache();
+                    cache.save();
+                }
+
+            }
+            else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new HomeLauncher());
+            }
+
+
+
+           
             
         }
     }

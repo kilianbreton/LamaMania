@@ -136,6 +136,9 @@ namespace BasicsCommandsPlugin
             }
         }
 
-    
+        public override void onDisconnect()
+        {
+          
+        }
     }
 }

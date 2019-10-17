@@ -20,7 +20,6 @@ namespace ServerTest
 
         static void Main(string[] args)
         {
-
             try
             {
                 Console.Write("XmlRpc Connect : 127.0.0.1:5001");

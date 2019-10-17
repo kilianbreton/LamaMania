@@ -55,8 +55,6 @@ namespace LamaMania
         private const int TRY_AUTH_NB = 5;
         private const int WAIT_AUTH_TIME = 1500;
 
-        private ControlThreadManager ctm;
-
         private XmlDocument dedicatedConfig;
         private XmlRpcClient client;
         private string adrs = "127.0.0.1";
@@ -67,27 +65,19 @@ namespace LamaMania
         private Dictionary<int, String> handles = new Dictionary<int, string>();
 
 
-        //Variable ingame
-        private int maxPlayers;
-        private int maxSpectators;
-        private int nbPlayers;
-
+      
+        //Ingame (TODO: -> LamaStatic)
         private Dictionary<string, string> mapFiles = new Dictionary<string, string>();
         private List<SPlayerInfo> playerList = new List<SPlayerInfo>();
         private List<String> mapList;
-        private int currentMapId = -1;
-        private int previousMapId = -1;
         private string mapPath;
         private string serverPass;
         private string serverSpecPass;
         private string game;
-        private SMGameMode smGameMode;
-        private TMGameMode tmGameMode;
-        private bool isTM = true;
+
 
         private Dictionary<string, string> scriptSettingsTitles;
 
-        private Timer netStatsTimer;
         #endregion
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,7 +146,6 @@ namespace LamaMania
 
         void commonConstructor()
         {
-            this.ctm = new ControlThreadManager(this);
             initScriptSettingsTitles();
             Lama.log("NOTICE", "XmlRpcConnect");
 
@@ -170,28 +159,18 @@ namespace LamaMania
                 //Affichage
                 Lama.pluginManager.loadInternalHC();
 
-                this.b_serverStarted.Enabled = false;
-                this.b_serverStarted.BaseColor = Color.Gray;
+              
 
-                this.b_xmlrpcConnect.Enabled = false;
-                this.b_xmlrpcConnect.BaseColor = Color.Gray;
-
-                this.b_uasecoStop.Enabled = false;
-                this.b_uasecoStop.BaseColor = Color.Gray;
-
-                this.b_usaecoStart.Enabled = false;
-                this.b_usaecoStart.BaseColor = Color.Gray;
-
-                //Requests
-                Lama.log("NOTICE", "Send startup requests");
-                startupRequests();
-               
                 //Init plugins
-                Lama.log("NOTICE", "Init inGamePlugins ...");
                 if (!Lama.remote) {
                     Lama.pluginManager.loadHomeComponent(this.client, this.tp_main);
                     Lama.pluginManager.onLoadInGame(this.client);
                 }
+
+                //Requests
+                Lama.log("NOTICE", "Send startup requests");
+                startupRequests();
+
             }
             else
             {
@@ -210,15 +189,11 @@ namespace LamaMania
 
         void startupRequests()
         {
-            //Infos
-            asyncRequest(GetStatus, res => {
-                Hashtable ht = res.getHashTable();
-                setLabel(this.l_server, "Status : " + (string)ht["Name"]);
-            });
-            asyncRequest(GetVersion, res => {
-                setLabel(l_version, "Version : " + (string)res.getHashTable()["Version"]);
-            });
+            /* asyncRequest(GetVersion, res => {
+                 setLabel(l_version, "Version : " + (string)res.getHashTable()["Version"]);
+             });*/
 
+                      
             //Chat
             asyncRequest(GetChatLines);
            
@@ -230,26 +205,20 @@ namespace LamaMania
             asyncRequest(GetScriptName);
 
             //Map
-            asyncRequest(GetCurrentMapInfo, res => {
-                var htcm = res.getHashTable();
-                setLabel(l_map, "Map : " + ManiaColors.getText((string)htcm["Name"]));
-            });
+            asyncRequest(GetCurrentMapInfo); //Catched by HCGameInfos
             asyncRequest(GetMapsDirectory, getMapDirectory);
 
             //Users lists
-            asyncRequest(GetPlayerList, this.maxPlayers + this.maxSpectators, 0);
-            asyncRequest(GetGuestList, this.maxPlayers + this.maxSpectators, 0);
-            asyncRequest(GetBanList, this.maxPlayers + this.maxSpectators, 0);
-            asyncRequest(GetBlackList, this.maxPlayers + this.maxSpectators, 0);
+            asyncRequest(GetPlayerList, Lama.maxPlayers + Lama.maxSpectators, 0);
+            asyncRequest(GetGuestList, Lama.maxPlayers + Lama.maxSpectators, 0);
+            asyncRequest(GetBanList, Lama.maxPlayers + Lama.maxSpectators, 0);
+            asyncRequest(GetBlackList, Lama.maxPlayers + Lama.maxSpectators, 0);
             asyncRequest(getMapList, GetMapList, 999, 0);
 
-            //Network infos
-            this.netStatsTimer = new Timer();
-            this.netStatsTimer.Tick += new EventHandler(netStatsTimer_Tick);
-            this.netStatsTimer.Interval = 1500;
-            this.netStatsTimer.Start();
+            
         }
         
+        [Obsolete]
         void initScriptSettingsTitles()
         {
             try
@@ -331,37 +300,7 @@ namespace LamaMania
             }
         }
         
-        void initGameModeCombo(string script)
-        {
-            FlatComboBox cbGM = (FlatComboBox)getControl(cb_serverGMScript);
-            if (cbGM.Items.Count == 0)
-            {
-                this.isTM = Enum.TryParse(script, out this.tmGameMode);
-                if (this.isTM)
-                {
-                    foreach (TMGameMode suit in (TMGameMode[])Enum.GetValues(typeof(TMGameMode)))
-                    {
-                        appendCombo(cb_serverGMScript, suit.ToString());
-                    }
-                }
-                else
-                {
-                    if (Enum.TryParse(script, out this.smGameMode))
-                    {
-                        foreach (SMGameMode suit in (SMGameMode[])Enum.GetValues(typeof(SMGameMode)))
-                        {
-                            appendCombo(cb_serverGMScript, suit.ToString());
-                        }
-                    }
-                    else
-                    {
-                        //Show select game dialog
-                    }
-
-                }
-            }
-        }
-
+     
 
         #endregion
 
@@ -403,7 +342,10 @@ namespace LamaMania
             {
                 if (param == null)
                     param = new object[] { };
-                this.handles.Add(this.client.AsyncRequest(methodName, param, asyncResult), methodName);
+
+                int handle = this.client.AsyncRequest(methodName, param, asyncResult);
+                this.handles.Add(handle, methodName);
+                GBXMethods.commonHandles.Add(handle, methodName);
             }
         }
 
@@ -445,8 +387,7 @@ namespace LamaMania
                             {
                                 script = subsep(script, 0, ".");
                             }
-                            setLabel(this.l_gameMode, "GameMode : " + script);
-                            initGameModeCombo(script);
+                        
                          
                             break;
                         case GetMapList:
@@ -463,13 +404,8 @@ namespace LamaMania
                             Lama.currentMapId = (int)res.Params[0];
                             break;
 
-                        case SetScriptName:
-                            if ((bool)res.Params[0])
-                            {
-                                setLabel(this.l_gameMode, "GameMode: "+this.cb_serverGMScript.Text);
-                            }
-
-                            break;
+                     
+                          
                             #endregion
 
                         #region "Chat"
@@ -502,10 +438,9 @@ namespace LamaMania
 
                         case GetPlayerList:
                             ArrayList userList = (ArrayList)res.Params[0];
-                            clearList(l_users);
                             clearDg(dg_users);
-                            this.nbPlayers = userList.Count;
-                            setLabel(l_players, "Players : " + this.nbPlayers + "/" + this.maxPlayers);
+                            Lama.nbPlayers = userList.Count;
+                           //s setLabel(l_players, "Players : " + Lama.nbPlayers + "/" + Lama.maxPlayers);
                             foreach (Hashtable user in userList)
                             {
                                 this.playerList.Add(new SPlayerInfo {
@@ -515,7 +450,6 @@ namespace LamaMania
                                     //...............
                                 });
                                 addDgRow(dg_users, user["PlayerId"], ManiaColors.getText((string)user["NickName"]), user["Login"], user["LadderRanking"]);
-                                appendList(l_users, ManiaColors.getText((string)user["NickName"]));
                             }
                             break;
                         case SendDisplayManialinkPageToId:
@@ -529,16 +463,18 @@ namespace LamaMania
                             break;
                         #endregion
                            
-                    }             
+                    }
+
+                    //Send to plugins --------------------------------------------------------------------------------
+                    Lama.pluginManager.onGbxAsyncResult(res);
+
                 }
                 else
                 {
                     if(res.Error)
                         Lama.log("ERROR", "Answer for handle n° " + res.Handle + " named '" + this.handles[res.Handle] + "' Returned Error : " + res.ErrorString);
                 }
-                //Send to plugins --------------------------------------------------------------------------------
-                Lama.pluginManager.onGbxAsyncResult(res);
-
+               
                 this.handles.Remove(res.Handle);
             }
             catch (Exception e)
@@ -560,10 +496,8 @@ namespace LamaMania
         {
             Hashtable ht = res.getHashTable();
 
-            setLabel(l_serverName, "Name : " + ManiaColors.getText((string)ht["Name"]));
-            setLabel(l_serverDescritpion, "Description : " + ManiaColors.getText((string)ht["Comment"]));
-            this.maxPlayers = (int)ht["CurrentMaxPlayers"];
-            this.maxSpectators = (int)ht["CurrentMaxSpectators"];
+            Lama.maxPlayers = (int)ht["CurrentMaxPlayers"];
+            Lama.maxSpectators = (int)ht["CurrentMaxSpectators"];
 
             //Fill ServerOptions Tab
             setTextBoxText(tb_ingameName, (string) ht["Name"]);
@@ -571,8 +505,8 @@ namespace LamaMania
             setTextBoxText(tb_playerPass, (string) ht["Password"]);
             setTextBoxText(tb_specPass, (string) ht["PasswordForSpectator"]);
 
-            setNumeric(n_playersLimit, maxPlayers);
-            setNumeric(n_specsLimit, maxSpectators);
+            setNumeric(n_playersLimit, Lama.maxPlayers);
+            setNumeric(n_specsLimit, Lama.maxSpectators);
 
             setTextBoxText(tb_refereePass, (string) ht["RefereePassword"]);
             //TODO comboboxReferee
@@ -591,7 +525,8 @@ namespace LamaMania
             setCheckBox(ch_keepPlayerSlot, false);
             setCheckBox(ch_mapDown, false);
             setCheckBox(ch_horns, false);
-            
+
+            Lama.pluginManager.onGbxAsyncResult(res);
         }
 
         void getCurrentGameInfo(GbxCall res)
@@ -719,17 +654,16 @@ namespace LamaMania
 
                 #region "ManiaPlanetMap"
                 case "ManiaPlanet.BeginMap":
-                    asyncRequest(GetScriptName);
-                    setLabelColor(l_map, Color.Green);
+                 
                     break;
                 case "ManiaPlanet.BaginMatch":
-                    setLabelColor(l_map, Color.Green);
+                
                     break;
                 case "ManiaPlanet.EndMap":
-                    setLabelColor(l_map, Color.Red);
+                  
                     break;
                 case "ManiaPlanet.EndMatch":
-                    setLabelColor(l_map, Color.Orange);
+               
                     break;
 
                 #endregion
@@ -737,7 +671,7 @@ namespace LamaMania
                 #region "Race"
 
                 case "TrackMania.EndRace":
-                    setLabelColor(l_map, Color.Orange);
+                   
                     break;
 
                 case "TrackMania.EndRound":
@@ -749,21 +683,16 @@ namespace LamaMania
                     break;
 
                 case "TrackMania.EndChallenge":
-                    setLabelColor(l_map, Color.Red);
+           
                     break;
 
                 case "TrackMania.StatusChanged":
-                    int statusCode = (int)args.Response.Params[0];
-                    setLabel(this.l_server, "Status : " + getStatus(statusCode));
+                  
                     break;
 
 
                 case "TrackMania.BeginChallenge":
-                    asyncRequest(GetScriptName);
-                    setLabelColor(l_map, Color.Green);
-                    var ht = (Hashtable)args.Response.Params[0];
-                    setLabel(l_map, "Map : " + ManiaColors.getText((string)ht["Name"]));
-                    asyncRequest("GetCurrentMapIndex");
+                 
                     break;
 
                 case "TrackMania.BeginRace":
@@ -773,10 +702,10 @@ namespace LamaMania
 
                 #region "Player"
                 case "TrackMania.PlayerConnect":
-                    asyncRequest("GetPlayerList", this.maxPlayers + this.maxSpectators, 0);
+                    asyncRequest("GetPlayerList", Lama.maxPlayers + Lama.maxSpectators, 0);
                     break;
                 case "TrackMania.PlayerDisconnect":
-                    asyncRequest("GetPlayerList", this.maxPlayers + this.maxSpectators, 0);
+                    asyncRequest("GetPlayerList", Lama.maxPlayers + Lama.maxSpectators, 0);
                     break;
                 case "ManiaPlanet.PlayerChat":
                 case "TrackMania.PlayerChat":
@@ -816,50 +745,12 @@ namespace LamaMania
         void gbxDisconnect(object sender)
         {
             Lama.connected = false;
-            FlatButton but = (FlatButton)getControl(this.b_xmlrpcConnect);
-            but.BaseColor = Color.Green;
-            enableControl(but, true);
-            but.Enabled = true;
-            but = (FlatButton)getControl(this.b_serverStarted);
-            but.BaseColor = Color.Green;
-            enableControl(but, true);
-            this.netStatsTimer.Stop();
+           
+
         }
 
         #endregion
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Autres Methodes /////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        #region "Other Methods"
-
-        string getStatus(int code)
-        {
-            switch(code)
-            {
-                case 3:
-                    return "Running - Synchronisation";
-                case 4:
-                    return "Running - Play";
-                default:
-                    return code.ToString() ;
-            }
-        }
-
-        void netStatsTimer_Tick(object sender, EventArgs a)
-        {
-            asyncRequest(GetNetworkStats, res => {
-                var ht = res.getHashTable();
-                setLabel(this.l_upTime, "UpTime : " + ht["UpTime"]);
-                setLabel(this.l_nbConn, "Nb Connections : " + ht["NbrConnection"]);
-                setLabel(this.l_upTime, "Connection Time Average : " + ht["MeanConnectionTime"]);
-                setLabel(this.l_upTime, "Recive Net Rate : " + ht["RecvNetRate"]);
-                setLabel(this.l_upTime, "Send Net Rate : " + ht["SendNetRate"]);
-            });
-        }
-
-        #endregion
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methodes Event UI ///////////////////////////////////////////////////////////////////////////////////////////
@@ -898,22 +789,7 @@ namespace LamaMania
             asyncRequest(ForceEndRound, checkError);
         }
 
-        private void b_makeNextGameMode_Click(object sender, EventArgs e)
-        {
-            string gameMode = cb_serverGMScript.Text;
-            string gm = "";
-            if (gameMode != "")
-            {
-                if (!gameMode.Contains(".Script.txt"))
-                    gm = gameMode + ".Script.Txt";
-                else
-                {
-                    gm = gameMode;
-                }
-
-                asyncRequest(SetScriptName, gm);
-            }
-        }
+     
 
         private void b_join_Click(object sender, EventArgs e)
         {
@@ -1112,7 +988,7 @@ namespace LamaMania
                 int uId = (int)row.Cells[0].Value;
                 asyncRequest(checkError, ForcePlayerTeamId, uId, team);
             }
-            asyncRequest(GetPlayerList, this.maxPlayers + this.maxSpectators, 0);
+            asyncRequest(GetPlayerList, Lama.maxPlayers + Lama.maxSpectators, 0);
         }
 
         //Maps Tab======================================================================================================
@@ -1144,11 +1020,18 @@ namespace LamaMania
             }
         }
 
+     
+        private void EditHomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Lama.inEditMode)
+            {
+                Lama.pluginManager.saveHomeComponentLocations();
+            }
+
+            Lama.inEditMode = !Lama.inEditMode;
+        }
+
         #endregion
 
-        private void Gb_serverInfos_Click(object sender, EventArgs e)
-        {
-            //this.gb_serverInfos.Location = new Point(gb_serverInfos.Location.X + 1, gb_serverInfos.Location.Y + 1);
-        }
     }
 }

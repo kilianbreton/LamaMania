@@ -11,7 +11,8 @@ using NTK;
 using XmlRpcEncrypted;
 using TMXmlRpcLib;
 using NTK.EventsArgs;
-
+using System.IO.Compression;
+using System.IO;
 
 namespace ConsoleTest
 {
@@ -26,6 +27,23 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
+
+
+            string text = "texte avant compression";
+            GZipStream gzs = new GZipStream(File.Open(@"D:\testCompression.s", FileMode.Create),CompressionLevel.Fastest);
+
+
+            StreamWriter sw = new StreamWriter(gzs);
+
+            sw.WriteLine("test");
+            sw.Close();
+            gzs.Close();
+
+
+
+            return;
+            //Generateur de code :
+
             tChars = new List<string>(chars.Split(','));
 
             List<string> classList = new List<string>();

@@ -17,10 +17,10 @@ namespace UAsecoPlugin
         public MainHc()
         {
             InitializeComponent();
-            this.Author = "";
-            this.PluginName = "";
-            this.Version = "";
-            this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "NOT EXIST"));
+            this.Author = "Kilian";
+            this.PluginName = "MainHCTest";
+            this.Version = "0";
+            this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "TestPlugin"));
             
             //If a control ovveride HomeCompenent, use this to add Mouse Events
             addMouseEvents(this.flatGroupBox1);
@@ -39,7 +39,7 @@ namespace UAsecoPlugin
 
         public override void onGbxCallBack(GbxCallbackEventArgs res)
         {
-            throw new NotImplementedException();
+          
         }
 
        

@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static LamaMania.StaticMethods;
+
 
 namespace LamaMania
 {
@@ -68,7 +71,7 @@ namespace LamaMania
             this.Close();
         }
 
-        private void b_create_Click(object sender, EventArgs e)
+        private async void b_create_Click(object sender, EventArgs e)
         {
             Lama.log("NOTICE", "Save server");
             if (cfg == null) //Creation mode
@@ -79,8 +82,8 @@ namespace LamaMania
                     var configPath = @"Config\Servers\" + index + ".xml";
                     //MakeConfig------------------------------------------------------------------
                     //Actualize main Config
-                    var root = Lama.mainConfig[0]["servers"].addChild("server")
-                                                            .addAttribute("id", index.ToString());
+                    XmlNode root = Lama.mainConfig[0]["servers"].addChild("server")
+                                                                .addAttribute("id", index.ToString());
 
                     root.addChild("name", tb_name.Text);
                     root.addChild("internetServer", "true");
@@ -92,6 +95,7 @@ namespace LamaMania
                     root["remote"].addChild("login", tb_login.Text);
 
                     root.addChild("plugins");
+                    string test = Lama.mainConfig.print();
                     Lama.mainConfig.save();
 
                     this.hl.load();
@@ -100,8 +104,12 @@ namespace LamaMania
                 else
                 {
                     Lama.mainConfig.save();
-                    ConfigServ cs = new ConfigServ(tb_name.Text);
-                    cs.Show();
+                    label1.Visible = true;
+                    label1.Text = "Création du serveur ...";
+
+                    await makeServer(tb_name.Text);
+                    label1.Visible = false;
+
                     this.hl.load();
                     this.Close();
                 }
@@ -117,5 +125,48 @@ namespace LamaMania
                 this.Close();
             }
         }
+
+
+        async Task makeServer(string name)
+        {
+            int index = Lama.mainConfig[0]["servers"].count();
+            string serverPath = @"Servers\" + index + @"\";
+
+            //Make server-----------------------------------------------------------------
+            Lama.log("NOTICE", "Create directory");
+            Directory.CreateDirectory(serverPath);
+            DirectoryInfo mps = new DirectoryInfo(@"Ressources\mps\");
+
+            Lama.log("NOTICE", "Copy Directory");
+
+            await Task.Run(() => {
+                copyDirectory(mps, serverPath);
+            });
+           
+
+            string mapPath = serverPath + @"UserData\Maps\";
+
+            //MakeConfig------------------------------------------------------------------
+            Lama.log("NOTICE", "MakeConfig");
+            XmlNode serverConfig = Lama.mainConfig[0]["servers"].addChild("server").addAttribute("id", index.ToString());
+            XmlNode root = serverConfig;
+            root.addChild("name", name);
+            root.addChild("internetServer", "true");
+            root.addChild("matchSettings");
+
+            XmlNode remote = root.addChild("remote").addAttribute("value", "false");
+            remote.addChild("ip", "");
+            remote.addChild("port", "");
+            remote.addChild("login", "");
+
+            root.addChild("plugins");
+            Lama.mainConfig.save(false);
+
+
+
+
+        }
+
+
     }
 }

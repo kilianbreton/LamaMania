@@ -68,6 +68,18 @@
     <Compile Include="MainHc.Designer.cs">
       <DependentUpon>MainHc.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapRecords.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapRecords.Designer.cs">
+      <DependentUpon>MapRecords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayersInfos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PlayersInfos.Designer.cs">
+      <DependentUpon>PlayersInfos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +94,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainHc.resx">
       <DependentUpon>MainHc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapRecords.resx">
+      <DependentUpon>MapRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayersInfos.resx">
+      <DependentUpon>PlayersInfos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

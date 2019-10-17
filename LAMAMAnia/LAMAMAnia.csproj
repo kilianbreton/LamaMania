@@ -68,7 +68,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlThreadManager.cs" />
     <Compile Include="ExtensionsMethods.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
@@ -106,6 +105,31 @@
     <Compile Include="HomeComponents\HCGameInfos.Designer.cs">
       <DependentUpon>HCGameInfos.cs</DependentUpon>
     </Compile>
+    <Compile Include="HomeComponents\HCNetworkStats.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCNetworkStats.Designer.cs">
+      <DependentUpon>HCNetworkStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeComponents\HCPlayerList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCPlayerList.Designer.cs">
+      <DependentUpon>HCPlayerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeComponents\HCServerInfos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCServerInfos.Designer.cs">
+      <DependentUpon>HCServerInfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeComponents\HCStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCStatus.Designer.cs">
+      <DependentUpon>HCStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocalesManager.cs" />
     <Compile Include="Other\GameMode.cs" />
     <Compile Include="Lama.cs" />
     <Compile Include="Forms\ConfigServ.cs">
@@ -134,7 +158,6 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManiaColors.cs" />
     <Compile Include="PluginManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -191,6 +214,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HomeComponents\HCGameInfos.resx">
       <DependentUpon>HCGameInfos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCNetworkStats.resx">
+      <DependentUpon>HCNetworkStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCPlayerList.resx">
+      <DependentUpon>HCPlayerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCServerInfos.resx">
+      <DependentUpon>HCServerInfos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCStatus.resx">
+      <DependentUpon>HCStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

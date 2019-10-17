@@ -37,7 +37,7 @@ namespace LamaMania
     public class LamaLog : Log
     {
         private string path;
-        private bool writeNotices;
+        private bool writeNotices = true;
 
         /// <summary>
         /// Init logger
@@ -47,11 +47,15 @@ namespace LamaMania
         public LamaLog(string path, bool writeNotices = true)
         {
             this.path = path;
-            this.writeNotices = writeNotices;
             this.add("NOTICE", "[INIT]==============================================================================================================================================");
+            this.writeNotices = writeNotices;
             this.flush();
         }
 
+        public LamaLog()
+        {
+
+        }
      
         /// <summary>
         /// Add logLine to temp list

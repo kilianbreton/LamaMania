@@ -11,8 +11,7 @@ namespace LamaController
     public class NTKLogger : Log
     {
         string path;
-        FileStream strm;
-        StreamWriter sw;
+       
 
         public NTKLogger(string path)
         {

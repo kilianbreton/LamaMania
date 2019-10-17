@@ -55,6 +55,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="LamaLibraryUpdater.cs" />
+    <Compile Include="ManiaColors.cs" />
     <Compile Include="Other\ExtensionMethods.cs" />
     <Compile Include="Abstract\IBase.cs" />
     <Compile Include="Abstract\ITab.cs" />

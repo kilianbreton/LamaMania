@@ -4,6 +4,7 @@ using LamaMania;
 using System.Collections.Generic;
 using TMXmlRpcLib;
 using System.Reflection;
+using LamaPlugin;
 
 namespace LamaTest
 {

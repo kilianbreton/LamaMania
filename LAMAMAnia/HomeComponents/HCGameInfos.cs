@@ -28,24 +28,21 @@ namespace LamaMania.HomeComponents
             InitializeComponent();
             initGameModeCombo("TimeAttack");
             addMouseEvents(this.gb_gameInfos);
+
+
+            //Plugin Infos
+            base.Author = "Kilian";
+            base.PluginName = "HomeComponent - GameInfos";
+            base.PluginFolder = "[NONE]";
+
         }
 
-        private void B_makeNextGameMode_Click(object sender, EventArgs e)
+
+        public override void onLoad(LamaConfig cfg)
         {
-            string gameMode = cb_serverGMScript.Text;
-            string gm = "";
-            if (gameMode != "")
-            {
-                if (!gameMode.Contains(".Script.txt"))
-                    gm = gameMode + ".Script.Txt";
-                else
-                {
-                    gm = gameMode;
-                }
-
-                asyncRequest(SetScriptName, gm);
-            }
+            //Do checks
         }
+
 
         protected override void onGbxAsyncResult(GbxCall res)
         {
@@ -61,9 +58,26 @@ namespace LamaMania.HomeComponents
                     setLabel(this.l_gameMode, "GameMode : " + script);
                     initGameModeCombo(script);
                     break;
-            
+
+                case GetPlayerList:
+                    ArrayList userList = (ArrayList)res.Params[0];
+                    Lama.nbPlayers = userList.Count;
+                    setLabel(l_players, "Players : " + Lama.nbPlayers + "/" + Lama.maxPlayers);
+                    break;
+
+                case GetCurrentMapInfo:
+                    var htcm = res.getHashTable();
+                    setLabel(l_map, "Map : " + ManiaColors.getText((string)htcm["Name"]));
+                    break;
+
+                case GetServerOptions:
+                    setLabel(l_players, "Players : " + Lama.nbPlayers + "/" + Lama.maxPlayers);
+
+
+                    break;
             }
         }
+
 
         public override void onGbxCallBack(GbxCallbackEventArgs res)
         {
@@ -114,6 +128,26 @@ namespace LamaMania.HomeComponents
             }
         }
 
+        
+
+
+
+        private void B_makeNextGameMode_Click(object sender, EventArgs e)
+        {
+            string gameMode = cb_serverGMScript.Text;
+            string gm = "";
+            if (gameMode != "")
+            {
+                if (!gameMode.Contains(".Script.txt"))
+                    gm = gameMode + ".Script.Txt";
+                else
+                {
+                    gm = gameMode;
+                }
+
+                asyncRequest(SetScriptName, gm);
+            }
+        }
 
         void initGameModeCombo(string script)
         {

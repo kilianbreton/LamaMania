@@ -23,6 +23,9 @@
  *
  * ----------------------------------------------------------------------------------*/
 
+#define debug
+//#define visualDebug
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -54,9 +57,12 @@ namespace LamaMania
         public HomeLauncher()
         {
             InitializeComponent();
-            
-            Lama.lamaLogger = new LamaLog(@"Logs\Lama.log");
-            Lama.pluginManager = new PluginManager();
+#if debug
+            Lama.lamaLogger = new LamaLog(@"Logs\Lama.log",true);
+#else
+            Lama.lamaLogger = new LamaLog(@"Logs\Lama.log",false);
+#endif
+            Lama.pluginManager = new PluginManager("");
             Lama.pluginManager.loadPlugins();
             load();
         }
@@ -66,6 +72,22 @@ namespace LamaMania
         /// </summary>
         public void load()
         {
+            Lama.log("NOTICE", "Read ini");
+      /*      Lama.iniFile = new NTK.IO.Ini.IniDocument("LamaMania.ini");
+            string mode = Lama.iniFile.getGroup("MAIN").getValue("Mode");
+
+            string serverMode = Lama.iniFile.getGroup(mode).getValue("ServerMode");
+            Lama.externalServer = (serverMode == "$EXTERNAL$");
+            if (serverMode != "$EXTERNAL$")
+                Lama.serverPath = getPathFromVar(serverMode);
+            
+
+            string configPath = Lama.iniFile.getGroup(mode).getValue("ConfigPath");
+            string ressourcesPath = Lama.iniFile.getGroup(mode).getValue("RessourcesPath");
+            string cachePath = Lama.iniFile.getGroup(mode).getValue("CachePath");
+
+            */
+
             Lama.log("NOTICE", "Read main config");
             Lama.mainConfig = new XmlDocument(@"Config\Main.xml");
             XmlNode root = Lama.mainConfig[0];
@@ -77,31 +99,19 @@ namespace LamaMania
                     case "startMode":
                         if (!node.Value.ToUpper().Equals("SELECT"))
                         {
-                            Lama.startMode = int.Parse(node.Value);
+                            if(!int.TryParse(node.Value, out Lama.startMode))
+                            {
+                                Lama.startMode = -1;
+                                Lama.log("WARNING", "StartMode : '" + node.Value + "' Unknown");
+                            }
                         }
                         break;
 
                     case "lang":
-                        loadScriptSettings(node.Value);
-                        switch (node.Value)
-                        {
-                            case "FR":
-                                
-                                break;
-                            case "EN":
-                                //   Lama.lang = new BaseEN();
-                                break;
-                            default:
-                                //TODO: Manage dll
-                                List<BaseLang> lstLang = new List<BaseLang>();
-                                DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
-                                foreach (FileInfo file in pluginsDir.GetFiles())
-                                {
-                                    DllLoader loader = new DllLoader(file.FullName);
-                                    lstLang.AddRange(loader.getAllInstances<BaseLang>());
-                                }
-                                break;
-                        }
+                   //     loadScriptSettings(node.Value);
+                    //    Lama.localesManager = new LocalesManager(@"Config\Locales\main.lmf", node.Value);
+                        //Lama.localesManager
+                    
 
                         if (Lama.lang != null)
                             loadLang();
@@ -160,9 +170,14 @@ namespace LamaMania
                 if (result.Res)
                 {
                     Lama.launched = true;
+#if visualDebug
+                    Main main = new Main();
+#else
                     Main main = new Main(result.Login, result.Pass);
-                    main.Show();
+#endif
                     this.Hide();
+                    main.Show();
+                    
                 }
 
             }
@@ -180,11 +195,16 @@ namespace LamaMania
                     cmd += " /lan";
                 }
                 //Select plugin list
-                if (cfg["plugins"].getAttibuteV("value").ToUpper().Equals("TRUE"))
-                {
-                    Lama.pluginManager.selectInGamePlugins(cfg["plugins"]);
-                }
 
+                if (cfg["plugins"].haveAttribute("value") && cfg["plugins"].getAttibuteV("value").ToUpper().Equals("TRUE"))
+                {
+                    Lama.pluginManager.selectPluginsFrmCfg(cfg["plugins"]);
+                }
+#if visualDebug
+
+                Main main = new Main();
+                main.Show();
+#else
                 if (Lama.invisibleServer)
                 {
                     Lama.serverProcess = new Process();
@@ -238,6 +258,7 @@ namespace LamaMania
                   
 
                 }
+#endif
             }
         }
 
@@ -330,6 +351,12 @@ namespace LamaMania
             {
                 Lama.onError(this, "Error", "Undefined server : " + flatComboBox1.Text);
             }
-        }            
+        }
+
+        private void FlatButton5_Click(object sender, EventArgs e)
+        {
+            ConfigSoft cfgs = new ConfigSoft();
+            cfgs.Show();
+        }
     }
 }

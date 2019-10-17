@@ -31,6 +31,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NTK.IO.Xml;
 using NTK.IO;
+using NTK.IO.Ini;
 using LamaLang;
 using LamaPlugin;
 using System.Windows.Forms;
@@ -40,11 +41,15 @@ using System.Threading;
 
 namespace LamaMania
 {
+   
+
+
     /// <summary>
     /// Lama Configuration
     /// </summary>
     public class Lama
     {
+        public static LocalesManager localesManager;
         /// <summary>
         /// Start mode : -1 = select and start, >=0 = autostart id
         /// </summary>
@@ -56,7 +61,7 @@ namespace LamaMania
         /// <summary>
         /// Plugin manager
         /// </summary>
-        public static PluginManager pluginManager = new PluginManager();
+        public static PluginManager pluginManager;
         /// <summary>
         /// Index of selected server
         /// </summary>
@@ -65,6 +70,20 @@ namespace LamaMania
         /// Main xml config
         /// </summary>
         public static XmlDocument mainConfig;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IniDocument iniFile;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool externalServer = false;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string serverPath = @"\Servers\";
+
+
         /// <summary>
         /// Make maniaplanet invisible
         /// </summary>
@@ -89,7 +108,9 @@ namespace LamaMania
         /// Language Module
         /// </summary>
         public static BaseLang lang;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static Dictionary<string, string> scriptSettingsLocales = new Dictionary<string, string>();
         /// <summary>
         /// 
@@ -115,11 +136,35 @@ namespace LamaMania
         /// 
         /// </summary>
         public static LoadForm loadForm = new LoadForm();
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static Thread loadThread;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static int previousMapId = -1;
+        /// <summary>
+        /// 
+        /// </summary>
         public static int currentMapId = -1;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static int nbPlayers = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static int maxPlayers = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static int maxSpectators = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool inEditMode = false;
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methods /////////////////////////////////////////////////////////////////////////////////////////
@@ -132,7 +177,6 @@ namespace LamaMania
         /// <param name="msg"></param>
         public static void log(string type, string msg)
         {
-            
             if (lamaLogger != null)
             {
                 lamaLogger.add(type, msg);
@@ -173,18 +217,81 @@ namespace LamaMania
             MessageBox.Show(txt, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// Get lama property from plugins
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static object getLamaProperty(LamaProperty name)
+        {
 
+            switch (name)
+            {
+                case LamaProperty.CONNECTED:
+                    return Lama.connected;
+                case LamaProperty.CURRENTMAPID:
+                    return Lama.currentMapId;
+                case LamaProperty.INVISIBLESERVER:
+                    return Lama.invisibleServer;
+                case LamaProperty.LANG:
+                    return Lama.lang;
+                case LamaProperty.LAUNCHED:
+                    return Lama.launched;
+                case LamaProperty.MAINCONFIG:
+                    return Lama.mainConfig;
+                case LamaProperty.MAXPLAYERS:
+                    return Lama.maxPlayers;
+                case LamaProperty.MAXSPECTATORS:
+                    return Lama.maxSpectators;
+                case LamaProperty.NBPLAYERS:
+                    return Lama.nbPlayers;
+                case LamaProperty.PREVIOUSMAPID:
+                    return Lama.previousMapId;
+                case LamaProperty.REMOTE:
+                    return Lama.remote;
+                case LamaProperty.REMOTEADRS:
+                    return Lama.remoteAdrs;
+                case LamaProperty.REMOTEPORT:
+                    return Lama.remotePort;
+                case LamaProperty.SCRIPTSETTINGSLOCALES:
+                    return Lama.scriptSettingsLocales;
+                case LamaProperty.STARTMODE:
+                    return Lama.startMode;
+                case LamaProperty.INEDITMODE:
+                    return Lama.inEditMode;
+                default:
+                    throw new Exception("Unknown property : " + name);
+            }
+
+   
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void Process_Disposed(object sender, EventArgs e)
         {
             Lama.launched = false;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void Process_Exited(object sender, EventArgs e)
         {
             Lama.launched = false;
         }
-
-        internal static void Process_DataReceived(object sender, DataReceivedEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static void Process_DataReceived(object sender, DataReceivedEventArgs e)
         {
           
         }

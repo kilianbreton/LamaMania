@@ -39,9 +39,6 @@ using static NTK.Other.NTKF;
 using static LamaMania.StaticMethods;
 using LamaLang;
 using LamaPlugin;
-using Arc.TrackMania.GameBox;
-using Arc.TrackMania.NadeoPak;
-using Arc.TrackMania.Classes;
 using GBXMapParser;
 
 namespace LamaMania
@@ -60,6 +57,7 @@ namespace LamaMania
         private int index;
         private string title; //Save title for check change
 
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Constructeurs ///////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,44 +65,25 @@ namespace LamaMania
         /// <summary>
         /// New Local Server, called by NewServer
         /// </summary>
-        public ConfigServ(string name)
+        public ConfigServ(int index, string serverPath, string mapPath, XmlNode serverConfig)
         {
             InitializeComponent();
-            Lama.log("NOTICE", "ConvigServ in NewServer mode");
 
-            this.index = Lama.mainConfig[0]["servers"].count();
-            this.serverPath = @"Servers\" + index + @"\";
 
-            //Make server-----------------------------------------------------------------
-            Lama.log("NOTICE", "Create directory");
-            Directory.CreateDirectory(this.serverPath);
-            DirectoryInfo mps = new DirectoryInfo(@"Ressources\mps\");
+            this.index = index;
+            this.serverPath = serverPath;
+            this.mapPath = mapPath;
+            this.serverConfig = serverConfig;
+         
 
-            Lama.log("NOTICE", "Copy Directory");
-            copyDirectory(mps, this.serverPath);
-            this.mapPath = serverPath + @"UserData\Maps\";
 
-            //MakeConfig------------------------------------------------------------------
-            Lama.log("NOTICE", "MakeConfig");
-            this.serverConfig = Lama.mainConfig[0]["servers"].addChild("server").addAttribute("id", index.ToString());
-            XmlNode root = this.serverConfig;
-            root.addChild("name", name);
-            root.addChild("internetServer", "true");
-            root.addChild("matchSettings");
 
-            XmlNode remote = root.addChild("remote").addAttribute("value", "false");
-            remote.addChild("ip", "");
-            remote.addChild("port","");
-            remote.addChild("login","");
-
-            root.addChild("plugins");
-            Lama.mainConfig.save(false);
-
-            Lama.pluginManager.loadConfigServ(flatTabControl1.TabPages, checkedListBox1.Items, this.getConfigValue);
             loadDedicated();
             loadScriptList();
             loadMain();
             loadMaps();
+
+            Lama.mainConfig.save();
         }
 
         /// <summary>
@@ -238,6 +217,13 @@ namespace LamaMania
 
             tb_title.Text = systemConfig["title"].Value;
             this.title = tb_title.Text;
+
+
+            //Color empty required fields
+            Tb_serverLogin_TextChanged(this, null);
+            Tb_ServerPass_TextChanged(this, null);
+            Tb_validKey_TextChanged(this, null);
+
         }
 
         void loadScriptList()
@@ -559,6 +545,7 @@ namespace LamaMania
             saveMain();
             saveDedicated();
             saveMatchSettings();
+      
             this.Close();
         }
 
@@ -624,6 +611,7 @@ namespace LamaMania
             this.serverConfig = null;
             this.matchSettings = null;
             this.dedicated_config = null;
+            
             this.Close();
         }
 
@@ -700,6 +688,30 @@ namespace LamaMania
             {
                 Lama.log("ERROR", "[ConfigServ][MapSelect]>" + er.Message);
             }
+        }
+
+        private void Tb_serverLogin_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_serverLogin.Text == "")
+                flatLabel3.ForeColor = Color.Red;
+            else
+                flatLabel3.ForeColor = Color.White;
+        }
+
+        private void Tb_ServerPass_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_ServerPass.Text == "")
+                flatLabel4.ForeColor = Color.Red;
+            else
+                flatLabel4.ForeColor = Color.White;
+        }
+
+        private void Tb_validKey_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_validKey.Text == "")
+                flatLabel5.ForeColor = Color.Red;
+            else
+                flatLabel5.ForeColor = Color.White;
         }
     }
 }

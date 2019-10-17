@@ -28,16 +28,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using static NTK.Other.NTKF;
 
-namespace LamaMania
+namespace LamaPlugin
 {
     /// <summary>
     /// Classe permettant de parser les couleurs maniaplanet et d'écrire le texte coloré dans un Control
     /// </summary>
     public class ManiaColors
     {
+        private static bool running = false;
         private RichTextBox tb;
         private Color defaultColor = Color.White;
         private static List<string> nadeoCodes = new List<string>() { "$w", "$W", "$n", "$N", "$o", "$O", "$i", "$I", "$t", "$T", "$s", "$S", "$g", "$G", "$z", "$Z", "$<", "$>"};
@@ -83,6 +85,12 @@ namespace LamaMania
         /// <param name="txt"></param>
         public void write(string txt)
         {
+            while (running)
+            {
+                Thread.Sleep(50);   
+            }
+            running = true;
+
             string text = txt;
             Color color = defaultColor;
             List<FontStyle> fonts = new List<FontStyle>() { FontStyle.Regular };
@@ -121,7 +129,7 @@ namespace LamaMania
                             text = text.Remove(i, 4); //remove code
                         }catch(Exception e)
                         {
-                            Lama.log("ERROR", "[ManiaColors]>" + txt + " : " + e.Message);
+                          //  Lama.log("ERROR", "[ManiaColors]>" + txt + " : " + e.Message);
                             break;
                         }
                     }
@@ -132,6 +140,7 @@ namespace LamaMania
                     writeRich(c.ToString(), color, fonts);
                 }
             }
+            running = false;
         }
         
         /// <summary>

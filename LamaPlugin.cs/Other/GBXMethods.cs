@@ -11,6 +11,12 @@ namespace LamaPlugin
     /// </summary>
     public static class GBXMethods
     {
+
+        public static Dictionary<int, string> commonHandles = new Dictionary<int, string>();
+
+
+
+
         /// <summary>
         /// Return an array of all available XML-RPC methods on this server.
         /// </summary>

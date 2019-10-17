@@ -27,7 +27,12 @@ namespace UAsecoPlugin
             this.Requirements.Add(new Requirement(RequirementType.FILE, "exemple.xml"));
             adminLogins.Add("kamphare");
         }
-        
+
+        public override void onDisconnect()
+        {
+           
+        }
+
         public override void onGbxAsyncResult(GbxCall res)
         {
             if (!res.Error)

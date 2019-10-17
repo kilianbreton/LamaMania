@@ -18,6 +18,7 @@ namespace LamaPlugin
         {
             PluginType = PluginType.HomeComponent;
             Requirements = new List<Requirement>();
+            handles = new Dictionary<int, string>();
             base.MouseClick += new MouseEventHandler(_mouseClick);
             base.MouseDown += new MouseEventHandler(_mouseDown);
             base.MouseUp += new MouseEventHandler(_mouseUp);
@@ -26,7 +27,7 @@ namespace LamaPlugin
 
         private void _mouseMove(object sender, MouseEventArgs e)
         {
-            if (clickDown)
+            if (clickDown && (bool)GetLamaProperty(LamaProperty.INEDITMODE))
             {
                 CheckCanMove();
                 base.Left = e.X + base.Left - this.mouseDownLocation.X;
@@ -38,7 +39,7 @@ namespace LamaPlugin
         {
             this.clickDown = false;
         }
-
+        
       
         private void _mouseDown(object sender, MouseEventArgs e)
         {
@@ -61,7 +62,8 @@ namespace LamaPlugin
         {
             if (param == null)
                 param = new object[] { };
-            this.handles.Add(this.client.AsyncRequest(methodeName, param, onGbxAsyncResult), methodeName);
+            if(this.client != null)
+                this.handles.Add(this.client.AsyncRequest(methodeName, param, onGbxAsyncResult), methodeName);
         }
 
         protected void asyncRequest(GbxCallCallbackHandler handler, String methodName, params object[] param)
@@ -89,14 +91,25 @@ namespace LamaPlugin
         // Abstract ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
+
+        public virtual void onDisconnect()
+        {
+
+        }
+
+        public virtual void onLoad(LamaConfig cfg)
+        {
+            
+        }
+        
         protected virtual void onGbxAsyncResult(GbxCall res)
         {
-            throw new NotImplementedException();
+            
         }
 
         public virtual void onGbxCallBack(GbxCallbackEventArgs res)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void CheckCanMove()
@@ -121,5 +134,6 @@ namespace LamaPlugin
         public bool CanMoveRight { get; set; }
         public bool CanMoveUp { get; set; }
         public bool CanMoveDown { get; set; }
+        public GetLamaProperty GetLamaProperty { get; set; }
     }
 }

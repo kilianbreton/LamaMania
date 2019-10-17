@@ -155,7 +155,7 @@
             this.formSkin1.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
             this.formSkin1.HeaderMaximize = false;
             this.formSkin1.Location = new System.Drawing.Point(0, 0);
-            this.formSkin1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.formSkin1.Margin = new System.Windows.Forms.Padding(2);
             this.formSkin1.Name = "formSkin1";
             this.formSkin1.Size = new System.Drawing.Size(928, 556);
             this.formSkin1.TabIndex = 0;
@@ -168,7 +168,7 @@
             this.b_cancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_cancel.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.b_cancel.Location = new System.Drawing.Point(9, 520);
-            this.b_cancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_cancel.Margin = new System.Windows.Forms.Padding(2);
             this.b_cancel.Name = "b_cancel";
             this.b_cancel.Rounded = false;
             this.b_cancel.Size = new System.Drawing.Size(80, 26);
@@ -184,7 +184,7 @@
             this.b_save.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_save.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.b_save.Location = new System.Drawing.Point(839, 520);
-            this.b_save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_save.Margin = new System.Windows.Forms.Padding(2);
             this.b_save.Name = "b_save";
             this.b_save.Rounded = false;
             this.b_save.Size = new System.Drawing.Size(80, 26);
@@ -204,7 +204,7 @@
             this.flatTabControl1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.flatTabControl1.ItemSize = new System.Drawing.Size(120, 40);
             this.flatTabControl1.Location = new System.Drawing.Point(0, 37);
-            this.flatTabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flatTabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.flatTabControl1.Name = "flatTabControl1";
             this.flatTabControl1.SelectedIndex = 0;
             this.flatTabControl1.Size = new System.Drawing.Size(928, 478);
@@ -245,9 +245,9 @@
             this.tp_general.Controls.Add(this.tb_playerPass);
             this.tp_general.Controls.Add(this.tb_ingameName);
             this.tp_general.Location = new System.Drawing.Point(4, 44);
-            this.tp_general.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_general.Margin = new System.Windows.Forms.Padding(2);
             this.tp_general.Name = "tp_general";
-            this.tp_general.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_general.Padding = new System.Windows.Forms.Padding(2);
             this.tp_general.Size = new System.Drawing.Size(920, 430);
             this.tp_general.TabIndex = 0;
             this.tp_general.Text = "General";
@@ -256,7 +256,7 @@
             // 
             this.tb_title.BackColor = System.Drawing.Color.Transparent;
             this.tb_title.Location = new System.Drawing.Point(124, 47);
-            this.tb_title.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_title.Margin = new System.Windows.Forms.Padding(2);
             this.tb_title.MaxLength = 32767;
             this.tb_title.Multiline = false;
             this.tb_title.Name = "tb_title";
@@ -310,7 +310,7 @@
             // 
             this.tb_userPass.BackColor = System.Drawing.Color.Transparent;
             this.tb_userPass.Location = new System.Drawing.Point(644, 215);
-            this.tb_userPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_userPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_userPass.MaxLength = 32767;
             this.tb_userPass.Multiline = false;
             this.tb_userPass.Name = "tb_userPass";
@@ -325,7 +325,7 @@
             // 
             this.tb_adminPass.BackColor = System.Drawing.Color.Transparent;
             this.tb_adminPass.Location = new System.Drawing.Point(644, 182);
-            this.tb_adminPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_adminPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_adminPass.MaxLength = 32767;
             this.tb_adminPass.Multiline = false;
             this.tb_adminPass.Name = "tb_adminPass";
@@ -340,7 +340,7 @@
             // 
             this.tb_superPass.BackColor = System.Drawing.Color.Transparent;
             this.tb_superPass.Location = new System.Drawing.Point(644, 150);
-            this.tb_superPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_superPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_superPass.MaxLength = 32767;
             this.tb_superPass.Multiline = false;
             this.tb_superPass.Name = "tb_superPass";
@@ -411,7 +411,7 @@
             this.n_playersLimit.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_playersLimit.ForeColor = System.Drawing.Color.White;
             this.n_playersLimit.Location = new System.Drawing.Point(124, 277);
-            this.n_playersLimit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_playersLimit.Margin = new System.Windows.Forms.Padding(2);
             this.n_playersLimit.Maximum = ((long)(9999999));
             this.n_playersLimit.Minimum = ((long)(0));
             this.n_playersLimit.Name = "n_playersLimit";
@@ -437,7 +437,7 @@
             // 
             this.tb_specPass.BackColor = System.Drawing.Color.Transparent;
             this.tb_specPass.Location = new System.Drawing.Point(124, 245);
-            this.tb_specPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_specPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_specPass.MaxLength = 32767;
             this.tb_specPass.Multiline = false;
             this.tb_specPass.Name = "tb_specPass";
@@ -469,7 +469,7 @@
             this.n_specsLimit.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_specsLimit.ForeColor = System.Drawing.Color.White;
             this.n_specsLimit.Location = new System.Drawing.Point(326, 277);
-            this.n_specsLimit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_specsLimit.Margin = new System.Windows.Forms.Padding(2);
             this.n_specsLimit.Maximum = ((long)(9999999));
             this.n_specsLimit.Minimum = ((long)(0));
             this.n_specsLimit.Name = "n_specsLimit";
@@ -560,7 +560,7 @@
             // 
             this.tb_name.BackColor = System.Drawing.Color.Transparent;
             this.tb_name.Location = new System.Drawing.Point(124, 15);
-            this.tb_name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_name.Margin = new System.Windows.Forms.Padding(2);
             this.tb_name.MaxLength = 32767;
             this.tb_name.Multiline = false;
             this.tb_name.Name = "tb_name";
@@ -575,7 +575,7 @@
             // 
             this.tb_description.BackColor = System.Drawing.Color.Transparent;
             this.tb_description.Location = new System.Drawing.Point(124, 110);
-            this.tb_description.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_description.Margin = new System.Windows.Forms.Padding(2);
             this.tb_description.MaxLength = 32767;
             this.tb_description.Multiline = true;
             this.tb_description.Name = "tb_description";
@@ -590,7 +590,7 @@
             // 
             this.tb_serverLogin.BackColor = System.Drawing.Color.Transparent;
             this.tb_serverLogin.Location = new System.Drawing.Point(644, 15);
-            this.tb_serverLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_serverLogin.Margin = new System.Windows.Forms.Padding(2);
             this.tb_serverLogin.MaxLength = 32767;
             this.tb_serverLogin.Multiline = false;
             this.tb_serverLogin.Name = "tb_serverLogin";
@@ -600,12 +600,13 @@
             this.tb_serverLogin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_serverLogin.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tb_serverLogin.UseSystemPasswordChar = false;
+            this.tb_serverLogin.TextChanged += new System.EventHandler(this.Tb_serverLogin_TextChanged);
             // 
             // tb_ServerPass
             // 
             this.tb_ServerPass.BackColor = System.Drawing.Color.Transparent;
             this.tb_ServerPass.Location = new System.Drawing.Point(644, 48);
-            this.tb_ServerPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_ServerPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_ServerPass.MaxLength = 32767;
             this.tb_ServerPass.Multiline = false;
             this.tb_ServerPass.Name = "tb_ServerPass";
@@ -615,12 +616,13 @@
             this.tb_ServerPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_ServerPass.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tb_ServerPass.UseSystemPasswordChar = false;
+            this.tb_ServerPass.TextChanged += new System.EventHandler(this.Tb_ServerPass_TextChanged);
             // 
             // tb_validKey
             // 
             this.tb_validKey.BackColor = System.Drawing.Color.Transparent;
             this.tb_validKey.Location = new System.Drawing.Point(827, 80);
-            this.tb_validKey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_validKey.Margin = new System.Windows.Forms.Padding(2);
             this.tb_validKey.MaxLength = 32767;
             this.tb_validKey.Multiline = false;
             this.tb_validKey.Name = "tb_validKey";
@@ -630,12 +632,13 @@
             this.tb_validKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_validKey.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tb_validKey.UseSystemPasswordChar = false;
+            this.tb_validKey.TextChanged += new System.EventHandler(this.Tb_validKey_TextChanged);
             // 
             // tb_playerPass
             // 
             this.tb_playerPass.BackColor = System.Drawing.Color.Transparent;
             this.tb_playerPass.Location = new System.Drawing.Point(124, 212);
-            this.tb_playerPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_playerPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_playerPass.MaxLength = 32767;
             this.tb_playerPass.Multiline = false;
             this.tb_playerPass.Name = "tb_playerPass";
@@ -650,7 +653,7 @@
             // 
             this.tb_ingameName.BackColor = System.Drawing.Color.Transparent;
             this.tb_ingameName.Location = new System.Drawing.Point(124, 78);
-            this.tb_ingameName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_ingameName.Margin = new System.Windows.Forms.Padding(2);
             this.tb_ingameName.MaxLength = 32767;
             this.tb_ingameName.Multiline = false;
             this.tb_ingameName.Name = "tb_ingameName";
@@ -704,9 +707,9 @@
             this.tp_advanced.Controls.Add(this.tb_p2pPort);
             this.tp_advanced.Controls.Add(this.tb_ServerPort);
             this.tp_advanced.Location = new System.Drawing.Point(4, 44);
-            this.tp_advanced.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_advanced.Margin = new System.Windows.Forms.Padding(2);
             this.tp_advanced.Name = "tp_advanced";
-            this.tp_advanced.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_advanced.Padding = new System.Windows.Forms.Padding(2);
             this.tp_advanced.Size = new System.Drawing.Size(920, 430);
             this.tp_advanced.TabIndex = 1;
             this.tp_advanced.Text = "Advanced";
@@ -720,7 +723,7 @@
             this.ch_internetServer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_internetServer.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_internetServer.Location = new System.Drawing.Point(754, 276);
-            this.ch_internetServer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_internetServer.Margin = new System.Windows.Forms.Padding(2);
             this.ch_internetServer.Name = "ch_internetServer";
             this.ch_internetServer.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_internetServer.Size = new System.Drawing.Size(152, 22);
@@ -748,7 +751,7 @@
             this.n_p2pCacheSize.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_p2pCacheSize.ForeColor = System.Drawing.Color.White;
             this.n_p2pCacheSize.Location = new System.Drawing.Point(836, 223);
-            this.n_p2pCacheSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_p2pCacheSize.Margin = new System.Windows.Forms.Padding(2);
             this.n_p2pCacheSize.Maximum = ((long)(9999999));
             this.n_p2pCacheSize.Minimum = ((long)(0));
             this.n_p2pCacheSize.Name = "n_p2pCacheSize";
@@ -766,7 +769,7 @@
             this.ch_allowSpecRelay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_allowSpecRelay.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_allowSpecRelay.Location = new System.Drawing.Point(11, 316);
-            this.ch_allowSpecRelay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_allowSpecRelay.Margin = new System.Windows.Forms.Padding(2);
             this.ch_allowSpecRelay.Name = "ch_allowSpecRelay";
             this.ch_allowSpecRelay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_allowSpecRelay.Size = new System.Drawing.Size(183, 22);
@@ -794,7 +797,7 @@
             this.n_paThreadCount.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_paThreadCount.ForeColor = System.Drawing.Color.White;
             this.n_paThreadCount.Location = new System.Drawing.Point(836, 192);
-            this.n_paThreadCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_paThreadCount.Margin = new System.Windows.Forms.Padding(2);
             this.n_paThreadCount.Maximum = ((long)(9999999));
             this.n_paThreadCount.Minimum = ((long)(0));
             this.n_paThreadCount.Name = "n_paThreadCount";
@@ -819,7 +822,7 @@
             "Allways hidden",
             "Hidden from Nations"});
             this.cb_hiddenServer.Location = new System.Drawing.Point(130, 138);
-            this.cb_hiddenServer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_hiddenServer.Margin = new System.Windows.Forms.Padding(2);
             this.cb_hiddenServer.Name = "cb_hiddenServer";
             this.cb_hiddenServer.Size = new System.Drawing.Size(191, 24);
             this.cb_hiddenServer.TabIndex = 44;
@@ -867,7 +870,7 @@
             // 
             this.tb_voteRatio.BackColor = System.Drawing.Color.Transparent;
             this.tb_voteRatio.Location = new System.Drawing.Point(130, 105);
-            this.tb_voteRatio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_voteRatio.Margin = new System.Windows.Forms.Padding(2);
             this.tb_voteRatio.MaxLength = 32767;
             this.tb_voteRatio.Multiline = false;
             this.tb_voteRatio.Name = "tb_voteRatio";
@@ -886,7 +889,7 @@
             this.n_voteTimeout.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_voteTimeout.ForeColor = System.Drawing.Color.White;
             this.n_voteTimeout.Location = new System.Drawing.Point(130, 73);
-            this.n_voteTimeout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_voteTimeout.Margin = new System.Windows.Forms.Padding(2);
             this.n_voteTimeout.Maximum = ((long)(9999999));
             this.n_voteTimeout.Minimum = ((long)(0));
             this.n_voteTimeout.Name = "n_voteTimeout";
@@ -899,7 +902,7 @@
             // 
             this.tb_proxy.BackColor = System.Drawing.Color.Transparent;
             this.tb_proxy.Location = new System.Drawing.Point(754, 322);
-            this.tb_proxy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_proxy.Margin = new System.Windows.Forms.Padding(2);
             this.tb_proxy.MaxLength = 32767;
             this.tb_proxy.Multiline = false;
             this.tb_proxy.Name = "tb_proxy";
@@ -919,7 +922,7 @@
             this.ch_proxy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_proxy.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_proxy.Location = new System.Drawing.Point(754, 299);
-            this.ch_proxy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_proxy.Margin = new System.Windows.Forms.Padding(2);
             this.ch_proxy.Name = "ch_proxy";
             this.ch_proxy.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_proxy.Size = new System.Drawing.Size(75, 22);
@@ -960,7 +963,7 @@
             this.n_UpRate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_UpRate.ForeColor = System.Drawing.Color.White;
             this.n_UpRate.Location = new System.Drawing.Point(836, 162);
-            this.n_UpRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_UpRate.Margin = new System.Windows.Forms.Padding(2);
             this.n_UpRate.Maximum = ((long)(9999999));
             this.n_UpRate.Minimum = ((long)(0));
             this.n_UpRate.Name = "n_UpRate";
@@ -977,7 +980,7 @@
             this.n_DownRate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_DownRate.ForeColor = System.Drawing.Color.White;
             this.n_DownRate.Location = new System.Drawing.Point(836, 133);
-            this.n_DownRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_DownRate.Margin = new System.Windows.Forms.Padding(2);
             this.n_DownRate.Maximum = ((long)(9999999));
             this.n_DownRate.Minimum = ((long)(0));
             this.n_DownRate.Name = "n_DownRate";
@@ -995,7 +998,7 @@
             this.ch_xmlRpcRemote.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_xmlRpcRemote.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_xmlRpcRemote.Location = new System.Drawing.Point(757, 354);
-            this.ch_xmlRpcRemote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_xmlRpcRemote.Margin = new System.Windows.Forms.Padding(2);
             this.ch_xmlRpcRemote.Name = "ch_xmlRpcRemote";
             this.ch_xmlRpcRemote.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_xmlRpcRemote.Size = new System.Drawing.Size(148, 22);
@@ -1023,7 +1026,7 @@
             this.n_maxLat.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_maxLat.ForeColor = System.Drawing.Color.White;
             this.n_maxLat.Location = new System.Drawing.Point(836, 104);
-            this.n_maxLat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_maxLat.Margin = new System.Windows.Forms.Padding(2);
             this.n_maxLat.Maximum = ((long)(9999999));
             this.n_maxLat.Minimum = ((long)(0));
             this.n_maxLat.Name = "n_maxLat";
@@ -1041,7 +1044,7 @@
             this.ch_horns.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_horns.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_horns.Location = new System.Drawing.Point(11, 292);
-            this.ch_horns.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_horns.Margin = new System.Windows.Forms.Padding(2);
             this.ch_horns.Name = "ch_horns";
             this.ch_horns.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_horns.Size = new System.Drawing.Size(183, 22);
@@ -1057,7 +1060,7 @@
             this.ch_mapDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_mapDown.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_mapDown.Location = new System.Drawing.Point(11, 269);
-            this.ch_mapDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_mapDown.Margin = new System.Windows.Forms.Padding(2);
             this.ch_mapDown.Name = "ch_mapDown";
             this.ch_mapDown.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_mapDown.Size = new System.Drawing.Size(183, 22);
@@ -1073,7 +1076,7 @@
             this.ch_saveValReplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_saveValReplay.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_saveValReplay.Location = new System.Drawing.Point(11, 246);
-            this.ch_saveValReplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_saveValReplay.Margin = new System.Windows.Forms.Padding(2);
             this.ch_saveValReplay.Name = "ch_saveValReplay";
             this.ch_saveValReplay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_saveValReplay.Size = new System.Drawing.Size(183, 22);
@@ -1089,7 +1092,7 @@
             this.ch_autoSaveReplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_autoSaveReplay.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_autoSaveReplay.Location = new System.Drawing.Point(11, 223);
-            this.ch_autoSaveReplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_autoSaveReplay.Margin = new System.Windows.Forms.Padding(2);
             this.ch_autoSaveReplay.Name = "ch_autoSaveReplay";
             this.ch_autoSaveReplay.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_autoSaveReplay.Size = new System.Drawing.Size(183, 22);
@@ -1105,7 +1108,7 @@
             this.ch_p2pUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_p2pUp.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_p2pUp.Location = new System.Drawing.Point(757, 400);
-            this.ch_p2pUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_p2pUp.Margin = new System.Windows.Forms.Padding(2);
             this.ch_p2pUp.Name = "ch_p2pUp";
             this.ch_p2pUp.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_p2pUp.Size = new System.Drawing.Size(88, 22);
@@ -1121,7 +1124,7 @@
             this.ch_p2pDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_p2pDown.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_p2pDown.Location = new System.Drawing.Point(757, 377);
-            this.ch_p2pDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_p2pDown.Margin = new System.Windows.Forms.Padding(2);
             this.ch_p2pDown.Name = "ch_p2pDown";
             this.ch_p2pDown.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_p2pDown.Size = new System.Drawing.Size(112, 22);
@@ -1137,7 +1140,7 @@
             this.ch_keepPlayerSlot.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_keepPlayerSlot.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_keepPlayerSlot.Location = new System.Drawing.Point(11, 198);
-            this.ch_keepPlayerSlot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_keepPlayerSlot.Margin = new System.Windows.Forms.Padding(2);
             this.ch_keepPlayerSlot.Name = "ch_keepPlayerSlot";
             this.ch_keepPlayerSlot.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_keepPlayerSlot.Size = new System.Drawing.Size(183, 22);
@@ -1153,7 +1156,7 @@
             this.ch_ladder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ch_ladder.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ch_ladder.Location = new System.Drawing.Point(11, 176);
-            this.ch_ladder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ch_ladder.Margin = new System.Windows.Forms.Padding(2);
             this.ch_ladder.Name = "ch_ladder";
             this.ch_ladder.Options = FlatUITheme.FlatCheckBox._Options.Style1;
             this.ch_ladder.Size = new System.Drawing.Size(183, 22);
@@ -1188,7 +1191,7 @@
             "TOP3",
             "ALL"});
             this.cb_refereeValid.Location = new System.Drawing.Point(130, 46);
-            this.cb_refereeValid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_refereeValid.Margin = new System.Windows.Forms.Padding(2);
             this.cb_refereeValid.Name = "cb_refereeValid";
             this.cb_refereeValid.Size = new System.Drawing.Size(191, 24);
             this.cb_refereeValid.TabIndex = 20;
@@ -1210,7 +1213,7 @@
             // 
             this.tb_refereePass.BackColor = System.Drawing.Color.Transparent;
             this.tb_refereePass.Location = new System.Drawing.Point(130, 12);
-            this.tb_refereePass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_refereePass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_refereePass.MaxLength = 32767;
             this.tb_refereePass.Multiline = false;
             this.tb_refereePass.Name = "tb_refereePass";
@@ -1264,7 +1267,7 @@
             // 
             this.tb_XmlRpcPort.BackColor = System.Drawing.Color.Transparent;
             this.tb_XmlRpcPort.Location = new System.Drawing.Point(836, 69);
-            this.tb_XmlRpcPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_XmlRpcPort.Margin = new System.Windows.Forms.Padding(2);
             this.tb_XmlRpcPort.MaxLength = 32767;
             this.tb_XmlRpcPort.Multiline = false;
             this.tb_XmlRpcPort.Name = "tb_XmlRpcPort";
@@ -1279,7 +1282,7 @@
             // 
             this.tb_p2pPort.BackColor = System.Drawing.Color.Transparent;
             this.tb_p2pPort.Location = new System.Drawing.Point(836, 37);
-            this.tb_p2pPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_p2pPort.Margin = new System.Windows.Forms.Padding(2);
             this.tb_p2pPort.MaxLength = 32767;
             this.tb_p2pPort.Multiline = false;
             this.tb_p2pPort.Name = "tb_p2pPort";
@@ -1294,7 +1297,7 @@
             // 
             this.tb_ServerPort.BackColor = System.Drawing.Color.Transparent;
             this.tb_ServerPort.Location = new System.Drawing.Point(836, 6);
-            this.tb_ServerPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_ServerPort.Margin = new System.Windows.Forms.Padding(2);
             this.tb_ServerPort.MaxLength = 32767;
             this.tb_ServerPort.Multiline = false;
             this.tb_ServerPort.Name = "tb_ServerPort";
@@ -1336,7 +1339,7 @@
             this.tp_match.Controls.Add(this.b_browseMatch);
             this.tp_match.Controls.Add(this.tb_matchFile);
             this.tp_match.Location = new System.Drawing.Point(4, 44);
-            this.tp_match.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_match.Margin = new System.Windows.Forms.Padding(2);
             this.tp_match.Name = "tp_match";
             this.tp_match.Size = new System.Drawing.Size(920, 430);
             this.tp_match.TabIndex = 2;
@@ -1345,7 +1348,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(333, 33);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(248, 167);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1381,7 +1384,7 @@
             "Rounds",
             "Team"});
             this.cb_gameMode.Location = new System.Drawing.Point(754, 115);
-            this.cb_gameMode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_gameMode.Margin = new System.Windows.Forms.Padding(2);
             this.cb_gameMode.Name = "cb_gameMode";
             this.cb_gameMode.Size = new System.Drawing.Size(163, 24);
             this.cb_gameMode.TabIndex = 39;
@@ -1394,7 +1397,7 @@
             this.n_warm_s.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_s.ForeColor = System.Drawing.Color.White;
             this.n_warm_s.Location = new System.Drawing.Point(856, 208);
-            this.n_warm_s.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_warm_s.Margin = new System.Windows.Forms.Padding(2);
             this.n_warm_s.Maximum = ((long)(59));
             this.n_warm_s.Minimum = ((long)(0));
             this.n_warm_s.Name = "n_warm_s";
@@ -1411,7 +1414,7 @@
             this.n_warm_h.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_h.ForeColor = System.Drawing.Color.White;
             this.n_warm_h.Location = new System.Drawing.Point(739, 208);
-            this.n_warm_h.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_warm_h.Margin = new System.Windows.Forms.Padding(2);
             this.n_warm_h.Maximum = ((long)(9));
             this.n_warm_h.Minimum = ((long)(0));
             this.n_warm_h.Name = "n_warm_h";
@@ -1428,7 +1431,7 @@
             this.n_forcelaps.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_forcelaps.ForeColor = System.Drawing.Color.White;
             this.n_forcelaps.Location = new System.Drawing.Point(796, 238);
-            this.n_forcelaps.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_forcelaps.Margin = new System.Windows.Forms.Padding(2);
             this.n_forcelaps.Maximum = ((long)(9999999));
             this.n_forcelaps.Minimum = ((long)(0));
             this.n_forcelaps.Name = "n_forcelaps";
@@ -1445,7 +1448,7 @@
             this.n_warm_m.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_warm_m.ForeColor = System.Drawing.Color.White;
             this.n_warm_m.Location = new System.Drawing.Point(796, 208);
-            this.n_warm_m.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_warm_m.Margin = new System.Windows.Forms.Padding(2);
             this.n_warm_m.Maximum = ((long)(9999999));
             this.n_warm_m.Minimum = ((long)(0));
             this.n_warm_m.Name = "n_warm_m";
@@ -1462,7 +1465,7 @@
             this.n_nbwarm.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_nbwarm.ForeColor = System.Drawing.Color.White;
             this.n_nbwarm.Location = new System.Drawing.Point(796, 179);
-            this.n_nbwarm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_nbwarm.Margin = new System.Windows.Forms.Padding(2);
             this.n_nbwarm.Maximum = ((long)(9999999));
             this.n_nbwarm.Minimum = ((long)(0));
             this.n_nbwarm.Name = "n_nbwarm";
@@ -1479,7 +1482,7 @@
             this.n_time_m.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_m.ForeColor = System.Drawing.Color.White;
             this.n_time_m.Location = new System.Drawing.Point(796, 148);
-            this.n_time_m.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_time_m.Margin = new System.Windows.Forms.Padding(2);
             this.n_time_m.Maximum = ((long)(59));
             this.n_time_m.Minimum = ((long)(0));
             this.n_time_m.Name = "n_time_m";
@@ -1496,7 +1499,7 @@
             this.n_time_s.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_s.ForeColor = System.Drawing.Color.White;
             this.n_time_s.Location = new System.Drawing.Point(856, 148);
-            this.n_time_s.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_time_s.Margin = new System.Windows.Forms.Padding(2);
             this.n_time_s.Maximum = ((long)(59));
             this.n_time_s.Minimum = ((long)(0));
             this.n_time_s.Name = "n_time_s";
@@ -1513,7 +1516,7 @@
             this.n_time_h.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_time_h.ForeColor = System.Drawing.Color.White;
             this.n_time_h.Location = new System.Drawing.Point(739, 148);
-            this.n_time_h.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.n_time_h.Margin = new System.Windows.Forms.Padding(2);
             this.n_time_h.Maximum = ((long)(9));
             this.n_time_h.Minimum = ((long)(0));
             this.n_time_h.Name = "n_time_h";
@@ -1581,7 +1584,7 @@
             this.b_clearMapMatch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_clearMapMatch.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.b_clearMapMatch.Location = new System.Drawing.Point(233, 353);
-            this.b_clearMapMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_clearMapMatch.Margin = new System.Windows.Forms.Padding(2);
             this.b_clearMapMatch.Name = "b_clearMapMatch";
             this.b_clearMapMatch.Rounded = false;
             this.b_clearMapMatch.Size = new System.Drawing.Size(95, 32);
@@ -1597,7 +1600,7 @@
             this.b_addAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_addAll.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.b_addAll.Location = new System.Drawing.Point(233, 277);
-            this.b_addAll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_addAll.Margin = new System.Windows.Forms.Padding(2);
             this.b_addAll.Name = "b_addAll";
             this.b_addAll.Rounded = false;
             this.b_addAll.Size = new System.Drawing.Size(95, 33);
@@ -1613,7 +1616,7 @@
             this.b_delmap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_delmap.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.b_delmap.Location = new System.Drawing.Point(233, 390);
-            this.b_delmap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_delmap.Margin = new System.Windows.Forms.Padding(2);
             this.b_delmap.Name = "b_delmap";
             this.b_delmap.Rounded = false;
             this.b_delmap.Size = new System.Drawing.Size(95, 32);
@@ -1630,7 +1633,7 @@
             this.l_mapsMatch.FormattingEnabled = true;
             this.l_mapsMatch.ItemHeight = 17;
             this.l_mapsMatch.Location = new System.Drawing.Point(333, 224);
-            this.l_mapsMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.l_mapsMatch.Margin = new System.Windows.Forms.Padding(2);
             this.l_mapsMatch.Name = "l_mapsMatch";
             this.l_mapsMatch.Size = new System.Drawing.Size(248, 204);
             this.l_mapsMatch.TabIndex = 23;
@@ -1644,7 +1647,7 @@
             this.l_mapsLocal.FormattingEnabled = true;
             this.l_mapsLocal.ItemHeight = 17;
             this.l_mapsLocal.Location = new System.Drawing.Point(7, 224);
-            this.l_mapsLocal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.l_mapsLocal.Margin = new System.Windows.Forms.Padding(2);
             this.l_mapsLocal.Name = "l_mapsLocal";
             this.l_mapsLocal.Size = new System.Drawing.Size(221, 204);
             this.l_mapsLocal.TabIndex = 22;
@@ -1683,7 +1686,7 @@
             this.b_newMatch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_newMatch.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.b_newMatch.Location = new System.Drawing.Point(866, 9);
-            this.b_newMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_newMatch.Margin = new System.Windows.Forms.Padding(2);
             this.b_newMatch.Name = "b_newMatch";
             this.b_newMatch.Rounded = false;
             this.b_newMatch.Size = new System.Drawing.Size(46, 28);
@@ -1699,7 +1702,7 @@
             this.b_add.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_add.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.b_add.Location = new System.Drawing.Point(233, 315);
-            this.b_add.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_add.Margin = new System.Windows.Forms.Padding(2);
             this.b_add.Name = "b_add";
             this.b_add.Rounded = false;
             this.b_add.Size = new System.Drawing.Size(95, 32);
@@ -1715,7 +1718,7 @@
             this.treeView1.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.treeView1.LineColor = System.Drawing.Color.Gray;
             this.treeView1.Location = new System.Drawing.Point(6, 33);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(2);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(223, 186);
             this.treeView1.TabIndex = 5;
@@ -1728,7 +1731,7 @@
             this.b_browseMatch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b_browseMatch.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.b_browseMatch.Location = new System.Drawing.Point(796, 9);
-            this.b_browseMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_browseMatch.Margin = new System.Windows.Forms.Padding(2);
             this.b_browseMatch.Name = "b_browseMatch";
             this.b_browseMatch.Rounded = false;
             this.b_browseMatch.Size = new System.Drawing.Size(65, 28);
@@ -1741,7 +1744,7 @@
             // 
             this.tb_matchFile.BackColor = System.Drawing.Color.Transparent;
             this.tb_matchFile.Location = new System.Drawing.Point(613, 9);
-            this.tb_matchFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_matchFile.Margin = new System.Windows.Forms.Padding(2);
             this.tb_matchFile.MaxLength = 32767;
             this.tb_matchFile.Multiline = false;
             this.tb_matchFile.Name = "tb_matchFile";
@@ -1757,9 +1760,9 @@
             this.tabPlugins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
             this.tabPlugins.Controls.Add(this.checkedListBox1);
             this.tabPlugins.Location = new System.Drawing.Point(4, 44);
-            this.tabPlugins.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPlugins.Margin = new System.Windows.Forms.Padding(2);
             this.tabPlugins.Name = "tabPlugins";
-            this.tabPlugins.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPlugins.Padding = new System.Windows.Forms.Padding(2);
             this.tabPlugins.Size = new System.Drawing.Size(920, 430);
             this.tabPlugins.TabIndex = 3;
             this.tabPlugins.Text = "Plugins";
@@ -1769,7 +1772,7 @@
             this.checkedListBox1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(4, 5);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(782, 304);
             this.checkedListBox1.TabIndex = 0;
@@ -1781,7 +1784,7 @@
             this.ClientSize = new System.Drawing.Size(928, 556);
             this.Controls.Add(this.formSkin1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ConfigServ";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConfigServ";

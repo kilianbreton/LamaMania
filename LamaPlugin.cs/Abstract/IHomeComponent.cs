@@ -22,6 +22,6 @@ namespace LamaPlugin
 
         HomeComponentType Type { get; set; }
 
-
+        GetLamaProperty GetLamaProperty { get; set; }
     }
 }

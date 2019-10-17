@@ -252,10 +252,12 @@ namespace LamaMania
         public static void parseTime(int time, out int h, out int m, out int s)
         {
             h = 0;
-   
             m = time / 60;
             if (m >= 60)
+            {
                 h = m / 60;
+                m = m % 60;
+            }
             s = time % 60;
         }
 
@@ -284,6 +286,29 @@ namespace LamaMania
             else
             {
                 return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// Get ManiaPlanetServer status string from code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static string getStatus(int code)
+        {
+            switch (code)
+            {
+                case 2:
+                    return "Running - Exit";
+                case 3:
+                    return "Running - Synchronisation";
+                case 4:
+                    return "Running - Play";
+                case 6:
+                    return "Running - Finish";
+                default:
+                    return code.ToString();
             }
         }
 
@@ -328,17 +353,84 @@ namespace LamaMania
             }
         }
 
-
-        public static InGamePlugin getPluginByName(string name)
+        /// <summary>
+        /// Search plugin by name, return null if not exist
+        /// PluginType.Base search in all plugin type
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static IBase getPluginByName(string name, PluginType type = PluginType.Base)
         {
             int cpt = 0;
+            List<IBase> lst = new List<IBase>();
+            switch (type)
+            {
+                case PluginType.Base:
+                    lst.AddRange(Lama.pluginManager.HomeComponentPlugins);
+                    lst.AddRange(Lama.pluginManager.TabPlugins);
+                    lst.AddRange(Lama.pluginManager.InGamePlugins);
+                    break;
+                case PluginType.HomeComponent:
+                    lst.AddRange(Lama.pluginManager.HomeComponentPlugins);
+                    break;
+                case PluginType.TabPlugin:
+                    lst.AddRange(Lama.pluginManager.TabPlugins);
+                    break;
+                case PluginType.InGamePlugin:
+                    lst.AddRange(Lama.pluginManager.InGamePlugins);
+                    break;
+            }
+            
 
-            while (cpt < Lama.pluginManager.InGamePlugins.Count && Lama.pluginManager.InGamePlugins[cpt].PluginName != name){ cpt++; }
+          
 
-            if (cpt < Lama.pluginManager.InGamePlugins.Count && Lama.pluginManager.InGamePlugins[cpt].PluginName == name)
-                return Lama.pluginManager.InGamePlugins[cpt];
+
+            while (cpt < lst.Count && lst[cpt].PluginName != name){ cpt++; }
+
+            if (cpt < lst.Count && lst[cpt].PluginName == name)
+                return lst[cpt];
             else
                 return null;
+        }
+
+
+        /// <summary>
+        /// Return path from var like $APPDATA$
+        /// </summary>
+        /// <param name="var"></param>
+        /// <returns></returns>
+        public static string getPathFromVar(string var)
+        {
+            string ret = "";
+
+
+            switch (var)
+            {
+                case "$DOCUMENTS$":
+                    ret = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    break;
+                case "$PROGRAMS$":
+                    ret = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+                    break;
+                case "$PROGRAMFILES$":
+                    ret = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+                    break;
+                case "$APPDATA$":
+                    ret = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                    break;
+                case "$TEMP$":
+                    ret = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Temp";
+                    break;
+
+                default:
+                case "$CURRENT_PATH$":
+                    ret = Environment.CurrentDirectory;
+                    break;
+
+
+            }
+            return ret;
         }
 
 
