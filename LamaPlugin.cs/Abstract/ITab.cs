@@ -8,7 +8,7 @@ namespace LamaPlugin
 {
     public delegate object GetConfigValue(ITab sender, string inputName);
 
-    public interface ITab : IBase
+    public interface ITab : IBasePlugin
     {
         GetConfigValue getConfigValue { get; set; }
     }

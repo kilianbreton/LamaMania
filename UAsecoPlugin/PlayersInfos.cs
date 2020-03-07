@@ -20,10 +20,7 @@ namespace UAsecoPlugin
         NTKDatabase db;
         XmlDocument config;
 
-        string dbAdrs;
-        string dbName;
-        string dbLogin;
-        string dbPass;
+
 
 
         public PlayersInfos()
@@ -31,39 +28,44 @@ namespace UAsecoPlugin
             InitializeComponent();
             addMouseEvents(this.flatGroupBox1);
 
-            this.Author = "KilianBT";
+            this.Author = "KBT";
             this.PluginName = "UAsecoPlayersInfos";
             this.Version = "1.0";
 
             this.Requirements.Add(new Requirement(RequirementType.FILE, "uaseco_main.xml"));
+            this.Requirements.Add(new Requirement(RequirementContext.LOCAL));
         }
 
 
 
         public override void onLoad(LamaConfig cfg)
         {
-            if (cfg.configFiles.ContainsKey("uaseco_main.xml"))
+         //   throw new Exception();
+            if (cfg.configFiles.ContainsKey("uaseco_main.xml") && cfg.dbConnected && cfg.db != null)
             { 
                 this.config = cfg.configFiles["uaseco_main.xml"];
-                this.dbAdrs = this.config[0]["database"]["ip_adress"].Value;
-                this.dbName = this.config[0]["database"]["name"].Value;
-                this.dbLogin = this.config[0]["database"]["login"].Value;
-                this.dbPass = this.config[0]["database"]["password"].Value;
 
-                this.db = NTKD_MySql.getInstance(this.dbAdrs, this.dbLogin, this.dbPass, this.dbName);
+
+                this.db = cfg.db;
 
                 List<string> users = new List<string>();
 
 
-                QueryResult r = new QueryResult(this.db.select("select * from uaseco_players"));
+         /*       QueryResult r = new QueryResult(this.db.select("select * from uaseco_players"));
                 while (r.read())
                 {
                     users.Add(ManiaColors.getText(r.getString("Nickname")));
                     this.listBox1.Items.Add(ManiaColors.getText(r.getString("Nickname")));
 
-                }
-                
+                }*/
 
+                //InterPlugin call
+                InterPluginResponse response = sendInterPluginCall("UserLevels", "GetAll", null);
+
+                foreach (string s in (List<string>)response.Param["All"])
+                {
+                    this.listBox1.Items.Add(s);
+                }
             }
             else
                 throw new Exception("");

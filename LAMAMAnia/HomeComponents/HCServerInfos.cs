@@ -18,6 +18,9 @@ namespace LamaMania.HomeComponents
 {
     public partial class HCServerInfos : HomeComponentPlugin
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public HCServerInfos()
         {
             InitializeComponent();
@@ -27,26 +30,61 @@ namespace LamaMania.HomeComponents
             base.Author = "Kilian";
             base.PluginName = "HomeComponent - ServerInfos";
             base.PluginFolder = "[NONE]";
-        }
 
+            base.NeedXmlRpcConnection = true;
+
+            this.l_serverDescritpion.initName("Description : ");
+            this.l_serverName.initName("Name : ");
+            this.l_serverTitle.initName("Title : ");
+            this.l_version.initName("Version : ");
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cfg"></param>
         public override void onLoad(LamaConfig cfg)
         {
             asyncRequest(GetVersion, res => {
-                setLabel(l_version, "Version : " + (string)res.getHashTable()["Version"]);
+                setLabel(l_version, (string)res.getHashTable()["Version"]);
+                setLabel(l_serverTitle, (string)res.getHashTable()["TitleId"]);
             });
 
             asyncRequest(GetServerOptions, res => {
                 Hashtable ht = res.getHashTable();
-                setLabel(l_serverName, "Name : " + ManiaColors.getText((string)ht["Name"]));
-                setLabel(l_serverDescritpion, "Description : " + ManiaColors.getText((string)ht["Comment"]));
+                setLabel(l_serverName, ManiaColors.getText((string)ht["Name"]));
+                setLabel(l_serverDescritpion, ManiaColors.getText((string)ht["Comment"]));
             });
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void onPluginUpdate()
+        {
+            asyncRequest(GetVersion, res => {
+                setLabel(l_version, (string)res.getHashTable()["Version"]);
+                setLabel(l_serverTitle, (string)res.getHashTable()["TitleId"]);
+            });
 
+            asyncRequest(GetServerOptions, res => {
+                Hashtable ht = res.getHashTable();
+                setLabel(l_serverName, ManiaColors.getText((string)ht["Name"]));
+                setLabel(l_serverDescritpion, ManiaColors.getText((string)ht["Comment"]));
+            });
+            base.onPluginUpdate();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="res"></param>
         protected override void onGbxAsyncResult(GbxCall res)
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="res"></param>
         public override void onGbxCallBack(GbxCallbackEventArgs res)
         {
 

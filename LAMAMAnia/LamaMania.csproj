@@ -6,13 +6,29 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5C07A2BC-0B93-4970-A23E-5CE6F89693AC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LAMAMAnia</RootNamespace>
-    <AssemblyName>LAMAMAnia</AssemblyName>
+    <RootNamespace>LamaMania</RootNamespace>
+    <AssemblyName>LamaMania</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,7 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Debug\LAMAMAnia.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\LamaMania.xml</DocumentationFile>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -36,6 +52,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LamaMania.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>FB09EB623253FFE5D2D1C969289E63B117A2215B</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>LamaMania_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Arc.TrackMania">
@@ -51,9 +89,14 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -63,6 +106,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnvironmentManager.cs" />
     <Compile Include="ExtensionsMethods.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
@@ -94,6 +138,37 @@
     <Compile Include="Forms\NewServer.Designer.cs">
       <DependentUpon>NewServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="HomeComponents\HCGameInfos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCGameInfos.Designer.cs">
+      <DependentUpon>HCGameInfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeComponents\HCNetworkStats.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCNetworkStats.Designer.cs">
+      <DependentUpon>HCNetworkStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeComponents\HCPlayerList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCPlayerList.Designer.cs">
+      <DependentUpon>HCPlayerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeComponents\HCServerInfos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCServerInfos.Designer.cs">
+      <DependentUpon>HCServerInfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeComponents\HCStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeComponents\HCStatus.Designer.cs">
+      <DependentUpon>HCStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocalesManager.cs" />
     <Compile Include="Other\GameMode.cs" />
     <Compile Include="Lama.cs" />
     <Compile Include="Forms\ConfigServ.cs">
@@ -114,7 +189,6 @@
     <Compile Include="Forms\HomeLauncher.Designer.cs">
       <DependentUpon>HomeLauncher.cs</DependentUpon>
     </Compile>
-    <Compile Include="Other\GBXMethods.cs" />
     <Compile Include="Other\LamaLog.cs" />
     <Compile Include="Other\LogXMLRPC.cs" />
     <Compile Include="Forms\Main.cs">
@@ -123,11 +197,24 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManiaColors.cs" />
+    <Compile Include="Other\ManiaLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Other\ManiaLabel.Designer.cs">
+      <DependentUpon>ManiaLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PluginManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticMethods.cs" />
     <Compile Include="Other\Structs.cs" />
+    <Compile Include="Updater.cs" />
+    <Compile Include="UserConstrols\ExternalTool.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\ExternalTool.Designer.cs">
+      <DependentUpon>ExternalTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserConstrols\IScriptSetting.cs" />
     <Compile Include="UserConstrols\BooleanScriptSetting.cs">
       <SubType>UserControl</SubType>
@@ -146,6 +233,12 @@
     </Compile>
     <Compile Include="UserConstrols\DoubleScriptSetting.Designer.cs">
       <DependentUpon>DoubleScriptSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\OverlatDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\OverlatDialog.Designer.cs">
+      <DependentUpon>OverlatDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UserConstrols\StringScriptSetting.cs">
       <SubType>UserControl</SubType>
@@ -177,6 +270,24 @@
     <EmbeddedResource Include="Forms\NewServer.resx">
       <DependentUpon>NewServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCGameInfos.resx">
+      <DependentUpon>HCGameInfos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCNetworkStats.resx">
+      <DependentUpon>HCNetworkStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCPlayerList.resx">
+      <DependentUpon>HCPlayerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCServerInfos.resx">
+      <DependentUpon>HCServerInfos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComponents\HCStatus.resx">
+      <DependentUpon>HCStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Other\ManiaLabel.resx">
+      <DependentUpon>ManiaLabel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -190,16 +301,24 @@
     <EmbeddedResource Include="UserConstrols\BooleanScriptSetting.resx">
       <DependentUpon>BooleanScriptSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\ExternalTool.resx">
+      <DependentUpon>ExternalTool.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserConstrols\NumericScriptSetting.resx">
       <DependentUpon>NumericScriptSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserConstrols\DoubleScriptSetting.resx">
       <DependentUpon>DoubleScriptSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\OverlatDialog.resx">
+      <DependentUpon>OverlatDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserConstrols\StringScriptSetting.resx">
       <DependentUpon>StringScriptSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="LamaMania_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -214,6 +333,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GBXMapParser\GBXMapParser.csproj">
+      <Project>{f59b1bd4-1531-4a3f-8f5d-ea982e49b34d}</Project>
+      <Name>GBXMapParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LamaLang\LamaLang.csproj">
       <Project>{186ecf1d-2bed-41e1-ad22-4532c349c0e5}</Project>
       <Name>LamaLang</Name>
@@ -222,6 +345,18 @@
       <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
       <Name>LamaPlugin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

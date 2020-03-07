@@ -13,11 +13,15 @@ using static LamaMania.StaticMethods;
 using static LamaPlugin.GBXMethods;
 using FlatUITheme;
 using System.Collections;
+using System.Diagnostics;
 
 namespace LamaMania.HomeComponents
 {
     public partial class HCStatus : HomeComponentPlugin
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public HCStatus()
         {
             InitializeComponent();
@@ -27,18 +31,28 @@ namespace LamaMania.HomeComponents
             base.Author = "Kilian";
             base.PluginName = "HomeComponent - Status";
             base.PluginFolder = "[NONE]";
+
+            base.NeedXmlRpcConnection = false;
+
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cfg"></param>
         public override void onLoad(LamaConfig cfg)
         {
             if (cfg.connected)
             {
-                //Infos
-                asyncRequest(GetStatus, res => {
-                    Hashtable ht = res.getHashTable();
-                    setLabel(this.l_server, "Status : " + (string)ht["Name"]);
-                });
+                if (cfg.connected)
+                {
+                    //Infos
+                    asyncRequest(GetStatus, res =>
+                    {
+                        Hashtable ht = res.getHashTable();
+                        setLabel(this.l_server, "Status : " + (string)ht["Name"]);
+                    });
+                }
 
                 this.b_serverStarted.Enabled = false;
                 this.b_serverStarted.BaseColor = Color.Gray;
@@ -104,9 +118,22 @@ namespace LamaMania.HomeComponents
             }
         }
 
+        private void B_serverStop_Click(object sender, EventArgs e)
+        {
+            if (Lama.remote)
+            {
 
+            }
+            else
+            {
+                Process[] ps = Process.GetProcessesByName("ManiaPlanetServer");
+                foreach (Process p in ps)
+                {
+                    if (p.MainWindowTitle.Contains(Lama.serverPath + Lama.serverIndex))
+                        p.Kill();
+                }
 
-
-
+            }
+        }
     }
 }

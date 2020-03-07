@@ -14,14 +14,15 @@ namespace LamaTest
         [TestMethod]
         public void ManiaParseTest()
         {
-            Assert.AreEqual(ManiaColors.getText("$o$fffKilian $000BT"), "Kilian BT");
+            Assert.AreEqual("Kilian BT", ManiaColors.getText("$o$fffKilian $000BT"));
+            Assert.AreEqual("$", ManiaColors.getText("$$"));
+            Assert.AreEqual("Drk", ManiaColors.getText("$s$i$09FD$07Fr$05Fk$03F$fff"));
         }
 
         [TestMethod]
         public void ParseTimeTest()
         {
-            int h, m, s;
-            StaticMethods.parseTime(323, out h, out m, out s);
+            StaticMethods.parseTime(323, out int h, out int m, out int s);
             Assert.AreEqual(0, h);
             Assert.AreEqual(5, m);
             Assert.AreEqual(23, s);

@@ -116,6 +116,11 @@ namespace LamaMania
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ctrl"></param>
+        /// <returns></returns>
         public static string getText(Control ctrl)
         {
             if (ctrl.InvokeRequired)
@@ -141,7 +146,7 @@ namespace LamaMania
             }
             else
             {
-                label.Text = value;
+                label.setText(value);
             }
         }
        
@@ -169,8 +174,8 @@ namespace LamaMania
         /// <param name="text"></param>
         public static void setTextBoxText(FlatTextBox tb, string text)
         {
-            tb = (FlatTextBox)getControl(tb);
-            tb.Text = text;
+            var tb2 = (FlatTextBox)getControl(tb);
+            tb2.Text = text;
         }
       
         /// <summary>
@@ -360,10 +365,10 @@ namespace LamaMania
         /// <param name="name"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static IBase getPluginByName(string name, PluginType type = PluginType.Base)
+        public static IBasePlugin getPluginByName(string name, PluginType type = PluginType.Base)
         {
             int cpt = 0;
-            List<IBase> lst = new List<IBase>();
+            List<IBasePlugin> lst = new List<IBasePlugin>();
             switch (type)
             {
                 case PluginType.Base:

@@ -27,16 +27,22 @@ using System.Collections.Generic;
 using System.Text;
 using TMXmlRpcLib;
 using NTK.IO;
+using System.Threading.Tasks;
 
 namespace LamaPlugin
 {
+    public delegate InterPluginResponse PMInterPluginCall(IBasePlugin sender, string targetName, InterPluginArgs args);
+    
+
     /// <summary>
     /// Abstract class for plugins
     /// </summary>
-    public abstract class InGamePlugin : BasePlugin
+    public abstract class InGamePlugin : IBasePlugin
     {
         private XmlRpcClient client;
+        private PMInterPluginCall pmInterCall;
         protected Dictionary<int, string> handles = new Dictionary<int, string>();
+        protected Dictionary<string, GbxCallbackHandler> Callbacks = new Dictionary<string, GbxCallbackHandler>();
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // CONSTRUCTOR ///////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +52,8 @@ namespace LamaPlugin
         /// Init
         /// </summary>
         public InGamePlugin() {
-            base.PluginType = PluginType.InGamePlugin;
+            this.PluginType = PluginType.InGamePlugin;
+            this.Requirements = new List<Requirement>();
         }  
 
         /// <summary>
@@ -57,7 +64,13 @@ namespace LamaPlugin
         {
             this.client = client;
         }
-       
+
+        public void setPluginManager(PMInterPluginCall pmipc)
+        {
+            this.pmInterCall = pmipc;
+        }
+
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // PROTECTED /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,17 +118,41 @@ namespace LamaPlugin
         {
             if (res.Error)
             {
-
+                Log("ERROR", "[" + this.PluginName + "]" +res.ErrorString);
             }
         }
+
+     
+        protected InterPluginResponse sendInterPluginCall(string target, string callName, Dictionary<string, object> args)
+        {
+            if (pmInterCall != null)
+                return this.pmInterCall(this, target, new InterPluginArgs(0, callName, args));
+            else
+                return null;
+        }
+
+        
+
+    
+
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // ABSTRACT //////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////
 
+      
 
         public abstract void onDisconnect();
+
+        public void onGbxCallBack(object sender, GbxCallbackEventArgs args, bool none)
+        {
+            if (Callbacks.ContainsKey(args.Response.MethodName))
+            {
+                Callbacks[args.Response.MethodName](sender, args);
+            }
+            onGbxCallBack(sender, args);
+        }
 
         /// <summary>
         /// Actions on load
@@ -136,7 +173,29 @@ namespace LamaPlugin
         /// <param name="res"></param>
         public abstract void onGbxAsyncResult(GbxCall res);
 
-       
+        public void onPluginUpdate()
+        {
 
+        }
+
+        public virtual InterPluginResponse onInterPluginCall(IBasePlugin sender, InterPluginArgs args)
+        {
+            return null;
+        }
+
+        public string aliasCall(string arg)
+        {
+            return null;
+        }
+
+        public GetLamaProperty GetLamaProperty { get; set; }
+        public string Author { get; set; }
+        public string PluginName { get; set; }
+        public string Version { get; set; }
+        public string PluginFolder { get; set; }
+        public PluginType PluginType { get; set; }
+        public List<Requirement> Requirements { get; set; }
+        public OnError OnError { get; set; }
+        public Logger Log { get; set; }
     }
 }

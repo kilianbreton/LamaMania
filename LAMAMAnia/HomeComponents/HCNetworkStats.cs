@@ -15,10 +15,15 @@ using static LamaMania.StaticMethods;
 
 namespace LamaMania.HomeComponents
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class HCNetworkStats : HomeComponentPlugin
     {
         private Timer netStatsTimer;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public HCNetworkStats()
         {
             InitializeComponent();
@@ -27,10 +32,15 @@ namespace LamaMania.HomeComponents
             this.Author = "Kilian";
             this.PluginName = "HomeComponent - Network Stats";
             this.PluginFolder = "[NONE]";
+
+            this.NeedXmlRpcConnection = true;
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cfg"></param>
         public override void onLoad(LamaConfig cfg)
         {
             //Network infos
@@ -39,17 +49,25 @@ namespace LamaMania.HomeComponents
             this.netStatsTimer.Interval = 1500;
             this.netStatsTimer.Start();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="res"></param>
         protected override void onGbxAsyncResult(GbxCall res)
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="res"></param>
         public override void onGbxCallBack(GbxCallbackEventArgs res)
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public override void onDisconnect()
         {
             this.netStatsTimer.Stop();
@@ -70,6 +88,11 @@ namespace LamaMania.HomeComponents
                 setLabel(this.l_upTime, "Recive Net Rate : " + ht["RecvNetRate"]);
                 setLabel(this.l_upTime, "Send Net Rate : " + ht["SendNetRate"]);
             });
+        }
+
+        private void Gb_netStats_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

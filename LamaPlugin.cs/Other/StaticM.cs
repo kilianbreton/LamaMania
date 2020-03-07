@@ -8,9 +8,9 @@ namespace LamaPlugin
 {
     public static class StaticM
     {
-        public static void checkRequirements(IEnumerable<IBase> pluginsList)
+        public static void checkRequirements(IEnumerable<IBasePlugin> pluginsList)
         {
-            foreach(IBase plug in pluginsList)
+            foreach(IBasePlugin plug in pluginsList)
             {
                 foreach(Requirement req in plug.Requirements)
                 {
@@ -30,6 +30,20 @@ namespace LamaPlugin
         }
 
 
+        
+
+
+        public static void parseTime(int time, out int h, out int m, out int s)
+        {
+            h = 0;
+            m = time / 60;
+            if (m >= 60)
+            {
+                h = m / 60;
+                m = m % 60;
+            }
+            s = time % 60;
+        }
 
     }
 }

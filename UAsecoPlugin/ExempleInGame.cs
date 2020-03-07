@@ -25,6 +25,8 @@ namespace UAsecoPlugin
             this.Author = "Kilian";
             this.Version = "0.1";
             this.Requirements.Add(new Requirement(RequirementType.FILE, "exemple.xml"));
+            this.Requirements.Add(new Requirement(RequirementType.Alias, "php"));
+
             adminLogins.Add("kamphare");
         }
 

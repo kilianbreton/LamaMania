@@ -56,6 +56,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GBXMapParser\GBXMapParser.csproj">
+      <Project>{f59b1bd4-1531-4a3f-8f5d-ea982e49b34d}</Project>
+      <Name>GBXMapParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LAMAMAnia\LamaMania.csproj">
+      <Project>{5c07a2bc-0b93-4970-a23e-5ce6f89693ac}</Project>
+      <Name>LamaMania</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LamaPlugin.cs\LamaPlugin.csproj">
+      <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
+      <Name>LamaPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XmlRpcEncrypted\XmlRpcEncrypted.csproj">
       <Project>{623e08a4-74e0-4cb6-8cf9-66b8d65b4ad9}</Project>
       <Name>XmlRpcEncrypted</Name>

@@ -26,7 +26,7 @@ namespace LamaMania.UserConstrols
         {
             InitializeComponent();
             this.name = name;
-            this.flatCheckBox1.Text = title;
+            this.flatLabel1.Text = title;
             this.flatCheckBox1.Checked = value;
         }
 
@@ -34,13 +34,19 @@ namespace LamaMania.UserConstrols
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="color"></param>
         public void setColor(Color color)
         {
             this.BackColor = color;
             this.flatCheckBox1.BackColor = color;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public UserControl GetControl()
         {
             return this;

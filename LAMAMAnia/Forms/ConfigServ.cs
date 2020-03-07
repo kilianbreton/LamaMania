@@ -75,9 +75,7 @@ namespace LamaMania
             this.mapPath = mapPath;
             this.serverConfig = serverConfig;
          
-
-
-
+            
             loadDedicated();
             loadScriptList();
             loadMain();
@@ -137,6 +135,14 @@ namespace LamaMania
             {
                 this.matchSettings = new XmlDocument(this.serverPath + @"\UserData\Maps\MatchSettings\Default.txt");
             }
+
+            //Database
+            XmlNode db = this.serverConfig["database"];
+            tb_db_ip.Text = db["ip"].Value;
+            tb_db_login.Text = db["login"].Value;
+            tb_db_passwd.Text = db["passwd"].Value;
+            tb_db_base.Text = db["baseName"].Value;
+
         }
 
         void loadDedicated()
@@ -339,6 +345,19 @@ namespace LamaMania
             this.serverConfig["internetServer"].Value = ch_internetServer.Checked.ToString();
 
             //Save Plugin List
+            XmlNode pluginList = this.serverConfig["plugins"];
+            pluginList.Childs.Clear();
+
+            foreach (string pl in checkedListBox1.CheckedItems)
+            {
+                pluginList.addChild("plugin", pl);
+            }
+
+            this.serverConfig["database"]["ip"].Value = tb_db_ip.Text;
+            this.serverConfig["database"]["login"].Value = tb_db_login.Text;
+            this.serverConfig["database"]["passwd"].Value = tb_db_passwd.Text;
+            this.serverConfig["database"]["baseName"].Value = tb_db_base.Text;
+                                   
             Lama.mainConfig.save(false);
         }
 
@@ -667,7 +686,8 @@ namespace LamaMania
 
         private void l_mapsLocal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mapSelected(l_mapsLocal.Items[l_mapsLocal.SelectedIndex].ToString());
+            if(l_mapsLocal.SelectedIndex >= 0)
+                mapSelected(l_mapsLocal.Items[l_mapsLocal.SelectedIndex].ToString());
         }
 
         void mapSelected(string name)
@@ -686,6 +706,7 @@ namespace LamaMania
             }
             catch (Exception er)
             {
+
                 Lama.log("ERROR", "[ConfigServ][MapSelect]>" + er.Message);
             }
         }

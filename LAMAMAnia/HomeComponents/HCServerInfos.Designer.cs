@@ -45,11 +45,11 @@
             this.gb_serverInfos.Controls.Add(this.l_serverDescritpion);
             this.gb_serverInfos.Controls.Add(this.l_serverName);
             this.gb_serverInfos.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gb_serverInfos.Location = new System.Drawing.Point(-4, -2);
+            this.gb_serverInfos.Location = new System.Drawing.Point(-7, -5);
             this.gb_serverInfos.Margin = new System.Windows.Forms.Padding(2);
             this.gb_serverInfos.Name = "gb_serverInfos";
             this.gb_serverInfos.ShowText = true;
-            this.gb_serverInfos.Size = new System.Drawing.Size(355, 231);
+            this.gb_serverInfos.Size = new System.Drawing.Size(332, 252);
             this.gb_serverInfos.TabIndex = 4;
             this.gb_serverInfos.Text = "Server Infos";
             // 
@@ -86,7 +86,7 @@
             this.l_serverDescritpion.Location = new System.Drawing.Point(14, 110);
             this.l_serverDescritpion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_serverDescritpion.Name = "l_serverDescritpion";
-            this.l_serverDescritpion.Size = new System.Drawing.Size(323, 99);
+            this.l_serverDescritpion.Size = new System.Drawing.Size(275, 75);
             this.l_serverDescritpion.TabIndex = 2;
             this.l_serverDescritpion.Text = "Description :";
             // 
@@ -109,7 +109,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gb_serverInfos);
             this.Name = "HCServerInfos";
-            this.Size = new System.Drawing.Size(347, 226);
+            this.Size = new System.Drawing.Size(323, 239);
             this.gb_serverInfos.ResumeLayout(false);
             this.gb_serverInfos.PerformLayout();
             this.ResumeLayout(false);

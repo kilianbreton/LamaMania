@@ -39,11 +39,11 @@
             this.gb_players.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
             this.gb_players.Controls.Add(this.l_users);
             this.gb_players.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gb_players.Location = new System.Drawing.Point(-3, -2);
+            this.gb_players.Location = new System.Drawing.Point(-7, -4);
             this.gb_players.Margin = new System.Windows.Forms.Padding(2);
             this.gb_players.Name = "gb_players";
             this.gb_players.ShowText = true;
-            this.gb_players.Size = new System.Drawing.Size(307, 231);
+            this.gb_players.Size = new System.Drawing.Size(332, 252);
             this.gb_players.TabIndex = 3;
             this.gb_players.Text = "Players";
             // 
@@ -54,10 +54,10 @@
             this.l_users.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.l_users.FormattingEnabled = true;
             this.l_users.ItemHeight = 17;
-            this.l_users.Location = new System.Drawing.Point(15, 42);
+            this.l_users.Location = new System.Drawing.Point(17, 40);
             this.l_users.Margin = new System.Windows.Forms.Padding(2);
             this.l_users.Name = "l_users";
-            this.l_users.Size = new System.Drawing.Size(275, 136);
+            this.l_users.Size = new System.Drawing.Size(296, 187);
             this.l_users.TabIndex = 0;
             // 
             // HCPlayerList
@@ -66,7 +66,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gb_players);
             this.Name = "HCPlayerList";
-            this.Size = new System.Drawing.Size(301, 225);
+            this.Size = new System.Drawing.Size(321, 243);
             this.gb_players.ResumeLayout(false);
             this.ResumeLayout(false);
 

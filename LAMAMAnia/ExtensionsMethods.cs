@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMXmlRpcLib;
 using LamaPlugin;
+using FlatUITheme;
 
 namespace LamaMania
 {
@@ -90,9 +91,11 @@ namespace LamaMania
                     break;
                 }
             }
+
             if (!find)
                 throw new Exception("Undefined value in dictionary");
-            return ret;
+            else
+                return ret;
         }
 
         /// <summary>
@@ -111,7 +114,11 @@ namespace LamaMania
                 return (T)(object)control;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uc"></param>
+        /// <returns></returns>
         public static ITab getITabInterface(this UserControl uc)
         {
             return (ITab) uc;

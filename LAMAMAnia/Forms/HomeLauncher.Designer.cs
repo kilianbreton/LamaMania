@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.formSkin1 = new FlatUITheme.FormSkin();
+            this.flatButton5 = new FlatUITheme.FlatButton();
             this.flatButton4 = new FlatUITheme.FlatButton();
             this.flatButton3 = new FlatUITheme.FlatButton();
             this.flatButton2 = new FlatUITheme.FlatButton();
             this.flatButton1 = new FlatUITheme.FlatButton();
             this.flatComboBox1 = new FlatUITheme.FlatComboBox();
-            this.flatButton5 = new FlatUITheme.FlatButton();
+            this.b_exit = new FlatUITheme.FlatButton();
             this.formSkin1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,6 +44,7 @@
             this.formSkin1.BackColor = System.Drawing.Color.White;
             this.formSkin1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
             this.formSkin1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(58)))), ((int)(((byte)(60)))));
+            this.formSkin1.Controls.Add(this.b_exit);
             this.formSkin1.Controls.Add(this.flatButton5);
             this.formSkin1.Controls.Add(this.flatButton4);
             this.formSkin1.Controls.Add(this.flatButton3);
@@ -60,6 +62,21 @@
             this.formSkin1.Size = new System.Drawing.Size(417, 137);
             this.formSkin1.TabIndex = 0;
             this.formSkin1.Text = "Launcher";
+            // 
+            // flatButton5
+            // 
+            this.flatButton5.BackColor = System.Drawing.Color.Transparent;
+            this.flatButton5.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.flatButton5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.flatButton5.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.flatButton5.Location = new System.Drawing.Point(305, 12);
+            this.flatButton5.Name = "flatButton5";
+            this.flatButton5.Rounded = false;
+            this.flatButton5.Size = new System.Drawing.Size(71, 25);
+            this.flatButton5.TabIndex = 5;
+            this.flatButton5.Text = "Settings";
+            this.flatButton5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.flatButton5.Click += new System.EventHandler(this.FlatButton5_Click);
             // 
             // flatButton4
             // 
@@ -142,20 +159,20 @@
             this.flatComboBox1.Size = new System.Drawing.Size(318, 24);
             this.flatComboBox1.TabIndex = 0;
             // 
-            // flatButton5
+            // b_exit
             // 
-            this.flatButton5.BackColor = System.Drawing.Color.Transparent;
-            this.flatButton5.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.flatButton5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flatButton5.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.flatButton5.Location = new System.Drawing.Point(334, 12);
-            this.flatButton5.Name = "flatButton5";
-            this.flatButton5.Rounded = false;
-            this.flatButton5.Size = new System.Drawing.Size(71, 25);
-            this.flatButton5.TabIndex = 5;
-            this.flatButton5.Text = "Settings";
-            this.flatButton5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.flatButton5.Click += new System.EventHandler(this.FlatButton5_Click);
+            this.b_exit.BackColor = System.Drawing.Color.Transparent;
+            this.b_exit.BaseColor = System.Drawing.Color.Crimson;
+            this.b_exit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b_exit.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.b_exit.Location = new System.Drawing.Point(383, 12);
+            this.b_exit.Name = "b_exit";
+            this.b_exit.Rounded = false;
+            this.b_exit.Size = new System.Drawing.Size(25, 25);
+            this.b_exit.TabIndex = 6;
+            this.b_exit.Text = "X";
+            this.b_exit.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.b_exit.Click += new System.EventHandler(this.B_exit_Click);
             // 
             // HomeLauncher
             // 
@@ -183,6 +200,7 @@
         private FlatUITheme.FlatButton flatButton1;
         private FlatUITheme.FlatComboBox flatComboBox1;
         private FlatUITheme.FlatButton flatButton5;
+        private FlatUITheme.FlatButton b_exit;
     }
 }
 

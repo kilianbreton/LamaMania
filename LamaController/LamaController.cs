@@ -15,6 +15,8 @@ using XmlRpcEncrypted;
 using NTK.Service;
 using CGE.OUT;
 
+
+
 namespace LamaController
 {
     public enum Game
@@ -44,8 +46,8 @@ namespace LamaController
         int port;
         string login;
         string pass;
-        Game game;
-        bool connected;
+      /*  Game game;
+        bool connected;*/
         bool remoteXmlRpc = true;
 
 
@@ -138,7 +140,7 @@ namespace LamaController
 
                 load.stop();
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 load.stop(true);
             }

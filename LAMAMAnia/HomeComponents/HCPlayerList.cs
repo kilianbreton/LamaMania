@@ -18,17 +18,48 @@ namespace LamaMania.HomeComponents
 {
     public partial class HCPlayerList : HomeComponentPlugin
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public HCPlayerList()
         {
             InitializeComponent();
             addMouseEvents(this.gb_players);
 
             this.Author = "Kilian";
-            this.PluginName = "HomeComponent - Network Stats";
+            this.PluginName = "HomeComponent - Player List";
             this.PluginFolder = "[NONE]";
+
+            this.NeedXmlRpcConnection = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cfg"></param>
+        public override void onLoad(LamaConfig cfg)
+        {
+            try
+            {
+                List<Player> players = (List<Player>)base.GetLamaProperty(LamaProperty.PLAYERS);
+                foreach (Player p in players)
+                {
+                    this.l_users.Items.Add(p.NickName);
+                }
 
+
+                base.onLoad(cfg);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="res"></param>
         protected override void onGbxAsyncResult(GbxCall res)
         {
             if (!res.Error)

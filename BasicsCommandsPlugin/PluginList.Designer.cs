@@ -1,6 +1,6 @@
-﻿namespace UAsecoPlugin
+﻿namespace BasicsCommandsPlugin
 {
-    partial class MapRecords
+    partial class PluginList
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -29,41 +29,38 @@
         private void InitializeComponent()
         {
             this.flatGroupBox1 = new FlatUITheme.FlatGroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.flatGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flatGroupBox1
             // 
             this.flatGroupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.flatGroupBox1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.flatGroupBox1.Controls.Add(this.label1);
+            this.flatGroupBox1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.flatGroupBox1.Controls.Add(this.treeView1);
             this.flatGroupBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.flatGroupBox1.Location = new System.Drawing.Point(3, 3);
             this.flatGroupBox1.Name = "flatGroupBox1";
             this.flatGroupBox1.ShowText = true;
-            this.flatGroupBox1.Size = new System.Drawing.Size(320, 360);
+            this.flatGroupBox1.Size = new System.Drawing.Size(312, 254);
             this.flatGroupBox1.TabIndex = 0;
             this.flatGroupBox1.Text = "flatGroupBox1";
             // 
-            // label1
+            // treeView1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 244);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.treeView1.Location = new System.Drawing.Point(35, 53);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(254, 172);
+            this.treeView1.TabIndex = 0;
             // 
-            // MapRecords
+            // PluginList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flatGroupBox1);
-            this.Name = "MapRecords";
-            this.Size = new System.Drawing.Size(326, 363);
+            this.Name = "PluginList";
+            this.Size = new System.Drawing.Size(315, 257);
             this.flatGroupBox1.ResumeLayout(false);
-            this.flatGroupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -71,6 +68,6 @@
         #endregion
 
         private FlatUITheme.FlatGroupBox flatGroupBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }

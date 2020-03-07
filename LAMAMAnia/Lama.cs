@@ -38,17 +38,19 @@ using System.Windows.Forms;
 using FlatUITheme;
 using System.Diagnostics;
 using System.Threading;
+using NTK.Database;
+
 
 namespace LamaMania
 {
-   
-
-
     /// <summary>
     /// Lama Configuration
     /// </summary>
     public class Lama
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static LocalesManager localesManager;
         /// <summary>
         /// Start mode : -1 = select and start, >=0 = autostart id
@@ -83,6 +85,10 @@ namespace LamaMania
         /// </summary>
         public static string serverPath = @"\Servers\";
 
+        /// <summary>
+        /// Database connection
+        /// </summary>
+        public static NTKDatabase database;
 
         /// <summary>
         /// Make maniaplanet invisible
@@ -164,6 +170,31 @@ namespace LamaMania
         /// 
         /// </summary>
         public static bool inEditMode = false;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string serverName = "";
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string serverLogin = "";
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string serverComment = "";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static List<Player> players = new List<Player>();
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        public static List<MapInfo> maps = new List<MapInfo>();
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -259,12 +290,31 @@ namespace LamaMania
                     return Lama.startMode;
                 case LamaProperty.INEDITMODE:
                     return Lama.inEditMode;
+                case LamaProperty.PLAYERS:
+                    return Lama.players;
                 default:
                     throw new Exception("Unknown property : " + name);
             }
 
    
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        public static Player getPlayerByLogin(string login)
+        {
+            int cpt = 0;
+            while(cpt < players.Count && players[cpt].Login != login) { cpt++; }
+
+            if (players[cpt].Login == login)
+                return players[cpt];
+            else
+                return null;
+        }
+
 
 
 

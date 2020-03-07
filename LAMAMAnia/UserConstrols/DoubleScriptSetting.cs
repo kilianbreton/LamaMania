@@ -29,11 +29,18 @@ namespace LamaMania.UserConstrols
             this.flatLabel1.Text = title;
             this.flatTextBox1.Text = value.ToString();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public UserControl GetControl()
         {
             return this;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="color"></param>
         public void setColor(Color color)
         {
             this.BackColor = color;

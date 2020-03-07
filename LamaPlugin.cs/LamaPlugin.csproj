@@ -34,6 +34,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FlatUITheme">
+      <HintPath>..\LAMAMAnia\bin\Debug\FlatUITheme.dll</HintPath>
+    </Reference>
     <Reference Include="NTK">
       <HintPath>D:\Programmation\NTK\ServerAdmin\Kernel\NTK.dll</HintPath>
     </Reference>
@@ -48,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractXmlRpcMethod.cs" />
-    <Compile Include="Abstract\BasePlugin.cs" />
     <Compile Include="Abstract\IDragAndDropControl.cs" />
     <Compile Include="Abstract\PluginTypeEnum.cs" />
     <Compile Include="HomeComponentPlugin.cs">
@@ -61,11 +63,26 @@
     <Compile Include="Abstract\ITab.cs" />
     <Compile Include="Abstract\IHomeComponent.cs" />
     <Compile Include="InGamePlugin.cs" />
+    <Compile Include="Other\GBXCallBacks.cs" />
     <Compile Include="Other\GBXMethods.cs" />
+    <Compile Include="Other\InterPlugin\InterPluginResponse.cs" />
+    <Compile Include="Other\InterPlugin\IntrerPluginArgs.cs" />
     <Compile Include="Other\LamaConfig.cs" />
+    <Compile Include="Other\ManiaLink\ManialinkMaker.cs" />
+    <Compile Include="Other\ManiaLink\ManiaLinkNode.cs" />
+    <Compile Include="Other\ManiaLink\MLFrame.cs" />
+    <Compile Include="Other\ManiaLink\MLFrameInstance.cs" />
+    <Compile Include="Other\ManiaLink\MLFrameModel.cs" />
+    <Compile Include="Other\ManiaLink\MLLabel.cs" />
+    <Compile Include="Other\ManiaLink\MLQuad.cs" />
+    <Compile Include="Other\MapInfo.cs" />
     <Compile Include="Other\MethodsClass\SetTeamInfo.cs" />
+    <Compile Include="Other\Player.cs" />
     <Compile Include="Other\StaticM.cs" />
     <Compile Include="Abstract\UpdateMethod.cs" />
+    <Compile Include="OverlayPlugin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Other\Requirement.cs" />
     <Compile Include="TabPlugin.cs">

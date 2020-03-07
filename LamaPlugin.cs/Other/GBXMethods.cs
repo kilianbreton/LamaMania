@@ -539,10 +539,8 @@ namespace LamaPlugin
         public const String BanId = "BanId";
         /// <summary>
         /// Unban the player with the specified login. Only available to Admin.
-        /// </summary>
-        /// <example>
         /// UnBan (string)
-        /// </example>
+        /// </summary>
         /// <returns>
         /// boolean
         /// </returns>

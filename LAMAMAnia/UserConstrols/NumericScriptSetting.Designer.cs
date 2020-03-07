@@ -38,9 +38,10 @@
             this.flatLabel1.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel1.ForeColor = System.Drawing.Color.White;
-            this.flatLabel1.Location = new System.Drawing.Point(16, 11);
+            this.flatLabel1.Location = new System.Drawing.Point(12, 9);
+            this.flatLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel1.Name = "flatLabel1";
-            this.flatLabel1.Size = new System.Drawing.Size(83, 23);
+            this.flatLabel1.Size = new System.Drawing.Size(68, 19);
             this.flatLabel1.TabIndex = 0;
             this.flatLabel1.Text = "flatLabel1";
             // 
@@ -51,24 +52,26 @@
             this.flatNumeric1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.flatNumeric1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.flatNumeric1.ForeColor = System.Drawing.Color.White;
-            this.flatNumeric1.Location = new System.Drawing.Point(833, 8);
+            this.flatNumeric1.Location = new System.Drawing.Point(359, 9);
+            this.flatNumeric1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flatNumeric1.Maximum = ((long)(9999999));
             this.flatNumeric1.Minimum = ((long)(0));
             this.flatNumeric1.Name = "flatNumeric1";
-            this.flatNumeric1.Size = new System.Drawing.Size(217, 30);
+            this.flatNumeric1.Size = new System.Drawing.Size(163, 30);
             this.flatNumeric1.TabIndex = 1;
             this.flatNumeric1.Text = "flatNumeric1";
             this.flatNumeric1.Value = ((long)(0));
             // 
             // NumericScriptSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.Controls.Add(this.flatNumeric1);
             this.Controls.Add(this.flatLabel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "NumericScriptSetting";
-            this.Size = new System.Drawing.Size(1069, 45);
+            this.Size = new System.Drawing.Size(524, 37);
             this.Load += new System.EventHandler(this.StringScriptSetting_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

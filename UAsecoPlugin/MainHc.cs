@@ -20,7 +20,7 @@ namespace UAsecoPlugin
             this.Author = "Kilian";
             this.PluginName = "MainHCTest";
             this.Version = "0";
-            this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "TestPlugin"));
+     //       this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "TestPlugin"));
             
             //If a control ovveride HomeCompenent, use this to add Mouse Events
             addMouseEvents(this.flatGroupBox1);

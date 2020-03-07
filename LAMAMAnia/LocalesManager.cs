@@ -14,7 +14,12 @@ namespace LamaMania
     public class LocalesManager : IEnumerable<LocalesFile>
     {
         private Dictionary<String, LocalesFile> files = new Dictionary<string, LocalesFile>();
-
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="lang"></param>
         public LocalesManager(string path, string lang)
         {
             FileStream fs = File.Open(path, FileMode.Open);
@@ -59,7 +64,10 @@ namespace LamaMania
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<LocalesFile> GetEnumerator()
         {
             List<LocalesFile> lst = new List<LocalesFile>();
@@ -120,9 +128,14 @@ namespace LamaMania
     }
 
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class LocalesFile : IEnumerable<string>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Dictionary<string, string> locales = new Dictionary<string, string>();
         
         /// <summary>
@@ -147,7 +160,11 @@ namespace LamaMania
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public string this[string name]
         {
             get
@@ -162,7 +179,10 @@ namespace LamaMania
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<string> GetEnumerator()
         {
             List<string> lst = new List<string>();

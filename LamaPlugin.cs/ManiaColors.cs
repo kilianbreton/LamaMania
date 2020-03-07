@@ -127,7 +127,7 @@ namespace LamaPlugin
                             string colorCode = text.ToUpper().Substring(i + 1, 3);
                             color = parseColorCode(colorCode);
                             text = text.Remove(i, 4); //remove code
-                        }catch(Exception e)
+                        }catch(Exception)
                         {
                           //  Lama.log("ERROR", "[ManiaColors]>" + txt + " : " + e.Message);
                             break;
@@ -164,7 +164,7 @@ namespace LamaPlugin
                 }
 
             }
-            text.Replace("<[{(DOL)}]>", "$");
+            text = text.Replace("<[{(DOL)}]>", "$");
 
 
             return text;

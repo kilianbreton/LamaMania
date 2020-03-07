@@ -22,68 +22,95 @@ namespace LamaMania.HomeComponents
         private SMGameMode smGameMode;
         private TMGameMode tmGameMode;
         private bool isTM = true;
-
+      
+        /// <summary>
+        /// 
+        /// </summary>
         public HCGameInfos()
         {
             InitializeComponent();
+
             initGameModeCombo("TimeAttack");
             addMouseEvents(this.gb_gameInfos);
 
-
             //Plugin Infos
-            base.Author = "Kilian";
+            base.Author = "KBT";
             base.PluginName = "HomeComponent - GameInfos";
             base.PluginFolder = "[NONE]";
 
+            base.NeedXmlRpcConnection = true;
+
+
+            //init labelNames
+            this.l_map.initName("Map : ");
+            this.l_gameMode.initName("GameMode : ");
+            this.l_players.initName("Players : ");
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cfg"></param>
         public override void onLoad(LamaConfig cfg)
         {
             //Do checks
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void onPluginUpdate()
+        {
+            this.l_players.setText(Lama.nbPlayers + "/" + Lama.maxPlayers);
 
+            base.onPluginUpdate();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="res"></param>
         protected override void onGbxAsyncResult(GbxCall res)
         {
             switch (handles[res.Handle])
             {
                 case GetScriptName:
-                    var htscript = res.getHashTable();
+                    Hashtable htscript = res.getHashTable();
                     string script = (string)htscript["CurrentValue"];
                     if (script.ToLower().Contains(".script.txt"))
                     {
                         script = subsep(script, 0, ".");
                     }
-                    setLabel(this.l_gameMode, "GameMode : " + script);
+                    setLabel(this.l_gameMode, script);
                     initGameModeCombo(script);
                     break;
 
                 case GetPlayerList:
                     ArrayList userList = (ArrayList)res.Params[0];
                     Lama.nbPlayers = userList.Count;
-                    setLabel(l_players, "Players : " + Lama.nbPlayers + "/" + Lama.maxPlayers);
+                    setLabel(l_players, Lama.nbPlayers + "/" + Lama.maxPlayers);
                     break;
 
                 case GetCurrentMapInfo:
                     var htcm = res.getHashTable();
-                    setLabel(l_map, "Map : " + ManiaColors.getText((string)htcm["Name"]));
+                    setLabel(l_map, ManiaColors.getText((string)htcm["Name"]));
                     break;
 
                 case GetServerOptions:
-                    setLabel(l_players, "Players : " + Lama.nbPlayers + "/" + Lama.maxPlayers);
-
-
+                    setLabel(l_players, Lama.nbPlayers + "/" + Lama.maxPlayers);
                     break;
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="res"></param>
         public override void onGbxCallBack(GbxCallbackEventArgs res)
         {
             switch (res.Response.MethodName)
             {
-                case "ManiaPlanet.BeginMap":
+                case "ManiaPlanet.BeginMap":   
                     asyncRequest(GetScriptName);
                     setLabelColor(l_map, Color.Green);
                     break;
@@ -113,17 +140,25 @@ namespace LamaMania.HomeComponents
                     break;
 
                
-
+                        
 
                 case "TrackMania.BeginChallenge":
                     asyncRequest(GetScriptName);
                     setLabelColor(l_map, Color.Green);
-                    var ht = (Hashtable)res.Response.Params[0];
-                    setLabel(l_map, "Map : " + ManiaColors.getText((string)ht["Name"]));
+
+                    List<MapInfo> test = Lama.maps;
+
+
+                    Hashtable ht = (Hashtable)res.Response.Params[0];
+                    setLabel(l_map, ManiaColors.getText((string)ht["Name"]));
+               //     Lama.previousMapId = (int)ht["UId"];
                     asyncRequest("GetCurrentMapIndex");
                     break;
 
+                case GBXCallBacks.ManiaPlanet_PlayerConnect:
+                    setLabel(l_players, Lama.nbPlayers + "/" + Lama.maxPlayers);
 
+                    break;
 
             }
         }
@@ -183,12 +218,18 @@ namespace LamaMania.HomeComponents
         private void B_nextMap_Click(object sender, EventArgs e)
         {
             asyncRequest(NextMap, checkError);
-        }
+            asyncRequest(GetScriptName, res => {
+                Hashtable ht = res.getHashTable();
+                setLabel(l_gameMode, subsep((string)ht["NextValue"], 0, ".Script"));
+            });
+        } 
 
+       
         private void checkError(GbxCall res)
         {
+            
             if(res.Error)
-                Lama.onError(this, res.MethodName, "GBX Error " + res.ErrorString);
+                OnError(this, res.MethodName, "GBX Error " + res.ErrorString);
         }
 
         private void B_restart_Click(object sender, EventArgs e)
@@ -202,7 +243,9 @@ namespace LamaMania.HomeComponents
                 asyncRequest(res =>
                 {
                     if (!res.Error)
-                        asyncRequest(NextMap);
+                        asyncRequest(NextMap, checkError);
+                    else
+                        checkError(res);
                 }, 
                 SetNextMapIndex, Lama.previousMapId);
         }

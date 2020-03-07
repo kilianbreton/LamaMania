@@ -16,12 +16,14 @@ namespace LamaPlugin
     /// <summary>
     /// Interface for HomeComponent UserControl
     /// </summary>
-    public interface IHomeComponent : IBase
+    public interface IHomeComponent : IBasePlugin
     {
         XmlRpcClient client { get; set; }
 
         HomeComponentType Type { get; set; }
 
         GetLamaProperty GetLamaProperty { get; set; }
+
+        bool NeedXmlRpcConnection { get; set; }
     }
 }

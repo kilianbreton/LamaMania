@@ -50,7 +50,7 @@ namespace ServerTest
                 }
 
             }
-            catch (NotConnectedException e)
+            catch (NotConnectedException)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" [ERROR]");

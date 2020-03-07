@@ -13,6 +13,10 @@ using TMXmlRpcLib;
 using NTK.EventsArgs;
 using System.IO.Compression;
 using System.IO;
+using LamaPlugin;
+using GBXMapParser;
+using LamaMania;
+
 
 namespace ConsoleTest
 {
@@ -20,91 +24,156 @@ namespace ConsoleTest
     {
         static SXmlRpcEncrypted service;
         static NTKClient client;
-        static List<string> tChars;
+
+        public static List<string> tChars;
         static string chars = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
 
         static List<string> argsExists = new List<string>();
+        
+
+
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Test");
+
+         
+
+            ConsoleKeyInfo k = Console.ReadKey();
+            while (k.Key != ConsoleKey.Q)
+            {
+                switch (k.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        Console.WriteLine("up");
+                        break;
+                    case ConsoleKey.DownArrow:
+                        Console.WriteLine("down");
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        Console.WriteLine("left");
+                        break;
+                    case ConsoleKey.RightArrow:
+                        Console.WriteLine("right");
+                        break;
+
+                    default:
+                        Console.WriteLine(k.KeyChar);
+                        break;
+                }
+
+                k = Console.ReadKey();
+            }
 
 
-            string text = "texte avant compression";
-            GZipStream gzs = new GZipStream(File.Open(@"D:\testCompression.s", FileMode.Create),CompressionLevel.Fastest);
+
+               MapInformation mi = MapParser.ReadFile(@"D:\ManiaPlanet\Dedicated\BTSSIOLAN2\UserData\Maps\My Maps\Sans nom.Map.Gbx");
+               Console.WriteLine("AuthorExtra : " + mi.AuthorExtra);
+               Console.WriteLine("AuthorLogin : " + mi.AuthorLogin);
+               Console.WriteLine("AuthorNickName : " + mi.AuthorNickName);
+               Console.WriteLine("AuthorScore : " + mi.AuthorScore);
+               Console.WriteLine("AuthorTime : " + mi.AuthorTime);
+               Console.WriteLine("AuthorVersion : " + mi.AuthorVersion);
+               Console.WriteLine("AuthorZone : " + mi.AuthorZone);
+               Console.WriteLine("BronzeTime : " + mi.BronzeTime);
+               Console.WriteLine("Checkpoints : " + mi.Checkpoints);
+               Console.WriteLine("Comments : " + mi.Comments);
+               Console.WriteLine("DecorationEnvironmentAuthor : " + mi.DecorationEnvironmentAuthor);
+               Console.WriteLine("DecorationEnvironmentId : " + mi.DecorationEnvironmentId);
+               Console.WriteLine("Editor : " + mi.Editor);
+               Console.WriteLine("Environment : " + mi.Environment);
+               Console.WriteLine("GoldTime : " + mi.GoldTime);
+               Console.WriteLine("HasThumbnail : " + mi.HasThumbnail);
 
 
-            StreamWriter sw = new StreamWriter(gzs);
+               Console.WriteLine("HeaderXml : "); //+ mi.HeaderXml);
 
-            sw.WriteLine("test");
-            sw.Close();
-            gzs.Close();
+               XmlDocument xmld = new XmlDocument(mi.HeaderXml, false);
+               Console.Write(xmld.print());
+
+               Console.WriteLine("IsMultilap : " + mi.IsMultilap);
+               Console.WriteLine("Laps : " + mi.Laps);
+               Console.WriteLine("MapStyle : " + mi.MapStyle);
+               Console.WriteLine("MapType : " + mi.MapType);
+               Console.WriteLine("MapTypeId : " + mi.MapTypeId);
+               Console.WriteLine("Mood : " + mi.Mood);
+               Console.WriteLine("Name : " + mi.Name);
+               Console.WriteLine("Price : " + mi.Price);
+               Console.WriteLine("SilverTime : " + mi.SilverTime);
+               Console.WriteLine("Thumbnail : " + mi.Thumbnail);
+               writeBytes(mi.Thumbnail);
+
+               Console.WriteLine("TitleId : " + mi.TitleId);
+               Console.WriteLine("UId : " + mi.UId);
+               Console.WriteLine();
+               Console.WriteLine();
+               Console.WriteLine();
+
+               Console.ReadKey();
+
+            /*
+
+            ManialinkFile mlf = new ManialinkFile(false);
+            mlf.Nodes.Add(new MLFrame(80, 10, 1));
+            mlf.Nodes[0].Childs.Add(new MLQuad(0, 0, 2, 50, 50, "F00A"));
+
+            int y = -10;
+            List<string> records = new List<string>()
+            {
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+            };
+
+            foreach (string s in records)
+            {
+                mlf.Nodes[0].Childs.Add(new MLLabel(s, 80, y, 3));
+                y -= 10;
+            }
+
+
+            Console.Write(mlf.getXmlText());
+
+
+
+
+
+            */
+
 
 
 
             return;
-            //Generateur de code :
-
-            tChars = new List<string>(chars.Split(','));
-
-            List<string> classList = new List<string>();
-            XmlDocument xmld = new XmlDocument(@"D:\ClassMeth.html");
-            foreach(XmlNode tr in xmld[0]["tbody"].getChildList("tr"))
-            {
-                //Parse
-                string name = subsep(tr[0].Value, 0, " (");
-                List<string> argsC = new List<string>();
-                if (!tr[0].Value.Contains("()"))
-                {
-                    argsC.AddRange(subsep(tr[0].Value, "(", ")").Split(','));
-                }
-
-                //return
-                string ret = tr[1].Value;
-                ret = ret.Replace("boolean", "bool");
-                ret = ret.Replace("array", "objet[]");
-
-
-                //Generate class
-                string str = "using System;\n";
-                str += "using System.Collections.Generic;\n";
-                str += "using System.Linq;\n";
-                str += "using System.Text;\n";
-                str += "using System.Threading.Tasks;\n";
-                str += "\n\n";
-                str += "namespace LamaPlugin.Other.MethodsClass\n";
-                str += "{\n";
-                str += "    public class " + name + " : Abstract.AbstractXmlRpcMethod<"+ret+">\n";
-                str += "    {\n";
-                str += "        const string name = \""+name+"\";\n\n";
-                str += "        public " + name + "(";
-                int i = 0;
-                foreach (string ar in argsC)
-                {
-                    str += ar + " " + getArgName(i);
-                    if(i<argsC.Count-1)
-                        str += ", ";
-
-                    i++;
-                }
-                str += ")\n";
-                str += "            : base(name, new objet[]\n";
-                str += "            {\n";
-                foreach(string ar in argsExists)
-                {
-                    str += "                " + ar + ",\n";
-                }
-                str += "            }) {}\n";
-                str += "    }\n";
-                str += "}";
-                str += "\n\n";
-                str += "\n\n";
-
-                classList.Add(str);
-                Console.WriteLine(str);
-                argsExists.Clear();
-            }
-            Console.ReadKey();
+        
         }
+
+
+
+        static void writeBytes(byte[] data)
+        {
+            string s = "";
+            int cpt = 1;
+            foreach(byte b in data)
+            {
+                s += b.ToString("X2") + " ";
+
+                if(cpt % 32 == 0)
+                {
+                    s += "\n";
+                }
+                cpt++;
+            }
+
+            Console.WriteLine(s);
+
+        }
+
+
 
 
 

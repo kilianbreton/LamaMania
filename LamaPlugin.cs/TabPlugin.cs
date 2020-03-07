@@ -9,7 +9,16 @@ namespace LamaPlugin
 {
     public class TabPlugin : UserControl, ITab
     {
+        public TabPlugin()
+        {
+            this.Requirements = new List<Requirement>();
+        }
+
+
+
         PluginType type = PluginType.TabPlugin;
+
+        public bool ConfigServPlugin { get; set; }
 
         public GetConfigValue getConfigValue { get; set; }
         public string Author { get; set; }
@@ -21,5 +30,29 @@ namespace LamaPlugin
         public PluginType PluginType { get => type; set => type = value; }
         public OnError OnError { get; set; }
         public Logger Log { get; set; }
+
+        public InterPluginResponse onInterPluginCall(IBasePlugin sender, InterPluginArgs args)
+        {
+            return null;
+        }
+
+        public string aliasCall(string arg)
+        {
+            return "";
+        }
+
+
+        public virtual void onPluginUpdate()
+        {
+
+        }
+
+        public virtual bool onLoad(LamaConfig cfg)
+        {
+          
+            return true;
+        }
+
+
     }
 }

@@ -40,6 +40,7 @@ using System.Diagnostics;
 using System.Threading;
 using NTK.IO.Xml;
 using NTK.IO;
+using NTK.Database;
 using LamaLang;
 using LamaPlugin;
 using static LamaMania.StaticMethods;
@@ -64,6 +65,7 @@ namespace LamaMania
 #endif
             Lama.pluginManager = new PluginManager("");
             Lama.pluginManager.loadPlugins();
+            Lama.pluginManager.loadInternalHC();
             load();
         }
 
@@ -72,21 +74,21 @@ namespace LamaMania
         /// </summary>
         public void load()
         {
-            Lama.log("NOTICE", "Read ini");
-      /*      Lama.iniFile = new NTK.IO.Ini.IniDocument("LamaMania.ini");
-            string mode = Lama.iniFile.getGroup("MAIN").getValue("Mode");
+            /*     Lama.log("NOTICE", "Read ini");
+             Lama.iniFile = new NTK.IO.Ini.IniDocument("LamaMania.ini");
+             string mode = Lama.iniFile.getGroup("MAIN").getValue("Mode");
 
-            string serverMode = Lama.iniFile.getGroup(mode).getValue("ServerMode");
-            Lama.externalServer = (serverMode == "$EXTERNAL$");
-            if (serverMode != "$EXTERNAL$")
-                Lama.serverPath = getPathFromVar(serverMode);
-            
+             string serverMode = Lama.iniFile.getGroup(mode).getValue("ServerMode");
+             Lama.externalServer = (serverMode == "$EXTERNAL$");
+             if (serverMode != "$EXTERNAL$")
+                 Lama.serverPath = getPathFromVar(serverMode);
 
-            string configPath = Lama.iniFile.getGroup(mode).getValue("ConfigPath");
-            string ressourcesPath = Lama.iniFile.getGroup(mode).getValue("RessourcesPath");
-            string cachePath = Lama.iniFile.getGroup(mode).getValue("CachePath");
 
-            */
+             string configPath = Lama.iniFile.getGroup(mode).getValue("ConfigPath");
+             string ressourcesPath = Lama.iniFile.getGroup(mode).getValue("RessourcesPath");
+             string cachePath = Lama.iniFile.getGroup(mode).getValue("CachePath");
+
+             */
 
             Lama.log("NOTICE", "Read main config");
             Lama.mainConfig = new XmlDocument(@"Config\Main.xml");
@@ -165,6 +167,7 @@ namespace LamaMania
                 Lama.remoteAdrs = cfg["remote"]["ip"].Value;
                 Lama.remotePort = (int)cfg["remote"]["port"].LValue;
                 string login = cfg["remote"]["login"].Value;
+
                 var askLogs = new AskLogins(login);
                 var result = askLogs.getDialogResult();
                 if (result.Res)
@@ -174,6 +177,7 @@ namespace LamaMania
                     Main main = new Main();
 #else
                     Main main = new Main(result.Login, result.Pass);
+                    main.commonConstructor();
 #endif
                     this.Hide();
                     main.Show();
@@ -194,8 +198,18 @@ namespace LamaMania
                 {
                     cmd += " /lan";
                 }
+                
+                //Open database connection
+                if(cfg["database"].haveAttribute("value") && cfg["database"].getAttibuteV("value").ToUpper().Equals("TRUE"))
+                {
+                    string ip = cfg["database"]["ip"].Value;
+                    string login = cfg["database"]["login"].Value;
+                    string passwd = cfg["database"]["passwd"].Value;
+                    string baseName = cfg["database"]["baseName"].Value;
+                    Lama.database = NTKD_MySql.overrideInstance(ip, login, passwd, baseName);
+                }
+                
                 //Select plugin list
-
                 if (cfg["plugins"].haveAttribute("value") && cfg["plugins"].getAttibuteV("value").ToUpper().Equals("TRUE"))
                 {
                     Lama.pluginManager.selectPluginsFrmCfg(cfg["plugins"]);
@@ -231,6 +245,7 @@ namespace LamaMania
                         FileName = path,
                         Arguments = cmd,
                     };
+
                     Lama.serverProcess.EnableRaisingEvents = true;
                     Lama.serverProcess.Exited += new EventHandler(Lama.Process_Exited);
                     Lama.serverProcess.Disposed += new EventHandler(Lama.Process_Disposed);
@@ -251,6 +266,7 @@ namespace LamaMania
                     var mainForm = new Main(config);
                   //  Thread t = new Thread(mainForm.Show);
                     mainForm.Show();
+                    mainForm.commonConstructor();
                    // t.Start();
                 }
                 catch (Exception)
@@ -357,6 +373,11 @@ namespace LamaMania
         {
             ConfigSoft cfgs = new ConfigSoft();
             cfgs.Show();
+        }
+
+        private void B_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

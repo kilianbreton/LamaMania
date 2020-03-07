@@ -19,6 +19,7 @@ namespace UAsecoPlugin
             this.PluginName = "UAseco";
             this.Author = "Kilian";
             this.Version = "0.0.0.1";
+            this.ConfigServPlugin = true;
         }
 
      

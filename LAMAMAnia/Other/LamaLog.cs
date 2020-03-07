@@ -27,7 +27,7 @@ namespace LamaMania
         /// <returns></returns>
         public override string toText()
         {
-            return "[" + this.Type + "] [" + this.Date.ToShortDateString() + "][" + this.Date.ToShortTimeString() + "]>" + this.Text;
+            return "[" + this.Type + "]\t[" + this.Date.ToShortDateString() + "][" + this.Date.ToShortTimeString() + "]>" + this.Text;
         }
     }
 
@@ -51,7 +51,9 @@ namespace LamaMania
             this.writeNotices = writeNotices;
             this.flush();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public LamaLog()
         {
 
@@ -89,7 +91,9 @@ namespace LamaMania
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public bool WriteNotices { get => writeNotices; set => writeNotices = value; }
 
     }
