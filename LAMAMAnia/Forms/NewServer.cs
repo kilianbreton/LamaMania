@@ -28,7 +28,7 @@ namespace LamaMania
         /// <param name="hl">The homeLauncher Form to reload</param>
         public NewServer(HomeLauncher hl)
         {
-            Lama.log("NOTICE", "Open NewServer");
+            Program.lama.log("NOTICE", "Open NewServer");
             InitializeComponent();
             this.hl = hl;
             formSkin1.Text = "New Server";
@@ -41,7 +41,7 @@ namespace LamaMania
         /// <param name="cfg"></param>
         public NewServer(HomeLauncher hl, XmlNode cfg)
         {
-            Lama.log("NOTICE", "Open NewServer in Edit mode");
+            Program.lama.log("NOTICE", "Open NewServer in Edit mode");
             InitializeComponent();
             formSkin1.Text = "Edit server";
             this.hl = hl;
@@ -73,17 +73,20 @@ namespace LamaMania
 
         private async void b_create_Click(object sender, EventArgs e)
         {
-            Lama.log("NOTICE", "Save server");
+            Program.lama.log("NOTICE", "Save server");
             if (cfg == null) //Creation mode
             {
                 if (tog_remote.Checked)
                 {
-                    var index = Lama.mainConfig[0]["servers"].count();
+                    var index = Program.lama.mainConfig[0]["servers"].count();
                     var configPath = @"Config\Servers\" + index + ".xml";
                     //MakeConfig------------------------------------------------------------------
                     //Actualize main Config
-                    XmlNode root = Lama.mainConfig[0]["servers"].addChild("server")
+                    XmlNode root = Program.lama.mainConfig[0]["servers"].addChild("server")
                                                                 .addAttribute("id", index.ToString());
+
+                    if (tg_tm2020.Checked)
+                        root.addAttribute("type", "TM3");
 
                     root.addChild("name", tb_name.Text);
                     root.addChild("internetServer", "true");
@@ -95,15 +98,15 @@ namespace LamaMania
                     root["remote"].addChild("login", tb_login.Text);
 
                     root.addChild("plugins");
-                    string test = Lama.mainConfig.print();
-                    Lama.mainConfig.save();
+                    string test = Program.lama.mainConfig.print();
+                    Program.lama.mainConfig.save();
 
                     this.hl.load();
                     this.Close();
                 }
                 else
                 {
-                    Lama.mainConfig.save();
+                    Program.lama.mainConfig.save();
                     label1.Visible = true;
                     label1.Text = "Création du serveur ...";
 
@@ -120,7 +123,7 @@ namespace LamaMania
                 cfg["remote"]["ip"].Value = tb_ip.Text;
                 cfg["remote"]["port"].Value = tb_port.Text;
                 cfg["remote"]["login"].Value = tb_login.Text;
-                Lama.mainConfig.save();
+                Program.lama.mainConfig.save();
                 hl.load();
                 this.Close();
             }
@@ -129,15 +132,18 @@ namespace LamaMania
 
         async Task makeServer(string name)
         {
-            int index = Lama.mainConfig[0]["servers"].count();
+            int index = Program.lama.mainConfig[0]["servers"].count();
             string serverPath = @"Servers\" + index + @"\";
 
             //Make server-----------------------------------------------------------------
-            Lama.log("NOTICE", "Create directory");
+            Program.lama.log("NOTICE", "Create directory");
             Directory.CreateDirectory(serverPath);
-            DirectoryInfo mps = new DirectoryInfo(@"Ressources\mps\");
-
-            Lama.log("NOTICE", "Copy Directory");
+            DirectoryInfo mps;
+            if (!tg_tm2020.Checked)
+                mps = new DirectoryInfo(@"Ressources\mps\");
+            else
+                mps = new DirectoryInfo(@"Ressources\tm3s\");
+            Program.lama.log("NOTICE", "Copy Directory");
 
             await Task.Run(() => {
                 copyDirectory(mps, serverPath);
@@ -147,8 +153,8 @@ namespace LamaMania
             string mapPath = serverPath + @"UserData\Maps\";
 
             //MakeConfig------------------------------------------------------------------
-            Lama.log("NOTICE", "MakeConfig");
-            XmlNode serverConfig = Lama.mainConfig[0]["servers"].addChild("server").addAttribute("id", index.ToString());
+            Program.lama.log("NOTICE", "MakeConfig");
+            XmlNode serverConfig = Program.lama.mainConfig[0]["servers"].addChild("server").addAttribute("id", index.ToString());
             XmlNode root = serverConfig;
             root.addChild("name", name);
             root.addChild("internetServer", "true");
@@ -160,7 +166,7 @@ namespace LamaMania
             remote.addChild("login", "");
 
             root.addChild("plugins");
-            Lama.mainConfig.save(false);
+            Program.lama.mainConfig.save(false);
 
 
 

@@ -28,17 +28,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LamaPlugin;
 
 namespace LamaMania
 {
     static class Program
     {
+        public static Lama lama;
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
+            lama = new Lama();
             if(args.Length != 0)
             {
                 if(args[0].ToUpper() == "--CLEARCACHE")

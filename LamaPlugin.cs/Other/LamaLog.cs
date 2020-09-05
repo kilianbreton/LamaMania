@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 using NTK.IO;
 
 
-namespace LamaMania
+namespace LamaPlugin
 {
     /// <summary>
     /// Représente une ligne de log
     /// </summary>
     public class LamaLogLine : LogLine
     {
+        
+        
+        
         /// <summary>
         /// Création d'une nouvelle ligne
         /// </summary>
@@ -36,19 +39,28 @@ namespace LamaMania
     /// </summary>
     public class LamaLog : Log
     {
+        public const string NOTICE = "NOTICE";
+        public const string SUCCESS = "SUCCESS";
+        public const string INFO = "INFO";
+        public const string WARNING = "WARNING";
+        public const string ERROR = "ERROR";
+        public const string NOCONSOLE = "NOCONSOLE";
+
         private string path;
-        private bool writeNotices = true;
+        private bool writeNotices;
+        private bool writeConsole;
 
         /// <summary>
         /// Init logger
         /// </summary>
         /// <param name="path"></param>
         /// <param name="writeNotices"></param>
-        public LamaLog(string path, bool writeNotices = true)
+        public LamaLog(string path, bool writeNotices = true, bool writeConsole = false)
         {
             this.path = path;
             this.add("NOTICE", "[INIT]==============================================================================================================================================");
             this.writeNotices = writeNotices;
+            this.writeConsole = writeConsole;
             this.flush();
         }
         /// <summary>
@@ -81,13 +93,36 @@ namespace LamaMania
                 foreach (LogLine elem in lines)
                 {
                     sw.WriteLine(elem.toText());
+                    if (this.writeConsole && elem.Type != LamaLog.NOCONSOLE)
+                    {
+                        switch (elem.Type)
+                        {
+                            case NOTICE:
+                            case INFO:
+                                Console.ResetColor();
+                                break;
+
+                            case WARNING:
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                break;
+
+                            case SUCCESS:
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                break;
+                            case ERROR:
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                break;
+                        }
+                        Console.WriteLine(elem.Text);
+                    }
                 }
+                
                 sw.Close();
                 lines.Clear();
             }
             catch (Exception e)
             {
-                Lama.onException(this, e);
+                Console.Error.WriteLine(e.Message);
             }
 
         }

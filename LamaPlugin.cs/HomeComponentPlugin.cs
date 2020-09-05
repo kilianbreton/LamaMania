@@ -179,5 +179,6 @@ namespace LamaPlugin
         public bool CanMoveDown { get; set; }
         public GetLamaProperty GetLamaProperty { get; set; }
         public bool NeedXmlRpcConnection { get; set; }
+        public string PluginDescription { get; set; }
     }
 }

@@ -9,11 +9,17 @@ namespace LamaPlugin
 {
     public class TabPlugin : UserControl, ITab
     {
+        private PMInterPluginCall pmInterCall;
+
         public TabPlugin()
         {
             this.Requirements = new List<Requirement>();
         }
 
+        public void setPluginManager(PMInterPluginCall pmipc)
+        {
+            this.pmInterCall = pmipc;
+        }
 
 
         PluginType type = PluginType.TabPlugin;
@@ -30,6 +36,7 @@ namespace LamaPlugin
         public PluginType PluginType { get => type; set => type = value; }
         public OnError OnError { get; set; }
         public Logger Log { get; set; }
+        public string PluginDescription { get; set; }
 
         public InterPluginResponse onInterPluginCall(IBasePlugin sender, InterPluginArgs args)
         {
@@ -52,6 +59,16 @@ namespace LamaPlugin
           
             return true;
         }
+
+
+        protected InterPluginResponse sendInterPluginCall(string target, string callName, Dictionary<string, object> args)
+        {
+            if (pmInterCall != null)
+                return this.pmInterCall(this, target, new InterPluginArgs(0, callName, args));
+            else
+                return null;
+        }
+
 
 
     }

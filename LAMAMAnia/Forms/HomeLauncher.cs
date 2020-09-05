@@ -44,6 +44,7 @@ using NTK.Database;
 using LamaLang;
 using LamaPlugin;
 using static LamaMania.StaticMethods;
+using static LamaMania.Program;
 
 namespace LamaMania
 {
@@ -55,17 +56,24 @@ namespace LamaMania
         /// <summary>
         /// Chargement du formulaire
         /// </summary>
+        /// 
+
+        private string servType;
         public HomeLauncher()
         {
             InitializeComponent();
 #if debug
-            Lama.lamaLogger = new LamaLog(@"Logs\Lama.log",true);
+            lama.lamaLogger = new LamaLog(@"Logs\Lama.log",true);
 #else
             Lama.lamaLogger = new LamaLog(@"Logs\Lama.log",false);
 #endif
-            Lama.pluginManager = new PluginManager("");
-            Lama.pluginManager.loadPlugins();
-            Lama.pluginManager.loadInternalHC();
+            lama.pluginManager = new PluginManager(@"Config\Servers\" + lama.serverIndex, "", lama);
+            lama.pluginManager.loadPlugins();
+            lama.pluginManager.loadInternalHC(new HomeComponents.HCGameInfos(),
+                                              new HomeComponents.HCNetworkStats(),
+                                              new HomeComponents.HCPlayerList(),
+                                              new HomeComponents.HCServerInfos(),
+                                              new HomeComponents.HCStatus());
             load();
         }
 
@@ -90,9 +98,9 @@ namespace LamaMania
 
              */
 
-            Lama.log("NOTICE", "Read main config");
-            Lama.mainConfig = new XmlDocument(@"Config\Main.xml");
-            XmlNode root = Lama.mainConfig[0];
+            lama.log("NOTICE", "Read main config");
+            lama.mainConfig = new XmlDocument(@"Config\Main.xml");
+            XmlNode root = lama.mainConfig[0];
             while (root.read())
             {
                 var node = root.getNode();
@@ -101,41 +109,29 @@ namespace LamaMania
                     case "startMode":
                         if (!node.Value.ToUpper().Equals("SELECT"))
                         {
-                            if(!int.TryParse(node.Value, out Lama.startMode))
+                            if(!int.TryParse(node.Value, out lama.startMode))
                             {
-                                Lama.startMode = -1;
-                                Lama.log("WARNING", "StartMode : '" + node.Value + "' Unknown");
+                                lama.startMode = -1;
+                                lama.log("WARNING", "StartMode : '" + node.Value + "' Unknown");
                             }
                         }
                         break;
-
-                    case "lang":
-                   //     loadScriptSettings(node.Value);
-                    //    Lama.localesManager = new LocalesManager(@"Config\Locales\main.lmf", node.Value);
-                        //Lama.localesManager
-                    
-
-                        if (Lama.lang != null)
-                            loadLang();
-
-                        break;
-
                     case "servers":
-                        Lama.log("NOTICE", "Read server list");
-                        Lama.servers.Clear();
+                        lama.log("NOTICE", "Read server list");
+                        lama.servers.Clear();
                         flatComboBox1.Items.Clear();
                         foreach (XmlNode n in node.Childs)
                         {
-                            Lama.servers.Add(int.Parse(n.getAttibuteV("id")), n["name"].Value);
+                            lama.servers.Add(int.Parse(n.getAttibuteV("id")), n["name"].Value);
                             flatComboBox1.Items.Add(n["name"].Value);
                         }
                         break;
                 }
             }
 
-            if (Lama.startMode >= 0)
+            if (lama.startMode >= 0)
             {
-                start(Lama.startMode);
+                start(lama.startMode);
             }
         }
 
@@ -149,30 +145,29 @@ namespace LamaMania
             XmlDocument script = new XmlDocument(@"Config\locales\" + locale + @"\ScriptSettings.xml");
             foreach(XmlNode n in script[0].Childs)
             {
-                Lama.scriptSettingsLocales.Add(n.Name, n.Value);
+                lama.scriptSettingsLocales.Add(n.Name, n.Value);
             }
             
         }
 
         void start(int index)
         {
-          /*  Thread tLoad = new Thread(Lama.loadForm.Show);
-            tLoad.Start();*/
-            //  Lama.loadForm.Show();
             //Open Server config
-            Lama.serverIndex = index;
-            XmlNode cfg = Lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
+            lama.serverIndex = index;
+            XmlNode cfg = lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
             if (cfg["remote"].getAttibuteV("value").ToUpper().Equals("TRUE"))
             {
-                Lama.remoteAdrs = cfg["remote"]["ip"].Value;
-                Lama.remotePort = (int)cfg["remote"]["port"].LValue;
+                lama.remoteAdrs = cfg["remote"]["ip"].Value;
+                lama.remotePort = (int)cfg["remote"]["port"].LValue;
                 string login = cfg["remote"]["login"].Value;
+
+                servType = cfg.getAttibuteV("type");
 
                 var askLogs = new AskLogins(login);
                 var result = askLogs.getDialogResult();
                 if (result.Res)
                 {
-                    Lama.launched = true;
+                    lama.launched = true;
 #if visualDebug
                     Main main = new Main();
 #else
@@ -187,11 +182,28 @@ namespace LamaMania
             }
             else
             {
+                if (cfg.isChildExist("database") && (cfg["database"].haveAttribute("value") && cfg["database"].getAttibuteV("value").ToUpper() == "TRUE") || !cfg["database"].haveAttribute("value"))
+                {
+                    lama.pluginManager.initDatabase(cfg["database"]);
+                }
                 var config = new XmlDocument(@"Servers\" + index + @"\UserData\Config\dedicated_cfg.txt");
 
-                string path = @"Servers\" + index + @"\ManiaPlanetServer.exe";
+                string path;
+                string cmd;
 
-                string cmd = "/Title=" + config[0]["system_config"]["title"].Value;
+                if (servType == "TM3")
+                {
+                    path = @"Servers\" + index + @"\ManiaPlanetServer.exe";
+                    cmd = "";
+                }
+                else
+                {
+                    path = @"Servers\" + index + @"\TrackmaniaServer.exe";
+                    cmd = "/Title=" + config[0]["system_config"]["title"].Value;
+                }
+
+              
+               
                 cmd += " /dedicated_cfg=dedicated_cfg.txt";
                 cmd += " /game_settings=" + cfg["matchSettings"].Value;
                 if(cfg["internetServer"].Value.ToUpper() == "TRUE")
@@ -206,39 +218,39 @@ namespace LamaMania
                     string login = cfg["database"]["login"].Value;
                     string passwd = cfg["database"]["passwd"].Value;
                     string baseName = cfg["database"]["baseName"].Value;
-                    Lama.database = NTKD_MySql.overrideInstance(ip, login, passwd, baseName);
+                    lama.database = NTKD_MySql.overrideInstance(ip, login, passwd, baseName);
                 }
                 
                 //Select plugin list
                 if (cfg["plugins"].haveAttribute("value") && cfg["plugins"].getAttibuteV("value").ToUpper().Equals("TRUE"))
                 {
-                    Lama.pluginManager.selectPluginsFrmCfg(cfg["plugins"]);
+                    lama.pluginManager.selectPluginsFrmCfg(cfg["plugins"]);
                 }
 #if visualDebug
 
                 Main main = new Main();
                 main.Show();
 #else
-                if (Lama.invisibleServer)
+                if (lama.invisibleServer)
                 {
-                    Lama.serverProcess = new Process();
+                    lama.serverProcess = new Process();
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
                         WindowStyle = ProcessWindowStyle.Hidden,
                         FileName = path,
                         Arguments = cmd
                     };
-                    Lama.serverProcess.Exited += new EventHandler(Lama.Process_Exited);
-                    Lama.serverProcess.Disposed += new EventHandler(Lama.Process_Disposed);
+                    lama.serverProcess.Exited += new EventHandler(lama.Process_Exited);
+                    lama.serverProcess.Disposed += new EventHandler(lama.Process_Disposed);
                     
-                    Lama.serverProcess.ErrorDataReceived += Process_ErrorDataReceived;
-                    Lama.serverProcess.StartInfo = startInfo;
-                    Lama.serverProcess.Start();
+                    lama.serverProcess.ErrorDataReceived += Process_ErrorDataReceived;
+                    lama.serverProcess.StartInfo = startInfo;
+                    lama.serverProcess.Start();
                 }
                 else
                 {
                     
-                    Lama.serverProcess = new Process();
+                    lama.serverProcess = new Process();
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
                         WindowStyle = ProcessWindowStyle.Normal,
@@ -246,18 +258,18 @@ namespace LamaMania
                         Arguments = cmd,
                     };
 
-                    Lama.serverProcess.EnableRaisingEvents = true;
-                    Lama.serverProcess.Exited += new EventHandler(Lama.Process_Exited);
-                    Lama.serverProcess.Disposed += new EventHandler(Lama.Process_Disposed);
-                    Lama.serverProcess.StartInfo = startInfo;
-                    Lama.serverProcessExited = false;
-                    Lama.serverProcess.Start();
-                    Lama.serverProcess.OutputDataReceived += new DataReceivedEventHandler(Lama.Process_DataReceived);
+                    lama.serverProcess.EnableRaisingEvents = true;
+                    lama.serverProcess.Exited += new EventHandler(lama.Process_Exited);
+                    lama.serverProcess.Disposed += new EventHandler(lama.Process_Disposed);
+                    lama.serverProcess.StartInfo = startInfo;
+                    lama.serverProcessExited = false;
+                    lama.serverProcess.Start();
+                    lama.serverProcess.OutputDataReceived += new DataReceivedEventHandler(lama.Process_DataReceived);
 
                     
                 }
 
-                Lama.launched = true;
+                lama.launched = true;
 
                 //Open main form
                 try
@@ -305,16 +317,34 @@ namespace LamaMania
             if (flatComboBox1.SelectedIndex != -1)
             {
                 int index = flatComboBox1.SelectedIndex;
-                XmlNode cfg = Lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
-                if (cfg["remote"].getAttribute("value").Value.ToUpper().Equals("TRUE"))
+                // XmlNode cfg = Program.lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
+                XmlNode cfg = null;
+                foreach(XmlNode n in Program.lama.mainConfig[0]["servers"].Childs)
                 {
-                    var conf = new NewServer(this, cfg);
-                    conf.Show();
+                    if(n["name"].Value == flatComboBox1.SelectedItem.ToString())
+                    {
+                        cfg = n;
+                        
+                        int.TryParse(cfg.getAttibuteV("id"), out lama.serverIndex);
+                        break;
+                    }
+                }
+                if (cfg != null)
+                {
+                    if (cfg["remote"].getAttribute("value").Value.ToUpper().Equals("TRUE"))
+                    {
+                        var conf = new NewServer(this, cfg);
+                        conf.Show();
+                    }
+                    else
+                    {
+                        var conf = new ConfigServ(lama.serverIndex, flatComboBox1.SelectedItem.ToString());
+                        conf.Show();
+                    }
                 }
                 else
                 {
-                    var conf = new ConfigServ(index);
-                    conf.Show();
+                    Program.lama.onError(this, "Serveur introuvable", "le noeud de configuration est introuvable");
                 }
             }
         }
@@ -325,8 +355,8 @@ namespace LamaMania
             if(res == DialogResult.No)
                 return;
             
-            int index = Lama.servers.getKeyFromValue(flatComboBox1.Text);
-            XmlNode cfg = Lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
+            int index = lama.servers.getKeyFromValue(flatComboBox1.Text);
+            XmlNode cfg = lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
 
             try
             {
@@ -337,20 +367,20 @@ namespace LamaMania
 
             }
             catch (Exception dirEx){
-                Lama.onException(this, dirEx);
+                lama.onException(this, dirEx);
             }
          
             //Update Main Config
-            int total = Lama.mainConfig[0]["servers"].removeChildsByAttribute("server", "id", index.ToString());
+            int total = lama.mainConfig[0]["servers"].removeChildsByAttribute("server", "id", index.ToString());
 
 
             if (total != 1)
             {
-                Lama.onError(this, "Error", "Unable to delete server from main config, nodes affected = ");
+                lama.onError(this, "Error", "Unable to delete server from main config, nodes affected = ");
             }
             else
             {
-                Lama.mainConfig.save();
+                lama.mainConfig.save();
                 load();
             }
 
@@ -360,12 +390,12 @@ namespace LamaMania
         {
             try
             {
-                int index = Lama.servers.getKeyFromValue(flatComboBox1.Text);
+                int index = lama.servers.getKeyFromValue(flatComboBox1.Text);
                 start(index);
             }
             catch (Exception)
             {
-                Lama.onError(this, "Error", "Undefined server : " + flatComboBox1.Text);
+                lama.onError(this, "Error", "Undefined server : " + flatComboBox1.Text);
             }
         }
 

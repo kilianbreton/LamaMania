@@ -35,80 +35,57 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Test");
-
-         
-
-            ConsoleKeyInfo k = Console.ReadKey();
-            while (k.Key != ConsoleKey.Q)
-            {
-                switch (k.Key)
+            Console.Write("Fichier gbx : ");
+            string s = Console.ReadLine();
+            if (s != "" && s.ToUpper().Contains(".GBX"))
                 {
-                    case ConsoleKey.UpArrow:
-                        Console.WriteLine("up");
-                        break;
-                    case ConsoleKey.DownArrow:
-                        Console.WriteLine("down");
-                        break;
-                    case ConsoleKey.LeftArrow:
-                        Console.WriteLine("left");
-                        break;
-                    case ConsoleKey.RightArrow:
-                        Console.WriteLine("right");
-                        break;
 
-                    default:
-                        Console.WriteLine(k.KeyChar);
-                        break;
-                }
+                MapInformation mi = MapParser.ReadFile(s);
+                Console.WriteLine("AuthorExtra : " + mi.AuthorExtra);
+                Console.WriteLine("AuthorLogin : " + mi.AuthorLogin);
+                Console.WriteLine("AuthorNickName : " + mi.AuthorNickName);
+                Console.WriteLine("AuthorScore : " + mi.AuthorScore);
+                Console.WriteLine("AuthorTime : " + mi.AuthorTime);
+                Console.WriteLine("AuthorVersion : " + mi.AuthorVersion);
+                Console.WriteLine("AuthorZone : " + mi.AuthorZone);
+                Console.WriteLine("BronzeTime : " + mi.BronzeTime);
+                Console.WriteLine("Checkpoints : " + mi.Checkpoints);
+                Console.WriteLine("Comments : " + mi.Comments);
+                Console.WriteLine("DecorationEnvironmentAuthor : " + mi.DecorationEnvironmentAuthor);
+                Console.WriteLine("DecorationEnvironmentId : " + mi.DecorationEnvironmentId);
+                Console.WriteLine("Editor : " + mi.Editor);
+                Console.WriteLine("Environment : " + mi.Environment);
+                Console.WriteLine("GoldTime : " + mi.GoldTime);
+                Console.WriteLine("HasThumbnail : " + mi.HasThumbnail);
 
-                k = Console.ReadKey();
+
+                Console.WriteLine("HeaderXml : "); //+ mi.HeaderXml);
+
+                XmlDocument xmld = new XmlDocument(mi.HeaderXml, false);
+                Console.Write(xmld.print());
+
+                Console.WriteLine("IsMultilap : " + mi.IsMultilap);
+                Console.WriteLine("Laps : " + mi.Laps);
+                Console.WriteLine("MapStyle : " + mi.MapStyle);
+                Console.WriteLine("MapType : " + mi.MapType);
+                Console.WriteLine("MapTypeId : " + mi.MapTypeId);
+                Console.WriteLine("Mood : " + mi.Mood);
+                Console.WriteLine("Name : " + mi.Name);
+                Console.WriteLine("Price : " + mi.Price);
+                Console.WriteLine("SilverTime : " + mi.SilverTime);
+                Console.WriteLine("Thumbnail : " + mi.Thumbnail);
+                writeBytes(mi.Thumbnail);
+
+                Console.WriteLine("TitleId : " + mi.TitleId);
+                Console.WriteLine("UId : " + mi.UId);
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
             }
+            else
+            {
 
-
-
-               MapInformation mi = MapParser.ReadFile(@"D:\ManiaPlanet\Dedicated\BTSSIOLAN2\UserData\Maps\My Maps\Sans nom.Map.Gbx");
-               Console.WriteLine("AuthorExtra : " + mi.AuthorExtra);
-               Console.WriteLine("AuthorLogin : " + mi.AuthorLogin);
-               Console.WriteLine("AuthorNickName : " + mi.AuthorNickName);
-               Console.WriteLine("AuthorScore : " + mi.AuthorScore);
-               Console.WriteLine("AuthorTime : " + mi.AuthorTime);
-               Console.WriteLine("AuthorVersion : " + mi.AuthorVersion);
-               Console.WriteLine("AuthorZone : " + mi.AuthorZone);
-               Console.WriteLine("BronzeTime : " + mi.BronzeTime);
-               Console.WriteLine("Checkpoints : " + mi.Checkpoints);
-               Console.WriteLine("Comments : " + mi.Comments);
-               Console.WriteLine("DecorationEnvironmentAuthor : " + mi.DecorationEnvironmentAuthor);
-               Console.WriteLine("DecorationEnvironmentId : " + mi.DecorationEnvironmentId);
-               Console.WriteLine("Editor : " + mi.Editor);
-               Console.WriteLine("Environment : " + mi.Environment);
-               Console.WriteLine("GoldTime : " + mi.GoldTime);
-               Console.WriteLine("HasThumbnail : " + mi.HasThumbnail);
-
-
-               Console.WriteLine("HeaderXml : "); //+ mi.HeaderXml);
-
-               XmlDocument xmld = new XmlDocument(mi.HeaderXml, false);
-               Console.Write(xmld.print());
-
-               Console.WriteLine("IsMultilap : " + mi.IsMultilap);
-               Console.WriteLine("Laps : " + mi.Laps);
-               Console.WriteLine("MapStyle : " + mi.MapStyle);
-               Console.WriteLine("MapType : " + mi.MapType);
-               Console.WriteLine("MapTypeId : " + mi.MapTypeId);
-               Console.WriteLine("Mood : " + mi.Mood);
-               Console.WriteLine("Name : " + mi.Name);
-               Console.WriteLine("Price : " + mi.Price);
-               Console.WriteLine("SilverTime : " + mi.SilverTime);
-               Console.WriteLine("Thumbnail : " + mi.Thumbnail);
-               writeBytes(mi.Thumbnail);
-
-               Console.WriteLine("TitleId : " + mi.TitleId);
-               Console.WriteLine("UId : " + mi.UId);
-               Console.WriteLine();
-               Console.WriteLine();
-               Console.WriteLine();
-
+            }
                Console.ReadKey();
 
             /*

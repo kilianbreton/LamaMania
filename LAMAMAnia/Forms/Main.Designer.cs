@@ -103,6 +103,7 @@
             this.c_m_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_m_author = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_environnement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fichier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1194,7 +1195,8 @@
             this.dg_map.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.c_m_name,
             this.c_m_author,
-            this.c_environnement});
+            this.c_environnement,
+            this.Fichier});
             this.dg_map.GridColor = System.Drawing.Color.White;
             this.dg_map.Location = new System.Drawing.Point(340, 11);
             this.dg_map.Margin = new System.Windows.Forms.Padding(2);
@@ -1210,6 +1212,7 @@
             this.dg_map.ShowRowErrors = false;
             this.dg_map.Size = new System.Drawing.Size(1098, 698);
             this.dg_map.TabIndex = 1;
+            this.dg_map.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_map_RowEnter);
             // 
             // c_m_name
             // 
@@ -1225,6 +1228,11 @@
             // 
             this.c_environnement.HeaderText = "Environnement";
             this.c_environnement.Name = "c_environnement";
+            // 
+            // Fichier
+            // 
+            this.Fichier.HeaderText = "Fichier";
+            this.Fichier.Name = "Fichier";
             // 
             // menuStrip1
             // 
@@ -1431,11 +1439,12 @@
         private FlatUITheme.FlatButton b_toGuests;
         private FlatUITheme.FlatButton b_ForceRed;
         private FlatUITheme.FlatButton b_ForceBlue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c_environnement;
         private System.Windows.Forms.ToolStripMenuItem editHomeToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox tb_chat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_m_author;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c_environnement;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fichier;
     }
 }

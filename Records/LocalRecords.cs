@@ -26,14 +26,14 @@ namespace Records
         {
             this.Author = "KBT";
             this.PluginName = "LocalRecords";
+            this.PluginDescription = "Gestionaire de records locaux";
             this.PluginFolder = "[NONE]";
             this.Version = "0.1";
 
             this.Requirements.Add(new Requirement(RequirementType.DATABASE, true));
             this.Requirements.Add(new Requirement(RequirementContext.LOCAL));
+        
         }
-
-
 
         public override bool onLoad(LamaConfig lamaConfig)
         {
@@ -54,7 +54,7 @@ namespace Records
                     //Get Map List--------------------------------------------------------------------------
                     asyncRequest(res =>
                     {
-                        ArrayList lst = res.getArrayList();
+                        ArrayList lst = (ArrayList)res.Params[0];
                         foreach (Hashtable map in lst)
                         {
                             this.maps.Add(new MapInfo((string)map["Uid"], (string)map["Name"], "", (string)map["Author"], (string)map["Environnement"]));
@@ -95,6 +95,7 @@ namespace Records
 
         private void callBack_PlayerCheckpoint(object sender, GbxCallbackEventArgs args)
         {
+            asyncRequest(GBXMethods.ChatSend, "NOTICE -> CallBack PlayerCheckPoint");
             ArrayList param = args.Response.Params;
             int checkPointIndex = (int)param[4];
             int uid = (int)param[0];
@@ -104,11 +105,15 @@ namespace Records
             {
                 Player p = getPlayer(uid);
                 if (p.Live_checkPoints == null)
+                {
                     p.Live_checkPoints = new List<int>();
+                    asyncRequest(GBXMethods.ChatSend, "Init checkPoints list");
+                }
 
                 if (p.Live_checkPoints.Count == checkPointIndex)
                 {
                     p.Live_checkPoints.Add(timeOrScore);
+                    asyncRequest(GBXMethods.ChatSend, "Add cp in list");
                 }
             }
         }
@@ -138,7 +143,7 @@ namespace Records
         private void getPlayerList(GbxCall res)
         {
             this.players.Clear();
-            ArrayList lst = res.getArrayList();
+            ArrayList lst = (ArrayList)res.Params[0];
             //Login, NickName, PlayerId, TeamId, SpectatorStatus, LadderRanking, and Flags.
             foreach (Hashtable player in lst)
             {
@@ -274,12 +279,12 @@ namespace Records
 
         public override void onGbxCallBack(object sender, GbxCallbackEventArgs args)
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void onGbxAsyncResult(GbxCall res)
         {
-            throw new NotImplementedException();
+           
         }
     }
 }

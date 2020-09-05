@@ -32,7 +32,6 @@ using System.Threading.Tasks;
 using NTK.IO.Xml;
 using NTK.IO;
 using NTK.IO.Ini;
-using LamaLang;
 using LamaPlugin;
 using System.Windows.Forms;
 using FlatUITheme;
@@ -41,7 +40,7 @@ using System.Threading;
 using NTK.Database;
 
 
-namespace LamaMania
+namespace LamaPlugin
 {
     /// <summary>
     /// Lama Configuration
@@ -51,150 +50,150 @@ namespace LamaMania
         /// <summary>
         /// 
         /// </summary>
-        public static LocalesManager localesManager;
+    //    public static LocalesManager localesManager;
         /// <summary>
         /// Start mode : -1 = select and start, >=0 = autostart id
         /// </summary>
-        public static int startMode = -1;
+        public int startMode = -1;
         /// <summary>
         /// Servers list
         /// </summary>
-        public static Dictionary<int, String> servers = new Dictionary<int, string>();
+        public Dictionary<int, String> servers = new Dictionary<int, string>();
         /// <summary>
         /// Plugin manager
         /// </summary>
-        public static PluginManager pluginManager;
+        public PluginManager pluginManager;
         /// <summary>
         /// Index of selected server
         /// </summary>
-        public static int serverIndex;
+        public int serverIndex;
         /// <summary>
         /// Main xml config
         /// </summary>
-        public static XmlDocument mainConfig;
+        public XmlDocument mainConfig;
         /// <summary>
         /// 
         /// </summary>
-        public static IniDocument iniFile;
+        public IniDocument iniFile;
         /// <summary>
         /// 
         /// </summary>
-        public static bool externalServer = false;
+        public bool externalServer = false;
         /// <summary>
         /// 
         /// </summary>
-        public static string serverPath = @"\Servers\";
+        public string serverPath = @"\Servers\";
 
         /// <summary>
         /// Database connection
         /// </summary>
-        public static NTKDatabase database;
+        public NTKDatabase database;
 
         /// <summary>
         /// Make maniaplanet invisible
         /// </summary>
-        public static bool invisibleServer = false;
+        public bool invisibleServer = false;
         /// <summary>
         /// Server is launched
         /// </summary>
-        public static bool launched = false;
+        public bool launched = false;
         /// <summary>
         /// Is remote
         /// </summary>
-        public static bool remote = false;
+        public bool remote = false;
         /// <summary>
         /// Remote IP
         /// </summary>
-        public static string remoteAdrs;
+        public string remoteAdrs;
         /// <summary>
         /// Remote port
         /// </summary>
-        public static int remotePort;
+        public int remotePort;
         /// <summary>
         /// Language Module
         /// </summary>
-        public static BaseLang lang;
+       // public BaseLang lang;
         /// <summary>
         /// 
         /// </summary>
-        public static Dictionary<string, string> scriptSettingsLocales = new Dictionary<string, string>();
+        public Dictionary<string, string> scriptSettingsLocales = new Dictionary<string, string>();
         /// <summary>
         /// 
         /// </summary>
-        public static Process serverProcess;
+        public Process serverProcess;
         /// <summary>
         /// 
         /// </summary>
-        public static bool serverProcessExited = true;
+        public bool serverProcessExited = true;
         /// <summary>
         /// 
         /// </summary>
-        public static bool connected = false;
+        public bool connected = false;
         /// <summary>
         /// 
         /// </summary>
-        public static bool useLogs = true;
+        public bool useLogs = true;
         /// <summary>
         /// 
         /// </summary>
-        public static Log lamaLogger;
+        public Log lamaLogger;
         /// <summary>
         /// 
         /// </summary>
-        public static LoadForm loadForm = new LoadForm();
+    //    public LoadForm loadForm = new LoadForm();
         /// <summary>
         /// 
         /// </summary>
-        public static Thread loadThread;
+        public Thread loadThread;
         /// <summary>
         /// 
         /// </summary>
-        public static int previousMapId = -1;
+        public int previousMapId = -1;
         /// <summary>
         /// 
         /// </summary>
-        public static int currentMapId = -1;
+        public int currentMapId = -1;
         /// <summary>
         /// 
         /// </summary>
-        public static int nbPlayers = 0;
+        public int nbPlayers = 0;
         /// <summary>
         /// 
         /// </summary>
-        public static int maxPlayers = 0;
+        public int maxPlayers = 0;
         /// <summary>
         /// 
         /// </summary>
-        public static int maxSpectators = 0;
+        public int maxSpectators = 0;
         /// <summary>
         /// 
         /// </summary>
-        public static bool inEditMode = false;
+        public bool inEditMode = false;
 
         /// <summary>
         /// 
         /// </summary>
-        public static string serverName = "";
+        public string serverName = "";
      
         /// <summary>
         /// 
         /// </summary>
-        public static string serverLogin = "";
+        public string serverLogin = "";
       
         /// <summary>
         /// 
         /// </summary>
-        public static string serverComment = "";
+        public string serverComment = "";
 
         /// <summary>
         /// 
         /// </summary>
-        public static List<Player> players = new List<Player>();
+        public List<Player> players = new List<Player>();
      
         /// <summary>
         /// 
         /// </summary>
-        public static List<MapInfo> maps = new List<MapInfo>();
+        public List<MapInfo> maps = new List<MapInfo>();
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,7 +205,7 @@ namespace LamaMania
         /// </summary>
         /// <param name="type"></param>
         /// <param name="msg"></param>
-        public static void log(string type, string msg)
+        public void log(string type, string msg)
         {
             if (lamaLogger != null)
             {
@@ -225,11 +224,11 @@ namespace LamaMania
         /// <param name="sender">Use this</param>
         /// <param name="title">Dialog title</param>
         /// <param name="text"></param>
-        public static void onError(object sender, string title, string text)
+        public void onError(object sender, string title, string text)
         {
-            //MessageBox.Show(text + "\nFrom : " + sender.GetType().Name, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-            LamaDialog dialog = new LamaDialog(title, text + "\nFrom : " + sender.GetType().Name, FlatAlertBox._Kind.Error, MessageBoxButtons.OK);
-            dialog.ShowDialog();
+            MessageBox.Show(text + "\nFrom : " + sender.GetType().Name, title, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+         //   LamaDialog dialog = new LamaDialog(title, text + "\nFrom : " + sender.GetType().Name, FlatAlertBox._Kind.Error, MessageBoxButtons.OK);
+         //   dialog.ShowDialog();
         }
 
         /// <summary>
@@ -237,7 +236,7 @@ namespace LamaMania
         /// </summary>
         /// <param name="sender">Use this</param>
         /// <param name="exception">Catched exception</param>
-        public static void onException(object sender, Exception exception)
+        public void onException(object sender, Exception exception)
         {
             const string HEAD = "Error : #exceptionName from #functionName in #sender : \n #exceptionText";
             var txt = HEAD.Replace("#exceptionName", typeof(Exception).Name);
@@ -253,45 +252,46 @@ namespace LamaMania
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static object getLamaProperty(LamaProperty name)
+        public object getLamaProperty(LamaProperty name)
         {
 
             switch (name)
             {
                 case LamaProperty.CONNECTED:
-                    return Lama.connected;
+                    return this.connected;
                 case LamaProperty.CURRENTMAPID:
-                    return Lama.currentMapId;
+                    return this.currentMapId;
                 case LamaProperty.INVISIBLESERVER:
-                    return Lama.invisibleServer;
+                    return this.invisibleServer;
                 case LamaProperty.LANG:
-                    return Lama.lang;
+                    return null;
+               //     return this.lang;
                 case LamaProperty.LAUNCHED:
-                    return Lama.launched;
+                    return this.launched;
                 case LamaProperty.MAINCONFIG:
-                    return Lama.mainConfig;
+                    return this.mainConfig;
                 case LamaProperty.MAXPLAYERS:
-                    return Lama.maxPlayers;
+                    return this.maxPlayers;
                 case LamaProperty.MAXSPECTATORS:
-                    return Lama.maxSpectators;
+                    return this.maxSpectators;
                 case LamaProperty.NBPLAYERS:
-                    return Lama.nbPlayers;
+                    return this.nbPlayers;
                 case LamaProperty.PREVIOUSMAPID:
-                    return Lama.previousMapId;
+                    return this.previousMapId;
                 case LamaProperty.REMOTE:
-                    return Lama.remote;
+                    return this.remote;
                 case LamaProperty.REMOTEADRS:
-                    return Lama.remoteAdrs;
+                    return this.remoteAdrs;
                 case LamaProperty.REMOTEPORT:
-                    return Lama.remotePort;
+                    return this.remotePort;
                 case LamaProperty.SCRIPTSETTINGSLOCALES:
-                    return Lama.scriptSettingsLocales;
+                    return this.scriptSettingsLocales;
                 case LamaProperty.STARTMODE:
-                    return Lama.startMode;
+                    return this.startMode;
                 case LamaProperty.INEDITMODE:
-                    return Lama.inEditMode;
+                    return this.inEditMode;
                 case LamaProperty.PLAYERS:
-                    return Lama.players;
+                    return this.players;
                 default:
                     throw new Exception("Unknown property : " + name);
             }
@@ -304,7 +304,7 @@ namespace LamaMania
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
-        public static Player getPlayerByLogin(string login)
+        public Player getPlayerByLogin(string login)
         {
             int cpt = 0;
             while(cpt < players.Count && players[cpt].Login != login) { cpt++; }
@@ -323,25 +323,25 @@ namespace LamaMania
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void Process_Disposed(object sender, EventArgs e)
+        public void Process_Disposed(object sender, EventArgs e)
         {
-            Lama.launched = false;
+            this.launched = false;
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void Process_Exited(object sender, EventArgs e)
+        public void Process_Exited(object sender, EventArgs e)
         {
-            Lama.launched = false;
+            this.launched = false;
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void Process_DataReceived(object sender, DataReceivedEventArgs e)
+        public void Process_DataReceived(object sender, DataReceivedEventArgs e)
         {
           
         }

@@ -12,8 +12,9 @@ using CGE.OUT;
 
 namespace LamaController
 {
-    class Program
+    public class Program
     {
+        public static Lama lama;
         // ARGS :
         //  -dev
         //  -prod

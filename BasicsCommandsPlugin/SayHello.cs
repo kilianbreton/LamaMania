@@ -16,6 +16,7 @@ namespace BasicsCommandsPlugin
         public SayHello()
         {
             this.PluginName = "SayHello";
+            this.PluginDescription = "Informe les joueurs lors d'une connexion/déconnexion d'un autre joueur.";
             this.Author = "KBT";
             this.PluginFolder = "[NONE]";
 

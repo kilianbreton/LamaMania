@@ -30,6 +30,7 @@ namespace BasicsCommandsPlugin
         public CallVotePlugin()
         {
             base.PluginName = "CallVote";
+            base.PluginDescription = "Remplace le système de vote par défaut.";
             base.Author = "KBT";
             base.PluginFolder = "[NONE]";
 
@@ -100,7 +101,7 @@ namespace BasicsCommandsPlugin
 
 
 
-                InterPluginResponse r = sendInterPluginCall("UserLever", "GetUserLevel", new Dictionary<string, object>() {
+                InterPluginResponse r = sendInterPluginCall("UserLevel", "GetUserLevel", new Dictionary<string, object>() {
                         {"login", login }
                     });
                 string level = (string)r.Param[login];

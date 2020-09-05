@@ -37,6 +37,7 @@ using System.IO.Compression;
 using NTK.IO.Xml;
 using static NTK.Other.NTKF;
 using static LamaMania.StaticMethods;
+using static LamaMania.Program;
 using LamaLang;
 using LamaPlugin;
 using GBXMapParser;
@@ -56,7 +57,7 @@ namespace LamaMania
         private Dictionary<string, string> mapFiles = new Dictionary<string, string>();
         private int index;
         private string title; //Save title for check change
-
+        private string serverType;
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Constructeurs ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,27 +82,33 @@ namespace LamaMania
             loadMain();
             loadMaps();
 
-            Lama.mainConfig.save();
+            lama.mainConfig.save();
         }
 
         /// <summary>
         /// Edit Local Server
         /// </summary>
         /// <param name="index"></param>
-        public ConfigServ(int index)
+        public ConfigServ(int index, string name)
         {
             InitializeComponent();
-            Lama.log("NOTICE", "ConfigServ in Edit mode");
+            lama.log("NOTICE", "ConfigServ in Edit mode");
             this.serverPath = @"Servers\" + index + @"\";
             this.mapPath = serverPath + @"UserData\Maps\";
             this.index = index;
-            this.serverConfig = Lama.mainConfig[0]["servers"].getChildByAttribute("id", this.index.ToString());
-            if (Lama.lang != null)
-                loadLang();
-
+            //     this.serverConfig = lama.mainConfig[0]["servers"].getChildByAttribute("id", this.index.ToString());
+            foreach (XmlNode n in Program.lama.mainConfig[0]["servers"].Childs)
+            {
+                if (n["name"].Value == name)
+                {
+                    this.serverConfig = n;
+                    break;
+                }
+            }
             this.tb_name.Text = this.serverConfig["name"].Value;
+            this.serverType = this.serverConfig.getAttibuteV("type");
 
-            Lama.pluginManager.loadConfigServ(flatTabControl1.TabPages, checkedListBox1.Items, this.getConfigValue);
+            lama.pluginManager.loadConfigServ(flatTabControl1.TabPages, checkedListBox1.Items, this.getConfigValue);
             loadDedicated();
             loadScriptList();
             loadMain();
@@ -114,17 +121,18 @@ namespace LamaMania
         
         void loadLang()
         {
-            NodeLang cs = Lama.lang["ConfigServ"];
+     //       NodeLang cs = lama.lang["ConfigServ"];
 
-            NodeLang general = cs["General"];
-            this.ch_horns.Text = general["horns"].Value;
+        //    NodeLang general = cs["General"];
+       //     this.ch_horns.Text = general["horns"].Value;
 
 
         }
 
         void loadMain()
         {
-            Lama.log("NOTICE", "Load Main config");
+            lama.log("NOTICE", "Load Main config");
+            
             tb_matchFile.Text = this.serverConfig["matchSettings"].Value;
             ch_internetServer.Checked = (this.serverConfig["internetServer"].Value.ToUpper().Equals("TRUE"));
             if(tb_matchFile.Text.Trim(' ') != "")
@@ -147,7 +155,7 @@ namespace LamaMania
 
         void loadDedicated()
         {
-            Lama.log("NOTICE", "Load Dedicated config");
+            lama.log("NOTICE", "Load Dedicated config");
             this.dedicated_config = new XmlDocument(serverPath + @"UserData\Config\dedicated_cfg.txt", true, true);
             
             XmlNode root = this.dedicated_config[0];  //dedicated
@@ -176,7 +184,9 @@ namespace LamaMania
             XmlNode master = root["masterserver_account"];
             tb_serverLogin.Text = master["login"].Value;
             tb_ServerPass.Text = master["password"].Value;
-            tb_validKey.Text = master["validation_key"].Value;
+            if (this.serverType != "TM3")
+                tb_validKey.Text = master["validation_key"].Value;
+
 
             //Server Options --------------------------------------------------------------------------
             XmlNode servOptions = root["server_options"];
@@ -209,7 +219,8 @@ namespace LamaMania
 
             n_UpRate.Value = systemConfig["connection_uploadrate"].LValue;
             n_DownRate.Value = systemConfig["connection_downloadrate"].LValue;
-            n_paThreadCount.Value = systemConfig["packetassembly_threadcount"].LValue;
+            if(this.serverType != "TM3")
+                n_paThreadCount.Value = systemConfig["packetassembly_threadcount"].LValue;
             n_p2pCacheSize.Value = systemConfig["p2p_cache_size"].LValue;
 
             tb_ServerPort.Text = systemConfig["server_port"].Value;
@@ -234,7 +245,7 @@ namespace LamaMania
 
         void loadScriptList()
         {
-            Lama.log("NOTICE", "Load script list");
+            lama.log("NOTICE", "Load script list");
             cb_gameMode.Items.Clear();
             string scriptLocation = this.serverPath + @"GameData\Scripts\Modes\";
             if (tb_title.Text.Length > 3)
@@ -270,7 +281,7 @@ namespace LamaMania
 
         void loadMatchSettings(string path)
         {
-            Lama.log("NOTICE", "Load matchSettings");
+            lama.log("NOTICE", "Load matchSettings");
             this.matchSettings = new XmlDocument(path, true, true);
             //Mode Script-------------------------------------------------
             try
@@ -279,7 +290,7 @@ namespace LamaMania
             }
             catch (Exception e)
             {
-                Lama.log("ERROR", "Unable to load script name from matchSettings ! :\n" + e.Message);
+                lama.log("ERROR", "Unable to load script name from matchSettings ! :\n" + e.Message);
             }
 
             //Map Playlist------------------------------------------------
@@ -331,7 +342,7 @@ namespace LamaMania
 
         void loadMaps()
         {
-            Lama.log("NOTICE", "Load maps folder");
+            lama.log("NOTICE", "Load maps folder");
             makeTreeview(new DirectoryInfo(mapPath), treeView1.Nodes.Add("Maps"));
         }
        
@@ -339,7 +350,7 @@ namespace LamaMania
 
         void saveMain()
         {
-            Lama.log("NOTICE", "Save Main config");
+            lama.log("NOTICE", "Save Main config");
             this.serverConfig["matchSettings"].Value = tb_matchFile.Text;
             this.serverConfig["name"].Value = tb_name.Text;
             this.serverConfig["internetServer"].Value = ch_internetServer.Checked.ToString();
@@ -358,12 +369,12 @@ namespace LamaMania
             this.serverConfig["database"]["passwd"].Value = tb_db_passwd.Text;
             this.serverConfig["database"]["baseName"].Value = tb_db_base.Text;
                                    
-            Lama.mainConfig.save(false);
+            lama.mainConfig.save(false);
         }
 
         void saveDedicated()
         {
-            Lama.log("NOTICE", "Save Dedicated");
+            lama.log("NOTICE", "Save Dedicated");
             try
             {
                 XmlNode root = this.dedicated_config[0];  //dedicated
@@ -452,14 +463,14 @@ namespace LamaMania
             }
             catch (Exception er)
             {
-                Lama.log("ERROR", "[ConfigServ]Unable to save dedicated : " + er.Message);
-                Lama.onError(this, "Error", "Unable to save dedicated\n" + er.Message + "\n" + er.StackTrace);
+                lama.log("ERROR", "[ConfigServ]Unable to save dedicated : " + er.Message);
+                lama.onError(this, "Error", "Unable to save dedicated\n" + er.Message + "\n" + er.StackTrace);
             }
         }
 
         void saveMatchSettings()
         {
-            Lama.log("NOTICE", "Save matchSettings");
+            lama.log("NOTICE", "Save matchSettings");
             XmlNode root = this.matchSettings[0];
             root.deleteAllChildLike("map");
             foreach(string map in l_mapsMatch.Items)
@@ -584,14 +595,14 @@ namespace LamaMania
                             mapFiles.Add(file.Name, file.FullName);
                         }
                         catch (Exception err) {
-                            Lama.log("ERROR", "[ConfigServ][TreeViewAfterSelect] PathParse error : " + err.Message);
+                            lama.log("ERROR", "[ConfigServ][TreeViewAfterSelect] PathParse error : " + err.Message);
                         }
                     }
                 }
             }
             catch (Exception err)
             {
-                Lama.log("ERROR", "[ConfigServ][TreeViewAfterSelect] Load error : " + err.Message);
+                lama.log("ERROR", "[ConfigServ][TreeViewAfterSelect] Load error : " + err.Message);
             }
         }
 
@@ -647,12 +658,12 @@ namespace LamaMania
                 }
                 catch(Exception er)
                 {
-                    Lama.onException(this, er);
+                    lama.onException(this, er);
                 }
             }
             else
             {
-                Lama.onError(this, "Error", "The file : " + file + " already exists !");
+                lama.onError(this, "Error", "The file : " + file + " already exists !");
             }
         }
 
@@ -707,7 +718,7 @@ namespace LamaMania
             catch (Exception er)
             {
 
-                Lama.log("ERROR", "[ConfigServ][MapSelect]>" + er.Message);
+                lama.log("ERROR", "[ConfigServ][MapSelect]>" + er.Message);
             }
         }
 
@@ -733,6 +744,16 @@ namespace LamaMania
                 flatLabel5.ForeColor = Color.Red;
             else
                 flatLabel5.ForeColor = Color.White;
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string pn = (string) checkedListBox1.SelectedItem;
+            IBasePlugin p = getPluginByName(pn);
+            this.richTextBox1.Text = p.PluginDescription;
+
+
+
         }
     }
 }

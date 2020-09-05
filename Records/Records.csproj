@@ -31,11 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FlatUITheme, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LAMAMAnia\bin\Debug\FlatUITheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NTK">
       <HintPath>..\..\..\NTK\ServerAdmin\Kernel\NTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,7 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocalRecords.cs" />
+    <Compile Include="MatchLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserLevelConfigMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserLevelConfigMain.Designer.cs">
+      <DependentUpon>UserLevelConfigMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserLevels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +70,11 @@
       <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
       <Name>LamaPlugin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserLevelConfigMain.resx">
+      <DependentUpon>UserLevelConfigMain.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

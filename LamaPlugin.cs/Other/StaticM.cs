@@ -3,11 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMXmlRpcLib;
 
 namespace LamaPlugin
 {
     public static class StaticM
     {
+        /// <summary>
+        /// Simple request
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="methodName"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static GbxCall Request(this XmlRpcClient client, string methodName, params object[] param)
+        {
+            return client.Request(methodName, param);
+        }
+
+
         public static void checkRequirements(IEnumerable<IBasePlugin> pluginsList)
         {
             foreach(IBasePlugin plug in pluginsList)

@@ -56,6 +56,7 @@
     <Compile Include="HomeComponentPlugin.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Lama.cs" />
     <Compile Include="LamaLibraryUpdater.cs" />
     <Compile Include="ManiaColors.cs" />
     <Compile Include="Other\ExtensionMethods.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Other\InterPlugin\InterPluginResponse.cs" />
     <Compile Include="Other\InterPlugin\IntrerPluginArgs.cs" />
     <Compile Include="Other\LamaConfig.cs" />
+    <Compile Include="Other\LamaLog.cs" />
     <Compile Include="Other\ManiaLink\ManialinkMaker.cs" />
     <Compile Include="Other\ManiaLink\ManiaLinkNode.cs" />
     <Compile Include="Other\ManiaLink\MLFrame.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="OverlayPlugin.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PluginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Other\Requirement.cs" />
     <Compile Include="TabPlugin.cs">

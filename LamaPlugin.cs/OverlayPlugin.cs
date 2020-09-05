@@ -43,5 +43,6 @@ namespace LamaPlugin
         public List<Requirement> Requirements { get; set; }
         public OnError OnError { get; set; }
         public Logger Log { get; set; }
+        public string PluginDescription { get; set; }
     }
 }

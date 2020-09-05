@@ -27,7 +27,7 @@ namespace LamaMania
         {
             InitializeComponent();
 
-            this.config = Lama.mainConfig;
+            this.config = Program.lama.mainConfig;
             XmlNode exTools = config[0]["externalTools"];
 
             foreach(XmlNode n in exTools)

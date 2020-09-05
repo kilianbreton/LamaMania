@@ -96,6 +96,8 @@ namespace LamaPlugin
         string PluginName { get; set; }
         string Version { get; set; }
         string PluginFolder { get; set; }
+        string PluginDescription { get; set; }
+
         PluginType PluginType { get; set; }
         List<Requirement> Requirements { get; set; }
         OnError OnError { get; set; }

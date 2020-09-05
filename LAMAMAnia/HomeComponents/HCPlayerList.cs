@@ -71,7 +71,7 @@ namespace LamaMania.HomeComponents
                         case GetPlayerList:
                             ArrayList userList = (ArrayList)res.Params[0];
                             clearList(l_users);
-                            Lama.nbPlayers = userList.Count;
+                            Program.lama.nbPlayers = userList.Count;
                             //s setLabel(l_players, "Players : " + Lama.nbPlayers + "/" + Lama.maxPlayers);
                             foreach (Hashtable user in userList)
                             {

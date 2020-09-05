@@ -352,6 +352,7 @@ namespace LamaMania
         /// <param name="node">root treeview node</param>
         public static void makeTreeview(DirectoryInfo dir, TreeNode node)
         {
+            //Program.lama.log("NOTICE", "MakeTreeView(" + dir.Name + "," + node.Text+")");
             foreach (DirectoryInfo child in dir.GetDirectories())
             {
                 makeTreeview(child, node.Nodes.Add(child.Name));
@@ -372,26 +373,22 @@ namespace LamaMania
             switch (type)
             {
                 case PluginType.Base:
-                    lst.AddRange(Lama.pluginManager.HomeComponentPlugins);
-                    lst.AddRange(Lama.pluginManager.TabPlugins);
-                    lst.AddRange(Lama.pluginManager.InGamePlugins);
+                    lst.AddRange(Program.lama.pluginManager.HomeComponentPlugins);
+                    lst.AddRange(Program.lama.pluginManager.TabPlugins);
+                    lst.AddRange(Program.lama.pluginManager.InGamePlugins);
                     break;
                 case PluginType.HomeComponent:
-                    lst.AddRange(Lama.pluginManager.HomeComponentPlugins);
+                    lst.AddRange(Program.lama.pluginManager.HomeComponentPlugins);
                     break;
                 case PluginType.TabPlugin:
-                    lst.AddRange(Lama.pluginManager.TabPlugins);
+                    lst.AddRange(Program.lama.pluginManager.TabPlugins);
                     break;
                 case PluginType.InGamePlugin:
-                    lst.AddRange(Lama.pluginManager.InGamePlugins);
+                    lst.AddRange(Program.lama.pluginManager.InGamePlugins);
                     break;
             }
             
-
-          
-
-
-            while (cpt < lst.Count && lst[cpt].PluginName != name){ cpt++; }
+            while (cpt < lst.Count && lst[cpt].PluginName != name) { cpt++; }
 
             if (cpt < lst.Count && lst[cpt].PluginName == name)
                 return lst[cpt];

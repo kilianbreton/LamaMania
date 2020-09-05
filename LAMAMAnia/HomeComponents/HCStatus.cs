@@ -120,7 +120,7 @@ namespace LamaMania.HomeComponents
 
         private void B_serverStop_Click(object sender, EventArgs e)
         {
-            if (Lama.remote)
+            if (Program.lama.remote)
             {
 
             }
@@ -129,7 +129,7 @@ namespace LamaMania.HomeComponents
                 Process[] ps = Process.GetProcessesByName("ManiaPlanetServer");
                 foreach (Process p in ps)
                 {
-                    if (p.MainWindowTitle.Contains(Lama.serverPath + Lama.serverIndex))
+                    if (p.MainWindowTitle.Contains(Program.lama.serverPath + Program.lama.serverIndex))
                         p.Kill();
                 }
 

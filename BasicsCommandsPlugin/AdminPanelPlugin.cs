@@ -31,6 +31,7 @@ namespace BasicsCommandsPlugin
             base.PluginName = "AdminPanel";
             base.Author = "KBT";
             base.PluginFolder = "[NONE]";
+            base.Version = "0.1";
 
             base.Requirements = new List<Requirement>();
             base.Requirements.Add(new Requirement(RequirementType.FILE, CONFIG_NAME));
@@ -46,6 +47,8 @@ namespace BasicsCommandsPlugin
                 this.players = lamaConfig.players;
            
                 Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerManialinkPageAnswer, callback_ManiaLinkAnswer);
+                Callbacks.Add("TrackMania.PlayerManialinkPageAnswer", callback_ManiaLinkAnswer);
+                
                 Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerConnect, callback_PlayerConnect);
                 Callbacks.Add("TrackMania.PlayerConnect", callback_PlayerConnect);
 
@@ -80,7 +83,7 @@ namespace BasicsCommandsPlugin
                 {
                     case "ADMIN":
                     case "MASTERADMIN":
-                        asyncRequest(GBXMethods.SendDisplayManialinkPageToLogin, login, makeCallVoteManiaLink().getXmlText(), 0, false);
+                        asyncRequest(GBXMethods.SendDisplayManialinkPageToLogin, login, makePanelManiaLink().getXmlText(), 0, false);
                         break;
                     default:
                         
@@ -98,58 +101,33 @@ namespace BasicsCommandsPlugin
 
         private void callback_ManiaLinkAnswer(object o, GbxCallbackEventArgs e)
         {
-            string action = (string)e.Response.getHashTable()["Action"];
+            string action = (string)e.Response.Params[1];
             switch (action)
             {
                 case "0":   //Close
-
+                    asyncRequest(GBXMethods.SendHideManialinkPageToLogin);
                     break;
 
-                case "1":   //Yes
-
+                case "Restart":   //Restart
+                    asyncRequest(GBXMethods.RestartMap, checkError);
                     break;
 
-                case "2":   //No
+                case "Prev":   //Previous
+                   
+                    break;
+                case "Next":   //Next
+                    asyncRequest(GBXMethods.NextMap, checkError);
+                    break;
+                case "Players":   //PlayerList
 
                     break;
+                case "AddTime":   //AddTime
+
+                    break;
+              
             }
 
 
-        }
-
-        private void callback_PlayerChat(object o, GbxCallbackEventArgs e)
-        {
-            try
-            {
-                var htPlayerChat = e.Response.Params;
-                string msg = (string)htPlayerChat[2];
-                string login = (string)htPlayerChat[1];
-
-                Player playerSender = searchByLogin(login);
-
-
-
-                InterPluginResponse r = sendInterPluginCall("UserLever", "GetUserLevel", new Dictionary<string, object>() {
-                        {"login", login }
-                    });
-                string level = (string)r.Param[login];
-
-
-
-
-
-
-                if (rx.IsMatch(msg)) //Check is command (/....)------------------------
-                {
-                    // /CallVote SkipMap
-
-
-                }
-            }
-            catch (Exception err)
-            {
-                Log("ERROR", "[" + this.PluginName + "]>" + err.Message);
-            }
         }
 
         private Player searchByLogin(string login)
@@ -164,10 +142,8 @@ namespace BasicsCommandsPlugin
 
             return ret;
         }
-
-
-
-        private ManialinkFile makeCallVoteManiaLink()
+                
+        private ManialinkFile makePanelManiaLink()
         {
             ManialinkFile mlf = new ManialinkFile(false);
 
@@ -175,14 +151,19 @@ namespace BasicsCommandsPlugin
 
             mlf.Nodes.Add(main);
 
-            MLQuad mlqClose = new MLQuad(0, 0, 1, 20, 20, "000", "Icons64x64_1", "Close", "CallVotePlugin?Action=0");
-            MLQuad mlqYes = new MLQuad(0, 0, 1, 20, 20, "000", "Icons64x64_1", "Close", "CallVotePlugin?Action=0");
-            MLQuad mlqNo = new MLQuad(0, 0, 1, 20, 20, "000", "Icons64x64_1", "Close", "CallVotePlugin?Action=0");
-            main.Childs.Add(mlqClose);
-            main.Childs.Add(mlqYes);
-            main.Childs.Add(mlqNo);
+            MLQuad mlqClose = new MLQuad(-10, 20, 1, 5, 5, "000", "Icons128x32_1", "Close", "CallVotePlugin?Action=0");
+            MLQuad mlqRestart = new MLQuad(-5, 20, 1, 5, 5, "000", "Icons128x32_1", "RT_Laps", "CallVotePlugin?Action=Restart");
+            MLQuad mlqPrev = new MLQuad(5, 20, 1, 5, 5, "000", "Icons64x64_1", "ArrowFastPrev", "CallVotePlugin?Action=Prev");
+            MLQuad mlqNext = new MLQuad(10, 20, 1, 5, 5, "000", "Icons64x64_1", "ArrowFastNext", "CallVotePlugin?Action=Next");
+            MLQuad mlqPlayers = new MLQuad(15, 20, 1, 5, 5, "000", "Icons128x128_1", "Buddies", "CallVotePlugin?Action=Players");
+            MLQuad mlqAddTime = new MLQuad(20, 20, 1, 5, 5, "000", "Icons128x32_1", "RT_TimeAttack", "CallVotePlugin?Action=AddTime");
           
-
+            main.Childs.Add(mlqClose);
+            main.Childs.Add(mlqRestart);
+            main.Childs.Add(mlqPrev);
+            main.Childs.Add(mlqNext);
+            main.Childs.Add(mlqPlayers);
+       
 
 
             return mlf;

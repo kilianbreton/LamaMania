@@ -30,6 +30,7 @@ namespace Records
         public UserLevels()
         {
             base.PluginName = "UserLevels";
+            base.PluginDescription = "Gère les nivexu utilisateurs (SuperAdmin,Admin,Guest..)";
             base.PluginFolder = "[NONE]";
             base.Version = "0.1";
             base.Author = "KBT";
@@ -109,6 +110,7 @@ namespace Records
                         {"EditLevel","MasterAdmin" },
                         {"RemoveLevel","MasterAdmin" },
                         {"SaveFile","MasterAdmin" },
+                        {"ReadConfig", "MasterAdmin" },
                     });
                     break;
                  
@@ -284,6 +286,16 @@ namespace Records
 
                     break;
 
+                case "ReadConfig":
+                    string cfgPath = this.levelsConfig.Path;
+                    this.levelsConfig = new XmlDocument(cfgPath);
+                 
+                    addUserLevel("masterAdmins", UserLevel.MasterAdmin);
+                    addUserLevel("admins", UserLevel.Admin);
+                    addUserLevel("moderators", UserLevel.Moderator);
+                    addUserLevel("guests", UserLevel.Guest);
+
+                    break;
 
             }
 

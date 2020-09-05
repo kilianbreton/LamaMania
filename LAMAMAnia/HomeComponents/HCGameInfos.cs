@@ -53,6 +53,10 @@ namespace LamaMania.HomeComponents
         /// <param name="cfg"></param>
         public override void onLoad(LamaConfig cfg)
         {
+            //asyncRequest(GBXMethods.GetMapList, res =>
+            //{
+            //    res.
+            //});
             //Do checks
         }
 
@@ -61,7 +65,7 @@ namespace LamaMania.HomeComponents
         /// </summary>
         public override void onPluginUpdate()
         {
-            this.l_players.setText(Lama.nbPlayers + "/" + Lama.maxPlayers);
+            this.l_players.setText(Program.lama.nbPlayers + "/" + Program.lama.maxPlayers);
 
             base.onPluginUpdate();
         }
@@ -87,8 +91,8 @@ namespace LamaMania.HomeComponents
 
                 case GetPlayerList:
                     ArrayList userList = (ArrayList)res.Params[0];
-                    Lama.nbPlayers = userList.Count;
-                    setLabel(l_players, Lama.nbPlayers + "/" + Lama.maxPlayers);
+                    Program.lama.nbPlayers = userList.Count;
+                    setLabel(l_players, Program.lama.nbPlayers + "/" + Program.lama.maxPlayers);
                     break;
 
                 case GetCurrentMapInfo:
@@ -97,7 +101,7 @@ namespace LamaMania.HomeComponents
                     break;
 
                 case GetServerOptions:
-                    setLabel(l_players, Lama.nbPlayers + "/" + Lama.maxPlayers);
+                    setLabel(l_players, Program.lama.nbPlayers + "/" + Program.lama.maxPlayers);
                     break;
             }
         }
@@ -143,20 +147,21 @@ namespace LamaMania.HomeComponents
                         
 
                 case "TrackMania.BeginChallenge":
+                case "TrackMania.BeginRace":
                     asyncRequest(GetScriptName);
                     setLabelColor(l_map, Color.Green);
 
-                    List<MapInfo> test = Lama.maps;
+                    List<MapInfo> test = Program.lama.maps;
 
 
                     Hashtable ht = (Hashtable)res.Response.Params[0];
                     setLabel(l_map, ManiaColors.getText((string)ht["Name"]));
-               //     Lama.previousMapId = (int)ht["UId"];
+               //     Program.lama.previousMapId = (int)ht["UId"];
                     asyncRequest("GetCurrentMapIndex");
                     break;
 
                 case GBXCallBacks.ManiaPlanet_PlayerConnect:
-                    setLabel(l_players, Lama.nbPlayers + "/" + Lama.maxPlayers);
+                    setLabel(l_players, Program.lama.nbPlayers + "/" + Program.lama.maxPlayers);
 
                     break;
 
@@ -227,7 +232,6 @@ namespace LamaMania.HomeComponents
        
         private void checkError(GbxCall res)
         {
-            
             if(res.Error)
                 OnError(this, res.MethodName, "GBX Error " + res.ErrorString);
         }
@@ -239,15 +243,17 @@ namespace LamaMania.HomeComponents
 
         private void B_prevMap_Click(object sender, EventArgs e)
         {
-            if (Lama.previousMapId != -1)
+            if (Program.lama.previousMapId != -1)
                 asyncRequest(res =>
                 {
                     if (!res.Error)
                         asyncRequest(NextMap, checkError);
                     else
                         checkError(res);
-                }, 
-                SetNextMapIndex, Lama.previousMapId);
+                },
+                SetNextMapIndex, Program.lama.previousMapId);
+            else
+                Program.lama.log("WARN", "No previous map ID !");
         }
     }
 }

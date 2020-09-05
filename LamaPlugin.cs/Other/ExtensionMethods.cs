@@ -36,11 +36,18 @@ namespace LamaPlugin
         /// <param name="text"></param>
         public static void setText(this FlatLabel tb, string text)
         {
-            tb = getControl<FlatLabel>(tb);
-            if (textBoxsNames.ContainsKey(tb.Name))
-                tb.Text = textBoxsNames[tb.Name] + " : " + text;
-            else
-                tb.Text = text;
+            try
+            {
+                tb = getControl<FlatLabel>(tb);
+                if (textBoxsNames.ContainsKey(tb.Name))
+                    tb.Text = textBoxsNames[tb.Name] + " : " + text;
+                else
+                    tb.Text = text;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Erreur :" + e.Message + "\n" + "TODO : Log ");
+            }
         }
 
         /// <summary>
@@ -106,33 +113,10 @@ namespace LamaPlugin
             return (Hashtable)call.Response.Params[0];
         }
      
-        /// <summary>
-        /// Cast .Params[0] to ArrayList
-        /// </summary>
-        /// <param name="call"></param>
-        /// <returns></returns>
-        public static ArrayList getArrayList(this GbxCall call)
-        {
-            return (ArrayList)call.Params[0];
-        }
-
-        /// <summary>
-        /// Cast .Params[0] to ArrayList
-        /// </summary>
-        /// <param name="call"></param>
-        /// <returns></returns>
-        public static ArrayList getArrayList(this GbxCallbackEventArgs call)
-        {
-            return (ArrayList)call.Response.Params[0];
-        }
-
-
-
-
-
-        /*#######################################################################################################
+      
+        /*#####################################################################################################
         # Private copy from LamaMania.StaticMethods ###########################################################
-        #######################################################################################################*/
+        #####################################################################################################*/
         private static T getControl<T>(this Control control)
         {
             if (control.InvokeRequired)

@@ -8,8 +8,8 @@ using System.IO.Compression;
 using System.Windows.Forms;
 using NTK.IO;
 using NTK.IO.Xml;
+using NTK.Database;
 using LamaPlugin;
-using static LamaMania.StaticMethods;
 using static LamaPlugin.StaticM;
 using TMXmlRpcLib;
 using System.Drawing;
@@ -18,20 +18,28 @@ using System.Threading;
 //using System.Threading.Tasks;
 
 
-namespace LamaMania
+namespace LamaPlugin
 {
     /// <summary>
     /// Manage LamaPlugins
     /// </summary>
     public class PluginManager
     {
+        private string appPath;
+        private string serverPath;
+        private Lama lama;
         private PMCache cache;
         private HCFile hcFile;
         //Handle number -> sender (Plugin)
         private Dictionary<int, IBasePlugin> handles = new Dictionary<int, IBasePlugin>();
         private int lastHandle;
-
         private List<IBasePlugin> updateList = new List<IBasePlugin>();
+        //database
+        private string dbIp;
+        private string dbLogin;
+        private string dbPasswd;
+        private string dbBaseName;
+        private NTKDatabase dbObject;
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Constructors ////////////////////////////////////////////////////////////////////////////////////////
@@ -40,10 +48,14 @@ namespace LamaMania
         /// <summary>
         /// Init plugins list
         /// </summary>
-        public PluginManager(string path)
+        public PluginManager(string serverPath, string appPath, Lama lama)
         {
-            this.cache = new PMCache(@"Cache\PM.cache");
-            this.hcFile = new HCFile(@"Config\Servers\" + Lama.serverIndex + @"\HomeComponents.hcf");
+            this.cache = new PMCache(appPath + @"Cache\PM.cache");
+            this.lama = lama;
+            this.appPath = appPath;
+            this.serverPath = serverPath;
+       
+            this.hcFile = new HCFile(serverPath + @"\HomeComponents.hcf");
             this.HomeComponentPlugins = new List<HomeComponentPlugin>();
             this.InGamePlugins = new List<InGamePlugin>();
             this.TabPlugins = new List<TabPlugin>();
@@ -63,7 +75,7 @@ namespace LamaMania
         /// </summary>
         public void loadPlugins()
         {
-            Lama.log("NOTICE", "[PluginManager] Load plugins");
+            lama.log("NOTICE", "[PluginManager] Load plugins");
             try
             {
                 DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
@@ -104,7 +116,7 @@ namespace LamaMania
                                 if (links.Count != 0 && !hashComputed)
                                 {
                                     int insLoaded = 0;
-                                    Lama.log("NOTICE", "Load " + file.Name + " ...");
+                                    lama.log("NOTICE", "Load " + file.Name + " ...");
                                     foreach (string link in links)
                                     {
                                         IBasePlugin p = loader.getClassInstance<IBasePlugin>(link);
@@ -126,18 +138,18 @@ namespace LamaMania
                                                 insLoaded++;
                                                 break;
                                         }
-                                        Lama.log("NOTICE", "-" + link);
+                                        lama.log("NOTICE", "-" + link);
                                     }
 
                                     if (insLoaded != 0)
                                     {
-                                        Lama.log("NOTICE", "[PluginManager][LoadPlugins] Success !");
+                                        lama.log("NOTICE", "[PluginManager][LoadPlugins] Success !");
                                     }
                                     else
                                     {
                                         this.cache.addIgnore(file.Name);
                                         this.cache.removeAllLinks(file.Name);
-                                        Lama.log("NOTICE", "[PluginManager][LoadPlugins] Error, added in dllignore (0 instances loaded)");
+                                        lama.log("NOTICE", "[PluginManager][LoadPlugins] Error, added in dllignore (0 instances loaded)");
                                     }
 
                                 }
@@ -174,19 +186,19 @@ namespace LamaMania
                                 
                                     if (cpt == 0) //0 Instances loaded
                                     {   //Append dllIgnore
-                                        Lama.log("NOTICE", "[PluginManager][LoadPlugins] " + file.Name + " added in dllignore (0 instances loaded)");
+                                        lama.log("NOTICE", "[PluginManager][LoadPlugins] " + file.Name + " added in dllignore (0 instances loaded)");
                                         this.cache.addIgnore(file.Name);
                                     }
                                     else
                                     {
-                                        Lama.log("NOTICE", "[PluginManager][LoadPlugins] Loaded : " + file.Name);
+                                        lama.log("NOTICE", "[PluginManager][LoadPlugins] Loaded : " + file.Name);
                                     }
                                 }
                             }
                             catch (IOException) { }
                             catch (Exception er)
                             {
-                                Lama.log("ERROR", "[PluginManager][LoadPlugins][" + file.Name + "]" + er.Message + er.GetType().Name);
+                                lama.log("ERROR", "[PluginManager][LoadPlugins][" + file.Name + "]" + er.Message + er.GetType().Name);
                                 this.cache.addIgnore(file.Name);
                             }
                         }
@@ -195,7 +207,7 @@ namespace LamaMania
             }
             catch (Exception e)
             {
-                Lama.log("ERROR", "[LoadPlugins]" + e.Message);
+                lama.log("ERROR", "[LoadPlugins]" + e.Message);
             }
 
 
@@ -214,6 +226,8 @@ namespace LamaMania
         {
             selectHomeComponentPlugin(cfg);
             selectInGamePlugins(cfg);
+            selectTabPlugin(cfg);
+
         }
 
         /// <summary>
@@ -232,11 +246,11 @@ namespace LamaMania
                 if (plug != null)
                 {
                     lst.Add(plug);
-                    Lama.log("NOTICE", "[PluginManager] " + plug.PluginName + " Selected");
+                    lama.log("NOTICE", "[PluginManager] " + plug.PluginName + " Selected");
                 }
                 else
                 {
-                    //   Lama.log("WARNING", node.Value + " does not exist");
+                    //   lama.log("WARNING", node.Value + " does not exist");
                 }
             }
             InGamePlugins = lst;
@@ -256,17 +270,55 @@ namespace LamaMania
                 if (plug != null)
                 {
                     lst.Add(plug);
-                    Lama.log("NOTICE", "[PluginManager] " + plug.PluginName + " Selected");
+                    lama.log("NOTICE", "[PluginManager] " + plug.PluginName + " Selected");
                 }
                 else
                 {
-                    //     Lama.log("WARNING", node.Value + " does not exist");
+                    //     lama.log("WARNING", node.Value + " does not exist");
                 }
             }
             HomeComponentPlugins = lst;
         }
 
-                     
+        /// <summary>
+        /// Select plugins used by cfg
+        /// </summary>
+        /// <param name="cfg"></param>
+        private void selectTabPlugin(XmlNode cfg)
+        {
+            List<TabPlugin> lst = new List<TabPlugin>();
+            foreach (XmlNode node in cfg.Childs)
+            {
+                TabPlugin plug = (TabPlugin)getPluginByName(node.Value, PluginType.TabPlugin);
+
+                if (plug != null)
+                {
+                    lst.Add(plug);
+                    lama.log("NOTICE", "[PluginManager] " + plug.PluginName + " Selected");
+                }
+                else
+                {
+                    //     lama.log("WARNING", node.Value + " does not exist");
+                }
+            }
+            TabPlugins = lst;
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Shared Database /////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public void initDatabase(XmlNode dbconf)
+        {
+            this.dbIp = dbconf["ip"].Value;
+            this.dbPasswd = dbconf["passwd"].Value;
+            this.dbLogin = dbconf["login"].Value;
+            this.dbBaseName = dbconf["baseName"].Value;
+
+            this.dbObject = NTKD_MySql.getInstance(dbIp, dbLogin, dbPasswd, dbBaseName);
+        }
+
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Call load methods ///////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -277,7 +329,7 @@ namespace LamaMania
         /// <param name="client"></param>
         public void onLoadInGame(XmlRpcClient client)
         {
-            Lama.log("NOTICE", "[PluginManager] Init InGame Plugins ...");
+            lama.log("NOTICE", "[PluginManager] Init InGame Plugins ...");
             List<InGamePlugin> removeLST = new List<InGamePlugin>();
             foreach (InGamePlugin plug in InGamePlugins)
             {
@@ -290,27 +342,27 @@ namespace LamaMania
                 badRequirement = checkRequirements(plug, out brInfos, out LamaConfig conf2plug);
                 conf2plug.connected = true;
                 conf2plug.scriptName = "";
-                conf2plug.remote = Lama.remote;
-                conf2plug.maps = Lama.maps;
-                conf2plug.players = Lama.players;
-                conf2plug.currentMapId = Lama.currentMapId;
-                conf2plug.players = Lama.players;
+                conf2plug.remote = lama.remote;
+                conf2plug.maps = lama.maps;
+                conf2plug.players = lama.players;
+                conf2plug.currentMapId = lama.currentMapId;
+                conf2plug.players = lama.players;
 
                 if (!badRequirement)
                     badRequirement = !plug.onLoad(conf2plug);
 
                 if (badRequirement)
                 {
-                    Lama.log("ERROR", "[PluginManager][InGame] Unable to init [" + plug.PluginName + "] Plugin, " + brInfos);
+                    lama.log("ERROR", "[PluginManager][InGame] Unable to init [" + plug.PluginName + "] Plugin, " + brInfos);
                     removeLST.Add(plug);
                 }
                 else
                 {
 
-                    Lama.log("NOTICE", "[PluginManager][InGame][" + plug.PluginName + "] Plugin loaded");
-                    plug.Log = Lama.log;
-                    plug.OnError = Lama.onError;
-                    plug.GetLamaProperty = Lama.getLamaProperty;
+                    lama.log("NOTICE", "[PluginManager][InGame][" + plug.PluginName + "] Plugin loaded");
+                    plug.Log = lama.log;
+                    plug.OnError = lama.onError;
+                    plug.GetLamaProperty = lama.getLamaProperty;
                     plug.setPluginManager(PMInterPluginCall);
                     updateList.Add(plug);
                 }
@@ -329,7 +381,7 @@ namespace LamaMania
         /// <param name="mainHomeTab"></param>
         public void onLoadHomeComponent(XmlRpcClient client, Control mainHomeTab, bool needXmlRpc)
         {
-            Lama.log("NOTICE", "[PluginManager] Init HomeComponent Plugins ...");
+            lama.log("NOTICE", "[PluginManager] Init HomeComponent Plugins ...");
             List<HomeComponentPlugin> removeLST = new List<HomeComponentPlugin>();
             foreach(HomeComponentPlugin plugin in HomeComponentPlugins)
             {
@@ -343,21 +395,21 @@ namespace LamaMania
                         bool badRequirement = checkRequirements(plugin, out brInfos, out LamaConfig cfg);
                         if (badRequirement)
                         {
-                            Lama.log("ERROR", "[PluginManager][HomeComponents] Unable to init [" + plugin.PluginName + "] Plugin, " + brInfos);
+                            lama.log("ERROR", "[PluginManager][HomeComponents] Unable to init [" + plugin.PluginName + "] Plugin, " + brInfos);
                             removeLST.Add(plugin);
                         }
                         else
                         {
-                            Lama.log("NOTICE", "[PluginManager][HomeComponents][" + plugin.PluginName + "] Plugin loaded");
+                            lama.log("NOTICE", "[PluginManager][HomeComponents][" + plugin.PluginName + "] Plugin loaded");
                             plugin.client = client;
-                            plugin.Log = Lama.log;
-                            plugin.OnError = Lama.onError;
-                            plugin.GetLamaProperty = Lama.getLamaProperty;
+                            plugin.Log = lama.log;
+                            plugin.OnError = lama.onError;
+                            plugin.GetLamaProperty = lama.getLamaProperty;
 
-                            cfg.connected = Lama.connected;
-                            cfg.remote = Lama.remote;
+                            cfg.connected = lama.connected;
+                            cfg.remote = lama.remote;
                             cfg.lvl = Lvl.SuperAdmin;
-                            cfg.players = Lama.players;
+                            cfg.players = lama.players;
 
                             plugin.setPluginManager(PMInterPluginCall);
                             plugin.onLoad(cfg);
@@ -382,7 +434,7 @@ namespace LamaMania
                 }
                 catch (Exception e)
                 {
-                    Lama.log("ERROR", "[PluginManager][HomeComponents] Unable to load [" + plugin.PluginName + "]\tErr: " + e.Message);
+                    lama.log("ERROR", "[PluginManager][HomeComponents] Unable to load [" + plugin.PluginName + "]\tErr: " + e.Message);
                 }
             }
             foreach(HomeComponentPlugin p in removeLST)
@@ -400,7 +452,7 @@ namespace LamaMania
         /// <param name="needXmlRpc"></param>
         public void onLoadTabMain(XmlRpcClient client, TabControl tabContainer, bool needXmlRpc)
         {
-            Lama.log("NOTICE", "[PluginManager] Init Tab Plugins ...");
+            lama.log("NOTICE", "[PluginManager] Init Tab Plugins ...");
             List<TabPlugin> removeLST = new List<TabPlugin>();
             foreach (TabPlugin plugin in TabPlugins)
             {
@@ -414,21 +466,22 @@ namespace LamaMania
                         bool badRequirement = checkRequirements(plugin, out brInfos, out LamaConfig cfg);
                         if (badRequirement)
                         {
-                            Lama.log("ERROR", "[PluginManager][TabPlugin] Unable to init [" + plugin.PluginName + "] Plugin, " + brInfos);
+                            lama.log("ERROR", "[PluginManager][TabPlugin] Unable to init [" + plugin.PluginName + "] Plugin, " + brInfos);
                             removeLST.Add(plugin);
                         }
                         else
                         {
-                            Lama.log("NOTICE", "[PluginManager][TabPlugin][" + plugin.PluginName + "] Plugin loaded");
-                         
-                            plugin.Log = Lama.log;
-                            plugin.OnError = Lama.onError;
-                            //plugin.GetLamaProperty = Lama.getLamaProperty;
+                            lama.log("NOTICE", "[PluginManager][TabPlugin][" + plugin.PluginName + "] Plugin loaded");
 
-                            cfg.connected = Lama.connected;
-                            cfg.remote = Lama.remote;
+                            plugin.setPluginManager(this.PMInterPluginCall);
+                            plugin.Log = lama.log;
+                            plugin.OnError = lama.onError;
+                            //plugin.GetLamaProperty = lama.getLamaProperty;
+
+                            cfg.connected = lama.connected;
+                            cfg.remote = lama.remote;
                             cfg.lvl = Lvl.SuperAdmin;
-                            cfg.players = Lama.players;
+                            cfg.players = lama.players;
 
                             //plugin.setPluginManager(PMInterPluginCall);
                             plugin.onLoad(cfg);
@@ -447,7 +500,7 @@ namespace LamaMania
                 }
                 catch (Exception e)
                 {
-                    Lama.log("ERROR", "[PluginManager][TabPlugin] Unable to load [" + plugin.PluginName + "]\tErr: " + e.Message);
+                    lama.log("ERROR", "[PluginManager][TabPlugin] Unable to load [" + plugin.PluginName + "]\tErr: " + e.Message);
                 }
             }
             foreach (TabPlugin p in removeLST)
@@ -460,14 +513,11 @@ namespace LamaMania
         /// <summary>
         /// load internal homeComponents in plugin list
         /// </summary>
-        public void loadInternalHC()
+        public void loadInternalHC(params HomeComponentPlugin[] plugins)
         {
             //TODO: Select from config
-            HomeComponentPlugins.Add(new HomeComponents.HCGameInfos());
-            HomeComponentPlugins.Add(new HomeComponents.HCStatus());
-            HomeComponentPlugins.Add(new HomeComponents.HCServerInfos());
-            HomeComponentPlugins.Add(new HomeComponents.HCNetworkStats());
-            HomeComponentPlugins.Add(new HomeComponents.HCPlayerList());
+            HomeComponentPlugins.AddRange(plugins);
+           
         }
 
 
@@ -499,6 +549,7 @@ namespace LamaMania
         /// <param name="args"></param>
         public void onGbxCallBack(object sender, GbxCallbackEventArgs args)
         {
+            this.lama.log("NOTICE", "[PluginManager][GbxCallBack] -> "+args.Response.MethodName);
             foreach (InGamePlugin plug in InGamePlugins)
             {
                 plug.onGbxCallBack(sender, args,false);
@@ -524,7 +575,7 @@ namespace LamaMania
                 }
                 catch (Exception e)
                 {
-                    Lama.log("ERROR", "Plugins " + plug.PluginName + " throws Gbx Error :" + e.Message);
+                    lama.log("ERROR", "Plugins " + plug.PluginName + " throws Gbx Error :" + e.Message);
                 }
             }
             //Send to plugins --------------------------------------------------------------------------------
@@ -536,7 +587,7 @@ namespace LamaMania
                 }
                 catch (Exception e)
                 {
-                    Lama.log("ERROR", "Plugins " + plug.PluginName + " throws Gbx Error :" + e.Message);
+                    lama.log("ERROR", "Plugins " + plug.PluginName + " throws Gbx Error :" + e.Message);
                 }
             }
         }
@@ -549,7 +600,7 @@ namespace LamaMania
         /// <param name="getConfigDelegate"></param>
         public void loadConfigServ(TabControl.TabPageCollection pages, CheckedListBox.ObjectCollection list, GetConfigValue getConfigDelegate)
         {
-            Lama.log("NOTICE", "Load Plugins");
+            lama.log("NOTICE", "Load Plugins");
             //Load ConfigServPlugins
             if (TabPlugins != null)
             {
@@ -570,10 +621,12 @@ namespace LamaMania
             }
           
             list.Clear();
-            XmlNode pluginList = Lama.mainConfig[0]
+            XmlNode pluginList = lama.mainConfig[0]
                                  ["servers"]
-                                 .getChildByAttribute("id", Lama.serverIndex.ToString())
+                                 .getChildByAttribute("id", lama.serverIndex.ToString())
                                  ["plugins"];
+
+            
             foreach (IBasePlugin plugin in getAllPlugins())
             {
                 bool isChecked = (pluginList.getChildsByValue(plugin.PluginName).Count == 1);
@@ -694,7 +747,7 @@ namespace LamaMania
             {
                 connected = true,
                 scriptName = "",
-                remote = Lama.remote,
+                remote = lama.remote,
                 configFiles = new Dictionary<string, XmlDocument>()
             };
             foreach (Requirement r in plug.Requirements)
@@ -713,17 +766,18 @@ namespace LamaMania
                     case RequirementType.FILE:
                         try
                         {
-                            conf2Plug.configFiles.Add(r.Value, new XmlDocument(@"Config\Servers\" + Lama.serverIndex + @"\" + r.Value));
+                            conf2Plug.configFiles.Add(r.Value, new XmlDocument(@"Config\Servers\" + lama.serverIndex + @"\" + r.Value));
                         }
                         catch (Exception)
                         {
                             badRequirement = true;
-                            brInfos += @"Unable to load Config\Servers\" + Lama.serverIndex + @"\" + r.Value + " ";
+                            brInfos += @"Unable to load Config\Servers\" + lama.serverIndex + @"\" + r.Value + " ";
                         }
                         break;
 
                     case RequirementType.DATABASE:
-                        conf2Plug.dbConnected = false;
+                        conf2Plug.dbConnected = (this.dbObject != null);
+                        conf2Plug.db = this.dbObject;
                         break;
                 }
             }
@@ -733,11 +787,54 @@ namespace LamaMania
         }
 
 
+        /// <summary>
+        /// Search plugin by name, return null if not exist
+        /// PluginType.Base search in all plugin type
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private IBasePlugin getPluginByName(string name, PluginType type = PluginType.Base)
+        {
+            int cpt = 0;
+            List<IBasePlugin> lst = new List<IBasePlugin>();
+            switch (type)
+            {
+                case PluginType.Base:
+                    lst.AddRange(HomeComponentPlugins);
+                    lst.AddRange(TabPlugins);
+                    lst.AddRange(InGamePlugins);
+                    break;
+                case PluginType.HomeComponent:
+                    lst.AddRange(HomeComponentPlugins);
+                    break;
+                case PluginType.TabPlugin:
+                    lst.AddRange(TabPlugins);
+                    break;
+                case PluginType.InGamePlugin:
+                    lst.AddRange(InGamePlugins);
+                    break;
+            }
+
+
+
+
+
+            while (cpt < lst.Count && lst[cpt].PluginName != name) { cpt++; }
+
+            if (cpt < lst.Count && lst[cpt].PluginName == name)
+                return lst[cpt];
+            else
+                return null;
+        }
+
+
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Getter & Setters ////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
+
         /// <summary>
         /// 
         /// </summary>
