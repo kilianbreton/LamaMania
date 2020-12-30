@@ -35,58 +35,83 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
-            Console.Write("Fichier gbx : ");
-            string s = Console.ReadLine();
-            if (s != "" && s.ToUpper().Contains(".GBX"))
-                {
+            XmlDocument xmld = new XmlDocument("D:\\matchsettings.xml");
+            XmlDocument outXml = new XmlDocument("D:\\outXml.xml");
+            outXml.Nodes.Clear();
 
-                MapInformation mi = MapParser.ReadFile(s);
-                Console.WriteLine("AuthorExtra : " + mi.AuthorExtra);
-                Console.WriteLine("AuthorLogin : " + mi.AuthorLogin);
-                Console.WriteLine("AuthorNickName : " + mi.AuthorNickName);
-                Console.WriteLine("AuthorScore : " + mi.AuthorScore);
-                Console.WriteLine("AuthorTime : " + mi.AuthorTime);
-                Console.WriteLine("AuthorVersion : " + mi.AuthorVersion);
-                Console.WriteLine("AuthorZone : " + mi.AuthorZone);
-                Console.WriteLine("BronzeTime : " + mi.BronzeTime);
-                Console.WriteLine("Checkpoints : " + mi.Checkpoints);
-                Console.WriteLine("Comments : " + mi.Comments);
-                Console.WriteLine("DecorationEnvironmentAuthor : " + mi.DecorationEnvironmentAuthor);
-                Console.WriteLine("DecorationEnvironmentId : " + mi.DecorationEnvironmentId);
-                Console.WriteLine("Editor : " + mi.Editor);
-                Console.WriteLine("Environment : " + mi.Environment);
-                Console.WriteLine("GoldTime : " + mi.GoldTime);
-                Console.WriteLine("HasThumbnail : " + mi.HasThumbnail);
+            XmlNode rOXml = outXml.addNode("matchsettings");
+            XmlNode root = xmld[0];
 
+            root.getChildList("h2");
 
-                Console.WriteLine("HeaderXml : "); //+ mi.HeaderXml);
+            List<XmlNode> h2 = root.getChildList("h2");
+            List<XmlNode> table = root.getChildList("table");
 
-                XmlDocument xmld = new XmlDocument(mi.HeaderXml, false);
-                Console.Write(xmld.print());
-
-                Console.WriteLine("IsMultilap : " + mi.IsMultilap);
-                Console.WriteLine("Laps : " + mi.Laps);
-                Console.WriteLine("MapStyle : " + mi.MapStyle);
-                Console.WriteLine("MapType : " + mi.MapType);
-                Console.WriteLine("MapTypeId : " + mi.MapTypeId);
-                Console.WriteLine("Mood : " + mi.Mood);
-                Console.WriteLine("Name : " + mi.Name);
-                Console.WriteLine("Price : " + mi.Price);
-                Console.WriteLine("SilverTime : " + mi.SilverTime);
-                Console.WriteLine("Thumbnail : " + mi.Thumbnail);
-                writeBytes(mi.Thumbnail);
-
-                Console.WriteLine("TitleId : " + mi.TitleId);
-                Console.WriteLine("UId : " + mi.UId);
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine();
-            }
-            else
+            if (h2.Count == table.Count)
             {
+                int i = 0;
+                foreach(XmlNode h in h2)
+                {
+                    XmlNode n = rOXml.addChild(h.Value.Replace("(+", "_")
+                                                      .Replace(")", "")
+                                                      .Replace(" ", "")
+                                                      .Replace("&amp;", "") );
+
+                    foreach(XmlNode tr in table[i]["tbody"].Childs)
+                    {
+                        string name;
+                        if (tr[0].isChildExist("strong"))
+                        {
+                            name = tr[0]["strong"].Value;
+                        }
+                        else
+                        {
+                            if (tr[0].Value != null && tr[0].Value != "")
+                                name = tr[0].Value;
+                            else
+                                name = "???";
+                        }
+
+                        name = name.Replace("(+", "_");
+                        name = name.Replace(")", "_");
+                        name = name.Replace(" ", "_");
+
+
+                        XmlNode newSet = n.addChild("setting", tr[2].Value.Replace("&gt;", ""))
+                                                .addAttribute("name", name);
+
+                        if (tr[1].Value == null)
+                            newSet.addAttribute("defVal", " ");
+                        else
+                            newSet.addAttribute("defVal", tr[1].Value.Replace("\"","")); 
+
+                     
+
+
+                    }
+
+
+                    i++;
+                }
 
             }
-               Console.ReadKey();
+
+            Console.Write(outXml.print());
+            try
+            {
+                outXml.save(true);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("OK !");
+            }
+            catch(Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Err : " + e.Message);
+            }
+
+
+
+            Console.ReadKey();
 
             /*
 

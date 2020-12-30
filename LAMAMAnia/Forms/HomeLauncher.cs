@@ -182,6 +182,7 @@ namespace LamaMania
             }
             else
             {
+                servType = cfg.getAttibuteV("type");
                 if (cfg.isChildExist("database") && (cfg["database"].haveAttribute("value") && cfg["database"].getAttibuteV("value").ToUpper() == "TRUE") || !cfg["database"].haveAttribute("value"))
                 {
                     lama.pluginManager.initDatabase(cfg["database"]);
@@ -193,12 +194,12 @@ namespace LamaMania
 
                 if (servType == "TM3")
                 {
-                    path = @"Servers\" + index + @"\ManiaPlanetServer.exe";
+                    path = @"Servers\" + index + @"\TrackmaniaServer.exe";
                     cmd = "";
                 }
                 else
                 {
-                    path = @"Servers\" + index + @"\TrackmaniaServer.exe";
+                    path = @"Servers\" + index + @"\ManiaPlanetServer.exe";
                     cmd = "/Title=" + config[0]["system_config"]["title"].Value;
                 }
 

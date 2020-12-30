@@ -161,8 +161,6 @@ namespace LamaMania
             Program.lama.pluginManager.onLoadHomeComponent(this.client, this.tp_main.getControl<Control>(), false);
             Program.lama.pluginManager.onLoadTabMain(this.client, this.flatTabControl1, false);
 
-         //   Program.lama.loadForm.Close();
-
             if (Program.lama.connected)
             {
                 Program.lama.log("NOTICE", "XmlRPC : Connected");
@@ -212,13 +210,15 @@ namespace LamaMania
             //Map
             asyncRequest(GetCurrentMapInfo); //Catched by HCGameInfos
             asyncRequest(GetMapsDirectory, getMapDirectory);
+            asyncRequest(getMapList, GetMapList, 999, 0);
 
             //Users lists
             asyncRequest(GetPlayerList, Program.lama.maxPlayers + Program.lama.maxSpectators, 0);
             asyncRequest(GetGuestList, Program.lama.maxPlayers + Program.lama.maxSpectators, 0);
             asyncRequest(GetBanList, Program.lama.maxPlayers + Program.lama.maxSpectators, 0);
             asyncRequest(GetBlackList, Program.lama.maxPlayers + Program.lama.maxSpectators, 0);
-            asyncRequest(getMapList, GetMapList, 999, 0);
+            
+            //Send chat msg
             asyncRequest(checkError, GBXMethods.ChatSendServerMessage, "$o$12d LamaMania V 0.0.1 ....");
 
         }

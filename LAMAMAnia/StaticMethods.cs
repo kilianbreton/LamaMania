@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LamaPlugin;
+using static System.Environment;
 
 namespace LamaMania
 {
@@ -406,28 +407,28 @@ namespace LamaMania
         {
             string ret = "";
 
-
+            //using static enviornment
             switch (var)
             {
                 case "$DOCUMENTS$":
-                    ret = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    ret = GetFolderPath(SpecialFolder.MyDocuments);
                     break;
                 case "$PROGRAMS$":
-                    ret = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+                    ret = GetFolderPath(SpecialFolder.ProgramFiles);
                     break;
                 case "$PROGRAMFILES$":
-                    ret = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+                    ret = GetFolderPath(SpecialFolder.ProgramFilesX86);
                     break;
                 case "$APPDATA$":
-                    ret = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                    ret = GetFolderPath(SpecialFolder.ApplicationData);
                     break;
                 case "$TEMP$":
-                    ret = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Temp";
+                    ret = GetFolderPath(SpecialFolder.LocalApplicationData) + @"\Temp";
                     break;
 
                 default:
                 case "$CURRENT_PATH$":
-                    ret = Environment.CurrentDirectory;
+                    ret = CurrentDirectory;
                     break;
 
 

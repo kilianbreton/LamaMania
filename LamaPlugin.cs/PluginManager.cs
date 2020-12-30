@@ -161,28 +161,29 @@ namespace LamaPlugin
                                     int cpt = 0;
                                     foreach (IBasePlugin p in plugs)
                                     {
-                                        this.cache.addLink(file.Name, p.GetType().FullName);
-                                        bool ok = true;
-                                        switch (p.PluginType)
+                                        if (p.PluginType != PluginType.Base)
                                         {
-                                            case PluginType.Base:
-                                                ok = false;
-                                                break;
-                                            case PluginType.HomeComponent:
-                                                HomeComponentPlugins.Add((HomeComponentPlugin)p);
-                                                break;
-                                            case PluginType.TabPlugin:
-                                                TabPlugins.Add((TabPlugin)p);
-                                                break;
-                                            case PluginType.InGamePlugin:
-                                                InGamePlugins.Add((InGamePlugin)p);
-                                                break;
+                                            this.cache.addLink(file.Name, p.GetType().FullName);
+                                            bool ok = true;
+                                            switch (p.PluginType)
+                                            {
+                                                case PluginType.Base:
+                                                    ok = false;
+                                                    break;
+                                                case PluginType.HomeComponent:
+                                                    HomeComponentPlugins.Add((HomeComponentPlugin)p);
+                                                    break;
+                                                case PluginType.TabPlugin:
+                                                    TabPlugins.Add((TabPlugin)p);
+                                                    break;
+                                                case PluginType.InGamePlugin:
+                                                    InGamePlugins.Add((InGamePlugin)p);
+                                                    break;
+                                            }
+                                            if (ok)
+                                                cpt++;
                                         }
-                                        if (ok)
-                                            cpt++;
                                     }
-
-
                                 
                                     if (cpt == 0) //0 Instances loaded
                                     {   //Append dllIgnore
@@ -533,9 +534,6 @@ namespace LamaPlugin
                 p.onPluginUpdate();
             }
         }
-
-
-
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Call event methods //////////////////////////////////////////////////////////////////////////////////
@@ -905,13 +903,14 @@ namespace LamaPlugin
                 }
                 catch(Exception)  { }
             }
+     
             /// <summary>
             /// 
             /// </summary>
             public List<HCFP> HcProtos { get => hcProtos; set => hcProtos = value; }
 
             /// <summary>
-            /// 
+            /// Return true if proto exist
             /// </summary>
             /// <param name="name"></param>
             /// <returns></returns>
@@ -1139,7 +1138,8 @@ namespace LamaPlugin
                     {
                         using (var stream = File.OpenRead(path))
                         {
-                            hash = Encoding.Unicode.GetString(md5.ComputeHash(stream));
+                            //hash = Encoding.Unicode.GetString(md5.ComputeHash(stream));
+                            hash = byteArrayToString(md5.ComputeHash(stream));
                             return true;
                         }
                     }
@@ -1150,7 +1150,13 @@ namespace LamaPlugin
                     return false;
                 }
             }
-
+            private string byteArrayToString(byte[] ba)
+            {
+                StringBuilder hex = new StringBuilder(ba.Length * 2);
+                foreach (byte b in ba)
+                    hex.AppendFormat("{0:x2}", b);
+                return hex.ToString();
+            }
             /// <summary>
             /// 
             /// </summary>

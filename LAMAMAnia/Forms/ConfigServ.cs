@@ -41,6 +41,7 @@ using static LamaMania.Program;
 using LamaLang;
 using LamaPlugin;
 using GBXMapParser;
+using LamaMania.UserConstrols;
 
 namespace LamaMania
 {
@@ -89,14 +90,16 @@ namespace LamaMania
         /// Edit Local Server
         /// </summary>
         /// <param name="index"></param>
+        /// <param name="name"></param>
         public ConfigServ(int index, string name)
         {
             InitializeComponent();
             lama.log("NOTICE", "ConfigServ in Edit mode");
             this.serverPath = @"Servers\" + index + @"\";
-            this.mapPath = serverPath + @"UserData\Maps\";
+            this.mapPath = this.serverPath + @"UserData\Maps\";
             this.index = index;
             //     this.serverConfig = lama.mainConfig[0]["servers"].getChildByAttribute("id", this.index.ToString());
+
             foreach (XmlNode n in Program.lama.mainConfig[0]["servers"].Childs)
             {
                 if (n["name"].Value == name)
@@ -108,13 +111,18 @@ namespace LamaMania
             this.tb_name.Text = this.serverConfig["name"].Value;
             this.serverType = this.serverConfig.getAttibuteV("type");
 
+            //this.flp_matchSettings.Controls.Add(new UserConstrols.DoubleMatchSetting("test", "testtitle", 0.2d));
+
             lama.pluginManager.loadConfigServ(flatTabControl1.TabPages, checkedListBox1.Items, this.getConfigValue);
+            
             loadDedicated();
             loadScriptList();
             loadMain();
-            loadMaps(); 
+            loadMaps();
+            initMatchSettings();
         }
-        
+
+      
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methodes ////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,6 +136,82 @@ namespace LamaMania
 
 
         }
+
+        void initMatchSettings()
+        {
+            XmlDocument xmld = new XmlDocument("Ressources\\Config\\MatchSettings.xml");
+            XmlNode root = xmld[0];
+            foreach(XmlNode n in root["All"].Childs)
+            {
+                loadOneMatchSetting(n);
+            }
+
+            if(tb_title.Text.ToUpper().IndexOf("SM") == 0)
+            {
+                XmlNode smAll = root["ShootMania"]["All"];
+                foreach (XmlNode n in smAll.Childs)
+                {
+                    loadOneMatchSetting(n);
+                }
+
+                if(tb_title.Text.Contains("SMStorm"))
+                {
+                    string mode = tb_title.Text.Substring(7, tb_title.Text.Length - 7);
+                    List<XmlNode> tl = (from n in root["ShootMania"].Childs where n.Name.Contains(mode) select n).ToList();
+                    foreach(XmlNode spmode in tl) //Pour chaque sous-mode
+                    {
+                        foreach(XmlNode node in spmode)
+                        {
+                            loadOneMatchSetting(node);
+                        }
+                    }
+                }
+
+
+            }
+            else
+            {
+                if (tb_title.Text.ToUpper().IndexOf("TM") == 0)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Le titre ne coresspond à aucun jeu");
+                }
+            }
+
+
+
+
+        }
+
+
+        void loadOneMatchSetting(XmlNode n)
+        {
+            double val = 0;
+            string baseVal = n.getAttibuteV("defVal");
+            if (double.TryParse(baseVal, out val))
+            {
+                DoubleMatchSetting d = new DoubleMatchSetting(n.getAttibuteV("name"), n.getAttibuteV("name"), val);
+                this.flp_matchSettings.Controls.Add(d);
+            }
+            else
+            {
+                if (baseVal.ToUpper() == "TRUE" || baseVal.ToUpper() == "FALSE")
+                {
+                    BoolMatchSetting b = new BoolMatchSetting(n.getAttibuteV("name"), n.getAttibuteV("name"), (baseVal.ToUpper() == "TRUE"));
+                    this.flp_matchSettings.Controls.Add(b);
+                }
+                else
+                {
+                    StringMatchSetting s = new StringMatchSetting(n.getAttibuteV("name"), n.getAttibuteV("name"), baseVal);
+                    this.flp_matchSettings.Controls.Add(s);
+                }
+            }
+        }
+
+
 
         void loadMain()
         {
@@ -305,7 +389,7 @@ namespace LamaMania
                 mapFiles.Add(Path.GetFileName(mpath), Path.GetFullPath(mpath));
             }
             //Script Settings-----------------------------------------------
-            foreach(XmlNode setting in root["mode_script_settings"].getChildList("setting"))
+      /*      foreach(XmlNode setting in root["mode_script_settings"].getChildList("setting"))
             {
                 switch (setting.getAttibuteV("name"))
                 {
@@ -336,7 +420,7 @@ namespace LamaMania
                         n_forcelaps.Value = int.Parse(setting.getAttibuteV("value"));
                         break;
                 }
-            }
+            }*/
 
         }
 
@@ -487,7 +571,7 @@ namespace LamaMania
             XmlNode modscript = root["mode_script_settings"];
             modscript.deleteAllChildLike("setting");
             //TimeLimit
-            int time = (int)((n_time_h.Value * 60 * 60) + (n_time_m.Value * 60) + n_time_s.Value);
+         /*   int time = (int)((n_time_h.Value * 60 * 60) + (n_time_m.Value * 60) + n_time_s.Value);
             modscript.addChild("setting").addAttribute("name", "S_TimeLimit")
                                          .addAttribute("type", "integer")
                                          .addAttribute("value", time.ToString());
@@ -504,7 +588,7 @@ namespace LamaMania
             modscript.addChild("setting").addAttribute("name", "S_WarmUpDuration")
                                          .addAttribute("type", "integer")
                                          .addAttribute("value", n_forcelaps.Value.ToString());
-
+*/
             if (!root.isChildExist("gameinfos"))
             {
                 root.addChild("gameinfos");

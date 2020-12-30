@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.formSkin1 = new FlatUITheme.FormSkin();
+            this.flatLabel5 = new FlatUITheme.FlatLabel();
+            this.tg_tm2020 = new FlatUITheme.FlatToggle();
             this.label1 = new System.Windows.Forms.Label();
             this.b_cancel = new FlatUITheme.FlatButton();
             this.b_create = new FlatUITheme.FlatButton();
@@ -41,8 +43,7 @@
             this.tb_ip = new FlatUITheme.FlatTextBox();
             this.tog_remote = new FlatUITheme.FlatToggle();
             this.tb_name = new FlatUITheme.FlatTextBox();
-            this.flatLabel5 = new FlatUITheme.FlatLabel();
-            this.tg_tm2020 = new FlatUITheme.FlatToggle();
+            this.flatButton1 = new FlatUITheme.FlatButton();
             this.formSkin1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             this.formSkin1.BackColor = System.Drawing.Color.White;
             this.formSkin1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
             this.formSkin1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(58)))), ((int)(((byte)(60)))));
+            this.formSkin1.Controls.Add(this.flatButton1);
             this.formSkin1.Controls.Add(this.flatLabel5);
             this.formSkin1.Controls.Add(this.tg_tm2020);
             this.formSkin1.Controls.Add(this.label1);
@@ -76,6 +78,33 @@
             this.formSkin1.Size = new System.Drawing.Size(472, 250);
             this.formSkin1.TabIndex = 0;
             this.formSkin1.Text = "formSkin1";
+            // 
+            // flatLabel5
+            // 
+            this.flatLabel5.AutoSize = true;
+            this.flatLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.flatLabel5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatLabel5.ForeColor = System.Drawing.Color.White;
+            this.flatLabel5.Location = new System.Drawing.Point(251, 95);
+            this.flatLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.flatLabel5.Name = "flatLabel5";
+            this.flatLabel5.Size = new System.Drawing.Size(117, 19);
+            this.flatLabel5.TabIndex = 13;
+            this.flatLabel5.Text = "TrackMania2020 :";
+            // 
+            // tg_tm2020
+            // 
+            this.tg_tm2020.BackColor = System.Drawing.Color.Transparent;
+            this.tg_tm2020.Checked = false;
+            this.tg_tm2020.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tg_tm2020.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.tg_tm2020.Location = new System.Drawing.Point(382, 90);
+            this.tg_tm2020.Margin = new System.Windows.Forms.Padding(2);
+            this.tg_tm2020.Name = "tg_tm2020";
+            this.tg_tm2020.Options = FlatUITheme.FlatToggle._Options.Style1;
+            this.tg_tm2020.Size = new System.Drawing.Size(76, 33);
+            this.tg_tm2020.TabIndex = 12;
+            this.tg_tm2020.Text = "flatToggle1";
             // 
             // label1
             // 
@@ -250,32 +279,20 @@
             this.tb_name.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tb_name.UseSystemPasswordChar = false;
             // 
-            // flatLabel5
+            // flatButton1
             // 
-            this.flatLabel5.AutoSize = true;
-            this.flatLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.flatLabel5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flatLabel5.ForeColor = System.Drawing.Color.White;
-            this.flatLabel5.Location = new System.Drawing.Point(251, 95);
-            this.flatLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.flatLabel5.Name = "flatLabel5";
-            this.flatLabel5.Size = new System.Drawing.Size(117, 19);
-            this.flatLabel5.TabIndex = 13;
-            this.flatLabel5.Text = "TrackMania2020 :";
-            // 
-            // tg_tm2020
-            // 
-            this.tg_tm2020.BackColor = System.Drawing.Color.Transparent;
-            this.tg_tm2020.Checked = false;
-            this.tg_tm2020.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tg_tm2020.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.tg_tm2020.Location = new System.Drawing.Point(382, 90);
-            this.tg_tm2020.Margin = new System.Windows.Forms.Padding(2);
-            this.tg_tm2020.Name = "tg_tm2020";
-            this.tg_tm2020.Options = FlatUITheme.FlatToggle._Options.Style1;
-            this.tg_tm2020.Size = new System.Drawing.Size(76, 33);
-            this.tg_tm2020.TabIndex = 12;
-            this.tg_tm2020.Text = "flatToggle1";
+            this.flatButton1.BackColor = System.Drawing.Color.Transparent;
+            this.flatButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.flatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.flatButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.flatButton1.Location = new System.Drawing.Point(274, 206);
+            this.flatButton1.Name = "flatButton1";
+            this.flatButton1.Rounded = false;
+            this.flatButton1.Size = new System.Drawing.Size(78, 32);
+            this.flatButton1.TabIndex = 14;
+            this.flatButton1.Text = "flatButton1";
+            this.flatButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.flatButton1.Click += new System.EventHandler(this.flatButton1_Click);
             // 
             // NewServer
             // 
@@ -312,5 +329,6 @@
         private System.Windows.Forms.Label label1;
         private FlatUITheme.FlatLabel flatLabel5;
         private FlatUITheme.FlatToggle tg_tm2020;
+        private FlatUITheme.FlatButton flatButton1;
     }
 }

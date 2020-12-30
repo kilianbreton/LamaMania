@@ -13,6 +13,22 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,6 +56,25 @@
   <PropertyGroup>
     <StartupObject>LamaMania.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1F5B9143D67757C1A09202B88F4276BEFE036798</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>LamaMania_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Arc.TrackMania">
       <HintPath>..\..\TMPacktool\Arc.TrackMania\bin\Debug\Arc.TrackMania.dll</HintPath>
@@ -54,7 +89,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data">
       <Private>False</Private>
@@ -68,6 +106,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnvironmentManager.cs" />
     <Compile Include="ExtensionsMethods.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
@@ -131,7 +170,6 @@
     </Compile>
     <Compile Include="LocalesManager.cs" />
     <Compile Include="Other\GameMode.cs" />
-    <Compile Include="Lama.cs" />
     <Compile Include="Forms\ConfigServ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,7 +188,6 @@
     <Compile Include="Forms\HomeLauncher.Designer.cs">
       <DependentUpon>HomeLauncher.cs</DependentUpon>
     </Compile>
-    <Compile Include="Other\LamaLog.cs" />
     <Compile Include="Other\LogXMLRPC.cs" />
     <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
@@ -158,34 +195,71 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="PluginManager.cs" />
+    <Compile Include="Other\ManiaLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Other\ManiaLabel.Designer.cs">
+      <DependentUpon>ManiaLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticMethods.cs" />
     <Compile Include="Other\Structs.cs" />
-    <Compile Include="UserConstrols\IScriptSetting.cs" />
-    <Compile Include="UserConstrols\BooleanScriptSetting.cs">
+    <Compile Include="Updater.cs" />
+    <Compile Include="UserConstrols\MatchSettings\BoolMatchSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserConstrols\BooleanScriptSetting.Designer.cs">
+    <Compile Include="UserConstrols\MatchSettings\BoolMatchSetting.Designer.cs">
+      <DependentUpon>BoolMatchSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\MatchSettings\StringMatchSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\MatchSettings\StringMatchSetting.Designer.cs">
+      <DependentUpon>StringMatchSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\MatchSettings\DoubleMatchSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\MatchSettings\DoubleMatchSetting.Designer.cs">
+      <DependentUpon>DoubleMatchSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\ExternalTool.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\ExternalTool.Designer.cs">
+      <DependentUpon>ExternalTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\MatchSettings\IMatchSetting.cs" />
+    <Compile Include="UserConstrols\ScriptSettings\IScriptSetting.cs" />
+    <Compile Include="UserConstrols\ScriptSettings\BooleanScriptSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\ScriptSettings\BooleanScriptSetting.Designer.cs">
       <DependentUpon>BooleanScriptSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserConstrols\NumericScriptSetting.cs">
+    <Compile Include="UserConstrols\ScriptSettings\NumericScriptSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserConstrols\NumericScriptSetting.Designer.cs">
+    <Compile Include="UserConstrols\ScriptSettings\NumericScriptSetting.Designer.cs">
       <DependentUpon>NumericScriptSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserConstrols\DoubleScriptSetting.cs">
+    <Compile Include="UserConstrols\ScriptSettings\DoubleScriptSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserConstrols\DoubleScriptSetting.Designer.cs">
+    <Compile Include="UserConstrols\ScriptSettings\DoubleScriptSetting.Designer.cs">
       <DependentUpon>DoubleScriptSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserConstrols\StringScriptSetting.cs">
+    <Compile Include="UserConstrols\OverlatDialog.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserConstrols\StringScriptSetting.Designer.cs">
+    <Compile Include="UserConstrols\OverlatDialog.Designer.cs">
+      <DependentUpon>OverlatDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConstrols\ScriptSettings\StringScriptSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\ScriptSettings\StringScriptSetting.Designer.cs">
       <DependentUpon>StringScriptSetting.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\AskLogins.resx">
@@ -227,6 +301,9 @@
     <EmbeddedResource Include="HomeComponents\HCStatus.resx">
       <DependentUpon>HCStatus.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Other\ManiaLabel.resx">
+      <DependentUpon>ManiaLabel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -237,19 +314,36 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserConstrols\BooleanScriptSetting.resx">
+    <EmbeddedResource Include="UserConstrols\MatchSettings\BoolMatchSetting.resx">
+      <DependentUpon>BoolMatchSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\MatchSettings\StringMatchSetting.resx">
+      <DependentUpon>StringMatchSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\ScriptSettings\BooleanScriptSetting.resx">
       <DependentUpon>BooleanScriptSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserConstrols\NumericScriptSetting.resx">
+    <EmbeddedResource Include="UserConstrols\MatchSettings\DoubleMatchSetting.resx">
+      <DependentUpon>DoubleMatchSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\ExternalTool.resx">
+      <DependentUpon>ExternalTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\ScriptSettings\NumericScriptSetting.resx">
       <DependentUpon>NumericScriptSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserConstrols\DoubleScriptSetting.resx">
+    <EmbeddedResource Include="UserConstrols\ScriptSettings\DoubleScriptSetting.resx">
       <DependentUpon>DoubleScriptSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserConstrols\StringScriptSetting.resx">
+    <EmbeddedResource Include="UserConstrols\OverlatDialog.resx">
+      <DependentUpon>OverlatDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\ScriptSettings\StringScriptSetting.resx">
       <DependentUpon>StringScriptSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="LamaMania_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -276,6 +370,18 @@
       <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
       <Name>LamaPlugin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
