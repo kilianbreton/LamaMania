@@ -59,7 +59,7 @@ namespace Records
             catch (Exception e)
             {
                 if(Log != null)
-                    Log("ERROR", e.Message);
+                    Log("ERROR", "[UserLevels][OnLoad]>" + e.Message);
             }
             return false;
         }
@@ -302,7 +302,6 @@ namespace Records
             return response;
         }
 
-
         private UserLevel parseUserLevel(string lvl)
         {
             switch (lvl.ToUpper())
@@ -333,7 +332,6 @@ namespace Records
             return logins;
         }
 
-
         public override void onGbxAsyncResult(GbxCall res)
         {
             
@@ -343,8 +341,6 @@ namespace Records
         {
             
         }
-
-    
 
         public override void onDisconnect()
         {

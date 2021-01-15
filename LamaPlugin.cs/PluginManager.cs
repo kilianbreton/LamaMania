@@ -15,7 +15,7 @@ using TMXmlRpcLib;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Threading;
-//using System.Threading.Tasks;
+using NTK.Security;
 
 
 namespace LamaPlugin
@@ -40,6 +40,9 @@ namespace LamaPlugin
         private string dbPasswd;
         private string dbBaseName;
         private NTKDatabase dbObject;
+        private NTKRsa rsa;
+
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Constructors ////////////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +63,7 @@ namespace LamaPlugin
             this.InGamePlugins = new List<InGamePlugin>();
             this.TabPlugins = new List<TabPlugin>();
             this.lastHandle = 0;
+            this.rsa = new NTKRsa("", false);
 
             Thread t = new Thread(updateLoop);
             t.Start();
@@ -79,17 +83,16 @@ namespace LamaPlugin
             try
             {
                 DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
-                
                 //Read dll
                 foreach (FileInfo file in pluginsDir.GetFiles())
                 {
                     bool hashComputed = false;
+                    this.cache.computeHash(file.FullName, out string hash);
                     if (file.Extension.Equals(".dll"))
                     {
                         //Check if cache know lib
                         if (this.cache.haveLib(file.Name))
                         {
-                            this.cache.computeHash(file.FullName, out string hash);
                             if (hash != this.cache.getHash(file.Name))
                             {
                                 hashComputed = true;
@@ -102,6 +105,8 @@ namespace LamaPlugin
                         else
                         {
                             this.cache.addLib(file.Name);
+                            
+                            this.cache.addHash(file.Name, hash);
                         }
 
 
@@ -228,7 +233,6 @@ namespace LamaPlugin
             selectHomeComponentPlugin(cfg);
             selectInGamePlugins(cfg);
             selectTabPlugin(cfg);
-
         }
 
         /// <summary>
@@ -242,8 +246,6 @@ namespace LamaPlugin
             {
                 InGamePlugin plug = (InGamePlugin)getPluginByName(node.Value, PluginType.InGamePlugin);
             
-
-
                 if (plug != null)
                 {
                     lst.Add(plug);
@@ -338,7 +340,8 @@ namespace LamaPlugin
                 string brInfos = "";
 
                 plug.setClient(client);
-                
+                plug.Log = lama.log;
+
                 //Check all requirements=====================================================
                 badRequirement = checkRequirements(plug, out brInfos, out LamaConfig conf2plug);
                 conf2plug.connected = true;
@@ -826,6 +829,10 @@ namespace LamaPlugin
                 return null;
         }
 
+        private bool isOffical(IBasePlugin plugin)
+        {
+            return false;
+        }
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1157,6 +1164,7 @@ namespace LamaPlugin
                     hex.AppendFormat("{0:x2}", b);
                 return hex.ToString();
             }
+
             /// <summary>
             /// 
             /// </summary>
@@ -1203,6 +1211,7 @@ namespace LamaPlugin
                 removeIgnore(libName);
                 removeAllLinks(libName);
             }
+            
             /// <summary>
             /// 
             /// </summary>
@@ -1217,6 +1226,7 @@ namespace LamaPlugin
                         this.links[lib].Add(className);
                 
             }
+            
             /// <summary>
             /// 
             /// </summary>

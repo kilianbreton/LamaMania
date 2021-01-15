@@ -67,6 +67,7 @@ namespace LamaMania
 #else
             Lama.lamaLogger = new LamaLog(@"Logs\Lama.log",false);
 #endif
+            lama.log("NOTICE", "Program start==============================================");
             lama.pluginManager = new PluginManager(@"Config\Servers\" + lama.serverIndex, "", lama);
             lama.pluginManager.loadPlugins();
             lama.pluginManager.loadInternalHC(new HomeComponents.HCGameInfos(),

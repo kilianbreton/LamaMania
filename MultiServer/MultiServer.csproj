@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>KBT</Authors>
+    <Company>LamaMania</Company>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>D:\Programmation\repos\LAMAMAnia\LAMAMAnia\bin\Debug\Plugins\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LamaPlugin.cs\LamaPlugin.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NTK">
+      <HintPath>..\..\..\NTK\ServerAdmin\Kernel\NTK.dll</HintPath>
+    </Reference>
+    <Reference Include="TMXmlRpcLib">
+      <HintPath>..\XmlRpcEncrypted\bin\Debug\TMXmlRpcLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

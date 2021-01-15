@@ -69,8 +69,11 @@ namespace Records
                     Callbacks.Add("TrackMania.PlayerCheckpoint", callBack_PlayerCheckpoint);
                     Callbacks.Add("TrackMania.PlayerFinish", callBack_PlayerFinish);
 
-                    Callbacks.Add("ManiaPlanet.PlayerConnect", (o,e) => { asyncRequest(getPlayerList, GBXMethods.GetPlayerList, 999, 0); });
-                    Callbacks.Add("TrackMania.PlayerConnect", (o,e) => { asyncRequest(getPlayerList, GBXMethods.GetPlayerList, 999, 0); });
+                    GbxCallbackHandler handler = (o, e) => { 
+                        asyncRequest(getPlayerList, GBXMethods.GetPlayerList, 999, 0); 
+                    };
+                    Callbacks.Add("ManiaPlanet.PlayerConnect", handler);
+                    Callbacks.Add("TrackMania.PlayerConnect", handler);
 
                    
                     return true;
@@ -184,24 +187,33 @@ namespace Records
             }
         }
 
-        string makeManialink(Player player)
+        public string makeManialink(Player player)
         {
             int playerId = checkPlayerDb(player);
-            
-            QueryResult r = new QueryResult(db.select("SELECT * FROM `records` WHERE playerId = " + playerId));
             List<string> records = new List<string>();
-            while (r.read())
+            try
             {
-                string[] checkpoints = r.getString("checkpoints").Trim().Split(',');
-                int time = int.Parse(checkpoints[checkpoints.Length-2]);
-                parseTime(time, out int h, out int m, out int s);
-                records.Add(h + ":" + m + ":" + s);
-            }
+                //test
+                records.Add("10:20:15");
 
+                QueryResult r = new QueryResult(db.select("SELECT * FROM `records` WHERE playerId = " + playerId));
+                while (r.read())
+                {
+                    string[] checkpoints = r.getString("checkpoints").Trim().Split(',');
+                    int time = int.Parse(checkpoints[checkpoints.Length - 2]);
+                    parseTime(time, out int h, out int m, out int s);
+                    records.Add(h + ":" + m + ":" + s);
+                }
+            }
+            catch(Exception e)
+            {
+                if (Log != null)
+                    Log("ERROR", "[LocalRecords][makeManiaLink]>" + e.Message);
+            }
 
             ManialinkFile mlf = new ManialinkFile(false);
             mlf.Nodes.Add(new MLFrame(80, 10, 1));
-            mlf.Nodes[0].Childs.Add(new MLQuad(0, 0, 2, 50, 50, "F00A"));
+            mlf.Nodes[0].Childs.Add(new MLQuad(0, 0, 2, 50, 50, "F0A"));
 
             int y = -10;
             foreach (string s in records)
@@ -217,30 +229,41 @@ namespace Records
 
         int checkPlayerDb(Player player)
         {
-            IDataReader idr = db.select("SELECT id FROM players WHERE login=`" + player.Login + "`");
-            if (idr != null)
+            try
             {
-                QueryResult r = new QueryResult(idr);
-                if (r.read())   //Si il y a un résultat
+
+
+                IDataReader idr = db.select("SELECT id FROM players WHERE login=`" + player.Login + "`");
+                if (idr != null)
                 {
-                    return r.getInt("id");
-                }
-                else
-                {
-                    db.insert("INSERT INTO players VALUES (`" + player.Login + "`, `" + player.NickName + "`)");
-                    QueryResult r2 = new QueryResult(db.select("SELECT id FROM players WHERE login=`" + player.Login + "`"));
-                    if (r2.read())   //Si il y a un résultat
+                    QueryResult r = new QueryResult(idr);
+                    if (r.read())   //Si il y a un résultat
                     {
-                        return r2.getInt("id");
+                        return r.getInt("id");
                     }
                     else
                     {
-                        return -1;
+                        db.insert("INSERT INTO players VALUES (`" + player.Login + "`, `" + player.NickName + "`)");
+                        QueryResult r2 = new QueryResult(db.select("SELECT id FROM players WHERE login=`" + player.Login + "`"));
+                        if (r2.read())   //Si il y a un résultat
+                        {
+                            return r2.getInt("id");
+                        }
+                        else
+                        {
+                            return -1;
+                        }
                     }
                 }
+                else
+                {
+                    return -1;
+                }
             }
-            else
+            catch(Exception e)
             {
+                if (Log != null)
+                    Log("ERROR", "[LocalRecords][checkPlayerDb]>" + e.Message);
                 return -1;
             }
         }

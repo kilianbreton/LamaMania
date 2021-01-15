@@ -10,6 +10,7 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 LAMAMAnia/Bin/Debug/Servers/
+LamaKBTTools/
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

@@ -16,7 +16,8 @@ using System.IO;
 using LamaPlugin;
 using GBXMapParser;
 using LamaMania;
-
+using Records;
+using NTK.Security;
 
 namespace ConsoleTest
 {
@@ -35,6 +36,18 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
+            NTKRsa rsa = new NTKRsa();
+            Console.Write(rsa.getKey());
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.Write(rsa.getKey(true));
+            Console.WriteLine();
+            Console.WriteLine();
+            LocalRecords r = new LocalRecords();
+            string s = r.makeManialink(new Player("kamphate", "AnKou", 1, 0, 0, 56));
+            Console.Write(s);
+            Console.ReadLine();
+
             XmlDocument xmld = new XmlDocument("D:\\matchsettings.xml");
             XmlDocument outXml = new XmlDocument("D:\\outXml.xml");
             outXml.Nodes.Clear();

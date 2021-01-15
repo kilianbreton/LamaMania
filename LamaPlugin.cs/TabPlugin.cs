@@ -37,7 +37,7 @@ namespace LamaPlugin
         public OnError OnError { get; set; }
         public Logger Log { get; set; }
         public string PluginDescription { get; set; }
-
+        public string PluginKey { get; set; }
         public InterPluginResponse onInterPluginCall(IBasePlugin sender, InterPluginArgs args)
         {
             return null;

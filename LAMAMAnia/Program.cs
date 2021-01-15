@@ -23,6 +23,8 @@
  *
  * ----------------------------------------------------------------------------------*/
 
+//#define CACHE_DEBUG
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +43,12 @@ namespace LamaMania
         [STAThread]
         static void Main(string[] args)
         {
+
+#if CACHE_DEBUG
+            args = new String[] { "--CLEARCACHE" };
+#endif
+
+
             lama = new Lama();
             if(args.Length != 0)
             {
