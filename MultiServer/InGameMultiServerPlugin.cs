@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using LamaPlugin;
+using LamaPlugin.ManiaLink;
 using LamaPlugin.Other;
 using NTK.IO.Xml;
 using TMXmlRpcLib;
@@ -10,6 +11,7 @@ namespace MultiServer
     public class InGameMultiServerPlugin : InGamePlugin
     {
         const string CONFIG_NAME = "IGMultiServer.xml";
+        
         private XmlDocument config;
         private int gameTime;
         private bool alerts;
@@ -26,6 +28,7 @@ namespace MultiServer
             base.PluginFolder = "";
             base.Version = "0.0.0.1";
             base.Author = "KBT";
+            base.PluginKey = "0b89fe9108f857092937dcdcd1039f392d6f484603a72fc08398ad4736c49931c8ed63c7461481b3df4510b74cf6a7da1fca65ace8d9e1cb5ab38a328baaa907339c4cc130dc0aa6aad82fdcd12f0704350964785bd055abf2c7d6bb3fea4fac9f673a9a96f785c0fdd2aaf534b6c347f5d1890bbbe5fbb6b51c7dbdbbe9a457";
 
             base.Requirements.Add(new Requirement(RequirementContext.LOCAL));
             base.Requirements.Add(new Requirement(RequirementType.FILE, CONFIG_NAME));
@@ -57,6 +60,10 @@ namespace MultiServer
             }
         }
 
+        public void test()
+        {
+
+        }
 
         //Private======================================================
         private ManialinkFile makeNextServerButton()

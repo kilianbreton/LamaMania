@@ -9,14 +9,14 @@ using System.Windows.Forms;
 using NTK.IO;
 using NTK.IO.Xml;
 using NTK.Database;
-using LamaPlugin;
+using LamaPlugin.Other;
 using static LamaPlugin.StaticM;
 using TMXmlRpcLib;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Threading;
 using NTK.Security;
-
+using System.Reflection;
 
 namespace LamaPlugin
 {
@@ -40,8 +40,9 @@ namespace LamaPlugin
         private string dbPasswd;
         private string dbBaseName;
         private NTKDatabase dbObject;
-        private NTKRsa rsa;
-
+        RSACryptoServiceProvider rsaRead = new RSACryptoServiceProvider();
+        UnicodeEncoding encoder = new UnicodeEncoding();
+        private List<DllLoader> libs = new List<DllLoader>();
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +64,7 @@ namespace LamaPlugin
             this.InGamePlugins = new List<InGamePlugin>();
             this.TabPlugins = new List<TabPlugin>();
             this.lastHandle = 0;
-            this.rsa = new NTKRsa("", false);
+            this.rsaRead.FromXmlString("<RSAKeyValue><Modulus>wSe8lrnWIUcXbw5YZKaNKvVWcieRfnxyPY7oSCQtADnRUJCPBgKbwFKmPrgsXiqYGMfVvdXjIO2Z8wVVh5RE6mBB9tuCM30WQ5nmUSc7Hz7Lxv5zG/in+I/K8aCYuFFpGxYiEWQKHCZ/i+DKYtEfH2hyTyR59YCejeUUjMNN+VE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>");
 
             Thread t = new Thread(updateLoop);
             t.Start();
@@ -82,14 +83,16 @@ namespace LamaPlugin
             lama.log("NOTICE", "[PluginManager] Load plugins");
             try
             {
-                DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
+                //DirectoryInfo pluginsDir = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\");
+                DirectoryInfo pluginsDir = new DirectoryInfo(appPath + @"\Plugins\");
                 //Read dll
                 foreach (FileInfo file in pluginsDir.GetFiles())
                 {
-                    bool hashComputed = false;
-                    this.cache.computeHash(file.FullName, out string hash);
                     if (file.Extension.Equals(".dll"))
                     {
+                        bool hashComputed = false;
+                        this.cache.computeHash(file.FullName, out string hash);
+
                         //Check if cache know lib
                         if (this.cache.haveLib(file.Name))
                         {
@@ -124,31 +127,39 @@ namespace LamaPlugin
                                     lama.log("NOTICE", "Load " + file.Name + " ...");
                                     foreach (string link in links)
                                     {
-                                        IBasePlugin p = loader.getClassInstance<IBasePlugin>(link);
-                                        switch (p.PluginType)
+                                        try
                                         {
-                                            case PluginType.Base:
-                                                //Delete link ?
-                                                break;
-                                            case PluginType.HomeComponent:
-                                                HomeComponentPlugins.Add((HomeComponentPlugin)p);
-                                                insLoaded++;
-                                                break;
-                                            case PluginType.TabPlugin:
-                                                TabPlugins.Add((TabPlugin)p);
-                                                insLoaded++;
-                                                break;
-                                            case PluginType.InGamePlugin:
-                                                InGamePlugins.Add((InGamePlugin)p);
-                                                insLoaded++;
-                                                break;
+                                            IBasePlugin p = loader.getClassInstance<IBasePlugin>(link);
+                                            switch (p.PluginType)
+                                            {
+                                                case PluginType.Base:
+                                                    //Delete link ?
+                                                    break;
+                                                case PluginType.HomeComponent:
+                                                    HomeComponentPlugins.Add((HomeComponentPlugin)p);
+                                                    insLoaded++;
+                                                    break;
+                                                case PluginType.TabPlugin:
+                                                    TabPlugins.Add((TabPlugin)p);
+                                                    insLoaded++;
+                                                    break;
+                                                case PluginType.InGamePlugin:
+                                                    InGamePlugins.Add((InGamePlugin)p);
+                                                    insLoaded++;
+                                                    break;
+                                            }
+                                            lama.log("NOTICE", "-" + link);
                                         }
-                                        lama.log("NOTICE", "-" + link);
+                                        catch(Exception)
+                                        {
+                                            //nothing
+                                        }
                                     }
 
                                     if (insLoaded != 0)
                                     {
                                         lama.log("NOTICE", "[PluginManager][LoadPlugins] Success !");
+                                        libs.Add(loader);
                                     }
                                     else
                                     {
@@ -162,34 +173,37 @@ namespace LamaPlugin
                                 {
                                     //Load instances in lists and count nb instances
                                    
-                                    List<IBasePlugin> plugs = loader.getAllInstances<IBasePlugin>();
-                                    int cpt = 0;
-                                    foreach (IBasePlugin p in plugs)
-                                    {
-                                        if (p.PluginType != PluginType.Base)
+                                        List<IBasePlugin> plugs = loader.getAllInstances<IBasePlugin>();
+                                        int cpt = 0;
+                                        foreach (IBasePlugin p in plugs)
                                         {
-                                            this.cache.addLink(file.Name, p.GetType().FullName);
-                                            bool ok = true;
-                                            switch (p.PluginType)
+                                            if (p.PluginType != PluginType.Base)
                                             {
-                                                case PluginType.Base:
-                                                    ok = false;
-                                                    break;
-                                                case PluginType.HomeComponent:
-                                                    HomeComponentPlugins.Add((HomeComponentPlugin)p);
-                                                    break;
-                                                case PluginType.TabPlugin:
-                                                    TabPlugins.Add((TabPlugin)p);
-                                                    break;
-                                                case PluginType.InGamePlugin:
-                                                    InGamePlugins.Add((InGamePlugin)p);
-                                                    break;
+                                                this.cache.addLink(file.Name, p.GetType().FullName);
+                                                bool ok = true;
+                                                switch (p.PluginType)
+                                                {
+                                                    case PluginType.Base:
+                                                        ok = false;
+                                                        break;
+                                                    case PluginType.HomeComponent:
+                                                        HomeComponentPlugins.Add((HomeComponentPlugin)p);
+                                                        break;
+                                                    case PluginType.TabPlugin:
+                                                        TabPlugins.Add((TabPlugin)p);
+                                                        break;
+                                                    case PluginType.InGamePlugin:
+                                                        InGamePlugins.Add((InGamePlugin)p);
+                                                        break;
+                                                }
+                                                if (ok)
+                                                {
+                                                    cpt++;
+                                                }
+
                                             }
-                                            if (ok)
-                                                cpt++;
                                         }
-                                    }
-                                
+                                  
                                     if (cpt == 0) //0 Instances loaded
                                     {   //Append dllIgnore
                                         lama.log("NOTICE", "[PluginManager][LoadPlugins] " + file.Name + " added in dllignore (0 instances loaded)");
@@ -197,6 +211,7 @@ namespace LamaPlugin
                                     }
                                     else
                                     {
+                                        libs.Add(loader);
                                         lama.log("NOTICE", "[PluginManager][LoadPlugins] Loaded : " + file.Name);
                                     }
                                 }
@@ -631,8 +646,13 @@ namespace LamaPlugin
             foreach (IBasePlugin plugin in getAllPlugins())
             {
                 bool isChecked = (pluginList.getChildsByValue(plugin.PluginName).Count == 1);
-                int idx = list.Add(plugin.PluginName, isChecked);
 
+                int idx = list.Add(plugin.PluginName, isChecked); ;
+              /*  if(isOffical(plugin))
+                    idx= list.Add("[Offical]" + plugin.PluginName, isChecked);
+                else
+                    idx = list.Add("[Unofficial]" + plugin.PluginName, isChecked);
+                    */
             }
             
         }
@@ -728,10 +748,104 @@ namespace LamaPlugin
             this.hcFile.write(HomeComponentPlugins);
         }
 
+        [Obsolete]
+        public bool isOffical(IBasePlugin plugin)
+        {
+            try
+            {
+
+                byte[] plainText = encoder.GetBytes(plugin.PluginName);
+                byte[] signature = StringToByteArray(plugin.PluginKey);
+
+                return (rsaRead.VerifyData(plainText, new SHA1CryptoServiceProvider(), signature));
+            }
+            catch(Exception e )
+            {
+                return false;
+            }
+        }
+
+        public bool isOfficial(DllLoader loader)
+        {
+            try
+            {
+                //AuthPlugin ap = loader.getClassInstance<AuthPlugin>("AuthMyPlugin");
+                List<AuthPlugin> apl = loader.getAllInstances<AuthPlugin>();
+                if (apl.Count == 1)
+                {
+                    string key = apl[0].Key;
+
+                    // this.makeLibHash(loader, true);
+
+                    byte[] plainText = encoder.GetBytes(this.makeLibHash(loader, true));
+                    byte[] signature = StringToByteArray(key);
+
+                    return (rsaRead.VerifyData(plainText, new SHA1CryptoServiceProvider(), signature));
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+
+        }
+
+
+        public List<DllLoader> getLibs()
+        {
+            return libs;
+        }
+
+        public string makeLibHash(DllLoader loader, bool hash)
+        {
+            string ret = "";
+
+            foreach (Type p in loader.getAll())
+            {
+
+                ret += p.FullName + "\n";
+                ret += p.Attributes + "\n";
+                foreach (FieldInfo fi in p.GetFields())
+                {
+                    ret += fi.Name + "\n";
+                    ret += fi.FieldType.Name + "\n";
+                }
+                foreach (MethodInfo mi in p.GetMethods())
+                {
+                    ret += mi.Name + "\n";
+                    ret += mi.ReturnType.Name + "\n";
+                }
+                //ret += p.get;
+
+            }
+            if (hash)
+            {
+                try
+                {
+                    using (var md5 = MD5.Create())
+                    {
+                        ret = cache.byteArrayToString(md5.ComputeHash(encoder.GetBytes(ret)));
+                    }
+                }
+                catch (Exception e)
+                {
+                    ret = "ERROR : " + e.Message;
+
+                }
+            }
+
+            return ret;
+        }
+
+      
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Private /////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
+     
+
 
         /// <summary>
         /// Check plugin requirements and prepare LamaConfig
@@ -787,7 +901,6 @@ namespace LamaPlugin
             return badRequirement;
         }
 
-
         /// <summary>
         /// Search plugin by name, return null if not exist
         /// PluginType.Base search in all plugin type
@@ -829,9 +942,23 @@ namespace LamaPlugin
                 return null;
         }
 
-        private bool isOffical(IBasePlugin plugin)
+        private byte[] StringToByteArray(string s)
         {
-            return false;
+            if (s == null)
+                return new byte[1] { 0x0D };
+            //-------------------------------
+
+            byte[] ret = new byte[s.Length / 2];
+
+            int cpt = 0;
+            for (int i = 0; i < s.Length; i += 2)
+            {
+                string bs = s.Substring(i, 2).ToUpper();
+                ret[cpt] = byte.Parse(bs, System.Globalization.NumberStyles.HexNumber);
+
+                cpt++;
+            }
+            return ret;
         }
 
 
@@ -841,8 +968,8 @@ namespace LamaPlugin
 
 
         /// <summary>
-        /// 
-        /// </summary>
+            /// 
+            /// </summary>
         public List<InGamePlugin> InGamePlugins { get; set; }
         /// <summary>
         /// 
@@ -1157,7 +1284,7 @@ namespace LamaPlugin
                     return false;
                 }
             }
-            private string byteArrayToString(byte[] ba)
+            public string byteArrayToString(byte[] ba)
             {
                 StringBuilder hex = new StringBuilder(ba.Length * 2);
                 foreach (byte b in ba)

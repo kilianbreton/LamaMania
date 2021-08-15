@@ -98,19 +98,30 @@ namespace LamaPlugin
                         switch (elem.Type)
                         {
                             case NOTICE:
-                            case INFO:
                                 Console.ResetColor();
+                                Console.Write("[NOTICE]");
+                               
+                                break;
+                            case INFO:
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.Write("[INFO]"); 
+
+                             
                                 break;
 
                             case WARNING:
+                               
                                 Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write("[WARN]");
                                 break;
 
                             case SUCCESS:
                                 Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("[SUCCESS]");
                                 break;
                             case ERROR:
                                 Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("[ERROR]");
                                 break;
                         }
                         Console.WriteLine(elem.Text);

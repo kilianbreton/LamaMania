@@ -30,6 +30,7 @@ namespace BasicsCommandsPlugin
             this.Author = "KBT";
             this.PluginName = "Basic Commands";
             this.Version = "0.1";
+            this.PluginKey = "0c2242ef0a0969855bd57e26851c709bf39f6c9fd43a68b899fa37c480e1e3941d0d792ca82987784c89421cd0bfe170ce145537163f3611af119f540fe967584e09773c5a64b076217591aed1fc3aa6d0bd3680e02c316139fd99b86c67516fe00d8b0dfe336737fe50b8e34bff6d39a0b679e1692ba103ab6b41958e598bb7";
             this.Requirements.Add(new Requirement(RequirementType.DATABASE, true));
             this.Requirements.Add(new Requirement(RequirementType.FILE, "locales.xml"));
             this.Requirements.Add(new Requirement(RequirementType.FILE, "admins.xml"));

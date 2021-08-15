@@ -23,7 +23,7 @@
  *
  * ----------------------------------------------------------------------------------*/
 
-//#define CACHE_DEBUG
+#define CACHE_DEBUG
 
 using System;
 using System.Collections.Generic;
@@ -45,20 +45,25 @@ namespace LamaMania
         {
 
 #if CACHE_DEBUG
-            args = new String[] { "--CLEARCACHE" };
+            PluginManager.PMCache cache = new PluginManager.PMCache(@"Cache\PM.cache");
+            cache.ClearCache();
+            cache.save();
 #endif
 
 
             lama = new Lama();
             if(args.Length != 0)
             {
+#if CAHCE_DEBUG
+
+#else
                 if(args[0].ToUpper() == "--CLEARCACHE")
                 {
-                    PluginManager.PMCache cache = new PluginManager.PMCache(@"Cache\PM.cache");
-                    cache.ClearCache();
-                    cache.save();
+                    PluginManager.PMCache cache2 = new PluginManager.PMCache(@"Cache\PM.cache");
+                    cache2.ClearCache();
+                    cache2.save();
                 }
-
+#endif
             }
             else
             {

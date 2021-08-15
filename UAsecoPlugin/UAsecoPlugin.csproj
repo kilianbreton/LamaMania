@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthMyPlugin.cs" />
     <Compile Include="ConfigServControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

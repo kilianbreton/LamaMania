@@ -32,137 +32,29 @@ namespace ConsoleTest
         static List<string> argsExists = new List<string>();
         
 
-
-
         static void Main(string[] args)
         {
-            NTKRsa rsa = new NTKRsa();
-            Console.Write(rsa.getKey());
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.Write(rsa.getKey(true));
-            Console.WriteLine();
-            Console.WriteLine();
             LocalRecords r = new LocalRecords();
-            string s = r.makeManialink(new Player("kamphate", "AnKou", 1, 0, 0, 56));
-            Console.Write(s);
+            Console.WriteLine(r.makeManialink(null));
+
+
             Console.ReadLine();
-
-            XmlDocument xmld = new XmlDocument("D:\\matchsettings.xml");
-            XmlDocument outXml = new XmlDocument("D:\\outXml.xml");
-            outXml.Nodes.Clear();
-
-            XmlNode rOXml = outXml.addNode("matchsettings");
-            XmlNode root = xmld[0];
-
-            root.getChildList("h2");
-
-            List<XmlNode> h2 = root.getChildList("h2");
-            List<XmlNode> table = root.getChildList("table");
-
-            if (h2.Count == table.Count)
+            return;
+            
+            string file = File.ReadAllText(@"D:\styles.txt");
+            IEnumerable<string> l = file.Split(',');
+            foreach(string s in l)
             {
-                int i = 0;
-                foreach(XmlNode h in h2)
-                {
-                    XmlNode n = rOXml.addChild(h.Value.Replace("(+", "_")
-                                                      .Replace(")", "")
-                                                      .Replace(" ", "")
-                                                      .Replace("&amp;", "") );
+                string s2 = s.Replace("\"", "").Trim();
+                Console.WriteLine("public const string " + s2 + " = \"" + s2 + "\";");
 
-                    foreach(XmlNode tr in table[i]["tbody"].Childs)
-                    {
-                        string name;
-                        if (tr[0].isChildExist("strong"))
-                        {
-                            name = tr[0]["strong"].Value;
-                        }
-                        else
-                        {
-                            if (tr[0].Value != null && tr[0].Value != "")
-                                name = tr[0].Value;
-                            else
-                                name = "???";
-                        }
-
-                        name = name.Replace("(+", "_");
-                        name = name.Replace(")", "_");
-                        name = name.Replace(" ", "_");
-
-
-                        XmlNode newSet = n.addChild("setting", tr[2].Value.Replace("&gt;", ""))
-                                                .addAttribute("name", name);
-
-                        if (tr[1].Value == null)
-                            newSet.addAttribute("defVal", " ");
-                        else
-                            newSet.addAttribute("defVal", tr[1].Value.Replace("\"","")); 
-
-                     
-
-
-                    }
-
-
-                    i++;
-                }
-
-            }
-
-            Console.Write(outXml.print());
-            try
-            {
-                outXml.save(true);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("OK !");
-            }
-            catch(Exception e)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Err : " + e.Message);
             }
 
 
 
-            Console.ReadKey();
-
-            /*
-
-            ManialinkFile mlf = new ManialinkFile(false);
-            mlf.Nodes.Add(new MLFrame(80, 10, 1));
-            mlf.Nodes[0].Childs.Add(new MLQuad(0, 0, 2, 50, 50, "F00A"));
-
-            int y = -10;
-            List<string> records = new List<string>()
-            {
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-            };
-
-            foreach (string s in records)
-            {
-                mlf.Nodes[0].Childs.Add(new MLLabel(s, 80, y, 3));
-                y -= 10;
-            }
 
 
-            Console.Write(mlf.getXmlText());
-
-
-
-
-
-            */
-
-
-
-
+            Console.ReadLine();
             return;
         
         }

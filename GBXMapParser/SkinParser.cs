@@ -12,7 +12,7 @@ namespace GBXMapParser
     /// This parser is based on the Python parser included in PyPlanet.
     /// For more information about PyPlanet, check: https://pypla.net/.
     /// </summary>
-    public static class MapParser
+    public static class SkinParser
     {
         /// <summary>
         /// Current map information object to fill.
@@ -68,7 +68,7 @@ namespace GBXMapParser
 
             if (classId != ((0x3 << 24) | (0x43 << 12)))
             {
-               // throw new GBXException("Provided file cannot be parsed by the parser.");
+                throw new GBXException("Provided file cannot be parsed by the parser.");
             }
 
             // Create new instance of the map information object.

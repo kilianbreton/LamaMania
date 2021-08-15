@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthMyPlugin.cs" />
     <Compile Include="LocalRecords.cs" />
     <Compile Include="MatchLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

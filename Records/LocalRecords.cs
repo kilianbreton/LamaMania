@@ -7,6 +7,8 @@ using TMXmlRpcLib;
 using NTK.IO.Xml;
 using NTK.Database;
 using LamaPlugin;
+using LamaPlugin.ManiaLink;
+using LamaPlugin.ManiaLink.Styles;
 using System.Collections;
 using static LamaPlugin.StaticM;
 using System.Data;
@@ -29,6 +31,7 @@ namespace Records
             this.PluginDescription = "Gestionaire de records locaux";
             this.PluginFolder = "[NONE]";
             this.Version = "0.1";
+            this.PluginKey = "4ddc539cd526c764b2867f8e5c2c615554cec1dd48ece27bac5356763a34e74eba60ff85843ab094db85d81d0afc1cbe280829177f186ad0a6bac7428af8c75a0e538439349ec46638f0df30f9c7e6bfbde0ab2b4123989e7f1a0136b88853aea54b71a1d291369ef3dca5d01dabbdf5752fe38699f23756775ea2cae317e839";
 
             this.Requirements.Add(new Requirement(RequirementType.DATABASE, true));
             this.Requirements.Add(new Requirement(RequirementContext.LOCAL));
@@ -213,7 +216,7 @@ namespace Records
 
             ManialinkFile mlf = new ManialinkFile(false);
             mlf.Nodes.Add(new MLFrame(80, 10, 1));
-            mlf.Nodes[0].Childs.Add(new MLQuad(0, 0, 2, 50, 50, "F0A"));
+            mlf.Nodes[0].Childs.Add(new MLQuad(0, 0, 2, 50, 50, "F0A", "Bgs1InRace", QuadBgs1InRace.BgTitleGlow));
 
             int y = -10;
             foreach (string s in records)

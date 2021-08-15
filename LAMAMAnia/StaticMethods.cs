@@ -353,7 +353,6 @@ namespace LamaMania
         /// <param name="node">root treeview node</param>
         public static void makeTreeview(DirectoryInfo dir, TreeNode node)
         {
-            //Program.lama.log("NOTICE", "MakeTreeView(" + dir.Name + "," + node.Text+")");
             foreach (DirectoryInfo child in dir.GetDirectories())
             {
                 makeTreeview(child, node.Nodes.Add(child.Name));

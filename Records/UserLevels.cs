@@ -34,6 +34,7 @@ namespace Records
             base.PluginFolder = "[NONE]";
             base.Version = "0.1";
             base.Author = "KBT";
+            base.PluginKey = "363fcbfe31ab2c561e98b635b2782776c96669433ba3fe77ac959093dced4fffb983247eabffc33098e425e5e7c3d5e2c3d9d702b23fb16ecbe14d081c46223bcf6978626ea5b3bd4ccbd0bc7f763d5c4bc489ae115db047be25d3dcf1890aba7ad8112dd8c4659cb9fc0dcd68fc0a5229475efb2990b60deb56f783d6b4ccdc";
 
             base.Requirements.Add(new Requirement(RequirementContext.LOCAL));
             base.Requirements.Add(new Requirement(RequirementType.FILE, "levels.xml"));

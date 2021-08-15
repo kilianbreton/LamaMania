@@ -198,6 +198,10 @@ namespace LamaPlugin
         public OnError OnError { get; set; }
         public Logger Log { get; set; }
         public string PluginDescription { get; set; }
+        
+        /// <summary>
+        /// For Offical Plugins
+        /// </summary>
         public string PluginKey { get; set; }
     }
 }

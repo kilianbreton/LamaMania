@@ -59,6 +59,7 @@
     <Compile Include="Lama.cs" />
     <Compile Include="LamaLibraryUpdater.cs" />
     <Compile Include="ManiaColors.cs" />
+    <Compile Include="Other\AuthPlugin.cs" />
     <Compile Include="Other\ExtensionMethods.cs" />
     <Compile Include="Abstract\IBase.cs" />
     <Compile Include="Abstract\ITab.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Other\ManiaLink\MLFrameModel.cs" />
     <Compile Include="Other\ManiaLink\MLLabel.cs" />
     <Compile Include="Other\ManiaLink\MLQuad.cs" />
+    <Compile Include="Other\ManiaLink\Styles.cs" />
     <Compile Include="Other\MapInfo.cs" />
     <Compile Include="Other\MethodsClass\SetTeamInfo.cs" />
     <Compile Include="Other\Player.cs" />

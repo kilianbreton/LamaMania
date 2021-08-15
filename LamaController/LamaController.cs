@@ -18,6 +18,7 @@ using static LamaController.Program;
 using static LamaPlugin.StaticM;
 using static LamaPlugin.GBXMethods;
 using System.Collections;
+using System.Threading;
 
 namespace LamaController
 {
@@ -46,7 +47,7 @@ namespace LamaController
         XmlNode logsConfig;
         MainLogger mainLogger;
         NTKLogger ntkLogger;
-
+        Dictionary<string, GbxCallbackHandler> Callbacks = new Dictionary<string, GbxCallbackHandler>();
         List<InGamePlugin> plugins = new List<InGamePlugin>();
         string ip;
         int port;
@@ -70,11 +71,11 @@ namespace LamaController
             lama.remote = false;
 
 
-            Console.WriteLine("Analyse des plugins ...");
-            lama.pluginManager = new PluginManager(@"Config\Plugins\", "", lama);
+            lama.log("INFO", "Analyse des plugins ...");
+            lama.pluginManager = new PluginManager(@"..\..\..\LAMAMAnia\bin\Debug\Config\Plugins\", @"..\..\..\LAMAMAnia\bin\Debug\", lama);
             lama.pluginManager.loadPlugins();
 
-            Console.WriteLine("Lecture de la configuration ...");
+            lama.log("INFO", "Lecture de la configuration ...");
             lama.mainConfig = new XmlDocument(@"Config\Main.xml");
             XmlNode root = lama.mainConfig["config"];
             XmlNode server = root["server"];
@@ -85,14 +86,36 @@ namespace LamaController
             this.login = server["login"].Value;
             this.pass = server["password"].Value;
 
-            lama.pluginManager.selectPluginsFrmCfg(root["plugins"]);
+            //lama.pluginManager.selectPluginsFrmCfg(root["plugins"]);
 
-            lama.log("NOTICE", "Connect to server");
+            lama.log("INFO", "Connect to server");
             connectXmlRpc();
+           // startupRequests();
 
-            if(lama.connected)
+        //todo ; trackmaniaPlayer ..;
+            Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerConnect, (o, e) => {
+                lama.log("INFO", "New player connected : ");    
+            });
+
+            if (lama.connected)
+            {
+                lama.log("INFO", "start plugins...");
                 lama.pluginManager.onLoadInGame(this.client);
-            
+
+                Console.ResetColor();
+                lama.log("INFO", "Listen...");
+                bool stop = false;
+                while (!stop)
+                {
+                    foreach (IBasePlugin p in lama.pluginManager.getAllPlugins())
+                    {
+                        p.onPluginUpdate();
+                    }
+
+                    Thread.Sleep(5000);
+                }
+
+            }
 
         /*    ConsoleKeyInfo k = Console.ReadKey();
             while (k.Key != ConsoleKey.Q)
@@ -266,6 +289,10 @@ namespace LamaController
         private void gbxCallBack(object o, GbxCallbackEventArgs e)
         {
             lama.pluginManager.onGbxCallBack(o, e);
+            if (Callbacks.ContainsKey(e.Response.MethodName))
+            {
+                Callbacks[e.Response.MethodName](o, e);
+            }
         }
 
         private void asyncResult(GbxCall res)

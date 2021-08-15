@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LamaPlugin;
+using LamaPlugin.ManiaLink;
 using LamaPlugin.Other;
 using TMXmlRpcLib;
 using static LamaPlugin.StaticM;
@@ -33,7 +34,7 @@ namespace BasicsCommandsPlugin
             base.PluginDescription = "Remplace le système de vote par défaut.";
             base.Author = "KBT";
             base.PluginFolder = "[NONE]";
-
+            base.PluginKey = "653e309b611ddc4d13558460cd162b259c68a52ed1590ef8454cd5a5605dbdd0bf3cb07ce5846d78ba97e48ee6180d07c1f70ee961626bd4023a70ba80308c003168e7b8cd883f83373cab0f33a3b0d34b2ff00a01349c1be311821c281ca23a78b5f3ec383da1670e2755c99a3fc1c684d0e1f6b06f9e3e36487b2fc0137160";
 
             base.Requirements.Add(new Requirement(RequirementType.FILE, CONFIG_NAME));
             base.Requirements.Add(new Requirement(RequirementContext.LOCAL));

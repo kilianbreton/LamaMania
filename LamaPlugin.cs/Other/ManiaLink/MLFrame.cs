@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NTK.IO.Xml;
 
 
-namespace LamaPlugin
+namespace LamaPlugin.ManiaLink
 {
     public class MLFrame : ManiaLinkNode
     {

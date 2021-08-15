@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NTK.IO.Xml;
 
-namespace LamaPlugin
+namespace LamaPlugin.ManiaLink
 {
     public abstract class ManiaLinkNode
     {
@@ -16,6 +16,7 @@ namespace LamaPlugin
         public ManiaLinkNode(bool canHaveChild)
         {
             this.canHaveChild = canHaveChild;
+            
         }
 
         public List<ManiaLinkNode> Childs { get => childs; protected set => childs = value; }

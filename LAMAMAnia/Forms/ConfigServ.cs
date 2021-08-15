@@ -166,8 +166,6 @@ namespace LamaMania
                         }
                     }
                 }
-
-
             }
             else
             {
@@ -180,12 +178,7 @@ namespace LamaMania
                     MessageBox.Show("Le titre ne coresspond à aucun jeu");
                 }
             }
-
-
-
-
         }
-
 
         void loadOneMatchSetting(XmlNode n)
         {
@@ -776,7 +769,14 @@ namespace LamaMania
 
         private void l_mapsMatch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mapSelected(l_mapsMatch.Items[l_mapsMatch.SelectedIndex].ToString());
+            try
+            {
+                mapSelected(l_mapsMatch.Items[l_mapsMatch.SelectedIndex].ToString());
+            }
+            catch(Exception ex)
+            {
+                Program.lama.log("ERROR", "[ConfigServ.L_mapsMatchSelectedChanged]"+ex.Message);
+            }
         }
 
         private void l_mapsLocal_SelectedIndexChanged(object sender, EventArgs e)

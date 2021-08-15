@@ -68,7 +68,7 @@ namespace LamaMania
             Lama.lamaLogger = new LamaLog(@"Logs\Lama.log",false);
 #endif
             lama.log("NOTICE", "Program start==============================================");
-            lama.pluginManager = new PluginManager(@"Config\Servers\" + lama.serverIndex, "", lama);
+            lama.pluginManager = new PluginManager(@"Config\Servers\" + lama.serverIndex, Path.GetDirectoryName(Application.ExecutablePath) +"\\", lama);
             lama.pluginManager.loadPlugins();
             lama.pluginManager.loadInternalHC(new HomeComponents.HCGameInfos(),
                                               new HomeComponents.HCNetworkStats(),
@@ -210,7 +210,7 @@ namespace LamaMania
                 cmd += " /game_settings=" + cfg["matchSettings"].Value;
                 if(cfg["internetServer"].Value.ToUpper() == "TRUE")
                 {
-                    cmd += " /lan";
+                    //cmd += " /lan";
                 }
                 
                 //Open database connection
@@ -351,6 +351,7 @@ namespace LamaMania
             }
         }
         //Remove
+
         private void flatButton3_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show("Are you sure ?", "Are you sure to remove"+ flatComboBox1.SelectedText, MessageBoxButtons.YesNo);
@@ -358,6 +359,7 @@ namespace LamaMania
                 return;
             
             int index = lama.servers.getKeyFromValue(flatComboBox1.Text);
+
             XmlNode cfg = lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
 
             try

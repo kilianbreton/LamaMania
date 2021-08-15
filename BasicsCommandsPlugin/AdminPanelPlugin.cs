@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using LamaPlugin;
+using LamaPlugin.ManiaLink;
 using NTK.IO.Xml;
 using TMXmlRpcLib;
 
@@ -32,7 +33,7 @@ namespace BasicsCommandsPlugin
             base.Author = "KBT";
             base.PluginFolder = "[NONE]";
             base.Version = "0.1";
-
+            base.PluginKey = "535f1d474116b9038aa33a42ed783484e6369fd310c203cc9ce77c762746f950b6b557e1ef14811077a7bd33a3b55f2dcba1778f7e4ea96f6a06a77f857bece1ddf0b13ba3d4fd4d04a334e1029a074302b18798a2af336108b642fa0f60ad107dcabdbe66de444dfddd9e03c26952e3d85313adaac6d1cfdd9d56da1dab633a";
             base.Requirements = new List<Requirement>();
             base.Requirements.Add(new Requirement(RequirementType.FILE, CONFIG_NAME));
             base.Requirements.Add(new Requirement(RequirementContext.LOCAL));
