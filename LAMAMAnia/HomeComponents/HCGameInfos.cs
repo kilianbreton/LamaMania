@@ -74,7 +74,7 @@ namespace LamaMania.HomeComponents
         /// 
         /// </summary>
         /// <param name="res"></param>
-        protected override void onGbxAsyncResult(GbxCall res)
+     /*   protected override void onGbxAsyncResult(GbxCall res)
         {
             switch (handles[res.Handle])
             {
@@ -104,18 +104,36 @@ namespace LamaMania.HomeComponents
                     setLabel(l_players, Program.lama.nbPlayers + "/" + Program.lama.maxPlayers);
                     break;
             }
+        }*/
+
+
+
+        private void onGetScriptName(GbxCall res)
+        {
+            Hashtable htscript = res.getHashTable();
+            string script = (string)htscript["CurrentValue"];
+            if (script.ToLower().Contains(".script.txt"))
+            {
+                script = subsep(script, 0, ".");
+            }
+            setLabel(this.l_gameMode, script);
+            initGameModeCombo(script);
         }
 
+        private void onGetCurrentMapIndex(GbxCall res)
+        {
+         
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="res"></param>
-        public override void onGbxCallBack(GbxCallbackEventArgs res)
+      /*  public override void onGbxCallBack(GbxCallbackEventArgs res)
         {
             switch (res.Response.MethodName)
             {
                 case "ManiaPlanet.BeginMap":   
-                    asyncRequest(GetScriptName);
+                    asyncRequest(GetScriptName, onGetScriptName);
                     setLabelColor(l_map, Color.Green);
                     break;
                 case "ManiaPlanet.BaginMatch":
@@ -148,7 +166,7 @@ namespace LamaMania.HomeComponents
 
                 case "TrackMania.BeginChallenge":
                 case "TrackMania.BeginRace":
-                    asyncRequest(GetScriptName);
+                    asyncRequest(GetScriptName, onGetScriptName);
                     setLabelColor(l_map, Color.Green);
 
                     List<MapInfo> test = Program.lama.maps;
@@ -157,7 +175,7 @@ namespace LamaMania.HomeComponents
                     Hashtable ht = (Hashtable)res.Response.Params[0];
                     setLabel(l_map, ManiaColors.getText((string)ht["Name"]));
                //     Program.lama.previousMapId = (int)ht["UId"];
-                    asyncRequest("GetCurrentMapIndex");
+                    asyncRequest("GetCurrentMapIndex",onGetCurrentMapIndex);
                     break;
 
                 case GBXCallBacks.ManiaPlanet_PlayerConnect:
@@ -169,7 +187,7 @@ namespace LamaMania.HomeComponents
         }
 
         
-
+    */
 
 
         private void B_makeNextGameMode_Click(object sender, EventArgs e)
@@ -185,7 +203,7 @@ namespace LamaMania.HomeComponents
                     gm = gameMode;
                 }
 
-                asyncRequest(SetScriptName, gm);
+                asyncRequest(SetScriptName, onGetScriptName);
             }
         }
 

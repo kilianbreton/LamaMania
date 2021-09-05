@@ -576,37 +576,7 @@ namespace LamaPlugin
             }
         }
 
-        /// <summary>
-        /// Call onGbxAsyncResult on InGamePlugins
-        /// </summary>
-        /// <param name="res"></param>
-        public void onGbxAsyncResult(GbxCall res)
-        {
-            //Send to plugins --------------------------------------------------------------------------------
-            foreach (InGamePlugin plug in InGamePlugins)
-            {
-                try
-                {
-                    plug.onGbxAsyncResult(res);
-                }
-                catch (Exception e)
-                {
-                    lama.log("ERROR", "Plugins " + plug.PluginName + " throws Gbx Error :" + e.Message);
-                }
-            }
-            //Send to plugins --------------------------------------------------------------------------------
-            foreach (HomeComponentPlugin plug in HomeComponentPlugins)
-            {
-                try
-                {
-                 //   plug.onGbxAsyncResult(res);
-                }
-                catch (Exception e)
-                {
-                    lama.log("ERROR", "Plugins " + plug.PluginName + " throws Gbx Error :" + e.Message);
-                }
-            }
-        }
+     
   
         /// <summary>
         /// Load Tab and InGameList in configserv
@@ -748,22 +718,6 @@ namespace LamaPlugin
             this.hcFile.write(HomeComponentPlugins);
         }
 
-        [Obsolete]
-        public bool isOffical(IBasePlugin plugin)
-        {
-            try
-            {
-
-                byte[] plainText = encoder.GetBytes(plugin.PluginName);
-                byte[] signature = StringToByteArray(plugin.PluginKey);
-
-                return (rsaRead.VerifyData(plainText, new SHA1CryptoServiceProvider(), signature));
-            }
-            catch(Exception e )
-            {
-                return false;
-            }
-        }
 
         public bool isOfficial(DllLoader loader)
         {
@@ -878,6 +832,17 @@ namespace LamaPlugin
 
                         break;
 
+                    case RequirementType.ExternalTool:
+
+                        XmlNode n = lama.mainConfig[0]["externalTools"];
+                        XmlNode alias = n.getChildByAttribute("alias", r.Value);
+                        if(alias == null)
+                        {
+                            badRequirement = true;
+                            brInfos += "Required tool '" + r.Value + "' does not exists";
+                        }
+
+                        break;
                     case RequirementType.FILE:
                         try
                         {

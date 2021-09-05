@@ -25,7 +25,7 @@ namespace UAsecoPlugin
             this.Author = "Kilian";
             this.Version = "0.1";
             this.Requirements.Add(new Requirement(RequirementType.FILE, "exemple.xml"));
-            this.Requirements.Add(new Requirement(RequirementType.Alias, "php"));
+            this.Requirements.Add(new Requirement(RequirementType.ExternalTool, "php"));
 
             adminLogins.Add("kamphare");
         }
@@ -35,27 +35,7 @@ namespace UAsecoPlugin
            
         }
 
-        public override void onGbxAsyncResult(GbxCall res)
-        {
-            if (!res.Error)
-            {
-                if (this.handles.ContainsKey(res.Handle))
-                {
-                    switch (this.handles[res.Handle])
-                    {
-                        case "GetBanList":
-                            break;
-                    }
-                }
-            }
-            else //Error
-            {
-                string errStr = "[" + this.PluginName + "]" + res.ErrorCode + " : " + res.ErrorString;
-
-                Log("ERROR", errStr); //Log file
-                OnError(this, "Error", errStr); //Show error dialog
-            }
-        }
+     /*
 
         public override void onGbxCallBack(object sender, GbxCallbackEventArgs args)
         {
@@ -121,20 +101,27 @@ namespace UAsecoPlugin
                     }
                     break;
             }
-        }
+        }*/
 
         public override bool onLoad(LamaConfig lamaConfig)
         {
             bool ret = (lamaConfig.configFiles.ContainsKey("exemple.xml")); //&& lamaConfig.scriptName == "TimeAttack");
             if (ret)
             {
-                config = lamaConfig.configFiles["exemple.xml"];
-                List<XmlNode> lst = config[0]["Admins"].Childs;
-                foreach(XmlNode n in lst)
+                try
                 {
-                    this.adminLogins.Add(n.Value);
+                    config = lamaConfig.configFiles["exemple.xml"];
+                    List<XmlNode> lst = config[0]["Admins"].Childs;
+                    foreach (XmlNode n in lst)
+                    {
+                        this.adminLogins.Add(n.Value);
+                    }
                 }
-
+                catch(Exception e)
+                {
+                    Log("ERROR", e.Message);
+                    ret = false;
+                }
 
             }
             return ret;

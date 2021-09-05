@@ -27,20 +27,9 @@ namespace UAsecoPlugin
            
         }
      
-        protected override void onGbxAsyncResult(GbxCall res)
-        {
-            switch (res.MethodName)
-            {
-                case "ManiaPlanet.ServerStart":
-                    
-                    break;
-            }
-        }
+     
 
-        public override void onGbxCallBack(GbxCallbackEventArgs res)
-        {
-          
-        }
+     
 
        
     }

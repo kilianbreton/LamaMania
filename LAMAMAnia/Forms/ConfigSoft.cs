@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LamaMania.UserConstrols;
 using NTK.IO.Xml;
+using RestSharp;
+using static LamaMania.Program;
 
 namespace LamaMania
 {
@@ -28,6 +30,17 @@ namespace LamaMania
             InitializeComponent();
 
             this.config = Program.lama.mainConfig;
+
+            this.tb_cachePath.Text = this.config[0]["cachePath"].Value;
+            this.tb_ressourcePath.Text = this.config[0]["ressourcesPath"].Value;
+            this.tb_logPath.Text = this.config[0]["logPath"].Value;
+
+            foreach(string str in lama.localesManager.availableLanguages())
+            {
+                cb_lang.Items.Add(str);
+            }
+
+
             XmlNode exTools = config[0]["externalTools"];
 
             foreach(XmlNode n in exTools)
@@ -39,6 +52,24 @@ namespace LamaMania
 
 
 
+            //Call API
+
+            RestClient client = new RestClient("http://lamamania.yoxclan.fr/Api");
+
+            RestRequest request = new RestRequest("librarys.php", DataFormat.Json);
+
+            IRestResponse response = client.Get(request);
+
+            JsonArray pluginsList = (JsonArray)SimpleJson.DeserializeObject(response.Content);
+
+            foreach(JsonObject obj in pluginsList)
+            {
+                if(obj.TryGetValue("name", out object pluginName))
+                {
+                    MessageBox.Show((string)pluginName);
+                }
+             
+            }
 
 
         }
@@ -80,6 +111,19 @@ namespace LamaMania
 
             this.config.save(false);
 
+        }
+
+        private void tog_devmode_CheckedChanged(object sender)
+        {
+            if(tog_devmode.Checked)
+            {
+                MessageBox.Show("Attention le DevMode est un mode d'utilisation pour les développeurs et créateurs, il ne convient pas à une utilisation normale du programme", "WARNING", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void b_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -132,7 +132,7 @@ namespace LamaController
             asyncRequest(GetServerOptions, getServerOptions);
             asyncRequest(GetCurrentGameInfo, getCurrentGameInfo);
 
-            //Script
+        /*    //Script
             asyncRequest(GetModeScriptSettings, getModeScriptSettings);
             asyncRequest(GetScriptName);
 
@@ -146,7 +146,7 @@ namespace LamaController
             asyncRequest(GetBanList, lama.maxPlayers + lama.maxSpectators, 0);
             asyncRequest(GetBlackList, lama.maxPlayers + lama.maxSpectators, 0);
             asyncRequest(getMapList, GetMapList, 999, 0);
-            asyncRequest(checkError, ChatSendServerMessage, "$o$12d LamaMania V 0.0.1 ....");
+            asyncRequest(checkError, ChatSendServerMessage, "$o$12d LamaMania V 0.0.1 ....");*/
             
         }
 
@@ -217,7 +217,7 @@ namespace LamaController
             setCheckBox(ch_mapDown, false);
             setCheckBox(ch_horns, false);
             */
-            Program.lama.pluginManager.onGbxAsyncResult(res);
+          
         }
 
         void getCurrentGameInfo(GbxCall res)
@@ -295,24 +295,10 @@ namespace LamaController
             }
         }
 
-        private void asyncResult(GbxCall res)
-        {
-            lama.pluginManager.onGbxAsyncResult(res);
-        }
+     
 
 
-        void asyncRequest(String methodName, params object[] param)
-        {
-            if (lama.connected)
-            {
-                if (param == null)
-                    param = new object[] { };
-
-                int handle = this.client.AsyncRequest(methodName, param, asyncResult);
-                this.handles.Add(handle, methodName);
-                GBXMethods.commonHandles.Add(handle, methodName);
-            }
-        }
+     
 
         void asyncRequest(GbxCallCallbackHandler handler, String methodName, params object[] param)
         {

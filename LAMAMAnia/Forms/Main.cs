@@ -451,7 +451,7 @@ namespace LamaMania
                     }
 
                     //Send to plugins --------------------------------------------------------------------------------
-                    Program.lama.pluginManager.onGbxAsyncResult(res);
+                  //  Program.lama.pluginManager.onGbxAsyncResult(res);
 
                 }
                 else
@@ -514,7 +514,7 @@ namespace LamaMania
             setCheckBox(ch_mapDown, false);
             setCheckBox(ch_horns, false);
 
-            Program.lama.pluginManager.onGbxAsyncResult(res);
+          //  Program.lama.pluginManager.onGbxAsyncResult(res);
         }
 
         void getCurrentGameInfo(GbxCall res)

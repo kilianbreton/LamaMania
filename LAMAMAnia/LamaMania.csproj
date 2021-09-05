@@ -86,8 +86,12 @@
     <Reference Include="NTK">
       <HintPath>D:\Programmation\NTK\ServerAdmin\Kernel\NTK.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=106.12.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.12.0\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -106,8 +110,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnvironmentManager.cs" />
-    <Compile Include="ExtensionsMethods.cs" />
+    <Compile Include="Forms\Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Other\ConfigCheck.cs" />
+    <Compile Include="Managers\EnvironmentManager.cs" />
+    <Compile Include="Other\ExtensionsMethods.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +142,12 @@
     </Compile>
     <Compile Include="Forms\LoadForm.Designer.cs">
       <DependentUpon>LoadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogViewer.Designer.cs">
+      <DependentUpon>LogViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\NewServer.cs">
       <SubType>Form</SubType>
@@ -168,7 +185,6 @@
     <Compile Include="HomeComponents\HCStatus.Designer.cs">
       <DependentUpon>HCStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalesManager.cs" />
     <Compile Include="Other\GameMode.cs" />
     <Compile Include="Forms\ConfigServ.cs">
       <SubType>Form</SubType>
@@ -188,6 +204,9 @@
     <Compile Include="Forms\HomeLauncher.Designer.cs">
       <DependentUpon>HomeLauncher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Other\LamaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Other\LogXMLRPC.cs" />
     <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
@@ -203,7 +222,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaticMethods.cs" />
+    <Compile Include="Managers\ServersManager.cs" />
+    <Compile Include="Other\StaticMethods.cs" />
     <Compile Include="Other\Structs.cs" />
     <Compile Include="Updater.cs" />
     <Compile Include="UserConstrols\MatchSettings\BoolMatchSetting.cs">
@@ -231,6 +251,12 @@
       <DependentUpon>ExternalTool.cs</DependentUpon>
     </Compile>
     <Compile Include="UserConstrols\MatchSettings\IMatchSetting.cs" />
+    <Compile Include="UserConstrols\PluginFlp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConstrols\PluginFlp.Designer.cs">
+      <DependentUpon>PluginFlp.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserConstrols\ScriptSettings\IScriptSetting.cs" />
     <Compile Include="UserConstrols\ScriptSettings\BooleanScriptSetting.cs">
       <SubType>UserControl</SubType>
@@ -280,11 +306,17 @@
     <EmbeddedResource Include="Forms\LoadForm.resx">
       <DependentUpon>LoadForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogViewer.resx">
+      <DependentUpon>LogViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewServer.resx">
       <DependentUpon>NewServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeComponents\HCGameInfos.resx">
       <DependentUpon>HCGameInfos.cs</DependentUpon>
@@ -319,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserConstrols\MatchSettings\StringMatchSetting.resx">
       <DependentUpon>StringMatchSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConstrols\PluginFlp.resx">
+      <DependentUpon>PluginFlp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserConstrols\ScriptSettings\BooleanScriptSetting.resx">
       <DependentUpon>BooleanScriptSetting.cs</DependentUpon>

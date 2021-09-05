@@ -84,7 +84,7 @@ namespace BasicsCommandsPlugin
                 {
                     case "ADMIN":
                     case "MASTERADMIN":
-                        asyncRequest(GBXMethods.SendDisplayManialinkPageToLogin, login, makePanelManiaLink().getXmlText(), 0, false);
+                      //  asyncRequest(GBXMethods.SendDisplayManialinkPageToLogin, login, makePanelManiaLink().getXmlText(), 0, false);
                         break;
                     default:
                         
@@ -106,7 +106,7 @@ namespace BasicsCommandsPlugin
             switch (action)
             {
                 case "0":   //Close
-                    asyncRequest(GBXMethods.SendHideManialinkPageToLogin);
+                 //   asyncRequest(GBXMethods.SendHideManialinkPageToLogin);
                     break;
 
                 case "Restart":   //Restart
@@ -177,14 +177,8 @@ namespace BasicsCommandsPlugin
         //==================================================================================================================
         //=[UNUSED]=========================================================================================================
         //==================================================================================================================
-        public override void onGbxAsyncResult(GbxCall res)
-        {
-
-        }
-        public override void onGbxCallBack(object sender, GbxCallbackEventArgs args)
-        {
-
-        }
+     
+      
         public override void onDisconnect()
         {
 

@@ -9,6 +9,6 @@ namespace Records
 {
     public class AuthMyPlugin : AuthPlugin
     {
-        public AuthMyPlugin() : base("4c99f4e29d55c48e0bfc8d14e28e6d21990a82f04be64248defadfad0e3f64befd72cbfdf4b5dc4bb78a69c89f8764df2078c9e4cda09976dbc62d62abcbf132fa079db78d7911be34edc51e0057a82da7938981e724dfb4ce6191760ef48363c6f6fb0f1fce9c81e1ba47412da3cf951fe5d0a3934fd0420266cb3da360174c") { }
+        public AuthMyPlugin() : base("89086ba7c0573c52977b6abb188650c55a5c77001fc1ee013c78a61eaa1c74a6f18c74baf99ba5fef21abd7ab556bded832f2d9302c0f20943fcf28f83618e5419632455b03c0b7a9101e08cfc8a68f10842aae5dbef570e23ba71c64d45b6db9c2fdde801ecf9340a519112f8fc3df75bc77a816bfeddf026f7a53688f6634e") { }
     }
 }

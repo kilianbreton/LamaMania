@@ -333,15 +333,8 @@ namespace Records
             return logins;
         }
 
-        public override void onGbxAsyncResult(GbxCall res)
-        {
-            
-        }
+   
 
-        public override void onGbxCallBack(object sender, GbxCallbackEventArgs args)
-        {
-            
-        }
 
         public override void onDisconnect()
         {

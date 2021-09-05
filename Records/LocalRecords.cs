@@ -101,7 +101,7 @@ namespace Records
 
         private void callBack_PlayerCheckpoint(object sender, GbxCallbackEventArgs args)
         {
-            asyncRequest(GBXMethods.ChatSend, "NOTICE -> CallBack PlayerCheckPoint");
+            asyncRequest(checkError, GBXMethods.ChatSend, "NOTICE -> CallBack PlayerCheckPoint");
             ArrayList param = args.Response.Params;
             int checkPointIndex = (int)param[4];
             int uid = (int)param[0];
@@ -113,13 +113,13 @@ namespace Records
                 if (p.Live_checkPoints == null)
                 {
                     p.Live_checkPoints = new List<int>();
-                    asyncRequest(GBXMethods.ChatSend, "Init checkPoints list");
+                    asyncRequest(checkError, GBXMethods.ChatSend, "Init checkPoints list");
                 }
 
                 if (p.Live_checkPoints.Count == checkPointIndex)
                 {
                     p.Live_checkPoints.Add(timeOrScore);
-                    asyncRequest(GBXMethods.ChatSend, "Add cp in list");
+                    asyncRequest(checkError, GBXMethods.ChatSend, "Add cp in list");
                 }
             }
         }
@@ -303,14 +303,6 @@ namespace Records
 
         }
 
-        public override void onGbxCallBack(object sender, GbxCallbackEventArgs args)
-        {
-            
-        }
-
-        public override void onGbxAsyncResult(GbxCall res)
-        {
-           
-        }
+     
     }
 }

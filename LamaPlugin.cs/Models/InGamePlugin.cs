@@ -75,17 +75,7 @@ namespace LamaPlugin
         // PROTECTED /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////
 
-        /// <summary>
-        /// Send async request
-        /// </summary>
-        /// <param name="methodeName"></param>
-        /// <param name="param"></param>
-        protected void asyncRequest(String methodeName, params object[] param)
-        {
-            if (param == null)
-                param = new object[] { };
-            this.handles.Add(this.client.AsyncRequest(methodeName, param, onGbxAsyncResult), methodeName);
-        }
+    
     
         /// <summary>
         /// Async request
@@ -151,7 +141,7 @@ namespace LamaPlugin
             {
                 Callbacks[args.Response.MethodName](sender, args);
             }
-            onGbxCallBack(sender, args);
+         
         }
 
         /// <summary>
@@ -160,18 +150,9 @@ namespace LamaPlugin
         /// <param name="lamaConfig"></param>
         public abstract bool onLoad(LamaConfig lamaConfig);
 
-        /// <summary>
-        /// CallBack Event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        public abstract void onGbxCallBack(object sender, GbxCallbackEventArgs args);
+      
      
-        /// <summary>
-        /// Result of async request
-        /// </summary>
-        /// <param name="res"></param>
-        public abstract void onGbxAsyncResult(GbxCall res);
+     
 
         public void onPluginUpdate()
         {

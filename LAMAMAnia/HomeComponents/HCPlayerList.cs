@@ -60,7 +60,7 @@ namespace LamaMania.HomeComponents
         /// 
         /// </summary>
         /// <param name="res"></param>
-        protected override void onGbxAsyncResult(GbxCall res)
+     /*   protected override void onGbxAsyncResult(GbxCall res)
         {
             if (!res.Error)
             {
@@ -89,10 +89,11 @@ namespace LamaMania.HomeComponents
                 Log("ERROR", "[" + PluginName + "]>" + res.ErrorCode + " : " + res.ErrorString);
             }
 
-
-
+    
 
         }
+        */
+
 
     }
 }

@@ -23,7 +23,7 @@
  *
  * ----------------------------------------------------------------------------------*/
 
-#define CACHE_DEBUG
+//#define CACHE_DEBUG
 
 using System;
 using System.Collections.Generic;
@@ -37,6 +37,7 @@ namespace LamaMania
     static class Program
     {
         public static Lama lama;
+        public static ServersManager serversManager;
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>

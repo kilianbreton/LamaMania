@@ -18,7 +18,7 @@ namespace LamaPlugin
         FILE,
         CONTEXT,
         XmlRpcConnection,
-        Alias,
+        ExternalTool,
     }
 
     [Serializable]

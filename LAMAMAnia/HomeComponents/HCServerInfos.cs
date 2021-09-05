@@ -73,23 +73,7 @@ namespace LamaMania.HomeComponents
             base.onPluginUpdate();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="res"></param>
-        protected override void onGbxAsyncResult(GbxCall res)
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="res"></param>
-        public override void onGbxCallBack(GbxCallbackEventArgs res)
-        {
-
-        }
-
+     
 
 
     }

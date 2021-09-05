@@ -48,37 +48,42 @@ namespace LamaPlugin
     public class Lama
     {
         /// <summary>
-        /// 
-        /// </summary>
-    //    public static LocalesManager localesManager;
-        /// <summary>
         /// Start mode : -1 = select and start, >=0 = autostart id
         /// </summary>
         public int startMode = -1;
+
         /// <summary>
         /// Servers list
         /// </summary>
-        public Dictionary<int, String> servers = new Dictionary<int, string>();
+        // public Dictionary<int, String> servers = new Dictionary<int, string>();
+
+        public LocalesManager localesManager;
+
         /// <summary>
         /// Plugin manager
         /// </summary>
         public PluginManager pluginManager;
+        
         /// <summary>
         /// Index of selected server
         /// </summary>
         public int serverIndex;
+        
         /// <summary>
         /// Main xml config
         /// </summary>
         public XmlDocument mainConfig;
+        
         /// <summary>
         /// 
         /// </summary>
         public IniDocument iniFile;
+        
         /// <summary>
         /// 
         /// </summary>
         public bool externalServer = false;
+        
         /// <summary>
         /// 
         /// </summary>
@@ -93,78 +98,88 @@ namespace LamaPlugin
         /// Make maniaplanet invisible
         /// </summary>
         public bool invisibleServer = false;
+        
         /// <summary>
         /// Server is launched
         /// </summary>
         public bool launched = false;
+        
         /// <summary>
         /// Is remote
         /// </summary>
         public bool remote = false;
+        
         /// <summary>
         /// Remote IP
         /// </summary>
         public string remoteAdrs;
+        
         /// <summary>
         /// Remote port
         /// </summary>
         public int remotePort;
-        /// <summary>
-        /// Language Module
-        /// </summary>
-       // public BaseLang lang;
+
+     
         /// <summary>
         /// 
         /// </summary>
         public Dictionary<string, string> scriptSettingsLocales = new Dictionary<string, string>();
+        
         /// <summary>
         /// 
         /// </summary>
         public Process serverProcess;
+        
         /// <summary>
         /// 
         /// </summary>
         public bool serverProcessExited = true;
+        
         /// <summary>
         /// 
         /// </summary>
         public bool connected = false;
+        
         /// <summary>
         /// 
         /// </summary>
         public bool useLogs = true;
+        
         /// <summary>
         /// 
         /// </summary>
         public Log lamaLogger;
-        /// <summary>
-        /// 
-        /// </summary>
-    //    public LoadForm loadForm = new LoadForm();
+        
         /// <summary>
         /// 
         /// </summary>
         public Thread loadThread;
+        
         /// <summary>
         /// 
         /// </summary>
         public int previousMapId = -1;
+        
         /// <summary>
         /// 
         /// </summary>
         public int currentMapId = -1;
+        
         /// <summary>
         /// 
         /// </summary>
         public int nbPlayers = 0;
+        
         /// <summary>
         /// 
         /// </summary>
         public int maxPlayers = 0;
+        
         /// <summary>
         /// 
         /// </summary>
         public int maxSpectators = 0;
+        
         /// <summary>
         /// 
         /// </summary>

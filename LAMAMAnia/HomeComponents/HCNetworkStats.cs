@@ -49,22 +49,7 @@ namespace LamaMania.HomeComponents
             this.netStatsTimer.Interval = 1500;
             this.netStatsTimer.Start();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="res"></param>
-        protected override void onGbxAsyncResult(GbxCall res)
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="res"></param>
-        public override void onGbxCallBack(GbxCallbackEventArgs res)
-        {
-
-        }
+      
         /// <summary>
         /// 
         /// </summary>

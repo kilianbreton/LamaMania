@@ -40,14 +40,7 @@ namespace LamaPlugin
             return pmInterCall(this, target, new InterPluginArgs(0, callName, args));
         }
 
-        protected void asyncRequest(String methodeName, params object[] param)
-        {
-            if (param == null)
-                param = new object[] { };
-
-            if (this.client != null)
-                this.handles.Add(this.client.AsyncRequest(methodeName, param, onGbxAsyncResult), methodeName);
-        }
+      
 
         protected void asyncRequest(GbxCallCallbackHandler handler, String methodName, params object[] param)
         {
@@ -83,7 +76,7 @@ namespace LamaPlugin
             {
                 Callbacks[args.Response.MethodName](sender, args);
             }
-            onGbxCallBack(args);
+          
         }
 
 
@@ -111,13 +104,7 @@ namespace LamaPlugin
         }
 
         
-        protected virtual void onGbxAsyncResult(GbxCall res)
-        {   
-        }
-
-        public virtual void onGbxCallBack(GbxCallbackEventArgs res)
-        {   
-        }
+     
 
         public void CheckCanMove()
         {

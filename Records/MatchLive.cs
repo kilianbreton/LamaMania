@@ -92,16 +92,7 @@ namespace Records
             //DO nothing
         }
 
-        public override void onGbxAsyncResult(GbxCall res)
-        {
-            
-        }
-
-        public override void onGbxCallBack(object sender, GbxCallbackEventArgs args)
-        {
-    
-        }
-
+ 
 
     }
 }

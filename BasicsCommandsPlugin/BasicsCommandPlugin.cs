@@ -68,18 +68,8 @@ namespace BasicsCommandsPlugin
             return ret;
         }
 
-        public override void onGbxAsyncResult(GbxCall res)
-        {
-            if (this.handles.ContainsKey(res.Handle))
-            {
-                switch (this.handles[res.Handle])
-                {
-                    case "":
-                        break;
-                }
-            }
-        }
-
+      
+/*
         public override void onGbxCallBack(object sender, GbxCallbackEventArgs args)
         {
             switch (args.Response.MethodName)
@@ -188,7 +178,7 @@ namespace BasicsCommandsPlugin
                     }
                     break;
             }
-        }
+        }*/
 
 
         private Player searchByLogin(string login)
