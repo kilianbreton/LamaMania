@@ -41,7 +41,6 @@ using System.Threading;
 using NTK.IO.Xml;
 using NTK.IO;
 using NTK.Database;
-using LamaLang;
 using LamaPlugin;
 using static LamaMania.StaticMethods;
 using static LamaMania.Program;

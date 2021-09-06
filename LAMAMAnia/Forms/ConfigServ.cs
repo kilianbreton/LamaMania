@@ -38,7 +38,7 @@ using NTK.IO.Xml;
 using static NTK.Other.NTKF;
 using static LamaMania.StaticMethods;
 using static LamaMania.Program;
-using LamaLang;
+
 using LamaPlugin;
 using GBXMapParser;
 using LamaMania.UserConstrols;

@@ -397,10 +397,6 @@
       <Project>{f59b1bd4-1531-4a3f-8f5d-ea982e49b34d}</Project>
       <Name>GBXMapParser</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LamaLang\LamaLang.csproj">
-      <Project>{186ecf1d-2bed-41e1-ad22-4532c349c0e5}</Project>
-      <Name>LamaLang</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LamaPlugin.cs\LamaPlugin.csproj">
       <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
       <Name>LamaPlugin</Name>

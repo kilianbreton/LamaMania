@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("Test_PMCache")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("LamaDevTools")]
+[assembly: AssemblyDescription("Tools for plugins dev")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Test_PMCache")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyProduct("LamaDevTools")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("7069af15-061c-48fc-895f-ae1355ba9d3b")]
+[assembly: Guid("c74cf82c-83ab-43ef-b93a-c1c81dd4e46b")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
