@@ -69,18 +69,18 @@
     <Compile Include="SayHello.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LamaPlugin.cs\LamaPlugin.csproj">
-      <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
-      <Name>LamaPlugin</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Commands.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PluginList.resx">
       <DependentUpon>PluginList.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LamaPlugin\LamaPlugin.csproj">
+      <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
+      <Name>LamaPlugin</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

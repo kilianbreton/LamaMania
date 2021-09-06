@@ -70,7 +70,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LamaPlugin.cs\LamaPlugin.csproj">
+    <ProjectReference Include="..\LamaPlugin\LamaPlugin.csproj">
       <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
       <Name>LamaPlugin</Name>
     </ProjectReference>
