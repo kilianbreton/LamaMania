@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using NTK.IO.Xml;
 using static NTK.Other.NTKF;
 using NTK;
-using XmlRpcEncrypted;
+
 using TMXmlRpcLib;
 using NTK.EventsArgs;
 using System.IO.Compression;
@@ -23,7 +23,7 @@ namespace ConsoleTest
 {
     class Program
     {
-        static SXmlRpcEncrypted service;
+        
         static NTKClient client;
 
         public static List<string> tChars;
@@ -103,11 +103,7 @@ namespace ConsoleTest
             Console.WriteLine("Authentified");
         }
 
-        static async void client_getservice(object sender, GetServiceEventArgs args)
-        {
-            service = (SXmlRpcEncrypted)args.get;
-            await service.c_asyncRequest("NextMap", new object[] { }, asyncResult);
-        }
+      
 
         static void client_connect(object sender, OnConnectEventArgs args)
         {

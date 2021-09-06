@@ -11,7 +11,6 @@ using TMXmlRpcLib;
 using System.IO;
 using System.Net;
 using LamaPlugin;
-using XmlRpcEncrypted;
 using NTK.Service;
 using CGE.OUT;
 using static LamaController.Program;

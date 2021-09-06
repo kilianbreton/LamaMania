@@ -74,10 +74,6 @@
       <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
       <Name>LamaPlugin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XmlRpcEncrypted\XmlRpcEncrypted.csproj">
-      <Project>{623e08a4-74e0-4cb6-8cf9-66b8d65b4ad9}</Project>
-      <Name>XmlRpcEncrypted</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
