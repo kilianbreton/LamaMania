@@ -61,7 +61,6 @@
     <Compile Include="ConfigServControl.Designer.cs">
       <DependentUpon>ConfigServControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExempleInGame.cs" />
     <Compile Include="ExempleUpdateMethod.cs" />
     <Compile Include="MainHc.cs">
       <SubType>UserControl</SubType>

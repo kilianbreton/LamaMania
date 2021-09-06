@@ -53,12 +53,55 @@ namespace LamaMania.HomeComponents
         /// <param name="cfg"></param>
         public override void onLoad(LamaConfig cfg)
         {
-            //asyncRequest(GBXMethods.GetMapList, res =>
-            //{
-            //    res.
-            //});
-            //Do checks
+            Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMap, (s, a) => 
+            {
+                asyncRequest(GetScriptName, onGetScriptName);
+                setLabelColor(l_map, Color.Green);
+            });
+            Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMatch, (s, a) =>
+            {
+                onBeginChallenge(s, a);
+                setLabelColor(l_map, Color.Green);
+            });
+            Callbacks.AddListener(GBXCallBacks.ManiaPlanet_EndMap, (s, a) =>
+            {
+                setLabelColor(l_map, Color.Red); 
+            });
+            Callbacks.AddListener(GBXCallBacks.ManiaPlanet_EndMatch, (s, a) =>
+            {
+                setLabelColor(l_map, Color.Orange);
+            });
+            Callbacks.AddListener("TrackMania.EndRace", (s, a) =>
+            {
+                setLabelColor(l_map, Color.Orange);
+            });
+            Callbacks.AddListener("TrackMania.EndChallenge", (s, a) =>
+            {
+                setLabelColor(l_map, Color.Red);
+            });
+
+            Callbacks.AddListener("TrackMania.BeginChallenge", onBeginChallenge);
+            Callbacks.AddListener("TrackMania.BeginRace", onBeginChallenge);
+           
+            Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerConnect, (s, a) =>
+            {
+                setLabel(l_players, Program.lama.nbPlayers + "/" + Program.lama.maxPlayers);
+            });
         }
+
+        void onBeginChallenge(object sender, GbxCallbackEventArgs args)
+        {
+            asyncRequest(GetScriptName, onGetScriptName);
+            setLabelColor(l_map, Color.Green);
+
+            List<MapInfo> test = Program.lama.maps;
+
+            Hashtable ht = (Hashtable)args.Response.Params[0];
+            setLabel(l_map, ManiaColors.getText((string)ht["Name"]));
+            //Program.lama.previousMapId = (int)ht["UId"];
+            asyncRequest(GBXMethods.GetCurrentMapIndex, onGetCurrentMapIndex);
+        }
+
 
         /// <summary>
         /// 
@@ -66,7 +109,6 @@ namespace LamaMania.HomeComponents
         public override void onPluginUpdate()
         {
             this.l_players.setText(Program.lama.nbPlayers + "/" + Program.lama.maxPlayers);
-
             base.onPluginUpdate();
         }
 
@@ -124,71 +166,9 @@ namespace LamaMania.HomeComponents
         {
          
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="res"></param>
-      /*  public override void onGbxCallBack(GbxCallbackEventArgs res)
-        {
-            switch (res.Response.MethodName)
-            {
-                case "ManiaPlanet.BeginMap":   
-                    asyncRequest(GetScriptName, onGetScriptName);
-                    setLabelColor(l_map, Color.Green);
-                    break;
-                case "ManiaPlanet.BaginMatch":
-                    setLabelColor(l_map, Color.Green);
-                    break;
-                case "ManiaPlanet.EndMap":
-                    setLabelColor(l_map, Color.Red);
-                    break;
-                case "ManiaPlanet.EndMatch":
-                    setLabelColor(l_map, Color.Orange);
-                    break;
-                case "TrackMania.EndRace":
-                    setLabelColor(l_map, Color.Orange);
-                    break;
+    
 
-                case "TrackMania.EndRound":
-
-                    break;
-
-                case "TrackMania.ChallengeListModified":
-
-                    break;
-
-                case "TrackMania.EndChallenge":
-                    setLabelColor(l_map, Color.Red);
-                    break;
-
-               
-                        
-
-                case "TrackMania.BeginChallenge":
-                case "TrackMania.BeginRace":
-                    asyncRequest(GetScriptName, onGetScriptName);
-                    setLabelColor(l_map, Color.Green);
-
-                    List<MapInfo> test = Program.lama.maps;
-
-
-                    Hashtable ht = (Hashtable)res.Response.Params[0];
-                    setLabel(l_map, ManiaColors.getText((string)ht["Name"]));
-               //     Program.lama.previousMapId = (int)ht["UId"];
-                    asyncRequest("GetCurrentMapIndex",onGetCurrentMapIndex);
-                    break;
-
-                case GBXCallBacks.ManiaPlanet_PlayerConnect:
-                    setLabel(l_players, Program.lama.nbPlayers + "/" + Program.lama.maxPlayers);
-
-                    break;
-
-            }
-        }
-
-        
-    */
-
+  
 
         private void B_makeNextGameMode_Click(object sender, EventArgs e)
         {

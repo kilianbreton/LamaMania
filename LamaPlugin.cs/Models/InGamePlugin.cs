@@ -42,7 +42,10 @@ namespace LamaPlugin
         private XmlRpcClient client;
         private PMInterPluginCall pmInterCall;
         protected Dictionary<int, string> handles = new Dictionary<int, string>();
-        protected Dictionary<string, GbxCallbackHandler> Callbacks = new Dictionary<string, GbxCallbackHandler>();
+        // protected Dictionary<string, GbxCallbackHandler> Callbacks = new Dictionary<string, GbxCallbackHandler>();
+        protected CallbacksManager Callbacks = new CallbacksManager();
+
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // CONSTRUCTOR ///////////////////////////////////////////////////////////////////////////////////
@@ -137,10 +140,7 @@ namespace LamaPlugin
 
         public void onGbxCallBack(object sender, GbxCallbackEventArgs args, bool none)
         {
-            if (Callbacks.ContainsKey(args.Response.MethodName))
-            {
-                Callbacks[args.Response.MethodName](sender, args);
-            }
+            Callbacks.onGbxCallBack(sender, args);
          
         }
 

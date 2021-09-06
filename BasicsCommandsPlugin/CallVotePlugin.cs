@@ -53,10 +53,9 @@ namespace BasicsCommandsPlugin
                     this.config = lamaConfig.configFiles[CONFIG_NAME];
 
                     
-                    Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerManialinkPageAnswer, callback_ManiaLinkAnswer);
-                    Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerChat, callback_PlayerChat);
-                    Callbacks.Add("TrackManaia_PlayerChat", callback_PlayerChat);
-                    Callbacks.Add(GBXCallBacks.ManiaPlanet_EndMatch, callback_EndMatch);
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerManialinkPageAnswer, callback_ManiaLinkAnswer);
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerChat, callback_PlayerChat);
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_EndMatch, callback_EndMatch);
                     
                     //asyncRequest(checkError, GBXMethods.S)    TODO: Unable maniaplanet CallVote system.
                     return true;

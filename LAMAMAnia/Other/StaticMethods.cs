@@ -147,7 +147,7 @@ namespace LamaMania
             }
             else
             {
-                label.setText(value);
+                label.Text = value;
             }
         }
        

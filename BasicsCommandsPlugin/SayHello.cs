@@ -21,11 +21,9 @@ namespace BasicsCommandsPlugin
             this.PluginFolder = "[NONE]";
             this.PluginKey = "6897964d6c0739edf42f71c8e24a06edc2e07f75e1edda06634524a82d9787181a80f6aae234757a90f7de43754bc5218b89ced248bf0724073fdf1f8f79cfa883c6df96872b2dfbe3d4e78dcf2be10176bac8bade3d10fefbc0ef0a994fa681c7eab963274b1123e86ad8dc6f5313f337096ac62697ee0c4b7d1bae714aca80";
 
-            this.Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerConnect, callBack_PlayerConnect);
-            this.Callbacks.Add("TrackMania.PlayerConnect", callBack_PlayerConnect);
-         
-            this.Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerDisconnect, callBack_PlayerDisconnect);
-            this.Callbacks.Add("TrackMania.PlayerDisconnect", callBack_PlayerDisconnect);
+            this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerConnect, callBack_PlayerConnect);
+            this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerDisconnect, callBack_PlayerDisconnect);
+
 
             this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "UserLevels"));
         }

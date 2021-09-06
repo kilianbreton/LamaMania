@@ -19,11 +19,11 @@ namespace Records
             this.PluginKey = "bffc8b09fff22aa24b9328a5d161e04f09b719782739cb58ab6b58dc851066b9e983d0b1f2016311b3f24cbba72652bcf2afdb14b826c2d011fa00219bd1baf0395818248f29cf23c117ec0d1dec94d405d71fad45cec4915c05d65296d8956642ba5811a44abae2c6f7f5593e99260a53659ff99148933101724e923e944362";
             this.Requirements.Add(new Requirement(RequirementContext.LOCAL));
 
-            this.Callbacks.Add("ManiaPlanet.BeginMatch", cb_BeginMatch);
-            this.Callbacks.Add("ManiaPlanet.EndMatch", cb_EndMatch);
-            this.Callbacks.Add("ManiaPlanet.BeginMap", cb_BeginMap);
-            this.Callbacks.Add("ManiaPlanet.EndMap", cb_EndMap);
-            this.Callbacks.Add("TrackMania.PlayerFinish", cb_PlayerFinish);
+            this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMatch, cb_BeginMatch);
+            this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_EndMatch, cb_EndMatch);
+            this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMap, cb_BeginMap);
+            this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_EndMap, cb_EndMap);
+            this.Callbacks.AddListener(GBXCallBacks.TrackMania_PlayerFinish, cb_PlayerFinish);
         }
 
 

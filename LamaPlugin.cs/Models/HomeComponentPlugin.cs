@@ -17,7 +17,7 @@ namespace LamaPlugin
         PMInterPluginCall pmInterCall;
 
         protected Dictionary<int, string> handles = new Dictionary<int, string>();
-        protected Dictionary<string, GbxCallbackHandler> Callbacks = new Dictionary<string, GbxCallbackHandler>();
+        protected CallbacksManager Callbacks = new CallbacksManager();
 
         public HomeComponentPlugin()
         {        
@@ -72,11 +72,7 @@ namespace LamaPlugin
 
         public void onGbxCallBack(object sender, GbxCallbackEventArgs args)
         {
-            if (Callbacks.ContainsKey(args.Response.MethodName))
-            {
-                Callbacks[args.Response.MethodName](sender, args);
-            }
-          
+            Callbacks.onGbxCallBack(sender, args);
         }
 
 

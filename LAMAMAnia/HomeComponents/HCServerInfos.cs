@@ -38,6 +38,7 @@ namespace LamaMania.HomeComponents
             this.l_serverTitle.initName("Title : ");
             this.l_version.initName("Version : ");
         }
+   
         /// <summary>
         /// 
         /// </summary>

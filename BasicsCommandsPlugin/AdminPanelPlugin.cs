@@ -47,12 +47,8 @@ namespace BasicsCommandsPlugin
             {
                 this.players = lamaConfig.players;
            
-                Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerManialinkPageAnswer, callback_ManiaLinkAnswer);
-                Callbacks.Add("TrackMania.PlayerManialinkPageAnswer", callback_ManiaLinkAnswer);
-                
-                Callbacks.Add(GBXCallBacks.ManiaPlanet_PlayerConnect, callback_PlayerConnect);
-                Callbacks.Add("TrackMania.PlayerConnect", callback_PlayerConnect);
-
+                Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerManialinkPageAnswer, callback_ManiaLinkAnswer);            
+                Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerConnect, callback_PlayerConnect);
 
                 //asyncRequest(checkError, GBXMethods.S)    TODO: Unable maniaplanet CallVote system.
                 return true;

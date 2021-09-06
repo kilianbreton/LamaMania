@@ -22,7 +22,7 @@ namespace BasicsCommandsPlugin
         
         private List<String> adminLogins = new List<string>();
         private Regex rx = new Regex("^/[a-zA-Z0-9_ ]");
-
+        private XmlDocument locales;
         private List<Player> players;
 
         public BasicsCommandPlugin()
@@ -50,7 +50,8 @@ namespace BasicsCommandsPlugin
             if (ret)
             {
                 this.players = lamaConfig.players;
-           /*   try
+                this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerChat, onPlayerChat);
+              try
                 {
                     this.locales = lamaConfig.configFiles["locales.xml"];
                     XmlDocument admins = lamaConfig.configFiles["admins.xml"];
@@ -62,124 +63,121 @@ namespace BasicsCommandsPlugin
                 catch (Exception)
                 {
                     ret = false;
-                }*/
+                }
             }
 
             return ret;
         }
 
       
-/*
-        public override void onGbxCallBack(object sender, GbxCallbackEventArgs args)
+
+        private void onPlayerChat(object sender, GbxCallbackEventArgs args)
         {
-            switch (args.Response.MethodName)
+            try
             {
-                case "ManiaPlanet.PlayerChat":
-                case "TrackMania.PlayerChat":
-                    try
-                    {
-                        var htPlayerChat = args.Response.Params;
-                        string msg = (string)htPlayerChat[2];
-                        string login = (string)htPlayerChat[1];
+                var htPlayerChat = args.Response.Params;
+                string msg = (string)htPlayerChat[2];
+                string login = (string)htPlayerChat[1];
 
-                        Player playerSender = searchByLogin(login);
+                Player playerSender = searchByLogin(login);
 
 
 
-                        InterPluginResponse r = sendInterPluginCall("UserLever", "GetUserLevel", new Dictionary<string, object>() {
+                InterPluginResponse r = sendInterPluginCall("UserLever", "GetUserLevel", new Dictionary<string, object>() {
                         {"login", login }
                     });
-                        string level = (string)r.Param[login];
+                string level = (string)r.Param[login];
 
 
 
 
 
 
-                        if (rx.IsMatch(msg)) //Check is command (/....)------------------------
-                        {
-                            //Admin Commands////////////////////////////////////////////////////////////////
-                            if (msg.ToLower().Contains("/admin ") && msg.Length > 7 && checkLevel(level, "ADMIN"))
-                            {
-                                msg = subsep(msg, "/admin ");
-                                switch (msg)
-                                {
-                                    case "help":
-                                        asyncRequest(checkError, GBXMethods.ChatSendServerMessageToLogin, login, "Admin commands :\n /Admin #command");
-                                        break;
-                                    case "savematchfile":
-                                        break;
-
-                                    default: //Commands with args or bad command
-                                        if (msg.IndexOf("setgamemode ") == 0)
-                                        {
-
-                                        }
-                                        else if (msg.IndexOf("warn ") == 0)
-                                        {
-
-                                        }
-                                        else if (msg.IndexOf("kick ") == 0)
-                                        {
-
-                                        }
-                                        else if (msg.IndexOf("ban ") == 0)
-                                        {
-
-                                        }
-                                        else if (msg.IndexOf("black ") == 0)
-                                        {
-
-                                        }
-                                        else if (msg.IndexOf("guest ") == 0)
-                                        {
-
-                                        }
-
-                                        break;
-                                }
-                            }
-                            else //User Commands//////////////////////////////////////////////////////////
-                            {
-                                if (msg.ToLower().Contains("/mp "))
-                                {
-                                    // /mp login mon message
-                                    try
-                                    {
-                                        msg = subsep(msg, "/mp ");
-                                        string targetLogin = subsep(msg, 0, " ");
-                                        msg = subsep(msg, login + " ");
-
-                                        if (playerSender != null)
-                                            msg = "[" + playerSender.NickName + "$z]>" + msg;
-                                        else
-                                            msg = "[" + targetLogin + "]>" + msg;
-
-                                        asyncRequest(checkError, GBXMethods.ChatSendToLogin, targetLogin, msg);
-                                        asyncRequest(checkError, GBXMethods.ChatSendToLogin, login, msg);   //Back to sender
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        Log("ERROR", "[" + base.PluginName + "]>" + e.Message);
-                                    }
-
-                                }
-                                //else if
-
-
-                            }
-                        }
-
-
-                    }
-                    catch(Exception err)
+                if (rx.IsMatch(msg)) //Check is command (/....)------------------------
+                {
+                    //Admin Commands////////////////////////////////////////////////////////////////
+                    if (msg.ToLower().Contains("/admin ") && msg.Length > 7 && checkLevel(level, "ADMIN"))
                     {
-                        Log("ERROR", "[" + this.PluginName + "]>" + err.Message);
-                    }
-                    break;
-            }
-        }*/
+                        msg = subsep(msg, "/admin ");
+                        switch (msg)
+                        {
+                            case "help":
+                                asyncRequest(checkError, GBXMethods.ChatSendServerMessageToLogin, login, "Admin commands :\n /Admin #command");
+                                break;
+                            case "savematchfile":
+                                break;
 
+                            default: //Commands with args or bad command
+                                if (msg.IndexOf("setgamemode ") == 0)
+                                {
+
+                                }
+                                else if (msg.IndexOf("warn ") == 0)
+                                {
+
+                                }
+                                else if (msg.IndexOf("kick ") == 0)
+                                {
+
+                                }
+                                else if (msg.IndexOf("ban ") == 0)
+                                {
+
+                                }
+                                else if (msg.IndexOf("black ") == 0)
+                                {
+
+                                }
+                                else if (msg.IndexOf("guest ") == 0)
+                                {
+
+                                }
+
+                                break;
+                        }
+                    }
+                    else //User Commands//////////////////////////////////////////////////////////
+                    {
+                        if (msg.ToLower().Contains("/mp "))
+                        {
+                            // /mp login mon message
+                            try
+                            {
+                                msg = subsep(msg, "/mp ");
+                                string targetLogin = subsep(msg, 0, " ");
+                                msg = subsep(msg, login + " ");
+
+                                if (playerSender != null)
+                                    msg = "[" + playerSender.NickName + "$z]>" + msg;
+                                else
+                                    msg = "[" + targetLogin + "]>" + msg;
+
+                                asyncRequest(checkError, GBXMethods.ChatSendToLogin, targetLogin, msg);
+                                asyncRequest(checkError, GBXMethods.ChatSendToLogin, login, msg);   //Back to sender
+                            }
+                            catch (Exception e)
+                            {
+                                Log("ERROR", "[" + base.PluginName + "]>" + e.Message);
+                            }
+
+                        }
+                        //else if
+
+
+                    }
+                }
+
+
+            }
+            catch (Exception err)
+            {
+                Log("ERROR", "[" + this.PluginName + "]>" + err.Message);
+            }
+           
+        }
+
+
+   
 
         private Player searchByLogin(string login)
         {

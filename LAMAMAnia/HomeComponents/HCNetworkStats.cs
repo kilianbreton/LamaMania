@@ -46,7 +46,7 @@ namespace LamaMania.HomeComponents
             //Network infos
             this.netStatsTimer = new Timer();
             this.netStatsTimer.Tick += new EventHandler(netStatsTimer_Tick);
-            this.netStatsTimer.Interval = 1500;
+            this.netStatsTimer.Interval = 2000;
             this.netStatsTimer.Start();
         }
       
@@ -67,11 +67,20 @@ namespace LamaMania.HomeComponents
         {
             asyncRequest(GetNetworkStats, res => {
                 var ht = res.getHashTable();
-                setLabel(this.l_upTime, "UpTime : " + ht["UpTime"]);
-                setLabel(this.l_nbConn, "Nb Connections : " + ht["NbrConnection"]);
-                setLabel(this.l_upTime, "Connection Time Average : " + ht["MeanConnectionTime"]);
-                setLabel(this.l_upTime, "Recive Net Rate : " + ht["RecvNetRate"]);
-                setLabel(this.l_upTime, "Send Net Rate : " + ht["SendNetRate"]);
+
+                int time = int.Parse(ht["Uptime"].ToString());
+
+                parseTime(time, out int h, out int m, out int s);
+                string upTime = h.ToString() + ":" + m + ":" + s; 
+
+                setLabel(this.l_upTime, "UpTime : " + upTime);
+                setLabel(this.l_nbConn, "Nb Connections : " + ht["NbrConnection"].ToString());
+                setLabel(this.l_conTimeAvg, "Connection Time Average : " + ht["MeanConnectionTime"].ToString());
+                setLabel(this.l_recvRate, "Recive Net Rate : " + ht["RecvNetRate"].ToString());
+                setLabel(this.l_sendRate, "Send Net Rate : " + ht["SendNetRate"].ToString());
+
+              
+
             });
         }
 

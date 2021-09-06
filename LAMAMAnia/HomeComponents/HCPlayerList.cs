@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq.Expressions;
+
 using LamaPlugin;
 using TMXmlRpcLib;
 
@@ -48,52 +50,24 @@ namespace LamaMania.HomeComponents
                 }
 
 
+                Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerConnect, (sender, args) =>
+                {
+                    string login = (string)args.getHashTable()["login"];
+                });
+                Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerDisconnect, (sender, args) =>
+                {
+                    string login = (string)args.getHashTable()["login"];
+                    
+                });
+
                 base.onLoad(cfg);
             }
             catch (Exception e)
             {
-
+                Log("ERROR", "[" + this.PluginName + "]>" +e.Message);
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="res"></param>
-     /*   protected override void onGbxAsyncResult(GbxCall res)
-        {
-            if (!res.Error)
-            {
-                if (GBXMethods.commonHandles.ContainsKey(res.Handle))
-                {
-                    switch (GBXMethods.commonHandles[res.Handle])
-                    {
-                        case GetPlayerList:
-                            ArrayList userList = (ArrayList)res.Params[0];
-                            clearList(l_users);
-                            Program.lama.nbPlayers = userList.Count;
-                            //s setLabel(l_players, "Players : " + Lama.nbPlayers + "/" + Lama.maxPlayers);
-                            foreach (Hashtable user in userList)
-                            {
-                                appendList(l_users, ManiaColors.getText((string)user["NickName"]));
-                            }
-                            break;
-
-                    }
-                }
-
-
-            }
-            else
-            {
-                Log("ERROR", "[" + PluginName + "]>" + res.ErrorCode + " : " + res.ErrorString);
-            }
-
-    
-
-        }
-        */
-
+        
 
     }
 }

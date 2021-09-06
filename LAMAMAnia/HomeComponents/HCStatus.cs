@@ -52,6 +52,15 @@ namespace LamaMania.HomeComponents
                         Hashtable ht = res.getHashTable();
                         setLabel(this.l_server, "Status : " + (string)ht["Name"]);
                     });
+
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMap, updateStatus);
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_EndMap, updateStatus);
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_EndMatch, updateStatus);
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMatch, updateStatus);
+
+                   
+
+
                 }
 
                 this.b_serverStarted.Enabled = false;
@@ -69,8 +78,16 @@ namespace LamaMania.HomeComponents
             }
         }
 
+
+
+        public void updateStatus(object sender, GbxCallbackEventArgs args)
+        {
+            int statusCode = (int)args.Response.Params[0];
+            setLabel(this.l_server, "Status : " + getStatus(statusCode));
+        }
+
         /// <summary>
-        /// 
+        /// Called when server disconnect
         /// </summary>
         public override void onDisconnect()
         {
@@ -81,48 +98,15 @@ namespace LamaMania.HomeComponents
             but = (FlatButton)getControl(this.b_serverStarted);
             but.BaseColor = Color.Green;
             enableControl(but, true);
-          
         }
 
-        /// <summary>
-        /// Global async results out
-        /// </summary>
-        /// <param name="res"></param>
-      /*  protected override void onGbxAsyncResult(GbxCall res)
-        {
-            if (this.handles.ContainsKey(res.Handle) && !res.Error)
-            {
-                switch (this.handles[res.Handle])
-                {
-                    //Catch asyncResults
-                }
-            }
-            else if (res.Error)
-            {
-                Log("ERROR", res.ErrorCode + " : " + res.ErrorString);
-            }
-        }*/
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="res"></param>
-      /*  public override void onGbxCallBack(GbxCallbackEventArgs res)
-        {
-            switch (res.Response.MethodName)
-            {
-                case "TrackMania.StatusChanged":
-                    int statusCode = (int)res.Response.Params[0];
-                    setLabel(this.l_server, "Status : " + getStatus(statusCode));
-                    break;
-            }
-        }*/
+      
 
         private void B_serverStop_Click(object sender, EventArgs e)
         {
             if (Program.lama.remote)
             {
-
+                asyncRequest(GBXMethods.StopServer, checkEror);
             }
             else
             {
@@ -132,8 +116,13 @@ namespace LamaMania.HomeComponents
                     if (p.MainWindowTitle.Contains(Program.lama.serverPath + Program.lama.serverIndex))
                         p.Kill();
                 }
-
             }
+        }
+
+        private void checkEror(GbxCall res)
+        {
+            if(res.Error)
+                Log("ERROR", res.ErrorString);
         }
     }
 }

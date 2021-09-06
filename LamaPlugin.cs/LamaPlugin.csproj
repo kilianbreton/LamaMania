@@ -53,6 +53,7 @@
     <Compile Include="Abstract\AbstractXmlRpcMethod.cs" />
     <Compile Include="Abstract\IDragAndDropControl.cs" />
     <Compile Include="Abstract\PluginTypeEnum.cs" />
+    <Compile Include="CallbacksManager.cs" />
     <Compile Include="LocalesManager.cs" />
     <Compile Include="Models\HomeComponentPlugin.cs">
       <SubType>UserControl</SubType>

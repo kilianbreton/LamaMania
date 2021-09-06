@@ -69,14 +69,12 @@ namespace Records
                     asyncRequest(getPlayerList, GBXMethods.GetPlayerList, 999, 0);
 
                     //Init CallBacks-----------------------------------------------------------------------
-                    Callbacks.Add("TrackMania.PlayerCheckpoint", callBack_PlayerCheckpoint);
-                    Callbacks.Add("TrackMania.PlayerFinish", callBack_PlayerFinish);
+                    Callbacks.AddListener(GBXCallBacks.TrackMania_PlayerCheckpoint, callBack_PlayerCheckpoint);
+                    Callbacks.AddListener(GBXCallBacks.TrackMania_PlayerFinish, callBack_PlayerFinish) ;
 
-                    GbxCallbackHandler handler = (o, e) => { 
-                        asyncRequest(getPlayerList, GBXMethods.GetPlayerList, 999, 0); 
-                    };
-                    Callbacks.Add("ManiaPlanet.PlayerConnect", handler);
-                    Callbacks.Add("TrackMania.PlayerConnect", handler);
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerConnect, (o, e) => {
+                        asyncRequest(getPlayerList, GBXMethods.GetPlayerList, 999, 0);
+                    });
 
                    
                     return true;
