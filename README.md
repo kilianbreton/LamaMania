@@ -1,5 +1,5 @@
 # LamaMania
-Launch Authenticate Manage Access (Gestion de serveurs maniaplanet)
+Launch Authenticate Manage Access (ManiaPlanet Dedicated Server Manager)
 
 ## LamaPlugin library
 The LamaPlugin library is the heart of LamaMania application, it contains all the tools to create and manage plugins, manage XmlRpc connections, GBX methods/callbacks, manialink creation, color code management, etc.
@@ -24,7 +24,7 @@ And you can add requirements
 this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "OtherPlugin"));
 ```
 
-### InGamePlugin
+In all plugins there is a onLoad(config) method. In this method you can check some points, add callbacks listener and send requests to the server. This method returns a bool (true if ok, false if error)
 
 
 
