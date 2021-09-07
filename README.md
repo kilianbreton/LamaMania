@@ -11,6 +11,20 @@ and add a reference on LamaPlugin. Then it will be necessary to create a new cla
 - InGamePlugin
 - TabPlugin
 
+In all plugin contructors, you have to fill this fields
+```csharp
+this.PluginName = "MyPluginName";
+this.PluginDescription = "A little description";
+this.Author = "Me";
+this.PluginFolder = "";
+```
+
+And you can add requirements
+```csharp
+this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "OtherPlugin"));
+```
+
 ### InGamePlugin
+
 
 
