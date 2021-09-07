@@ -27,4 +27,10 @@ this.Requirements.Add(new Requirement(RequirementType.PLUGIN, "OtherPlugin"));
 In all plugins there is a onLoad(config) method. In this method you can check some points, add callbacks listener and send requests to the server. This method returns a bool (true if ok, false if error)
 
 
-
+```csharp
+public override bool onLoad(LamaConfig lamaConfig)
+{
+    this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMatch, cb_BeginMatch);           
+    return true;
+}
+```
