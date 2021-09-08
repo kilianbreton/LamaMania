@@ -1,6 +1,14 @@
 # LamaMania
 Launch Authenticate Manage Access (ManiaPlanet Dedicated Server Manager)
 
+## Download
+
+bla
+bla
+bla
+
+
+# Dev' Infos
 ## LamaPlugin library
 The LamaPlugin library is the heart of LamaMania application, it contains all the tools to create and manage plugins, manage XmlRpc connections, GBX methods/callbacks, manialink creation, color code management, etc.
 
@@ -81,3 +89,10 @@ public override InterPluginResponse onInterPluginCall(IBasePlugin sender, InterP
 InterPluginResponse r = sendInterPluginCall("UserLevel", "GetUserLevel", new Dictionary<string, object>() {{ "login", login }});
 string level = (string)r.Param[login];
 ```
+
+## LamaApi
+
+test
+
+
+
