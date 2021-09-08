@@ -1,4 +1,6 @@
+
 # LamaMania
+
 Launch Authenticate Manage Access (ManiaPlanet Dedicated Server Manager)
 
 ## Download
@@ -9,11 +11,15 @@ bla
 
 
 # Dev' Infos
+
 ## LamaPlugin library
+
 The LamaPlugin library is the heart of LamaMania application, it contains all the tools to create and manage plugins, manage XmlRpc connections, GBX methods/callbacks, manialink creation, color code management, etc.
 
 ## Create new plugin
+
 ### Basics
+
 To create a new plugin, you need to create a new .NET Framework library project
 and add a reference on LamaPlugin. Then it will be necessary to create a new class which inherits from one of these classes:
 - HomeComponentPlugin
@@ -52,6 +58,7 @@ public override bool onLoad(LamaConfig lamaConfig)
 plugins are able to communicate with each other using methods onInterPluginCall(..) and sendInterPluginCall(..)
 
 #### Get a request : 
+
 ```csharp
 public override InterPluginResponse onInterPluginCall(IBasePlugin sender, InterPluginArgs args)
 {
@@ -83,7 +90,9 @@ public override InterPluginResponse onInterPluginCall(IBasePlugin sender, InterP
     return response;
 }
 ```
+
 #### Send a request : 
+
 ```csharp
                                         //  PluginName    CallName          Args
 InterPluginResponse r = sendInterPluginCall("UserLevel", "GetUserLevel", new Dictionary<string, object>() {{ "login", login }});
