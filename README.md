@@ -43,7 +43,7 @@ public override bool onLoad(LamaConfig lamaConfig)
 
 plugins are able to communicate with each other using methods onInterPluginCall(..) and sendInterPluginCall(..)
 
-get a request : 
+#### Get a request : 
 ```csharp
 public override InterPluginResponse onInterPluginCall(IBasePlugin sender, InterPluginArgs args)
 {
@@ -75,4 +75,8 @@ public override InterPluginResponse onInterPluginCall(IBasePlugin sender, InterP
     return response;
 }
 ```
-
+#### Send a request : 
+```csharp
+InterPluginResponse r = sendInterPluginCall("UserLever", "GetUserLevel", new Dictionary<string, object>() {{ "login", login }});
+string level = (string)r.Param[login];
+```
