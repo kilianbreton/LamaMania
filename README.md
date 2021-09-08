@@ -4,10 +4,18 @@
 Launch Authenticate Manage Access (ManiaPlanet Dedicated Server Manager)
 
 ## Download
+
+LamaMania      [List](https://lamamania.yoxclan.fr/Downloads/LamaMania.php) | [Latest](https://lamamania.yoxclan.fr/Downloads/LamaMania_Latest.exe).
+
+LamaController [List](https://lamamania.yoxclan.fr/Downloads/LamaController.php) | [Latest](https://lamamania.yoxclan.fr/Downloads/LamaController_Latest.exe).
+
+LamaDevTools   [List](https://lamamania.yoxclan.fr/Downloads/LDT.php) | [Latest](https://lamamania.yoxclan.fr/Downloads/LDT_Latest.exe).
+
+Plugins        [List](https://lamamania.yoxclan.fr/Downloads/LamaPlugins.php) 
 ___
-bla
-bla
-bla
+
+
+
 
 
 # Dev' Infos
