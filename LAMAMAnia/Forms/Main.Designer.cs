@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.formSkin1 = new FlatUITheme.FormSkin();
             this.flatTabControl1 = new FlatUITheme.FlatTabControl();
             this.tp_main = new System.Windows.Forms.TabPage();
@@ -282,7 +282,7 @@
             this.flatLabel25.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel25.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel25.ForeColor = System.Drawing.Color.White;
-            this.flatLabel25.Location = new System.Drawing.Point(8, 339);
+            this.flatLabel25.Location = new System.Drawing.Point(5, 339);
             this.flatLabel25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel25.Name = "flatLabel25";
             this.flatLabel25.Size = new System.Drawing.Size(79, 19);
@@ -295,7 +295,7 @@
             this.flatLabel24.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel24.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel24.ForeColor = System.Drawing.Color.White;
-            this.flatLabel24.Location = new System.Drawing.Point(8, 307);
+            this.flatLabel24.Location = new System.Drawing.Point(5, 307);
             this.flatLabel24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel24.Name = "flatLabel24";
             this.flatLabel24.Size = new System.Drawing.Size(98, 19);
@@ -305,7 +305,7 @@
             // tb_voteRatio
             // 
             this.tb_voteRatio.BackColor = System.Drawing.Color.Transparent;
-            this.tb_voteRatio.Location = new System.Drawing.Point(128, 336);
+            this.tb_voteRatio.Location = new System.Drawing.Point(133, 336);
             this.tb_voteRatio.Margin = new System.Windows.Forms.Padding(2);
             this.tb_voteRatio.MaxLength = 32767;
             this.tb_voteRatio.Multiline = false;
@@ -324,12 +324,12 @@
             this.n_voteTimeout.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_voteTimeout.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_voteTimeout.ForeColor = System.Drawing.Color.White;
-            this.n_voteTimeout.Location = new System.Drawing.Point(128, 304);
+            this.n_voteTimeout.Location = new System.Drawing.Point(133, 304);
             this.n_voteTimeout.Margin = new System.Windows.Forms.Padding(2);
             this.n_voteTimeout.Maximum = ((long)(9999999));
             this.n_voteTimeout.Minimum = ((long)(0));
             this.n_voteTimeout.Name = "n_voteTimeout";
-            this.n_voteTimeout.Size = new System.Drawing.Size(56, 30);
+            this.n_voteTimeout.Size = new System.Drawing.Size(90, 30);
             this.n_voteTimeout.TabIndex = 54;
             this.n_voteTimeout.Text = "n_voteTimeout";
             this.n_voteTimeout.Value = ((long)(0));
@@ -442,7 +442,7 @@
             this.flatLabel20.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel20.ForeColor = System.Drawing.Color.White;
-            this.flatLabel20.Location = new System.Drawing.Point(7, 277);
+            this.flatLabel20.Location = new System.Drawing.Point(4, 277);
             this.flatLabel20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel20.Name = "flatLabel20";
             this.flatLabel20.Size = new System.Drawing.Size(124, 19);
@@ -463,7 +463,7 @@
             this.cb_refereeValid.Items.AddRange(new object[] {
             "TOP3",
             "ALL"});
-            this.cb_refereeValid.Location = new System.Drawing.Point(128, 277);
+            this.cb_refereeValid.Location = new System.Drawing.Point(133, 277);
             this.cb_refereeValid.Margin = new System.Windows.Forms.Padding(2);
             this.cb_refereeValid.Name = "cb_refereeValid";
             this.cb_refereeValid.Size = new System.Drawing.Size(248, 24);
@@ -475,7 +475,7 @@
             this.flatLabel19.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel19.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel19.ForeColor = System.Drawing.Color.White;
-            this.flatLabel19.Location = new System.Drawing.Point(7, 246);
+            this.flatLabel19.Location = new System.Drawing.Point(4, 246);
             this.flatLabel19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel19.Name = "flatLabel19";
             this.flatLabel19.Size = new System.Drawing.Size(123, 19);
@@ -485,7 +485,7 @@
             // tb_refereePass
             // 
             this.tb_refereePass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_refereePass.Location = new System.Drawing.Point(128, 243);
+            this.tb_refereePass.Location = new System.Drawing.Point(133, 243);
             this.tb_refereePass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_refereePass.MaxLength = 32767;
             this.tb_refereePass.Multiline = false;
@@ -516,7 +516,7 @@
             this.flatLabel9.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel9.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel9.ForeColor = System.Drawing.Color.White;
-            this.flatLabel9.Location = new System.Drawing.Point(6, 211);
+            this.flatLabel9.Location = new System.Drawing.Point(4, 211);
             this.flatLabel9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel9.Name = "flatLabel9";
             this.flatLabel9.Size = new System.Drawing.Size(93, 19);
@@ -530,7 +530,7 @@
             this.n_playersLimit.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_playersLimit.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_playersLimit.ForeColor = System.Drawing.Color.White;
-            this.n_playersLimit.Location = new System.Drawing.Point(128, 208);
+            this.n_playersLimit.Location = new System.Drawing.Point(133, 208);
             this.n_playersLimit.Margin = new System.Windows.Forms.Padding(2);
             this.n_playersLimit.Maximum = ((long)(9999999));
             this.n_playersLimit.Minimum = ((long)(0));
@@ -546,7 +546,7 @@
             this.l_specPass.BackColor = System.Drawing.Color.Transparent;
             this.l_specPass.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_specPass.ForeColor = System.Drawing.Color.White;
-            this.l_specPass.Location = new System.Drawing.Point(6, 180);
+            this.l_specPass.Location = new System.Drawing.Point(4, 180);
             this.l_specPass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_specPass.Name = "l_specPass";
             this.l_specPass.Size = new System.Drawing.Size(106, 19);
@@ -556,7 +556,7 @@
             // tb_specPass
             // 
             this.tb_specPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_specPass.Location = new System.Drawing.Point(128, 176);
+            this.tb_specPass.Location = new System.Drawing.Point(133, 176);
             this.tb_specPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_specPass.MaxLength = 32767;
             this.tb_specPass.Multiline = false;
@@ -588,7 +588,7 @@
             this.n_specsLimit.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.n_specsLimit.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.n_specsLimit.ForeColor = System.Drawing.Color.White;
-            this.n_specsLimit.Location = new System.Drawing.Point(319, 208);
+            this.n_specsLimit.Location = new System.Drawing.Point(324, 208);
             this.n_specsLimit.Margin = new System.Windows.Forms.Padding(2);
             this.n_specsLimit.Maximum = ((long)(9999999));
             this.n_specsLimit.Minimum = ((long)(0));
@@ -604,7 +604,7 @@
             this.l_so_descr.BackColor = System.Drawing.Color.Transparent;
             this.l_so_descr.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_so_descr.ForeColor = System.Drawing.Color.White;
-            this.l_so_descr.Location = new System.Drawing.Point(6, 76);
+            this.l_so_descr.Location = new System.Drawing.Point(5, 76);
             this.l_so_descr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_so_descr.Name = "l_so_descr";
             this.l_so_descr.Size = new System.Drawing.Size(85, 19);
@@ -617,7 +617,7 @@
             this.l_so_name.BackColor = System.Drawing.Color.Transparent;
             this.l_so_name.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.l_so_name.ForeColor = System.Drawing.Color.White;
-            this.l_so_name.Location = new System.Drawing.Point(6, 12);
+            this.l_so_name.Location = new System.Drawing.Point(5, 12);
             this.l_so_name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_so_name.Name = "l_so_name";
             this.l_so_name.Size = new System.Drawing.Size(102, 19);
@@ -627,7 +627,7 @@
             // tb_description
             // 
             this.tb_description.BackColor = System.Drawing.Color.Transparent;
-            this.tb_description.Location = new System.Drawing.Point(128, 41);
+            this.tb_description.Location = new System.Drawing.Point(133, 41);
             this.tb_description.Margin = new System.Windows.Forms.Padding(2);
             this.tb_description.MaxLength = 32767;
             this.tb_description.Multiline = true;
@@ -642,7 +642,7 @@
             // tb_playerPass
             // 
             this.tb_playerPass.BackColor = System.Drawing.Color.Transparent;
-            this.tb_playerPass.Location = new System.Drawing.Point(128, 143);
+            this.tb_playerPass.Location = new System.Drawing.Point(133, 143);
             this.tb_playerPass.Margin = new System.Windows.Forms.Padding(2);
             this.tb_playerPass.MaxLength = 32767;
             this.tb_playerPass.Multiline = false;
@@ -657,7 +657,7 @@
             // tb_ingameName
             // 
             this.tb_ingameName.BackColor = System.Drawing.Color.Transparent;
-            this.tb_ingameName.Location = new System.Drawing.Point(128, 9);
+            this.tb_ingameName.Location = new System.Drawing.Point(133, 9);
             this.tb_ingameName.Margin = new System.Windows.Forms.Padding(2);
             this.tb_ingameName.MaxLength = 32767;
             this.tb_ingameName.Multiline = false;
@@ -705,10 +705,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 12);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 5);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1432, 663);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1432, 664);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // tp_chat
@@ -1015,8 +1015,8 @@
             this.dg_users.Margin = new System.Windows.Forms.Padding(2);
             this.dg_users.Name = "dg_users";
             this.dg_users.RowHeadersVisible = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_users.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dg_users.RowTemplate.Height = 24;
             this.dg_users.ShowCellErrors = false;
             this.dg_users.ShowCellToolTips = false;
@@ -1183,14 +1183,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dg_map.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dg_map.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_map.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_map.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dg_map.ColumnHeadersHeight = 30;
             this.dg_map.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.c_m_name,
@@ -1202,8 +1202,8 @@
             this.dg_map.Margin = new System.Windows.Forms.Padding(2);
             this.dg_map.Name = "dg_map";
             this.dg_map.RowHeadersVisible = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dg_map.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dg_map.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             this.dg_map.RowTemplate.Height = 24;
             this.dg_map.ShowCellErrors = false;

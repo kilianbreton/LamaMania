@@ -59,7 +59,7 @@ namespace LamaMania
         /// 
 
         private string servType;
-        
+        private RegisteryManager registryManager;
         /// <summary>
         /// Home Launcher constructor
         /// </summary>
@@ -67,7 +67,14 @@ namespace LamaMania
         {
             InitializeComponent();
 
-            
+            registryManager = new RegisteryManager();
+            if( !registryManager.RootKeyExist)
+            {
+                FirstStart fs = new FirstStart();
+                fs.Show();
+            }
+
+
 #if debug
             lama.lamaLogger = new LamaLog(@"Logs\Lama.log",true);
 #else

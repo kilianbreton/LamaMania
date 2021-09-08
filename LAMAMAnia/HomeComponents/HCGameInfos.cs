@@ -56,11 +56,19 @@ namespace LamaMania.HomeComponents
             Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMap, (s, a) => 
             {
                 asyncRequest(GetScriptName, onGetScriptName);
+                asyncRequest(GetCurrentMapInfo, (res) => {
+                    var htcm = res.getHashTable();
+                    setLabel(l_map, ManiaColors.getText((string)htcm["Name"]));
+                });
                 setLabelColor(l_map, Color.Green);
             });
             Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMatch, (s, a) =>
             {
                 onBeginChallenge(s, a);
+                asyncRequest(GetCurrentMapInfo, (res) => {
+                    var htcm = res.getHashTable();
+                    setLabel(l_map, ManiaColors.getText((string)htcm["Name"]));
+                });
                 setLabelColor(l_map, Color.Green);
             });
             Callbacks.AddListener(GBXCallBacks.ManiaPlanet_EndMap, (s, a) =>
@@ -118,6 +126,10 @@ namespace LamaMania.HomeComponents
         /// <param name="res"></param>
      /*   protected override void onGbxAsyncResult(GbxCall res)
         {
+
+            var htcm = res.getHashTable();
+                    setLabel(l_map, ManiaColors.getText((string)htcm["Name"]));
+
             switch (handles[res.Handle])
             {
                 case GetScriptName:
