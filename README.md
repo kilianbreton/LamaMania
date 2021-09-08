@@ -5,6 +5,7 @@ Launch Authenticate Manage Access (ManiaPlanet Dedicated Server Manager)
 The LamaPlugin library is the heart of LamaMania application, it contains all the tools to create and manage plugins, manage XmlRpc connections, GBX methods/callbacks, manialink creation, color code management, etc.
 
 ## Create new plugin
+### Basics
 To create a new plugin, you need to create a new .NET Framework library project
 and add a reference on LamaPlugin. Then it will be necessary to create a new class which inherits from one of these classes:
 - HomeComponentPlugin
@@ -30,7 +31,48 @@ In all plugins there is a onLoad(config) method. In this method you can check so
 ```csharp
 public override bool onLoad(LamaConfig lamaConfig)
 {
-    this.Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMatch, cb_BeginMatch);           
+    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_BeginMatch, cb_BeginMatch);   
+    asyncRequest(getPlayerList, GBXMethods.GetPlayerList, 999, 0);
     return true;
 }
 ```
+
+
+
+### InterPlugins Communication
+
+plugins are able to communicate with each other using methods onInterPluginCall(..) and sendInterPluginCall(..)
+
+get a request : 
+```csharp
+public override InterPluginResponse onInterPluginCall(IBasePlugin sender, InterPluginArgs args)
+{
+    InterPluginResponse response = null;
+    switch (args.CallName)
+    {
+        //GET++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        case "GetCallList":
+            response = new InterPluginResponse(args.CallName, new Dictionary<string, object>
+            {
+                {"GetCallList","All" },
+                {"GetUserLevel","Admin" },
+                {"GetMasterAdmins","MasterAdmin" },
+                {"GetAdmins","Admin" },
+                {"GetModerators","Moderator" },
+                {"GetGuests","All" },
+                {"GetAll","MasterAdmin" },
+                {"AddUser","MasterAdmin" },
+                {"EditUser","MasterAdmin" },
+                {"RemoveUser","MasterAdmin" },
+                {"AddLevel","MasterAdmin" },
+                {"EditLevel","MasterAdmin" },
+                {"RemoveLevel","MasterAdmin" },
+                {"SaveFile","MasterAdmin" },
+                {"ReadConfig", "MasterAdmin" },
+             });
+             break;
+    }
+    return response;
+}
+```
+
