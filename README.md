@@ -103,7 +103,12 @@ public override InterPluginResponse onInterPluginCall(IBasePlugin sender, InterP
 
 ```csharp
                                         //  PluginName    CallName          Args
-InterPluginResponse r = sendInterPluginCall("UserLevel", "GetUserLevel", new Dictionary<string, object>() {{ "login", login }});
+InterPluginResponse r = sendInterPluginCall("UserLevel", 
+                                            "GetUserLevel", 
+                                            new Dictionary<string, object>() {
+                                                { "login", login }
+                                            }
+                                            );
 string level = (string)r.Param[login];
 ```
 
