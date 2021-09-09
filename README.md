@@ -106,9 +106,9 @@ public override InterPluginResponse onInterPluginCall(IBasePlugin sender, InterP
 InterPluginResponse r = sendInterPluginCall("UserLevel",                        //Plugin Name
                                             "GetUserLevel",                     //Call Name
                                             new Dictionary<string, object>()    //Args
-                                                {  
-                                                    { "login", login }
-                                                }
+                                            {  
+                                                { "login", login }
+                                            }
                                             );
 string level = (string)r.Param[login];
 ```
