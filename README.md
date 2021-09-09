@@ -108,8 +108,7 @@ InterPluginResponse r = sendInterPluginCall("UserLevel",                        
                                             new Dictionary<string, object>()    //Args
                                             {  
                                                 { "login", login }
-                                            }
-                                            );
+                                            });
 string level = (string)r.Param[login];
 ```
 
