@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaDevTools", "LamaDevTool
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LamaPlugin", "LamaPlugin\LamaPlugin.csproj", "{6D5F0F62-232C-4611-9B40-C29E30492B70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManiaExchange", "ManiaExchange\ManiaExchange.csproj", "{7B321747-5197-4872-A472-3E7A72D1068D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{6D5F0F62-232C-4611-9B40-C29E30492B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D5F0F62-232C-4611-9B40-C29E30492B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D5F0F62-232C-4611-9B40-C29E30492B70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B321747-5197-4872-A472-3E7A72D1068D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B321747-5197-4872-A472-3E7A72D1068D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B321747-5197-4872-A472-3E7A72D1068D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B321747-5197-4872-A472-3E7A72D1068D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{25887F77-3674-425B-A1F9-26A3202BCCED} = {15296801-1560-43B4-A180-BC72EA6A1C08}
 		{C74CF82C-83AB-43EF-B93A-C1C81DD4E46B} = {15296801-1560-43B4-A180-BC72EA6A1C08}
 		{6D5F0F62-232C-4611-9B40-C29E30492B70} = {9A447B10-CFBE-4C07-A956-DA4811A06B95}
+		{7B321747-5197-4872-A472-3E7A72D1068D} = {D993D20A-F083-4235-BE98-FC4C2D77C2A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BBF715F4-D5D5-4459-B5A2-E9E98E831FFA}

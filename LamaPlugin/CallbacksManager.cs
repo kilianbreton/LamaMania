@@ -56,6 +56,11 @@ namespace LamaPlugin
 
         }
 
+        public void AddListener(string maniaPlanet_PlayerConnect, object cbPlayerConnect)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool ContainListener(string name)
         {
 

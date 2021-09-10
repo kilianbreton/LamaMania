@@ -110,12 +110,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FirstStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FirstStart.Designer.cs">
+      <DependentUpon>FirstStart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Test.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Managers\RegisteryManager.cs" />
     <Compile Include="Other\ConfigCheck.cs" />
     <Compile Include="Managers\EnvironmentManager.cs" />
     <Compile Include="Other\ExtensionsMethods.cs" />
@@ -296,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfigSoft.resx">
       <DependentUpon>ConfigSoft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FirstStart.resx">
+      <DependentUpon>FirstStart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HomeLauncher.resx">
       <DependentUpon>HomeLauncher.cs</DependentUpon>

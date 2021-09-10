@@ -48,18 +48,18 @@
             this.l_cachepath = new FlatUITheme.FlatLabel();
             this.l_ressourcepath = new FlatUITheme.FlatLabel();
             this.tp_locales = new System.Windows.Forms.TabPage();
+            this.tb_pluginsDrive = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tp_externTools = new System.Windows.Forms.TabPage();
             this.b_exTool_add = new FlatUITheme.FlatButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.b_cancel = new FlatUITheme.FlatButton();
             this.b_save = new FlatUITheme.FlatButton();
-            this.tb_pluginsDrive = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tp_general.SuspendLayout();
-            this.tp_externTools.SuspendLayout();
             this.tb_pluginsDrive.SuspendLayout();
+            this.tp_externTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // formSkin1
@@ -368,6 +368,25 @@
             this.tp_locales.TabIndex = 2;
             this.tp_locales.Text = "Locales";
             // 
+            // tb_pluginsDrive
+            // 
+            this.tb_pluginsDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.tb_pluginsDrive.Controls.Add(this.flowLayoutPanel2);
+            this.tb_pluginsDrive.Location = new System.Drawing.Point(4, 44);
+            this.tb_pluginsDrive.Name = "tb_pluginsDrive";
+            this.tb_pluginsDrive.Padding = new System.Windows.Forms.Padding(3);
+            this.tb_pluginsDrive.Size = new System.Drawing.Size(902, 333);
+            this.tb_pluginsDrive.TabIndex = 3;
+            this.tb_pluginsDrive.Text = "Plugins";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(7, 6);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(889, 324);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
             // tp_externTools
             // 
             this.tp_externTools.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
@@ -435,25 +454,6 @@
             this.b_save.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.b_save.Click += new System.EventHandler(this.B_save_Click);
             // 
-            // tb_pluginsDrive
-            // 
-            this.tb_pluginsDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.tb_pluginsDrive.Controls.Add(this.flowLayoutPanel2);
-            this.tb_pluginsDrive.Location = new System.Drawing.Point(4, 44);
-            this.tb_pluginsDrive.Name = "tb_pluginsDrive";
-            this.tb_pluginsDrive.Padding = new System.Windows.Forms.Padding(3);
-            this.tb_pluginsDrive.Size = new System.Drawing.Size(902, 333);
-            this.tb_pluginsDrive.TabIndex = 3;
-            this.tb_pluginsDrive.Text = "Plugins";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(7, 6);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(889, 324);
-            this.flowLayoutPanel2.TabIndex = 0;
-            // 
             // ConfigSoft
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -470,8 +470,8 @@
             this.flatTabControl1.ResumeLayout(false);
             this.tp_general.ResumeLayout(false);
             this.tp_general.PerformLayout();
-            this.tp_externTools.ResumeLayout(false);
             this.tb_pluginsDrive.ResumeLayout(false);
+            this.tp_externTools.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -70,8 +70,8 @@ namespace LamaMania
             registryManager = new RegisteryManager();
             if( !registryManager.RootKeyExist)
             {
-                FirstStart fs = new FirstStart();
-                fs.Show();
+               // FirstStart fs = new FirstStart();
+               // fs.Show();
             }
 
 
@@ -231,10 +231,10 @@ namespace LamaMania
                 }
                 
                 //Select plugin list
-                if (cfg["plugins"].haveAttribute("value") && cfg["plugins"].getAttibuteV("value").ToUpper().Equals("TRUE"))
-                {
+               // if (cfg["plugins"].haveAttribute("value") && cfg["plugins"].getAttibuteV("value").ToUpper().Equals("TRUE"))
+                //{
                     lama.pluginManager.selectPluginsFrmCfg(cfg["plugins"]);
-                }
+                //}
 #if visualDebug
 
                 Main main = new Main();
@@ -283,7 +283,7 @@ namespace LamaMania
                 //Open main form
                 try
                 {
-                    
+                 
                     var mainForm = new Main(config);
                   //  Thread t = new Thread(mainForm.Show);
                     mainForm.Show();
