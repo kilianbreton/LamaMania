@@ -17,6 +17,7 @@ namespace LamaMania
     /// </summary>
     public static class StaticMethods
     {
+
         /// <summary>
         /// Add row in DataGridView
         /// </summary>

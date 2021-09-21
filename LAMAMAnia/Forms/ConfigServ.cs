@@ -59,6 +59,7 @@ namespace LamaMania
         private int index;
         private string title; //Save title for check change
         private string serverType;
+        private bool isScript;
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Constructeurs ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -209,7 +210,17 @@ namespace LamaMania
         void loadMain()
         {
             lama.log("NOTICE", "Load Main config");
-            
+            try
+            {
+                string bscript = this.serverConfig["isScript"].Value;
+                if (bool.TryParse(bscript, out bool isScript))
+                {
+                    this.isScript = isScript;
+                }
+            }
+            catch (Exception e){}
+
+
             tb_matchFile.Text = this.serverConfig["matchSettings"].Value;
             ch_internetServer.Checked = (this.serverConfig["internetServer"].Value.ToUpper().Equals("TRUE"));
             if(tb_matchFile.Text.Trim(' ') != "")
@@ -228,6 +239,7 @@ namespace LamaMania
             tb_db_passwd.Text = db["passwd"].Value;
             tb_db_base.Text = db["baseName"].Value;
 
+            
         }
 
         void loadDedicated()
@@ -363,7 +375,19 @@ namespace LamaMania
             //Mode Script-------------------------------------------------
             try
             {
-                cb_gameMode.Text = subsep(this.matchSettings["playlist"]["gameinfos"]["script_name"].Value, 0, ".Script");
+                ch_script.Checked = this.isScript;
+                cb_gameMode.Visible = !this.isScript;
+                tb_script.Visible = this.isScript;
+
+                if (this.isScript)
+                {
+                    tb_script.Text = this.matchSettings["playlist"]["gameinfos"]["script_name"].Value;
+                   
+                }
+                else
+                {
+                    cb_gameMode.Text = subsep(this.matchSettings["playlist"]["gameinfos"]["script_name"].Value, 0, ".Script");
+                }
             }
             catch (Exception e)
             {
@@ -431,6 +455,11 @@ namespace LamaMania
             this.serverConfig["matchSettings"].Value = tb_matchFile.Text;
             this.serverConfig["name"].Value = tb_name.Text;
             this.serverConfig["internetServer"].Value = ch_internetServer.Checked.ToString();
+           
+            if (this.serverConfig.isChildExist("isScript"))
+                this.serverConfig["isScript"].Value = this.isScript.ToString();
+            else
+                this.serverConfig.addChild("isScript", this.isScript.ToString());
 
             //Save Plugin List
             XmlNode pluginList = this.serverConfig["plugins"];
@@ -588,8 +617,14 @@ namespace LamaMania
             }
 
             XmlNode gameInfos = root["gameinfos"];
-            gameInfos["script_name"].Value = cb_gameMode.Text + ".Script.txt";
-
+            if (this.isScript)
+            {
+                gameInfos["script_name"].Value = tb_script.Text;
+            }
+            else
+            {
+                gameInfos["script_name"].Value = cb_gameMode.Text + ".Script.txt";
+            }
             this.matchSettings.save();
         }
 
@@ -838,6 +873,13 @@ namespace LamaMania
 
 
 
+        }
+
+        private void ch_script_CheckedChanged(object sender)
+        {
+            this.isScript = ch_script.Checked;
+            cb_gameMode.Visible = !ch_script.Checked;
+            tb_script.Visible = ch_script.Checked;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace LamaMania
     public partial class LogViewer : Form
     {
         public LogViewer(string path)
-        {
+        { 
             InitializeComponent();
 
             StreamReader sr = new StreamReader(path);

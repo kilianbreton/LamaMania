@@ -595,12 +595,41 @@ namespace LamaPlugin
                 {
                     if (plugin.ConfigServPlugin)
                     {
-                        plugin.getConfigValue = getConfigDelegate;
-                        Control ctrl = plugin;
-                        TabPage tp = new TabPage(plugin.PluginName);
-                        tp.Controls.Add(ctrl);
-                        ctrl.Dock = DockStyle.Fill;
-                        pages.Add(tp);
+
+
+                        //Do check requirements
+                        string brInfos;
+                        bool badRequirement = checkRequirements(plugin, out brInfos, out LamaConfig cfg);
+                        if (badRequirement)
+                        {
+                            lama.log("ERROR", "[PluginManager][TabPlugin] Unable to init [" + plugin.PluginName + "] Plugin, " + brInfos);
+                        }
+                        else
+                        {
+                            lama.log("NOTICE", "[PluginManager][TabPlugin][" + plugin.PluginName + "] Plugin loaded");
+
+                            plugin.setPluginManager(this.PMInterPluginCall);
+                            plugin.Log = lama.log;
+                            plugin.OnError = lama.onError;
+                            //plugin.GetLamaProperty = lama.getLamaProperty;
+
+                            cfg.connected = lama.connected;
+                            cfg.remote = lama.remote;
+                            cfg.lvl = Lvl.SuperAdmin;
+                            cfg.players = lama.players;
+
+                            //plugin.setPluginManager(PMInterPluginCall);
+                            plugin.onLoad(cfg);
+
+
+                            plugin.getConfigValue = getConfigDelegate;
+                            Control ctrl = plugin;
+                            TabPage tp = new TabPage(plugin.PluginName);
+                            plugin.onLoad(cfg);
+                            tp.Controls.Add(ctrl);
+                            ctrl.Dock = DockStyle.Fill;
+                            pages.Add(tp);
+                        }
                     }
 
                 }

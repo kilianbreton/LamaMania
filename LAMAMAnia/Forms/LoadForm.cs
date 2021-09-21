@@ -21,6 +21,7 @@ namespace LamaMania
         public LoadForm()
         {
             InitializeComponent();
+
         }
     }
 }

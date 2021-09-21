@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace LamaMania.UserConstrols
 {
+
     public partial class PluginFlp : UserControl
     {
         public PluginFlp()

@@ -31,8 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp, Version=106.12.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.12.0\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,12 +53,26 @@
     <Compile Include="IGManiaExchange.cs" />
     <Compile Include="ManiaExchange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabManiaExchange.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabManiaExchange.Designer.cs">
+      <DependentUpon>TabManiaExchange.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LamaPlugin\LamaPlugin.csproj">
       <Project>{6d5f0f62-232c-4611-9b40-c29e30492b70}</Project>
       <Name>LamaPlugin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TabManiaExchange.resx">
+      <DependentUpon>TabManiaExchange.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

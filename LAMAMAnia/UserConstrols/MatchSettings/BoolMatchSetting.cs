@@ -21,6 +21,7 @@ namespace LamaMania.UserConstrols
             this.flatCheckBox1.Checked = value;
         }
 
+
         private void FlatTextBox1_Validating(object sender, CancelEventArgs e)
         {
             MessageBox.Show("a");

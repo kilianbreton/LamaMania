@@ -9,6 +9,7 @@ namespace LamaMania
 {
     public class RegisteryManager
     {
+
         public bool RootKeyExist { get; set; }
 
         public RegisteryManager()

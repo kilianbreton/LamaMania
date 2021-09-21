@@ -46,6 +46,7 @@ namespace LamaMania
             return (ArrayList)call.Params[0];
         }
 
+
         /// <summary>
         /// Cast .Params[0] to ArrayList
         /// </summary>

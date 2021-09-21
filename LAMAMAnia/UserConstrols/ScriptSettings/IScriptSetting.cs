@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace LamaMania.UserConstrols
 {
+
     /// <summary>
     /// Interface for ScriptsSettings
     /// </summary>

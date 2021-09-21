@@ -159,11 +159,12 @@ namespace LamaMania
             XmlNode cfg = lama.mainConfig[0]["servers"].getChildByAttribute("id", index.ToString());
             if (cfg["remote"].getAttibuteV("value").ToUpper().Equals("TRUE"))
             {
+                lama.remote = true;
                 lama.remoteAdrs = cfg["remote"]["ip"].Value;
                 lama.remotePort = (int)cfg["remote"]["port"].LValue;
                 string login = cfg["remote"]["login"].Value;
 
-                servType = cfg.getAttibuteV("type");
+               // servType = cfg.getAttibuteV("type");
 
                 var askLogs = new AskLogins(login);
                 var result = askLogs.getDialogResult();

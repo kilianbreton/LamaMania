@@ -65,15 +65,19 @@ namespace BasicsCommandsPlugin
         
         Player getPlayerByLogin(string login)
         {
+          
             Player ret = null;
-            int cpt = 0;
-
-            if (this.players.Count > 0)
+            if (this.players != null)
             {
-                while (cpt < this.players.Count && this.players[cpt].Login != login) { cpt++; }
-                if (this.players[cpt].Login == login)
+                int cpt = 0;
+
+                if (this.players.Count > 0)
                 {
-                    ret = this.players[cpt];
+                    while (cpt < this.players.Count && this.players[cpt].Login != login) { cpt++; }
+                    if (this.players[cpt].Login == login)
+                    {
+                        ret = this.players[cpt];
+                    }
                 }
             }
             return ret;

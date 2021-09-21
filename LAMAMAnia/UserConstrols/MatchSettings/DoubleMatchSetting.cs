@@ -20,7 +20,6 @@ namespace LamaMania.UserConstrols
         //    this.flatLabel1.Text += title;
             this.flatTextBox1.Text = value.ToString();
         }
-
         private void FlatTextBox1_Validating(object sender, CancelEventArgs e)
         {
             MessageBox.Show("a");

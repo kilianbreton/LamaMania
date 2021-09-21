@@ -18,7 +18,6 @@ namespace LamaMania
             config = cfg;
         }
 
-
         public bool Check(out string msg)
         {
             msg = "";

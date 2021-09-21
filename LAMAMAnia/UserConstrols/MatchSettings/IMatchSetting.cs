@@ -17,7 +17,6 @@ namespace LamaMania.UserConstrols
         object SettingDefaultValue { get; }
         
         string getType { get; }
-
         UserControl GetControl();
     }
 }

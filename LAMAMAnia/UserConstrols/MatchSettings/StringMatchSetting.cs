@@ -17,7 +17,7 @@ namespace LamaMania.UserConstrols
             InitializeComponent();
             this.flatTextBox1.Validating += FlatTextBox1_Validating;
             this.flatLabel1.Text = name;
-        //    this.flatLabel1.Text += title;
+
             this.flatTextBox1.Text = value;
         }
 

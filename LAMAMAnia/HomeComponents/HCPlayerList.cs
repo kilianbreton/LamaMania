@@ -53,11 +53,18 @@ namespace LamaMania.HomeComponents
                 Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerConnect, (sender, args) =>
                 {
                     string login = (string)args.getHashTable()["login"];
+                    if(!this.l_users.Items.Contains(login))
+                    {
+                        this.l_users.Items.Add(login);
+                    }
                 });
                 Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerDisconnect, (sender, args) =>
                 {
                     string login = (string)args.getHashTable()["login"];
-                    
+                    if (this.l_users.Items.Contains(login))
+                    {
+                        this.l_users.Items.Remove(login);
+                    }
                 });
 
                 base.onLoad(cfg);

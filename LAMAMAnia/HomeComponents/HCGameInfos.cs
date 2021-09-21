@@ -232,6 +232,7 @@ namespace LamaMania.HomeComponents
 
         private void B_nextMap_Click(object sender, EventArgs e)
         {
+            asyncRequest(checkError, GBXMethods.ChatSendServerMessage, "$f00Server $n$z>> $fffForce next map");
             asyncRequest(NextMap, checkError);
             asyncRequest(GetScriptName, res => {
                 Hashtable ht = res.getHashTable();

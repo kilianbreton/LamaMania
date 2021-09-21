@@ -18,6 +18,7 @@ namespace LamaMania.HomeComponents
 {
     public partial class HCServerInfos : HomeComponentPlugin
     {
+
         /// <summary>
         /// 
         /// </summary>

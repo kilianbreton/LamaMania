@@ -13,6 +13,7 @@ namespace ManiaExchange
 {
     public class IGManiaExchange : InGamePlugin
     {
+        private ManiaExchange mx;
         private Regex rx = new Regex("^/[a-zA-Z0-9_ ]");
         private List<Player> players;
 
@@ -30,10 +31,25 @@ namespace ManiaExchange
 
         public override bool onLoad(LamaConfig lamaConfig)
         {
-            Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerConnect, cbPlayerConnect);
-            Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerChat, cbPlayerChat);
+            try
+            {
+                
+                this.mx = new ManiaExchange(lamaConfig.game, Log);
 
-            return true;
+
+                Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerConnect, cbPlayerConnect);
+                Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerChat, cbPlayerChat);
+                return true;
+            }
+            catch(Exception e)
+            {
+                Log("ERROR", "[" + PluginName + "]>" + e.Message);
+            }
+
+
+          
+
+            return false;
         }
 
         private void cbPlayerChat(object sender, GbxCallbackEventArgs args)

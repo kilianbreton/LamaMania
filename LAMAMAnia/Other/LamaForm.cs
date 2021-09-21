@@ -11,6 +11,7 @@ namespace LamaMania.Other
     {
         Control tool;
 
+
         public LamaForm()
         {
             this.Click += LamaForm_Click;

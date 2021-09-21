@@ -15,6 +15,7 @@ namespace LamaMania
     {
         public Test()
         {
+
             InitializeComponent();
             addMouseEvents(this.Controls);
             this.contextMenuStrip1.Items.Add("test");

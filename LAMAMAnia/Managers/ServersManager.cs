@@ -18,6 +18,7 @@ namespace LamaMania
 
 
 
+
         public ServersManager(string path, XmlNode serversCfg)
         {
             lama.log("NOTICE", "Init Servers manager");

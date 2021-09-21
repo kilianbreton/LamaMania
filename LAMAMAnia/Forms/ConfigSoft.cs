@@ -22,6 +22,7 @@ namespace LamaMania
 
         private XmlDocument config;
 
+
         /// <summary>
         /// 
         /// </summary>

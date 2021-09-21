@@ -166,14 +166,8 @@ namespace LamaMania
             if (Program.lama.connected)
             {
                 Program.lama.log("NOTICE", "XmlRPC : Connected");
-
-                //Affichage
-                if (!Program.lama.remote)
-                {
-                    Program.lama.pluginManager.onLoadHomeComponent(this.client, this.tp_main.getControl<Control>(), true);
+                Program.lama.pluginManager.onLoadHomeComponent(this.client, this.tp_main.getControl<Control>(), true);
  
-                }
-
                 //Requests
                 Program.lama.log("NOTICE", "Send startup requests");
                 startupRequests();
@@ -401,11 +395,11 @@ namespace LamaMania
             foreach (object o in al)
             {
                 string als = (string)o;
-                if (als.Contains("$>") && als.Contains("$<"))
+                /*if (als.Contains("$>") && als.Contains("$<"))
                 {
                     als = delseps(als, "[", "<");
                     als = als.Replace("$>]", "$000 :$fff");
-                }
+                }*/
                 chatColors.write(als + "\n");
             }
         }
@@ -539,7 +533,7 @@ namespace LamaMania
             }
             else //Local
             {
-                if (this.mapPath != null)
+                if (this.mapPath != null && (!Program.lama.remote))
                 {
                     DirectoryInfo dir = new DirectoryInfo(this.mapPath);
                     makeTreeview(dir, this.treeView1.Nodes.Add("Maps"));

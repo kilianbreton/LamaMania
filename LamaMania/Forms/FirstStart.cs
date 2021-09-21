@@ -17,7 +17,6 @@ namespace LamaMania
             InitializeComponent();
 
             this.flatComboBox1.SelectedIndex = 1;
-
         }
 
     }

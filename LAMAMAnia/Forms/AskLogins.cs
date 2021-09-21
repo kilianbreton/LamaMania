@@ -17,6 +17,7 @@ namespace LamaMania
     {
         private AskLoginsResult result;
 
+
         /// <summary>
         /// Init AskLogins
         /// </summary>

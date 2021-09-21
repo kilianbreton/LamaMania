@@ -36,7 +36,6 @@ namespace LamaMania
         /// </summary>
         public bool wide;
 
-
     }
 
     /// <summary>

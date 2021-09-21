@@ -16,6 +16,7 @@ namespace LamaMania.UserConstrols
     public partial class DoubleScriptSetting : UserControl, IScriptSetting
     {
         private string name;
+
         /// <summary>
         /// 
         /// </summary>

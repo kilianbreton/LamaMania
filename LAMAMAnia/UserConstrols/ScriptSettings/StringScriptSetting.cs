@@ -30,6 +30,7 @@ namespace LamaMania.UserConstrols
             this.flatTextBox1.Text = value;
         }
 
+
         /// <summary>
         /// 
         /// </summary>

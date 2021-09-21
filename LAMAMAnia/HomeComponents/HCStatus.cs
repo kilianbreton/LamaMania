@@ -19,6 +19,7 @@ namespace LamaMania.HomeComponents
 {
     public partial class HCStatus : HomeComponentPlugin
     {
+
         /// <summary>
         /// 
         /// </summary>

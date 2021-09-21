@@ -18,6 +18,7 @@ namespace LamaMania
         /// <summary>
         /// Init
         /// </summary>
+        /// 
         public About()
         {
             InitializeComponent();

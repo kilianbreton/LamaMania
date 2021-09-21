@@ -22,6 +22,7 @@ namespace LamaMania
         private HomeLauncher hl;
         private XmlNode cfg;
 
+
         /// <summary>
         /// New Server
         /// </summary>

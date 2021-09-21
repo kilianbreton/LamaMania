@@ -141,6 +141,8 @@
             this.tabPlugins = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.tb_script = new FlatUITheme.FlatTextBox();
+            this.ch_script = new FlatUITheme.FlatCheckBox();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tp_general.SuspendLayout();
@@ -337,7 +339,7 @@
             this.flatLabel11.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel11.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel11.ForeColor = System.Drawing.Color.White;
-            this.flatLabel11.Location = new System.Drawing.Point(15, 77);
+            this.flatLabel11.Location = new System.Drawing.Point(14, 77);
             this.flatLabel11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel11.Name = "flatLabel11";
             this.flatLabel11.Size = new System.Drawing.Size(41, 19);
@@ -378,7 +380,7 @@
             this.flatLabel1.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel1.ForeColor = System.Drawing.Color.White;
-            this.flatLabel1.Location = new System.Drawing.Point(15, 47);
+            this.flatLabel1.Location = new System.Drawing.Point(14, 47);
             this.flatLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel1.Name = "flatLabel1";
             this.flatLabel1.Size = new System.Drawing.Size(52, 19);
@@ -391,7 +393,7 @@
             this.flatLabel9.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel9.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel9.ForeColor = System.Drawing.Color.White;
-            this.flatLabel9.Location = new System.Drawing.Point(15, 306);
+            this.flatLabel9.Location = new System.Drawing.Point(14, 306);
             this.flatLabel9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel9.Name = "flatLabel9";
             this.flatLabel9.Size = new System.Drawing.Size(93, 19);
@@ -404,7 +406,7 @@
             this.flatLabel2.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel2.ForeColor = System.Drawing.Color.White;
-            this.flatLabel2.Location = new System.Drawing.Point(15, 107);
+            this.flatLabel2.Location = new System.Drawing.Point(14, 107);
             this.flatLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel2.Name = "flatLabel2";
             this.flatLabel2.Size = new System.Drawing.Size(102, 19);
@@ -434,7 +436,7 @@
             this.flatLabel6.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel6.ForeColor = System.Drawing.Color.White;
-            this.flatLabel6.Location = new System.Drawing.Point(15, 171);
+            this.flatLabel6.Location = new System.Drawing.Point(14, 171);
             this.flatLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel6.Name = "flatLabel6";
             this.flatLabel6.Size = new System.Drawing.Size(85, 19);
@@ -447,7 +449,7 @@
             this.flatLabel8.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel8.ForeColor = System.Drawing.Color.White;
-            this.flatLabel8.Location = new System.Drawing.Point(15, 275);
+            this.flatLabel8.Location = new System.Drawing.Point(13, 275);
             this.flatLabel8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel8.Name = "flatLabel8";
             this.flatLabel8.Size = new System.Drawing.Size(106, 19);
@@ -492,7 +494,7 @@
             this.flatLabel7.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel7.ForeColor = System.Drawing.Color.White;
-            this.flatLabel7.Location = new System.Drawing.Point(13, 242);
+            this.flatLabel7.Location = new System.Drawing.Point(12, 242);
             this.flatLabel7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel7.Name = "flatLabel7";
             this.flatLabel7.Size = new System.Drawing.Size(115, 19);
@@ -1554,6 +1556,8 @@
             // tp_match
             // 
             this.tp_match.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.tp_match.Controls.Add(this.ch_script);
+            this.tp_match.Controls.Add(this.tb_script);
             this.tp_match.Controls.Add(this.flatTabControl2);
             this.tp_match.Controls.Add(this.flatLabel34);
             this.tp_match.Controls.Add(this.cb_gameMode);
@@ -1769,7 +1773,7 @@
             this.flatLabel34.BackColor = System.Drawing.Color.Transparent;
             this.flatLabel34.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatLabel34.ForeColor = System.Drawing.Color.White;
-            this.flatLabel34.Location = new System.Drawing.Point(6, 8);
+            this.flatLabel34.Location = new System.Drawing.Point(82, 8);
             this.flatLabel34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.flatLabel34.Name = "flatLabel34";
             this.flatLabel34.Size = new System.Drawing.Size(92, 19);
@@ -1791,10 +1795,10 @@
             "TimeAttack",
             "Rounds",
             "Team"});
-            this.cb_gameMode.Location = new System.Drawing.Point(102, 7);
+            this.cb_gameMode.Location = new System.Drawing.Point(179, 8);
             this.cb_gameMode.Margin = new System.Windows.Forms.Padding(2);
             this.cb_gameMode.Name = "cb_gameMode";
-            this.cb_gameMode.Size = new System.Drawing.Size(240, 24);
+            this.cb_gameMode.Size = new System.Drawing.Size(167, 24);
             this.cb_gameMode.TabIndex = 39;
             // 
             // b_newMatch
@@ -1832,13 +1836,13 @@
             // tb_matchFile
             // 
             this.tb_matchFile.BackColor = System.Drawing.Color.Transparent;
-            this.tb_matchFile.Location = new System.Drawing.Point(346, 5);
+            this.tb_matchFile.Location = new System.Drawing.Point(351, 5);
             this.tb_matchFile.Margin = new System.Windows.Forms.Padding(2);
             this.tb_matchFile.MaxLength = 32767;
             this.tb_matchFile.Multiline = false;
             this.tb_matchFile.Name = "tb_matchFile";
             this.tb_matchFile.ReadOnly = false;
-            this.tb_matchFile.Size = new System.Drawing.Size(699, 29);
+            this.tb_matchFile.Size = new System.Drawing.Size(694, 29);
             this.tb_matchFile.TabIndex = 0;
             this.tb_matchFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tb_matchFile.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -1880,6 +1884,36 @@
             this.checkedListBox1.Size = new System.Drawing.Size(1169, 440);
             this.checkedListBox1.TabIndex = 0;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // tb_script
+            // 
+            this.tb_script.BackColor = System.Drawing.Color.Transparent;
+            this.tb_script.Location = new System.Drawing.Point(180, 4);
+            this.tb_script.MaxLength = 32767;
+            this.tb_script.Multiline = false;
+            this.tb_script.Name = "tb_script";
+            this.tb_script.ReadOnly = false;
+            this.tb_script.Size = new System.Drawing.Size(166, 29);
+            this.tb_script.TabIndex = 42;
+            this.tb_script.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.tb_script.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tb_script.UseSystemPasswordChar = false;
+            // 
+            // ch_script
+            // 
+            this.ch_script.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.ch_script.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.ch_script.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.ch_script.Checked = false;
+            this.ch_script.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ch_script.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ch_script.Location = new System.Drawing.Point(8, 7);
+            this.ch_script.Name = "ch_script";
+            this.ch_script.Options = FlatUITheme.FlatCheckBox._Options.Style1;
+            this.ch_script.Size = new System.Drawing.Size(66, 22);
+            this.ch_script.TabIndex = 42;
+            this.ch_script.Text = "Script";
+            this.ch_script.CheckedChanged += new FlatUITheme.FlatCheckBox.CheckedChangedEventHandler(this.ch_script_CheckedChanged);
             // 
             // ConfigServ
             // 
@@ -2035,5 +2069,7 @@
         private System.Windows.Forms.TabPage tp_ms_maps;
         private System.Windows.Forms.TabPage tp_ms_settings;
         private System.Windows.Forms.FlowLayoutPanel flp_matchSettings;
+        private FlatUITheme.FlatCheckBox ch_script;
+        private FlatUITheme.FlatTextBox tb_script;
     }
 }

@@ -15,6 +15,7 @@ using static LamaMania.StaticMethods;
 
 namespace LamaMania.HomeComponents
 {
+
     /// <summary>
     /// 
     /// </summary>
