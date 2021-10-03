@@ -119,6 +119,8 @@
             this.tb_db_passwd = new FlatUITheme.FlatTextBox();
             this.tb_db_base = new FlatUITheme.FlatTextBox();
             this.tp_match = new System.Windows.Forms.TabPage();
+            this.ch_script = new FlatUITheme.FlatCheckBox();
+            this.tb_script = new FlatUITheme.FlatTextBox();
             this.flatTabControl2 = new FlatUITheme.FlatTabControl();
             this.tp_ms_maps = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -141,8 +143,6 @@
             this.tabPlugins = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.tb_script = new FlatUITheme.FlatTextBox();
-            this.ch_script = new FlatUITheme.FlatCheckBox();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tp_general.SuspendLayout();
@@ -1571,6 +1571,36 @@
             this.tp_match.TabIndex = 2;
             this.tp_match.Text = "MatchSettings";
             // 
+            // ch_script
+            // 
+            this.ch_script.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.ch_script.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.ch_script.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.ch_script.Checked = false;
+            this.ch_script.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ch_script.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ch_script.Location = new System.Drawing.Point(8, 7);
+            this.ch_script.Name = "ch_script";
+            this.ch_script.Options = FlatUITheme.FlatCheckBox._Options.Style1;
+            this.ch_script.Size = new System.Drawing.Size(66, 22);
+            this.ch_script.TabIndex = 42;
+            this.ch_script.Text = "Script";
+            this.ch_script.CheckedChanged += new FlatUITheme.FlatCheckBox.CheckedChangedEventHandler(this.ch_script_CheckedChanged);
+            // 
+            // tb_script
+            // 
+            this.tb_script.BackColor = System.Drawing.Color.Transparent;
+            this.tb_script.Location = new System.Drawing.Point(180, 4);
+            this.tb_script.MaxLength = 32767;
+            this.tb_script.Multiline = false;
+            this.tb_script.Name = "tb_script";
+            this.tb_script.ReadOnly = false;
+            this.tb_script.Size = new System.Drawing.Size(166, 29);
+            this.tb_script.TabIndex = 42;
+            this.tb_script.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.tb_script.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tb_script.UseSystemPasswordChar = false;
+            // 
             // flatTabControl2
             // 
             this.flatTabControl2.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
@@ -1884,36 +1914,6 @@
             this.checkedListBox1.Size = new System.Drawing.Size(1169, 440);
             this.checkedListBox1.TabIndex = 0;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
-            // 
-            // tb_script
-            // 
-            this.tb_script.BackColor = System.Drawing.Color.Transparent;
-            this.tb_script.Location = new System.Drawing.Point(180, 4);
-            this.tb_script.MaxLength = 32767;
-            this.tb_script.Multiline = false;
-            this.tb_script.Name = "tb_script";
-            this.tb_script.ReadOnly = false;
-            this.tb_script.Size = new System.Drawing.Size(166, 29);
-            this.tb_script.TabIndex = 42;
-            this.tb_script.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.tb_script.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tb_script.UseSystemPasswordChar = false;
-            // 
-            // ch_script
-            // 
-            this.ch_script.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.ch_script.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.ch_script.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.ch_script.Checked = false;
-            this.ch_script.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ch_script.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ch_script.Location = new System.Drawing.Point(8, 7);
-            this.ch_script.Name = "ch_script";
-            this.ch_script.Options = FlatUITheme.FlatCheckBox._Options.Style1;
-            this.ch_script.Size = new System.Drawing.Size(66, 22);
-            this.ch_script.TabIndex = 42;
-            this.ch_script.Text = "Script";
-            this.ch_script.CheckedChanged += new FlatUITheme.FlatCheckBox.CheckedChangedEventHandler(this.ch_script_CheckedChanged);
             // 
             // ConfigServ
             // 

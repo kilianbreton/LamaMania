@@ -27,8 +27,8 @@ namespace LamaController
             {
                 
                 Console.Write("Lama>");
-                cmd = cli.ReadLine();
-                //cmd = Console.ReadLine();
+                //cmd = cli.ReadLine();
+                cmd = "MAKE LOCALESSCRIPTSETTINGS";
                 switch (cmd.ToUpper().Trim())
                 {
                     ////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -99,6 +99,11 @@ namespace LamaPlugin
 
         }
 
+        public virtual void onUnload()
+        {
+
+        }
+
         
      
 
@@ -153,7 +158,7 @@ namespace LamaPlugin
         public List<Requirement> Requirements { get; set; }
         public string PluginName { get; set; }
         public string PluginFolder { get; set; }
-
+        public string LamaLibName { get; set; }
         public string PluginKey { get; set; }
         public PluginType PluginType { get; set; }
         public OnError OnError { get; set; }

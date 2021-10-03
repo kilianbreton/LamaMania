@@ -168,6 +168,11 @@ namespace LamaController
                         lama.log("SUCCESS", "Success");
                     }
                 }
+                catch (NotConnectedException tnc)
+                {
+                    System.Threading.Thread.Sleep(WAIT_AUTH_TIME);
+                    lama.log("NOTICE", "unable to connect");
+                }
                 catch (Exception err)
                 {
                     System.Threading.Thread.Sleep(WAIT_AUTH_TIME);

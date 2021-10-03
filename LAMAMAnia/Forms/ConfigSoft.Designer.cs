@@ -49,12 +49,14 @@
             this.l_ressourcepath = new FlatUITheme.FlatLabel();
             this.tp_locales = new System.Windows.Forms.TabPage();
             this.tb_pluginsDrive = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tp_externTools = new System.Windows.Forms.TabPage();
             this.b_exTool_add = new FlatUITheme.FlatButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.b_cancel = new FlatUITheme.FlatButton();
             this.b_save = new FlatUITheme.FlatButton();
+            this.tv_plugins = new System.Windows.Forms.TreeView();
+            this.flatButton1 = new FlatUITheme.FlatButton();
+            this.rtb_pluginsDump = new System.Windows.Forms.RichTextBox();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tp_general.SuspendLayout();
@@ -371,21 +373,15 @@
             // tb_pluginsDrive
             // 
             this.tb_pluginsDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.tb_pluginsDrive.Controls.Add(this.flowLayoutPanel2);
+            this.tb_pluginsDrive.Controls.Add(this.rtb_pluginsDump);
+            this.tb_pluginsDrive.Controls.Add(this.flatButton1);
+            this.tb_pluginsDrive.Controls.Add(this.tv_plugins);
             this.tb_pluginsDrive.Location = new System.Drawing.Point(4, 44);
             this.tb_pluginsDrive.Name = "tb_pluginsDrive";
             this.tb_pluginsDrive.Padding = new System.Windows.Forms.Padding(3);
             this.tb_pluginsDrive.Size = new System.Drawing.Size(902, 333);
             this.tb_pluginsDrive.TabIndex = 3;
             this.tb_pluginsDrive.Text = "Plugins";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(7, 6);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(889, 324);
-            this.flowLayoutPanel2.TabIndex = 0;
             // 
             // tp_externTools
             // 
@@ -454,6 +450,36 @@
             this.b_save.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.b_save.Click += new System.EventHandler(this.B_save_Click);
             // 
+            // tv_plugins
+            // 
+            this.tv_plugins.Location = new System.Drawing.Point(3, 6);
+            this.tv_plugins.Name = "tv_plugins";
+            this.tv_plugins.Size = new System.Drawing.Size(621, 264);
+            this.tv_plugins.TabIndex = 0;
+            // 
+            // flatButton1
+            // 
+            this.flatButton1.BackColor = System.Drawing.Color.Transparent;
+            this.flatButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.flatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.flatButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.flatButton1.Location = new System.Drawing.Point(630, 6);
+            this.flatButton1.Name = "flatButton1";
+            this.flatButton1.Rounded = false;
+            this.flatButton1.Size = new System.Drawing.Size(266, 32);
+            this.flatButton1.TabIndex = 1;
+            this.flatButton1.Text = "flatButton1";
+            this.flatButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.flatButton1.Click += new System.EventHandler(this.flatButton1_Click);
+            // 
+            // rtb_pluginsDump
+            // 
+            this.rtb_pluginsDump.Location = new System.Drawing.Point(630, 44);
+            this.rtb_pluginsDump.Name = "rtb_pluginsDump";
+            this.rtb_pluginsDump.Size = new System.Drawing.Size(264, 226);
+            this.rtb_pluginsDump.TabIndex = 2;
+            this.rtb_pluginsDump.Text = "";
+            // 
             // ConfigSoft
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -504,6 +530,8 @@
         private FlatUITheme.FlatToggle tog_devmode;
         private System.Windows.Forms.TabPage tp_locales;
         private System.Windows.Forms.TabPage tb_pluginsDrive;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.TreeView tv_plugins;
+        private FlatUITheme.FlatButton flatButton1;
+        private System.Windows.Forms.RichTextBox rtb_pluginsDump;
     }
 }

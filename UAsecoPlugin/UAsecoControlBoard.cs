@@ -27,8 +27,7 @@ namespace UAsecoPlugin
             this.Author = "KBT";
             this.PluginName = "UAsecoControlBoard";
             this.ConfigServPlugin = false;
-            this.PluginKey = "22373843d50a7e68490b866e19d67dba4414e0eef49e1ccaba3f86a24bd841ac8fce0886a349fb57ada10003d15b573443391ddf803731ce9d8301e2b4b5ec19fca7975bd08651e058d6e283d23dfc10c3cc86b17a772a8b43f34847be27bd36d10eb97d849f0fb8d60ba99ce1e38cc9b64c4dd1d57e609317d491361095ccb4";
-
+           
             this.Requirements.Add(new Requirement(RequirementType.FILE, "uaseco_main.xml"));
 
         }

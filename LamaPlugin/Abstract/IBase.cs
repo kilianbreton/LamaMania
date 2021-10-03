@@ -104,7 +104,10 @@ namespace LamaPlugin
         OnError OnError { get; set; }
         Logger Log { get; set; }
 
+        string LamaLibName { get; set; }
 
+
+        void onUnload();
 
         void onPluginUpdate();         
 

@@ -20,6 +20,11 @@ namespace LamaPlugin
 
         }
 
+        public virtual void onUnload()
+        {
+
+        }
+
         public InterPluginResponse onInterPluginCall(IBasePlugin sender, InterPluginArgs args)
         {
             return null;
@@ -45,6 +50,6 @@ namespace LamaPlugin
         public Logger Log { get; set; }
         public string PluginDescription { get; set; }
 
-        public string PluginKey { get; set; }
+        public string LamaLibName { get; set; }
     }
 }

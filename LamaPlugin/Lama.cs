@@ -47,6 +47,9 @@ namespace LamaPlugin
     /// </summary>
     public class Lama
     {
+
+        public List<IManager> managers;
+
         /// <summary>
         /// Start mode : -1 = select and start, >=0 = autostart id
         /// </summary>

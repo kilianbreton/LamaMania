@@ -75,6 +75,162 @@ namespace LamaPlugin
         // Load dll ////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         
+
+        public int addPlugin(IBasePlugin plugin)
+        {
+            int cpt = 0;
+            switch (plugin.PluginType)
+            {
+                case PluginType.Base:
+
+                    break;
+                case PluginType.HomeComponent:
+                    HomeComponentPlugins.Add((HomeComponentPlugin)plugin);
+                    cpt++;
+                    break;
+                case PluginType.TabPlugin:
+                    TabPlugins.Add((TabPlugin)plugin);
+                    cpt++;
+                    break;
+                case PluginType.InGamePlugin:
+                    InGamePlugins.Add((InGamePlugin)plugin);
+                    cpt++;
+                    break;
+            }
+            return cpt;
+        }
+    
+
+        public int loadLibPlugins(DllLoader loader, string libName)
+        {
+            List<IBasePlugin> plugs = loader.getAllInstances<IBasePlugin>();
+            int cpt = 0;
+            foreach (IBasePlugin p in plugs)
+            {
+                if (p.PluginType != PluginType.Base)
+                {
+                    p.LamaLibName = libName;
+                    this.cache.addLink(libName, p.GetType().FullName);
+                    cpt = addPlugin(p);
+                }  
+            }
+            return cpt;
+        }
+
+
+        private int loadFromLinks(DllLoader loader, List<string> links)
+        {
+            int insLoaded = 0;
+            foreach (string link in links)
+            {
+                try
+                {
+                    IBasePlugin p = loader.getClassInstance<IBasePlugin>(link);
+                    p.LamaLibName = loader.getName();
+                    insLoaded = addPlugin(p);
+                    lama.log("NOTICE", "-" + link);
+                }
+                catch (Exception e)
+                {
+                    lama.log("ERROR", "[PluginManager][LoadPlugin]>" + e.Message);
+                }
+            }
+            return insLoaded;
+        }
+
+
+
+
+        private void removePlugin(IBasePlugin p)
+        {
+            switch (p.PluginType)
+            {
+                case PluginType.Base:
+                    throw new Exception("Unable to unload a BasePlugin");
+
+                case PluginType.HomeComponent:
+                    HomeComponentPlugins.Remove((HomeComponentPlugin)p);
+                    break;
+                case PluginType.TabPlugin:
+                    TabPlugins.Remove((TabPlugin)p);
+                    break;
+                case PluginType.InGamePlugin:
+                    InGamePlugins.Remove((InGamePlugin)p);
+                    break;
+            }
+            p = null;
+
+        }
+
+
+        public void unloadLib(string libname)
+        {
+            IEnumerable<DllLoader> lst = libs.Where(lib => lib.getName() == libname);
+            if(lst.Count() == 1)
+            {
+                unloadLib(lst.First());
+            }
+
+        }
+
+        public void unloadLib(DllLoader lib)
+        {
+            List<string> links = this.cache.getLinks(lib.getName() + ".dll");
+            int nb = 0;
+            foreach(string link in links)
+            {
+                string[] path = link.Split('.');
+
+                string className = path[path.Length - 1];
+
+                IBasePlugin plugin = getPluginByClassName(className);
+                if(plugin != null)
+                {
+                    plugin.onUnload();
+                    removePlugin(plugin);
+                    nb++;
+                }
+            }
+            if(nb == links.Count)
+            {
+                this.libs.Remove(lib);
+            }
+            else
+            {
+                lama.onError(this, "Instances missing", "Unable to unload all plugin instances");
+            }
+
+                       
+        }
+
+
+        private IBasePlugin getPluginByClassName(string className)
+        {
+            foreach(IBasePlugin p in InGamePlugins)
+            {
+                if(p.GetType().Name == className)
+                    return p;
+            }
+            foreach (IBasePlugin p in TabPlugins)
+            {
+                if (p.GetType().Name == className)
+                    return p;
+            }
+            foreach (IBasePlugin p in HomeComponentPlugins)
+            {
+                if (p.GetType().Name == className)
+                    return p;
+            }
+
+            return null;
+        }
+
+
+
+
+
+
+
         /// <summary>
         /// Load plugins from dll
         /// </summary>
@@ -108,7 +264,6 @@ namespace LamaPlugin
                         else
                         {
                             this.cache.addLib(file.Name);
-                            
                             this.cache.addHash(file.Name, hash);
                         }
 
@@ -119,101 +274,34 @@ namespace LamaPlugin
                             {
                                 DllLoader loader = new DllLoader(file.FullName);
                                 List<string> links = this.cache.getLinks(file.Name);
-                                
+                                lama.log("NOTICE", "Load " + file.Name + " ...");
+                                int insLoaded = 0;
                                 //ReadLinks------------------------------------------------------------------------------------------------------------------------------
                                 if (links.Count != 0 && !hashComputed)
-                                {
-                                    int insLoaded = 0;
-                                    lama.log("NOTICE", "Load " + file.Name + " ...");
-                                    foreach (string link in links)
-                                    {
-                                        try
-                                        {
-                                            IBasePlugin p = loader.getClassInstance<IBasePlugin>(link);
-                                            switch (p.PluginType)
-                                            {
-                                                case PluginType.Base:
-                                                    //Delete link ?
-                                                    break;
-                                                case PluginType.HomeComponent:
-                                                    HomeComponentPlugins.Add((HomeComponentPlugin)p);
-                                                    insLoaded++;
-                                                    break;
-                                                case PluginType.TabPlugin:
-                                                    TabPlugins.Add((TabPlugin)p);
-                                                    insLoaded++;
-                                                    break;
-                                                case PluginType.InGamePlugin:
-                                                    InGamePlugins.Add((InGamePlugin)p);
-                                                    insLoaded++;
-                                                    break;
-                                            }
-                                            lama.log("NOTICE", "-" + link);
-                                        }
-                                        catch(Exception)
-                                        {
-                                            //nothing
-                                        }
-                                    }
-
-                                    if (insLoaded != 0)
-                                    {
-                                        lama.log("NOTICE", "[PluginManager][LoadPlugins] Success !");
-                                        libs.Add(loader);
-                                    }
-                                    else
-                                    {
-                                        this.cache.addIgnore(file.Name);
-                                        this.cache.removeAllLinks(file.Name);
-                                        lama.log("NOTICE", "[PluginManager][LoadPlugins] Error, added in dllignore (0 instances loaded)");
-                                    }
-
+                                { 
+                                    insLoaded = loadFromLinks(loader, links);
                                 }
                                 else//Search class----------------------------------------------------------------------------------------------------------------------
                                 {
-                                    //Load instances in lists and count nb instances
-                                   
-                                        List<IBasePlugin> plugs = loader.getAllInstances<IBasePlugin>();
-                                        int cpt = 0;
-                                        foreach (IBasePlugin p in plugs)
-                                        {
-                                            if (p.PluginType != PluginType.Base)
-                                            {
-                                                this.cache.addLink(file.Name, p.GetType().FullName);
-                                                bool ok = true;
-                                                switch (p.PluginType)
-                                                {
-                                                    case PluginType.Base:
-                                                        ok = false;
-                                                        break;
-                                                    case PluginType.HomeComponent:
-                                                        HomeComponentPlugins.Add((HomeComponentPlugin)p);
-                                                        break;
-                                                    case PluginType.TabPlugin:
-                                                        TabPlugins.Add((TabPlugin)p);
-                                                        break;
-                                                    case PluginType.InGamePlugin:
-                                                        InGamePlugins.Add((InGamePlugin)p);
-                                                        break;
-                                                }
-                                                if (ok)
-                                                {
-                                                    cpt++;
-                                                }
-
-                                            }
-                                        }
-                                  
-                                    if (cpt == 0) //0 Instances loaded
-                                    {   //Append dllIgnore
-                                        lama.log("NOTICE", "[PluginManager][LoadPlugins] " + file.Name + " added in dllignore (0 instances loaded)");
+                                    insLoaded = loadLibPlugins(loader, file.Name);
+                                }
+                                if (insLoaded == 0) //0 Instances loaded
+                                {   //Append dllIgnore
+                                    lama.log("NOTICE", "[PluginManager][LoadPlugins] " + file.Name + " added in dllignore (0 instances loaded)");
+                                    if (links.Count != 0 && !hashComputed)
+                                    {
                                         this.cache.addIgnore(file.Name);
+                                        this.cache.removeAllLinks(file.Name);
                                     }
                                     else
                                     {
-                                        libs.Add(loader);
-                                        lama.log("NOTICE", "[PluginManager][LoadPlugins] Loaded : " + file.Name);
+                                        this.cache.addIgnore(file.Name);
                                     }
+                                }
+                                else
+                                {
+                                    libs.Add(loader);
+                                    lama.log("NOTICE", "[PluginManager][LoadPlugins] Loaded : " + file.Name);
                                 }
                             }
                             catch (IOException) { }

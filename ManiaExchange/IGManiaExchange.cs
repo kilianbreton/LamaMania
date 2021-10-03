@@ -24,6 +24,7 @@ namespace ManiaExchange
             base.PluginDescription = "Widget and commands to manage maniaexchange maps";
             base.Author = "KBT";
             base.Requirements.Add(new Requirement(RequirementContext.LOCAL));
+            base.Requirements.Add(new Requirement(RequirementType.PLUGIN, "UserLevels"));
 
         }
 
@@ -33,7 +34,7 @@ namespace ManiaExchange
         {
             try
             {
-                
+                this.players = lamaConfig.players;
                 this.mx = new ManiaExchange(lamaConfig.game, Log);
 
 
@@ -64,7 +65,7 @@ namespace ManiaExchange
 
 
 
-                InterPluginResponse r = sendInterPluginCall("UserLever", "GetUserLevel", new Dictionary<string, object>() {
+                InterPluginResponse r = sendInterPluginCall("UserLevels", "GetUserLevel", new Dictionary<string, object>() {
                         {"login", login }
                     });
                 if (r != null)
@@ -75,8 +76,9 @@ namespace ManiaExchange
                     {
                         //Admin Commands////////////////////////////////////////////////////////////////
                         if (msg.ToLower().Contains("/mxadd ") && msg.Length > 7 && checkLevel(level, "ADMIN"))
-                        { 
-                            
+                        {
+                            //test
+                            asyncRequest(checkError, GBXMethods.ChatSendToLogin, "MX ADD", login);
                         }
                     }
                 }

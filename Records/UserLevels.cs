@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LamaPlugin;
 using TMXmlRpcLib;
 using NTK.IO.Xml;
-
+using System.Text.RegularExpressions;
 
 namespace Records
 {
@@ -16,7 +16,8 @@ namespace Records
         Admin,
         Moderator,
         Guest,
-        User
+        User,
+        Custom
     }
 
 
@@ -25,7 +26,8 @@ namespace Records
         private Dictionary<string, UserLevel> userLevels = new Dictionary<string, UserLevel>();
         private List<Player> players = new List<Player>();
         private XmlDocument levelsConfig;
-
+        private const string CONFIG_FILE = "levels.xml";
+        private Regex rx = new Regex("^/[a-zA-Z0-9_ ]");
 
         public UserLevels()
         {
@@ -34,10 +36,9 @@ namespace Records
             base.PluginFolder = "[NONE]";
             base.Version = "0.1";
             base.Author = "KBT";
-            base.PluginKey = "363fcbfe31ab2c561e98b635b2782776c96669433ba3fe77ac959093dced4fffb983247eabffc33098e425e5e7c3d5e2c3d9d702b23fb16ecbe14d081c46223bcf6978626ea5b3bd4ccbd0bc7f763d5c4bc489ae115db047be25d3dcf1890aba7ad8112dd8c4659cb9fc0dcd68fc0a5229475efb2990b60deb56f783d6b4ccdc";
-
+           
             base.Requirements.Add(new Requirement(RequirementContext.LOCAL));
-            base.Requirements.Add(new Requirement(RequirementType.FILE, "levels.xml"));
+            base.Requirements.Add(new Requirement(RequirementType.FILE, CONFIG_FILE));
         }
 
 
@@ -45,15 +46,17 @@ namespace Records
         {
             try
             {
-                if (lamaConfig.configFiles.ContainsKey("levels.xml"))
+                if (lamaConfig.configFiles.ContainsKey(CONFIG_FILE))
                 {
                     players = lamaConfig.players;
-                    levelsConfig = lamaConfig.configFiles["levels.xml"];
+                    levelsConfig = lamaConfig.configFiles[CONFIG_FILE];
                     addUserLevel("masterAdmins", UserLevel.MasterAdmin);
                     addUserLevel("admins", UserLevel.Admin);
                     addUserLevel("moderators", UserLevel.Moderator);
                     addUserLevel("guests", UserLevel.Guest);
 
+
+                    Callbacks.AddListener(GBXCallBacks.ManiaPlanet_PlayerChat, onPlayerChat);
                     return true;
                 }
             }
@@ -78,6 +81,78 @@ namespace Records
                     }
                 }
             }
+        }
+
+
+        private void onPlayerChat(object sender, GbxCallbackEventArgs args)
+        {
+            var htPlayerChat = args.Response.Params;
+            string msg = (string)htPlayerChat[2];
+            string login = (string)htPlayerChat[1];
+
+            Player playerSender = searchByLogin(login);
+
+            UserLevel lvl = UserLevel.User;
+            if(this.userLevels.ContainsKey(login))
+            {
+                lvl = this.userLevels[login];
+            }
+
+
+
+            if (rx.IsMatch(msg)) //Check is command (/....)------------------------
+            {
+                //Admin Commands////////////////////////////////////////////////////////////////
+                if (msg.ToLower().Equals("/levels")  && lvl == UserLevel.MasterAdmin)
+                {
+                    //test
+                    string txt = "";
+
+                    foreach (KeyValuePair<string, UserLevel> kvp in this.userLevels.OrderBy(kvp => kvp.Value))
+                    {
+                        txt += "$fff" + kvp.Key + " - ";
+                        switch (kvp.Value)
+                        {
+                            case UserLevel.MasterAdmin:
+                                txt += "$f00";
+                                break;
+                            case UserLevel.Admin:
+                                txt += "$a33";
+                                break;
+                            case UserLevel.Moderator:
+                                txt += "$aa2";
+                                break;
+                            case UserLevel.Guest:
+                                txt += "$0f0";
+                                break;
+                            case UserLevel.User:
+                                txt += "$55d";
+                                break;
+                        }
+                        txt += kvp.Value.ToString() + "\n";
+                    }
+
+                    asyncRequest(checkError, GBXMethods.ChatSendServerMessageToLogin, txt, login);
+
+                }
+            }
+
+
+
+
+        }
+
+        private Player searchByLogin(string login)
+        {
+            Player ret = null;
+            int cpt = 0;
+            while (cpt < this.players.Count && this.players[cpt].Login != login) { cpt++; }
+
+            if (cpt < this.players.Count && this.players[cpt].Login == login)
+                ret = this.players[cpt];
+
+
+            return ret;
         }
 
 

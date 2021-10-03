@@ -138,6 +138,10 @@ namespace LamaPlugin
 
         public abstract void onDisconnect();
 
+        public virtual void onUnload()
+        {
+
+        }
         public void onGbxCallBack(object sender, GbxCallbackEventArgs args, bool none)
         {
             Callbacks.onGbxCallBack(sender, args);
@@ -179,10 +183,7 @@ namespace LamaPlugin
         public OnError OnError { get; set; }
         public Logger Log { get; set; }
         public string PluginDescription { get; set; }
-        
-        /// <summary>
-        /// For Offical Plugins
-        /// </summary>
-        public string PluginKey { get; set; }
+ 
+        public string LamaLibName { get; set; }
     }
 }

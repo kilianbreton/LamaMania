@@ -8,9 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LamaMania.UserConstrols;
+using NTK.IO;
 using NTK.IO.Xml;
 using RestSharp;
 using static LamaMania.Program;
+using LamaPlugin;
+using System.IO;
 
 namespace LamaMania
 {
@@ -30,18 +33,20 @@ namespace LamaMania
         {
             InitializeComponent();
 
-            this.config = Program.lama.mainConfig;
 
+            //Read config
+            this.config = Program.lama.mainConfig;
             this.tb_cachePath.Text = this.config[0]["cachePath"].Value;
             this.tb_ressourcePath.Text = this.config[0]["ressourcesPath"].Value;
             this.tb_logPath.Text = this.config[0]["logPath"].Value;
 
+            //Locales
             foreach(string str in lama.localesManager.availableLanguages())
             {
                 cb_lang.Items.Add(str);
             }
 
-
+            //External tools
             XmlNode exTools = config[0]["externalTools"];
 
             foreach(XmlNode n in exTools)
@@ -52,9 +57,38 @@ namespace LamaMania
             }
 
 
+            //Plugins treeView
+            List<IBasePlugin> plugins = new List<IBasePlugin>();
+            plugins.AddRange(lama.pluginManager.InGamePlugins);
+            plugins.AddRange(lama.pluginManager.TabPlugins);
+            plugins.AddRange(lama.pluginManager.HomeComponentPlugins);
+            
+            //dump
+            foreach(IBasePlugin p in plugins)
+            {
+                rtb_pluginsDump.AppendText(p.ToStringExt());
+                rtb_pluginsDump.AppendText("--------------\n");
+            }
+
+            foreach (DllLoader dll in lama.pluginManager.getLibs())
+            {
+                IEnumerable<IBasePlugin> lst = plugins.Where(p => p.LamaLibName == dll.getName());
+                TreeNode r = tv_plugins.Nodes.Add(dll.getName());
+                foreach(IBasePlugin p in lst)
+                {
+                    r.Nodes.Add(p.PluginName);
+                }
+
+
+
+            }
+
+
+
+
+
 
             //Call API
-
             RestClient client = new RestClient("http://lamamania.yoxclan.fr/Api");
 
             RestRequest request = new RestRequest("librarys.php", DataFormat.Json);
@@ -67,7 +101,7 @@ namespace LamaMania
             {
                 if(obj.TryGetValue("name", out object pluginName))
                 {
-                    MessageBox.Show((string)pluginName);
+                  //  MessageBox.Show((string)pluginName);
                 }
              
             }
@@ -125,6 +159,14 @@ namespace LamaMania
         private void b_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void flatButton1_Click(object sender, EventArgs e)
+        {
+            lama.pluginManager.unloadLib("Records");
+
+            /*DllLoader loader = new DllLoader(Path.GetDirectoryName(Application.ExecutablePath) + @"\Plugins\Records.dll");
+            lama.pluginManager.loadLibPlugins(loader, "Records");*/
         }
     }
 }

@@ -31,8 +31,7 @@ namespace Records
             this.PluginDescription = "Gestionaire de records locaux";
             this.PluginFolder = "[NONE]";
             this.Version = "0.1";
-            this.PluginKey = "4ddc539cd526c764b2867f8e5c2c615554cec1dd48ece27bac5356763a34e74eba60ff85843ab094db85d81d0afc1cbe280829177f186ad0a6bac7428af8c75a0e538439349ec46638f0df30f9c7e6bfbde0ab2b4123989e7f1a0136b88853aea54b71a1d291369ef3dca5d01dabbdf5752fe38699f23756775ea2cae317e839";
-
+           
             this.Requirements.Add(new Requirement(RequirementType.DATABASE, true));
             this.Requirements.Add(new Requirement(RequirementContext.LOCAL));
         

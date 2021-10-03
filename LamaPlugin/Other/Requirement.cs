@@ -21,12 +21,17 @@ namespace LamaPlugin
         ExternalTool,
     }
 
+
+   
     [Serializable]
     public class Requirement
     {
         private RequirementType type;
         private string value;
         
+
+      
+
         public Requirement(RequirementType type, string value)
         {
             this.type = type;

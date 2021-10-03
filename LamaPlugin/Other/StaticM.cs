@@ -16,9 +16,26 @@ namespace LamaPlugin
         /// <param name="methodName"></param>
         /// <param name="param"></param>
         /// <returns></returns>
+        /// 
         public static GbxCall Request(this XmlRpcClient client, string methodName, params object[] param)
         {
             return client.Request(methodName, param);
+        }
+
+
+
+        public static string ToStringExt(this IBasePlugin plugin)
+        {
+            string ret = "Plugin Type : " + plugin.PluginType + "\n";
+
+            ret += "Plugin Name : " + plugin.PluginName + "\n";
+          //  ret += "Plugin Description : " + plugin.PluginDescription + "\n";
+          //  ret += "Plugin Version : " + plugin.Version + "\n";
+          //  ret += "Plugin Author : " + plugin.Author + "\n";
+            ret += "Plugin LamaLibName : " + plugin.LamaLibName + "\n";
+
+
+            return ret;
         }
 
 

@@ -55,7 +55,7 @@ namespace LamaMania
             lama = new Lama();
             if(args.Length != 0)
             {
-#if CAHCE_DEBUG
+#if CACHE_DEBUG
 
 #else
                 if(args[0].ToUpper() == "--CLEARCACHE")
